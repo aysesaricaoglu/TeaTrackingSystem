@@ -2,7 +2,79 @@ import sqlite3
 
 DATABASE_NAME = "tea.db"
 
+
 def create_connection():
     connection = sqlite3.connect(DATABASE_NAME)
 
     return connection
+
+
+def create_table():
+    connection = create_connection()
+    cursor = (
+        connection.cursor()
+    )  # garson gibi düşünebiliriz. garson siparişleri alır ve mutfağa iletir.
+    cursor.execute("""CREATE TABLE IF NOT EXISTS users(
+         id INTEGER PRIMARY KEY AUTOINCREMENT,
+         tc_no TEXT UNIQUE NOT NULL,
+         password TEXT NOT NULL,
+         role TEXT NOT NULL,
+         first_name TEXT NOT NULL,
+         last_name TEXT NOT NULL
+    )""")
+
+    cursor.execute("""CREATE TABLE IF NOT EXISTS tea_delivers(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    farmer_id INTEGER NOT NULL,
+    expert_id INTEGER NOT NULL,
+    delivery_date TEXT NOT NULL,
+    gross_weight REAL NOT NULL,
+    net_weight REAL NOT NULL,
+    is_rainy INTEGER NOT NULL,
+    payment_option TEXT NOT NULL,
+    FOREIGN KEY (farmer_id) REFERENCES users(id),
+    FOREIGN KEY (expert_id) REFERENCES users(id)
+    
+    )""")
+
+    cursor.execute("""CREATE TABLE IF NOT EXISTS farmers(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    city TEXT NOT NULL,
+    district TEXT NOT NULL,
+    phone_number TEXT NOT NULL,
+    village TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+    )""")
+
+    cursor.execute("""CREATE TABLE IF NOT EXISTS turkiye_production(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    year INTEGER ,
+    month TEXT,
+    production REAL)""")
+
+    cursor.execute("""CREATE TABLE IF NOT EXISTS payments(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    delivery_id INTEGER NOT NULL,
+    payment_date TEXT NOT NULL,
+    amount REAL NOT NULL,
+    status TEXT NOT NULL,
+    FOREIGN KEY (delivery_id) REFERENCES tea_delivers(id))""")
+
+    
+def show_tables():
+    connection = create_connection()
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+
+    tables = cursor.fetchall()
+
+    print("Tables in Database:")
+    for table in tables:
+        print(table[0])
+
+    connection.commit()  # commit işlemi veritabanına değişiklikleri kaydeder. yani garson mutfağa ilettiği siparişin tamamlandığını ve artık mutfakta hazır olduğunu bildirir.
+    connection.close()

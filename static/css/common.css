@@ -1,0 +1,42 @@
+/* Sıfırlama */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* Genel Sayfa */
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f8f2;
+    color:#333;
+}
+
+/* Linkler */
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* Buton */
+.btn{
+    background:#2E7D32;
+    color:white;
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#388E3C;
+}
+
+/* Kart */
+.card{
+    background:rgb(255, 255, 255,0.6);
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Expert Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/expert.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="sidebar">
+
+        <h2>🌿 Tea Tracking</h2>
+
+        <ul>
+
+            <li><a href="#">🏠 Dashboard</a></li>
+            <li><a href="#">➕ New Delivery</a></li>
+            <li><a href="#">👨‍🌾 Search Farmer</a></li>
+            <li><a href="#">🤖 AI Assistant</a></li>
+            <li><a href="#">🚪 Logout</a></li>
+
+        </ul>
+
+    </div>
+
+    <div class="main-content">
+
+        <h1>New Tea Delivery</h1>
+
+        <form>
+
+            <div class="input-group">
+
+                <label>Farmer TC Number</label>
+                <input type="text">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Gross Weight (kg)</label>
+                <input type="number">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Is it raining?</label>
+
+                <select>
+
+                    <option>Yes</option>
+                    <option>No</option>
+
+                </select>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Payment Option</label>
+
+                <select>
+
+                    <option>Immediate</option>
+                    <option>1 Month</option>
+                    <option>3 Months</option>
+
+                </select>
+
+            </div>
+
+            <button class="btn">
+
+                Save Delivery
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,20 +1,87 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tea Tracking System | Login</title>
 
-    <title>Tea Tracking System</title>
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 </head>
 
 <body>
 
-    <h1>Tea Tracking System</h1>
+    <div class="container">
 
-    <h2>Login Page</h2>
+        <!-- Sol Taraf -->
+        <div class="left-panel">
 
-    <p>Welcome to the Tea Tracking System.</p>
+            <div class="overlay">
+
+                <h1>Tea Tracking System</h1>
+
+                <p>
+                    Smart Tea Production Management Platform
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Sağ Taraf -->
+        <div class="right-panel">
+
+            <div class="login-card">
+
+                <img src="{{ url_for('static', filename='images/tea_logo.jpg') }}"
+                     alt="ÇAY Logo"
+                     class="logo">
+
+                <h2>Welcome Back</h2>
+
+                <p>Please sign in to continue.</p>
+
+                <form action="/", method="post">
+
+                    <div class="input-group">
+
+                        <label for="tc">
+                            Turkish Identity Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="tc"
+                            name="tc"
+                            placeholder="Enter your TC Identity Number"
+                            maxlength="11">
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password">
+
+                    </div>
+
+                    <button type="submit">
+                        Login
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </body>
-
 </html>

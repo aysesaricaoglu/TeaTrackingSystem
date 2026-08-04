@@ -1,0 +1,163 @@
+/* Sayfanın varsayılan boşluklarını kaldırır */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Sayfanın tamamı */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+    background-color: #ebd19d; /* Resim yüklenmezse diye yedek renk */
+}
+
+/* Sayfayı ikiye böler ve ANA ARKA PLANI tutar */
+.container {
+    display: flex;
+    height: 100vh;
+    /* Arka planı sağdaki cam efektinden de görünebilmesi için buraya taşıdık */
+    background-image: url("../images/background_image.png"); 
+    background-size: cover;
+    background-position: center;
+}
+
+/* ---------------- SOL TARAF ---------------- */
+.left-panel {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start; /* Görselde yazı sola daha yakın */
+    align-items: center;
+}
+
+/* Resmin üstüne koyu katman - Sadece yazının etrafını saracak şekilde güncellendi */
+.overlay {
+    /* Görseldeki gibi soldan sağa doğru kaybolan bir karartı efekti */
+    background: linear-gradient(to right, rgba(23, 53, 21, 0.75) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+    width: 100%;
+    padding: 60px 40px 60px 10%; /* Soldan biraz boşluk bırakmak için */
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Yazıları sola yasla */
+
+    color: white;
+    text-align: left;
+}
+
+.overlay h1 {
+    font-size: 54px;
+    margin-bottom: 10px;
+    font-family: "Times New Roman", Times, serif; /* Görseldeki gibi tırnaklı bir font */
+    letter-spacing: 1px;
+}
+
+.overlay p {
+    font-size: 22px;
+    font-weight: 300;
+}
+
+/* ---------------- SAĞ TARAF ---------------- */
+.right-panel {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: white; kaldırıldı çünkü saydam form gelecek */
+}
+
+/* Login kartı - Glassmorphism (Buzlu Cam) Efekti */
+.login-card {
+    width: 480px;
+    /* Yarı saydam krem/beyaz arka plan */
+    background-color: rgba(244, 241, 235, 0.25); 
+    
+    /* Cam bulanıklığı (Arka planı flulaştırır) */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); 
+    
+    padding: 50px 40px;
+    border-radius: 20px;
+    
+    /* Görseldeki altın sarısı ince kenarlık */
+    border: 1px solid rgba(218, 165, 32, 0.6); 
+    box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.25);
+    
+    position: relative; 
+}
+
+/* Logo */
+.logo {
+    width: 110px;
+    border-radius: 50%; /* Logoyu tek satırda yuvarlak yapar */
+    display: block;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+/* Başlık */
+.login-card h2 {
+    text-align: center;
+    margin-bottom: 5px;
+    color: #2E7D32; /* Daha tok bir yeşil */
+    font-size: 26px;
+}
+
+.login-card p {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 15px;
+}
+
+/* Input grubu */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #111;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+    /* Input'un içinin hafif saydam ama okunabilir olması için */
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Input seçildiğinde */
+.input-group input:focus {
+    outline: none;
+    border: 2px solid #2E7D32;
+    background-color: #ffffff;
+}
+
+/* Login butonu */
+button {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 6px;
+    background: #2E7D32;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #1f5e23;
+}
