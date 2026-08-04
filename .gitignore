@@ -1,0 +1,5 @@
+venv/# gihuba yüklemiyoruz çünkü herkes kendi sanal ortamını oluşturacak
+__pycache__/#pythonun otomatik olarak oluşturduğu geçici dosyalar
+*.pyc #pyhttonun derleyip oluşturduğu geçici dosyalar
+instance/ #örnek klasörüm
+.env #API keylerimi gizli tutmak için
