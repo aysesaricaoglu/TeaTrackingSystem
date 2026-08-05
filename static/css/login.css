@@ -13,7 +13,7 @@ body {
 }
 
 /* Sayfayı ikiye böler ve ANA ARKA PLANI tutar */
-.container {
+.login-container {
     display: flex;
     height: 100vh;
     /* Arka planı sağdaki cam efektinden de görünebilmesi için buraya taşıdık */

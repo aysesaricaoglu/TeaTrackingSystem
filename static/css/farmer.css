@@ -7,7 +7,7 @@ body {
     background-color: #f4f1eb; /* Temaya uygun açık krem arka plan */
 }
 
-.container {
+.farmer-container {
     display: flex;
     min-height: 100vh;
     background-image: url("../images/background_image.png"); 

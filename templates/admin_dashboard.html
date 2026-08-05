@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}
+Farmer Dashboard
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Buraya eski body'nin içindeki her şeyi aynen yapıştırıyorsun -->
+<!-- CSS'teki flex yapısının ve arka plan görselinin çalışması için tüm içerik 'container' içine alındı -->
+    <div class="admin-container">
+
+        <div class="sidebar">
+            <h2>🌿 Tea Tracking</h2>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Users</a></li>
+                <li><a href="#">Farmers</a></li>
+                <li><a href="#">Experts</a></li>
+                <li><a href="#">Tea Deliveries</a></li>
+                <li><a href="#">Payments</a></li>
+                <li><a href="#">Production Data</a></li>
+                <li><a href="/">Logout</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+
+            <!-- CSS'teki '.header' özelliklerini alabilmesi için class eklendi -->
+            <header class="header">
+                <div>
+                    <h1>Administrator Dashboard</h1>
+                    <p>Welcome to Tea Tracking System Administration Panel</p>
+                </div>
+            </header>
+
+            <div class="cards">
+                <!-- CSS'teki kart tasarımlarının çalışması için class isimleri 'stat-card' olarak güncellendi -->
+                <div class="stat-card">
+                    <h3>Total Farmers</h3>
+                    <p>0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Total Experts</h3>
+                    <p>0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Total Deliveries</h3>
+                    <p>0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Total Payments</h3>
+                    <p>0 ₺</p>
+                </div>
+            </div>
+
+            <div class="table-section">
+                <!-- Tablo başlığı için de temaya uygun ufak bir boşluk ayarı eklenebilir, tablo doğrudan CSS'ten özellikleri alacaktır -->
+                <h2 style="color: #2E7D32; font-family: 'Times New Roman', Times, serif; margin-top: 20px;">System Overview</h2>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Module</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>User Management</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td>Farmer Records</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td>Tea Deliveries</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td>Payment System</td>
+                            <td>Active</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
+

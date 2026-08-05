@@ -1,21 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
+{% block title %}
+Farmer Dashboard
+{% endblock %}
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/expert.css') }}">
+{% endblock %}
 
-    <title>Expert Dashboard</title>
+{% block content %}
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/expert.css') }}">
-
-</head>
-
-<body>
-
-<div class="container">
+<!-- Buraya eski body'nin içindeki her şeyi aynen yapıştırıyorsun -->
+<div class="expert-container">
 
     <div class="sidebar">
 
@@ -23,11 +19,11 @@
 
         <ul>
 
-            <li><a href="#">🏠 Dashboard</a></li>
-            <li><a href="#">➕ New Delivery</a></li>
-            <li><a href="#">👨‍🌾 Search Farmer</a></li>
-            <li><a href="#">🤖 AI Assistant</a></li>
-            <li><a href="#">🚪 Logout</a></li>
+            <li><a href="#"> Dashboard</a></li>
+            <li><a href="#">New Delivery</a></li>
+            <li><a href="#">Search Farmer</a></li>
+            <li><a href="#">AI Assistant</a></li>
+            <li><a href="#">Logout</a></li>
 
         </ul>
 
@@ -91,7 +87,4 @@
     </div>
 
 </div>
-
-</body>
-
-</html>
+{% endblock %}

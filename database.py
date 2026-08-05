@@ -62,7 +62,8 @@ def create_table():
     amount REAL NOT NULL,
     status TEXT NOT NULL,
     FOREIGN KEY (delivery_id) REFERENCES tea_delivers(id))""")
-
+    connection.commit()  # commit işlemi veritabanına değişiklikleri kaydeder. yani garson mutfağa ilettiği siparişin tamamlandığını ve artık mutfakta hazır olduğunu bildirir.
+    connection.close()
     
 def show_tables():
     connection = create_connection()
@@ -75,6 +76,39 @@ def show_tables():
     print("Tables in Database:")
     for table in tables:
         print(table[0])
-
-    connection.commit()  # commit işlemi veritabanına değişiklikleri kaydeder. yani garson mutfağa ilettiği siparişin tamamlandığını ve artık mutfakta hazır olduğunu bildirir.
     connection.close()
+
+def get_user_by_tc(tc_no):
+    connection = create_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM users WHERE tc_no = ?", (tc_no,))
+    user = cursor.fetchone()#fetchone() metodu, sorgu sonucunda dönen ilk satırı alır ve bir tuple olarak döndürür. Eğer sorgu sonucunda hiç satır dönmezse None döner. 
+    connection.close()
+    return user
+
+def add_user(
+    tc_no,
+    password,
+    role,
+    first_name,
+    last_name
+):  
+    
+    connection = create_connection()
+    cursor = connection.cursor()
+    cursor.execute(
+        "SELECT * FROM users WHERE tc_no = ?", (tc_no,)
+    )  # kullanıcıyı eklemeden önce veritabanında aynı tc_no'ya sahip bir kullanıcı olup olmadığını kontrol ediyoruz.
+    existing_user = cursor.fetchone()
+    if existing_user:
+        connection.close()
+        return False
+
+    cursor.execute(
+        "INSERT INTO users (tc_no, password, role, first_name, last_name) VALUES (?, ?, ?, ?, ?)",
+        (tc_no, password, role, first_name, last_name),
+    )
+    connection.commit()
+    connection.close()
+    return True
+            
