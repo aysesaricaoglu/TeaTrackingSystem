@@ -1,5 +1,14 @@
 import sqlite3
+import logging
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[logging.StreamHandler(),
+              logging.FileHandler("database.log")
+],   
+)
+logger = logging.getLogger(__name__)
 DATABASE_NAME = "tea.db"
 
 
@@ -32,7 +41,7 @@ def create_table():
     net_weight REAL NOT NULL,
     is_rainy INTEGER NOT NULL,
     payment_option TEXT NOT NULL,
-    FOREIGN KEY (farmer_id) REFERENCES users(id),
+    FOREIGN KEY (farmer_id) REFERENCES farmers(id),
     FOREIGN KEY (expert_id) REFERENCES users(id)
     
     )""")
@@ -64,7 +73,8 @@ def create_table():
     FOREIGN KEY (delivery_id) REFERENCES tea_delivers(id))""")
     connection.commit()  # commit işlemi veritabanına değişiklikleri kaydeder. yani garson mutfağa ilettiği siparişin tamamlandığını ve artık mutfakta hazır olduğunu bildirir.
     connection.close()
-    
+
+
 def show_tables():
     connection = create_connection()
     cursor = connection.cursor()
@@ -78,28 +88,28 @@ def show_tables():
         print(table[0])
     connection.close()
 
+
 def get_user_by_tc(tc_no):
     connection = create_connection()
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM users WHERE tc_no = ?", (tc_no,))
-    user = cursor.fetchone()#fetchone() metodu, sorgu sonucunda dönen ilk satırı alır ve bir tuple olarak döndürür. Eğer sorgu sonucunda hiç satır dönmezse None döner. 
+    user = (
+        cursor.fetchone()
+    )  # fetchone() metodu, sorgu sonucunda dönen ilk satırı alır ve bir tuple olarak döndürür. Eğer sorgu sonucunda hiç satır dönmezse None döner.
     connection.close()
     return user
 
-def add_user(
-    tc_no,
-    password,
-    role,
-    first_name,
-    last_name
-):  
-    
+
+def add_user(tc_no, password, role, first_name, last_name):
+
     connection = create_connection()
     cursor = connection.cursor()
     cursor.execute(
         "SELECT * FROM users WHERE tc_no = ?", (tc_no,)
     )  # kullanıcıyı eklemeden önce veritabanında aynı tc_no'ya sahip bir kullanıcı olup olmadığını kontrol ediyoruz.
-    existing_user = cursor.fetchone()
+    existing_user = (
+        cursor.fetchone()
+    )  # fetchone() metodu, sorgu sonucunda dönen ilk satırı alır ve bir tuple olarak döndürür. Eğer sorgu sonucunda hiç satır dönmezse None döner.
     if existing_user:
         connection.close()
         return False
@@ -111,4 +121,86 @@ def add_user(
     connection.commit()
     connection.close()
     return True
-            
+
+
+def get_all_users():
+    connection = create_connection()
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT * FROM users")
+    users = cursor.fetchall()
+
+    connection.close()
+    return users
+
+
+print("aaaaaaaaa")  # kod buraya kadar çalışıyor
+
+
+def get_all_deliveries():
+    connection = create_connection()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT
+            id,
+            farmer_id,
+            expert_id,
+            delivery_date,
+            gross_weight,
+            net_weight,
+            is_rainy,
+            payment_option
+        FROM tea_delivers
+        ORDER BY id DESC
+    """)
+
+    deliveries = cursor.fetchall()
+
+    connection.close()
+
+    return deliveries
+     
+
+
+def add_delivery(
+    farmer_id,
+    expert_id,
+    delivery_date,
+    gross_weight,
+    net_weight,
+    is_rainy,
+    payment_option,
+):
+    print("bu çalışıyor mu????")
+    connection = create_connection()
+    cursor = connection.cursor()
+    cursor.execute(
+        """INSERT INTO tea_delivers(
+        farmer_id,
+        expert_id,
+        delivery_date,
+        gross_weight,
+        net_weight,
+        is_rainy,
+        payment_option) VALUES(?,?,?,?,?,?,?)""",
+        (
+            farmer_id,
+            expert_id,
+            delivery_date,
+            gross_weight,
+            net_weight,
+            is_rainy,
+            payment_option,
+        ),
+    )
+    print("inş bu çalışır")
+    logger.info(f"""Farmer ID:{farmer_id}
+    Expert ID: {expert_id}
+    Date: {delivery_date}
+    Gross Weight: {gross_weight}
+    Net Weight: {net_weight}
+    Rainy: {is_rainy}
+    Payment: {payment_option}""")
+    connection.commit()  # yapılan değişiklikleri kaydetmek için
+    connection.close()  # bağlantıyı kapatmak için

@@ -1,0 +1,83 @@
+2026-08-06 15:50:00,964 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-06 15:50:00,964 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-06 15:50:00,966 - INFO -  * Restarting with stat
+2026-08-06 15:50:01,353 - WARNING -  * Debugger is active!
+2026-08-06 15:50:01,357 - INFO -  * Debugger PIN: 106-751-790
+2026-08-06 15:53:39,340 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-06 15:53:39,416 - INFO -  * Restarting with stat
+2026-08-06 15:53:39,844 - WARNING -  * Debugger is active!
+2026-08-06 15:53:39,847 - INFO -  * Debugger PIN: 106-751-790
+2026-08-06 15:54:18,414 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-06 15:54:18,474 - INFO -  * Restarting with stat
+2026-08-06 15:54:18,843 - WARNING -  * Debugger is active!
+2026-08-06 15:54:18,846 - INFO -  * Debugger PIN: 106-751-790
+2026-08-06 15:55:46,556 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-06 15:55:46,557 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-06 15:55:46,558 - INFO -  * Restarting with stat
+2026-08-06 15:55:46,933 - WARNING -  * Debugger is active!
+2026-08-06 15:55:46,936 - INFO -  * Debugger PIN: 106-751-790
+2026-08-06 15:55:48,898 - INFO - 127.0.0.1 - - [06/Aug/2026 15:55:48] "GET / HTTP/1.1" 200 -
+2026-08-06 15:55:48,964 - INFO - 127.0.0.1 - - [06/Aug/2026 15:55:48] "[33mGET /static/css/style.css HTTP/1.1[0m" 404 -
+2026-08-06 15:55:48,982 - INFO - 127.0.0.1 - - [06/Aug/2026 15:55:48] "[33mGET /static/css/style.css HTTP/1.1[0m" 404 -
+2026-08-06 15:55:49,014 - INFO - 127.0.0.1 - - [06/Aug/2026 15:55:49] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-06 15:55:49,023 - INFO - 127.0.0.1 - - [06/Aug/2026 15:55:49] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-06 15:55:49,027 - INFO - 127.0.0.1 - - [06/Aug/2026 15:55:49] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-06 15:55:55,159 - INFO - 127.0.0.1 - - [06/Aug/2026 15:55:55] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-06 15:55:55,169 - INFO - 127.0.0.1 - - [06/Aug/2026 15:55:55] "GET /expert HTTP/1.1" 200 -
+2026-08-06 15:55:55,186 - INFO - 127.0.0.1 - - [06/Aug/2026 15:55:55] "[33mGET /static/css/style.css HTTP/1.1[0m" 404 -
+2026-08-06 15:55:55,188 - INFO - 127.0.0.1 - - [06/Aug/2026 15:55:55] "[36mGET /static/css/expert.css HTTP/1.1[0m" 304 -
+2026-08-06 15:55:55,201 - INFO - 127.0.0.1 - - [06/Aug/2026 15:55:55] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-06 15:56:11,131 - INFO - POST request received in expert_dashboard
+2026-08-06 15:56:11,137 - INFO - Farmer ID:2
+    Expert ID: 3
+    Date: 2005-01-01
+    Gross Weight: 150.0
+    Net Weight: 150.0
+    Rainy: 0
+    Payment: 1 Month
+2026-08-06 15:56:11,143 - INFO - 127.0.0.1 - - [06/Aug/2026 15:56:11] "POST /expert HTTP/1.1" 200 -
+2026-08-06 15:56:11,163 - INFO - 127.0.0.1 - - [06/Aug/2026 15:56:11] "[33mGET /static/css/style.css HTTP/1.1[0m" 404 -
+2026-08-06 15:56:11,165 - INFO - 127.0.0.1 - - [06/Aug/2026 15:56:11] "[36mGET /static/css/expert.css HTTP/1.1[0m" 304 -
+2026-08-06 15:57:28,084 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-06 15:57:28,139 - INFO -  * Restarting with stat
+2026-08-06 15:57:28,503 - WARNING -  * Debugger is active!
+2026-08-06 15:57:28,506 - INFO -  * Debugger PIN: 106-751-790
+2026-08-06 16:00:52,131 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-06 16:00:52,263 - INFO -  * Restarting with stat
+2026-08-06 16:00:52,683 - WARNING -  * Debugger is active!
+2026-08-06 16:00:52,686 - INFO -  * Debugger PIN: 106-751-790
+2026-08-06 16:00:55,756 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-06 16:00:55,834 - INFO -  * Restarting with stat
+2026-08-06 16:00:56,359 - WARNING -  * Debugger is active!
+2026-08-06 16:00:56,363 - INFO -  * Debugger PIN: 106-751-790
+2026-08-06 16:02:24,470 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-06 16:02:24,576 - INFO -  * Restarting with stat
+2026-08-06 16:02:24,987 - WARNING -  * Debugger is active!
+2026-08-06 16:02:24,990 - INFO -  * Debugger PIN: 106-751-790
+2026-08-06 16:06:30,683 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-06 16:06:30,683 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-06 16:06:30,685 - INFO -  * Restarting with stat
+2026-08-06 16:06:31,077 - WARNING -  * Debugger is active!
+2026-08-06 16:06:31,081 - INFO -  * Debugger PIN: 106-751-790
+2026-08-06 16:06:37,923 - INFO - 127.0.0.1 - - [06/Aug/2026 16:06:37] "GET / HTTP/1.1" 200 -
+2026-08-06 16:06:37,986 - INFO - 127.0.0.1 - - [06/Aug/2026 16:06:37] "[33mGET /static/css/style.css HTTP/1.1[0m" 404 -
+2026-08-06 16:06:38,006 - INFO - 127.0.0.1 - - [06/Aug/2026 16:06:38] "[33mGET /static/css/style.css HTTP/1.1[0m" 404 -
+2026-08-06 16:06:38,048 - INFO - 127.0.0.1 - - [06/Aug/2026 16:06:38] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-06 16:06:38,052 - INFO - 127.0.0.1 - - [06/Aug/2026 16:06:38] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-06 16:06:38,058 - INFO - 127.0.0.1 - - [06/Aug/2026 16:06:38] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-06 16:06:42,442 - INFO - 127.0.0.1 - - [06/Aug/2026 16:06:42] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-06 16:06:42,459 - INFO - 127.0.0.1 - - [06/Aug/2026 16:06:42] "[35m[1mGET /expert HTTP/1.1[0m" 500 -
+2026-08-06 16:06:42,480 - INFO - 127.0.0.1 - - [06/Aug/2026 16:06:42] "[36mGET /expert?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-06 16:06:42,481 - INFO - 127.0.0.1 - - [06/Aug/2026 16:06:42] "[36mGET /expert?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-06 16:06:42,512 - INFO - 127.0.0.1 - - [06/Aug/2026 16:06:42] "GET /expert?__debugger__=yes&cmd=resource&f=console.png&s=iZQ9Rxc6Qkjqv1GOYQ8e HTTP/1.1" 200 -
+2026-08-06 16:09:00,600 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-06 16:09:00,674 - INFO -  * Restarting with stat
+2026-08-06 16:09:00,839 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-06 16:09:00,962 - INFO -  * Restarting with stat
+2026-08-06 16:09:01,216 - WARNING -  * Debugger is active!
+2026-08-06 16:09:01,220 - INFO -  * Debugger PIN: 106-751-790
+2026-08-06 16:09:01,488 - WARNING -  * Debugger is active!
+2026-08-06 16:09:01,490 - INFO -  * Debugger PIN: 106-751-790

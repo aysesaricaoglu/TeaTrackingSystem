@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Farmer Dashboard
+Expert Dashboard
 {% endblock %}
 
 {% block css %}
@@ -9,80 +9,72 @@ Farmer Dashboard
 {% endblock %}
 
 {% block content %}
-
-<!-- Buraya eski body'nin içindeki her şeyi aynen yapıştırıyorsun -->
 <div class="expert-container">
 
     <div class="sidebar">
-
         <h2>🌿 Tea Tracking</h2>
-
         <ul>
-
-            <li><a href="#"> Dashboard</a></li>
+            <li><a href="#">Dashboard</a></li>
             <li><a href="#">New Delivery</a></li>
             <li><a href="#">Search Farmer</a></li>
             <li><a href="#">AI Assistant</a></li>
-            <li><a href="#">Logout</a></li>
-
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
         </ul>
-
     </div>
 
     <div class="main-content">
+        
+        <div class="header">
+            <div>
+                <h1>Welcome, {{ session['first_name'] }} {{ session['last_name'] }} 👋</h1>
+                <p>Here is your tea production summary.</p>
+            </div>
+        </div> <!-- EKSİK OLAN KAPATMA ETİKETİ EKLENDİ -->
 
         <h1>New Tea Delivery</h1>
 
-        <form>
-
+        <form method="POST" action="{{ url_for('expert_dashboard') }}">
             <div class="input-group">
-
                 <label>Farmer TC Number</label>
-                <input type="text">
-
+                <input type="text" name="farmer_tc" placeholder="Enter Farmer TC Number">
             </div>
 
             <div class="input-group">
-
                 <label>Gross Weight (kg)</label>
-                <input type="number">
-
+                <input type="number" name="gross_weight" placeholder="Enter Gross Weight">
             </div>
 
             <div class="input-group">
-
                 <label>Is it raining?</label>
-
-                <select>
-
-                    <option>Yes</option>
-                    <option>No</option>
-
+                <select name="is_rainy">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
                 </select>
-
             </div>
 
             <div class="input-group">
-
                 <label>Payment Option</label>
-
-                <select>
-
+                <select name="payment_option">
                     <option>Immediate</option>
                     <option>1 Month</option>
                     <option>3 Months</option>
-
                 </select>
-
             </div>
 
-            <button class="btn">
+            <div class="input-group">
+                <label>Delivery Date</label>
+                <input type="date" name="delivery_date">
+            </div>
 
-                Save Delivery
-
-            </button>
-
+            <button type="submit" class="btn">Save Delivery</button>
         </form>
+
+        <div class="recentdel">
+            <h2>Recent Deliveries</h2>
+            <div class="deliveries">
+                {{ deliveries }}
+            </div>
+        </div>
 
     </div>
 
