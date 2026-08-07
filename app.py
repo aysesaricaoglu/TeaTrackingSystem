@@ -17,7 +17,9 @@ from database import (
     add_user,
     get_all_users,
     add_delivery,
-    get_all_deliveries
+    get_all_deliveries,
+    get_farmer_by_user_id,
+    add_farmer
 )
 
 # logging.basicConfig(filename='myapp.log', level=logging.INFO)
@@ -64,9 +66,31 @@ add_user(
     "expert",
     "Ayşe",
     "Yılmaz"
+)
+add_farmer(
+    "2",
+    "Ali",
+    "Yılmaz",
+    "Trabzon",
+    "Sürmene",
+    "222 222 22 22",
+    "Dereli",
+)
+add_user(
+    "46303345424",
+    "5",
+    "farmer",
+    "Ayşe",
+    "zattiri"
 )"""
-
-
+add_farmer(
+    "8",
+    "Ayşe",
+    "zattiri",
+    "Trabzon",
+    "Of",
+    "222 222 22 22",
+    "halman")
 @app.route("/", methods=["GET", "POST"])
 def home():
 
@@ -143,7 +167,13 @@ def expert_dashboard():
         user = get_user_by_tc(farmer_tc)
         if user is None:
             return "farmer not found!"  # BU SATIR ÇALIŞACAK MI EMİN DEĞİLİM
-        farmer_id = user[0]
+        user_id = user[0]
+
+        farmer= get_farmer_by_user_id(user_id)
+
+        if farmer is None:
+            return"Farmer not found"
+        farmer_id = farmer[0]
 
         delivery_date = request.form.get("delivery_date")
         gross_weight = float(request.form.get("gross_weight"))

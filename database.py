@@ -122,6 +122,29 @@ def add_user(tc_no, password, role, first_name, last_name):
     connection.close()
     return True
 
+def add_farmer(user_id, first_name, last_name, city, district, phone_number, village):
+    connection =create_connection()
+    cursor = connection.cursor()
+    cursor.execute(
+        "SELECT * FROM farmers WHERE user_id =? ",(user_id,)
+
+    )
+    existing_farmer= (
+        cursor.fetchone()
+        )
+    if existing_farmer:
+        connection.close()
+        return False
+    cursor.execute(
+        "INSERT INTO farmers (user_id,first_name,last_name,city,district,phone_number,village) VALUES (?,?,?,?,?,?,?)",
+        (user_id, first_name, last_name, city, district, phone_number, village),
+    
+    )
+
+    logger.info("farmer saved!")
+    connection.commit()
+    connection.close()
+    return True
 
 def get_all_users():
     connection = create_connection()
@@ -143,16 +166,20 @@ def get_all_deliveries():
 
     cursor.execute("""
         SELECT
-            id,
-            farmer_id,
-            expert_id,
-            delivery_date,
-            gross_weight,
-            net_weight,
-            is_rainy,
-            payment_option
+            tea_delivers.id,
+            farmers.first_name,
+            farmers.last_name,
+            users.first_name,
+            users.last_name,
+            tea_delivers.delivery_date,
+            tea_delivers.gross_weight,
+            tea_delivers.net_weight,
+            tea_delivers.is_rainy,
+            tea_delivers.payment_option
         FROM tea_delivers
-        ORDER BY id DESC
+        JOIN farmers ON tea_delivers.farmer_id = farmers.id
+        JOIN users ON tea_delivers.expert_id = users.id
+        ORDER BY tea_delivers.id DESC LIMIT 5
     """)
 
     deliveries = cursor.fetchall()
@@ -160,8 +187,6 @@ def get_all_deliveries():
     connection.close()
 
     return deliveries
-     
-
 
 def add_delivery(
     farmer_id,
@@ -204,3 +229,27 @@ def add_delivery(
     Payment: {payment_option}""")
     connection.commit()  # yapılan değişiklikleri kaydetmek için
     connection.close()  # bağlantıyı kapatmak için
+
+def get_farmer_by_user_id(user_id):
+    connection = create_connection()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT
+            id,
+            user_id,
+            first_name,
+            last_name,
+            city,
+            district,
+            phone_number,
+            village
+        FROM farmers
+        WHERE user_id = ?
+    """, (user_id,))
+
+    farmer = cursor.fetchone()
+
+    connection.close()
+
+    return farmer
