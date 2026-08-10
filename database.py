@@ -253,3 +253,36 @@ def get_farmer_by_user_id(user_id):
     connection.close()
 
     return farmer
+def delete_delivery(delivery_id):
+    connection = create_connection()
+    cursor= connection.cursor()
+
+    cursor.execute(
+        "DELETE FROM tea_delivers WHERE id=?",
+        (delivery_id,)
+        )
+    connection.commit()
+    connection.close()
+    logger.info(f"delivery {delivery_id} deleted.")
+    return True
+
+def get_all_deliveries_full():
+    connection=create_connection()
+    cursor= connection.cursor()
+    cursor.execute("""
+     SELECT 
+       tea_delivers.id,
+     farmers.first_name ||' '||farmers.last_name,
+     experts.first_name||' '||experts.last_name,
+     tea_delivers.delivery_date,
+     tea_delivers.gross_weight,
+     tea_delivers.is_rainy,
+     tea_delivers.payment_option
+     FROM tea_delivers
+     JOIN farmers ON tea_delivers.farmer_id = farmers.id
+     JOIN users AS experts ON tea_delivers.expert_id = experts.id 
+     ORDER BY tea_delivers.id DESC
+     """)
+    deliveries = cursor.fetchall()
+    connection.close()
+    return deliveries

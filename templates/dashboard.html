@@ -1,97 +1,142 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layout.html" %}
 
-<head>
+{% block title %}
+Dashboard
+{% endblock %}
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block sidebar_links %}
 
-    <title>Expert Dashboard</title>
+```
+<!-- HERKES -->
+<li>
+    <a href="{{ url_for('dashboard') }}">
+        Dashboard
+    </a>
+</li>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/expert.css') }}">
 
-</head>
+<!-- ADMIN + EXPERT -->
+{% if session["role"] in ["admin", "expert"] %}
 
-<body>
+    <li>
+        <a href="{{ url_for('new_delivery') }}">
+            New Delivery
+        </a>
+    </li>
 
-<div class="container">
+    <li>
+        <a href="{{ url_for('all_deliveries') }}">
+            Delivery Records
+        </a>
+    </li>
 
-    <div class="sidebar">
+    <li>
+        <a href="#">
+            Search Farmer
+        </a>
+    </li>
 
-        <h2>🌿 Tea Tracking</h2>
+{% endif %}
 
-        <ul>
 
-            <li><a href="#">🏠 Dashboard</a></li>
-            <li><a href="#">➕ New Delivery</a></li>
-            <li><a href="#">👨‍🌾 Search Farmer</a></li>
-            <li><a href="#">🤖 AI Assistant</a></li>
-            <li><a href="#">🚪 Logout</a></li>
+<!-- SADECE ADMIN -->
+{% if session["role"] == "admin" %}
 
-        </ul>
+    <li>
+        <a href="#">
+            User Management
+        </a>
+    </li>
 
-    </div>
+    <li>
+        <a href="#">
+            Farmer Management
+        </a>
+    </li>
 
-    <div class="main-content">
+{% endif %}
 
-        <h1>New Tea Delivery</h1>
 
-        <form>
+<!-- SADECE FARMER -->
+{% if session["role"] == "farmer" %}
 
-            <div class="input-group">
+    <li>
+        <a href="#">
+            My Deliveries
+        </a>
+    </li>
 
-                <label>Farmer TC Number</label>
-                <input type="text">
+{% endif %}
 
-            </div>
 
-            <div class="input-group">
+<!-- HERKES -->
+<li>
+    <a href="#">
+        Statistics
+    </a>
+</li>
 
-                <label>Gross Weight (kg)</label>
-                <input type="number">
+<li>
+    <a href="#">
+        AI Assistant
+    </a>
+</li>
 
-            </div>
+<li>
+    <a href="{{ url_for('logout') }}">
+        Logout
+    </a>
+</li>
+```
 
-            <div class="input-group">
+{% endblock %}
 
-                <label>Is it raining?</label>
+{% block content %}
 
-                <select>
+```
+<header class="dashboard-header">
 
-                    <option>Yes</option>
-                    <option>No</option>
+    <h1 class="name_surname">
+        Welcome,
+        {{ session["first_name"] }}
+        {{ session["last_name"] }} 👋
+    </h1>
 
-                </select>
 
-            </div>
+</header>
 
-            <div class="input-group">
 
-                <label>Payment Option</label>
+{% if session["role"] == "admin" %}
 
-                <select>
+    <section class="dashboard-section">
+        <h2>Admin Dashboard</h2>
 
-                    <option>Immediate</option>
-                    <option>1 Month</option>
-                    <option>3 Months</option>
+        <p>
+            You have full access to the Tea Tracking System.
+        </p>
+    </section>
 
-                </select>
+{% elif session["role"] == "expert" %}
 
-            </div>
+    <section class="dashboard-section">
+        <h2>Expert Dashboard</h2>
 
-            <button class="btn">
+        <p>
+            Manage tea deliveries and farmer records.
+        </p>
+    </section>
 
-                Save Delivery
+{% elif session["role"] == "farmer" %}
 
-            </button>
+    <section class="dashboard-section">
+        <h2>Farmer Dashboard</h2>
 
-        </form>
+        <p>
+            View your deliveries and production statistics.
+        </p>
+    </section>
 
-    </div>
+{% endif %}
+```
 
-</div>
-
-</body>
-
-</html>
+{% endblock %}

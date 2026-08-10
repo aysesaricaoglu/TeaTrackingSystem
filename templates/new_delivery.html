@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+New Tea Delivery
+{% endblock %}
+
+{% block content %}
+
+<div id="form-alani">
+
+    <h1>New Tea Delivery</h1>
+
+    <form method="POST" action="{{ url_for('new_delivery') }}">
+
+        <div class="input-group">
+            <label>Farmer TC Number</label>
+            <input type="text" name="farmer_tc" placeholder="Enter Farmer TC Number" required>
+        </div>
+
+        <div class="input-group">
+            <label>Gross Weight (kg)</label>
+            <input type="number" name="gross_weight" placeholder="Enter Gross Weight" step="0.01" required>
+        </div>
+
+        <div class="input-group">
+            <label>Is it raining?</label>
+            <select name="is_rainy">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Payment Option</label>
+            <select name="payment_option">
+                <option>Immediate</option>
+                <option>1 Month</option>
+                <option>3 Months</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Delivery Date</label>
+            <input type="date" name="delivery_date" required>
+        </div>
+
+        <button type="submit" class="btn">
+            Save Delivery
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

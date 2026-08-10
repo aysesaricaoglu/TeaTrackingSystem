@@ -507,3 +507,823 @@
 2026-08-07 16:14:09,456 - INFO -  * Restarting with stat
 2026-08-07 16:14:09,805 - WARNING -  * Debugger is active!
 2026-08-07 16:14:09,808 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 08:50:40,677 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-10 08:50:40,678 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-10 08:50:40,681 - INFO -  * Restarting with stat
+2026-08-10 08:50:41,277 - WARNING -  * Debugger is active!
+2026-08-10 08:50:41,282 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 08:50:44,414 - INFO - 127.0.0.1 - - [10/Aug/2026 08:50:44] "GET / HTTP/1.1" 200 -
+2026-08-10 08:50:44,595 - INFO - 127.0.0.1 - - [10/Aug/2026 08:50:44] "GET /static/images/tea_logo.jpg HTTP/1.1" 200 -
+2026-08-10 08:50:44,605 - INFO - 127.0.0.1 - - [10/Aug/2026 08:50:44] "GET /static/css/login.css HTTP/1.1" 200 -
+2026-08-10 08:50:44,618 - INFO - 127.0.0.1 - - [10/Aug/2026 08:50:44] "GET /static/images/background_image.png HTTP/1.1" 200 -
+2026-08-10 08:50:44,749 - INFO - 127.0.0.1 - - [10/Aug/2026 08:50:44] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-08-10 08:50:50,015 - INFO - 127.0.0.1 - - [10/Aug/2026 08:50:50] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 08:50:50,032 - INFO - 127.0.0.1 - - [10/Aug/2026 08:50:50] "GET /farmer HTTP/1.1" 200 -
+2026-08-10 08:50:50,053 - INFO - 127.0.0.1 - - [10/Aug/2026 08:50:50] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-10 08:50:50,059 - INFO - 127.0.0.1 - - [10/Aug/2026 08:50:50] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 08:50:53,845 - INFO - 127.0.0.1 - - [10/Aug/2026 08:50:53] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 08:50:53,849 - INFO - 127.0.0.1 - - [10/Aug/2026 08:50:53] "GET / HTTP/1.1" 200 -
+2026-08-10 08:50:53,869 - INFO - 127.0.0.1 - - [10/Aug/2026 08:50:53] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 08:50:53,870 - INFO - 127.0.0.1 - - [10/Aug/2026 08:50:53] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 08:50:53,875 - INFO - 127.0.0.1 - - [10/Aug/2026 08:50:53] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 08:51:25,542 - INFO - 127.0.0.1 - - [10/Aug/2026 08:51:25] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 08:51:25,549 - INFO - 127.0.0.1 - - [10/Aug/2026 08:51:25] "GET /expert HTTP/1.1" 200 -
+2026-08-10 08:51:29,342 - INFO - 127.0.0.1 - - [10/Aug/2026 08:51:29] "GET /expert HTTP/1.1" 200 -
+2026-08-10 08:51:37,315 - INFO - 127.0.0.1 - - [10/Aug/2026 08:51:37] "GET / HTTP/1.1" 200 -
+2026-08-10 08:52:30,803 - INFO - 127.0.0.1 - - [10/Aug/2026 08:52:30] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 08:52:30,810 - INFO - 127.0.0.1 - - [10/Aug/2026 08:52:30] "GET /expert HTTP/1.1" 200 -
+2026-08-10 08:52:50,577 - INFO - 127.0.0.1 - - [10/Aug/2026 08:52:50] "GET /expert HTTP/1.1" 200 -
+2026-08-10 08:52:50,595 - INFO - 127.0.0.1 - - [10/Aug/2026 08:52:50] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 08:52:50,603 - INFO - 127.0.0.1 - - [10/Aug/2026 08:52:50] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 08:58:22,258 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-10 08:58:22,327 - INFO -  * Restarting with stat
+2026-08-10 09:06:25,372 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-10 09:06:25,372 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-10 09:06:25,375 - INFO -  * Restarting with stat
+2026-08-10 09:06:25,915 - WARNING -  * Debugger is active!
+2026-08-10 09:06:25,921 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 09:06:27,783 - INFO - 127.0.0.1 - - [10/Aug/2026 09:06:27] "GET / HTTP/1.1" 200 -
+2026-08-10 09:06:27,928 - INFO - 127.0.0.1 - - [10/Aug/2026 09:06:27] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 09:06:27,969 - INFO - 127.0.0.1 - - [10/Aug/2026 09:06:27] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 09:06:27,974 - INFO - 127.0.0.1 - - [10/Aug/2026 09:06:27] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 09:06:33,515 - INFO - 127.0.0.1 - - [10/Aug/2026 09:06:33] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 09:06:33,588 - INFO - 127.0.0.1 - - [10/Aug/2026 09:06:33] "GET /admin HTTP/1.1" 200 -
+2026-08-10 09:06:33,625 - INFO - 127.0.0.1 - - [10/Aug/2026 09:06:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:06:33,632 - INFO - 127.0.0.1 - - [10/Aug/2026 09:06:33] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 09:07:58,387 - INFO - 127.0.0.1 - - [10/Aug/2026 09:07:58] "GET / HTTP/1.1" 200 -
+2026-08-10 09:07:58,474 - INFO - 127.0.0.1 - - [10/Aug/2026 09:07:58] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 09:07:58,475 - INFO - 127.0.0.1 - - [10/Aug/2026 09:07:58] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 09:07:58,529 - INFO - 127.0.0.1 - - [10/Aug/2026 09:07:58] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 09:08:01,294 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:01] "POST / HTTP/1.1" 200 -
+2026-08-10 09:08:01,320 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:01] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 09:08:01,321 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:01] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 09:08:06,906 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:06] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 09:08:06,912 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:06] "GET /admin HTTP/1.1" 200 -
+2026-08-10 09:08:06,932 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:08:06,938 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:06] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 09:08:09,081 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:09] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 09:08:09,086 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:09] "GET / HTTP/1.1" 200 -
+2026-08-10 09:08:09,108 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:09] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 09:08:09,108 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:09] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 09:08:12,364 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:12] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 09:08:12,392 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:12] "GET /farmer HTTP/1.1" 200 -
+2026-08-10 09:08:12,410 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:12] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:08:14,363 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:14] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 09:08:14,367 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:14] "GET / HTTP/1.1" 200 -
+2026-08-10 09:08:14,388 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:14] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 09:08:14,389 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:14] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 09:08:18,528 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:18] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 09:08:18,585 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:18] "GET /expert HTTP/1.1" 200 -
+2026-08-10 09:08:18,606 - INFO - 127.0.0.1 - - [10/Aug/2026 09:08:18] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:09:08,622 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:08] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 09:09:08,626 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:08] "GET / HTTP/1.1" 200 -
+2026-08-10 09:09:08,647 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:08] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 09:09:08,648 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:08] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 09:09:08,655 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:08] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 09:09:10,508 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:10] "POST / HTTP/1.1" 200 -
+2026-08-10 09:09:10,534 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:10] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 09:09:10,535 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:10] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 09:09:14,717 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:14] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 09:09:14,723 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:14] "GET /admin HTTP/1.1" 200 -
+2026-08-10 09:09:14,743 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:09:16,341 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:16] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 09:09:16,345 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:16] "GET / HTTP/1.1" 200 -
+2026-08-10 09:09:16,364 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:16] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 09:09:16,365 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:16] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 09:09:19,297 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:19] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 09:09:19,303 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:19] "GET /farmer HTTP/1.1" 200 -
+2026-08-10 09:09:19,325 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:09:21,156 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:21] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 09:09:21,161 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:21] "GET / HTTP/1.1" 200 -
+2026-08-10 09:09:21,180 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:21] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 09:09:21,181 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:21] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 09:09:24,281 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:24] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 09:09:24,288 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:24] "GET /expert HTTP/1.1" 200 -
+2026-08-10 09:09:24,308 - INFO - 127.0.0.1 - - [10/Aug/2026 09:09:24] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:10:10,984 - INFO - 127.0.0.1 - - [10/Aug/2026 09:10:10] "GET /expert HTTP/1.1" 200 -
+2026-08-10 09:10:11,003 - INFO - 127.0.0.1 - - [10/Aug/2026 09:10:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:10:13,190 - INFO - 127.0.0.1 - - [10/Aug/2026 09:10:13] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 09:10:13,194 - INFO - 127.0.0.1 - - [10/Aug/2026 09:10:13] "GET / HTTP/1.1" 200 -
+2026-08-10 09:10:13,217 - INFO - 127.0.0.1 - - [10/Aug/2026 09:10:13] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 09:10:13,218 - INFO - 127.0.0.1 - - [10/Aug/2026 09:10:13] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 09:10:13,230 - INFO - 127.0.0.1 - - [10/Aug/2026 09:10:13] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 09:10:16,249 - INFO - 127.0.0.1 - - [10/Aug/2026 09:10:16] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 09:10:16,255 - INFO - 127.0.0.1 - - [10/Aug/2026 09:10:16] "GET /admin HTTP/1.1" 200 -
+2026-08-10 09:10:16,275 - INFO - 127.0.0.1 - - [10/Aug/2026 09:10:16] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:10:22,972 - INFO - 127.0.0.1 - - [10/Aug/2026 09:10:22] "GET /admin HTTP/1.1" 200 -
+2026-08-10 09:12:36,017 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:36] "[32mGET /expert HTTP/1.1[0m" 302 -
+2026-08-10 09:12:36,022 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:36] "GET / HTTP/1.1" 200 -
+2026-08-10 09:12:36,045 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:36] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 09:12:36,046 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:36] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 09:12:36,055 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:36] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 09:12:39,503 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:39] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 09:12:39,515 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:39] "GET /admin HTTP/1.1" 200 -
+2026-08-10 09:12:39,535 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:12:39,541 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:39] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 09:12:41,943 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:41] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 09:12:41,949 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:41] "GET / HTTP/1.1" 200 -
+2026-08-10 09:12:41,970 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:41] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 09:12:41,971 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:41] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 09:12:44,593 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:44] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 09:12:44,621 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:44] "[35m[1mGET /farmer HTTP/1.1[0m" 500 -
+2026-08-10 09:12:44,672 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:44] "GET /farmer?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2026-08-10 09:12:44,692 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:44] "GET /farmer?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2026-08-10 09:12:44,731 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:44] "GET /farmer?__debugger__=yes&cmd=resource&f=console.png&s=uvbHHAf2QKBjYwedWt2F HTTP/1.1" 200 -
+2026-08-10 09:12:44,748 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:44] "GET /farmer?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2026-08-10 09:12:59,684 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:59] "GET /farmer HTTP/1.1" 200 -
+2026-08-10 09:12:59,717 - INFO - 127.0.0.1 - - [10/Aug/2026 09:12:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:13:01,568 - INFO - 127.0.0.1 - - [10/Aug/2026 09:13:01] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 09:13:01,575 - INFO - 127.0.0.1 - - [10/Aug/2026 09:13:01] "GET / HTTP/1.1" 200 -
+2026-08-10 09:13:01,598 - INFO - 127.0.0.1 - - [10/Aug/2026 09:13:01] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 09:13:01,600 - INFO - 127.0.0.1 - - [10/Aug/2026 09:13:01] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 09:13:04,549 - INFO - 127.0.0.1 - - [10/Aug/2026 09:13:04] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 09:13:04,562 - INFO - 127.0.0.1 - - [10/Aug/2026 09:13:04] "GET /expert HTTP/1.1" 200 -
+2026-08-10 09:13:04,581 - INFO - 127.0.0.1 - - [10/Aug/2026 09:13:04] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:13:41,757 - INFO - 127.0.0.1 - - [10/Aug/2026 09:13:41] "GET /expert HTTP/1.1" 200 -
+2026-08-10 09:13:41,844 - INFO - 127.0.0.1 - - [10/Aug/2026 09:13:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:13:41,858 - INFO - 127.0.0.1 - - [10/Aug/2026 09:13:41] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 09:16:57,805 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-10 09:16:57,868 - INFO -  * Restarting with stat
+2026-08-10 09:16:58,451 - WARNING -  * Debugger is active!
+2026-08-10 09:16:58,456 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 09:17:06,637 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 09:17:06,692 - INFO -  * Restarting with stat
+2026-08-10 09:17:07,241 - WARNING -  * Debugger is active!
+2026-08-10 09:17:07,245 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 09:22:29,819 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-10 09:22:29,820 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-10 09:22:29,822 - INFO -  * Restarting with stat
+2026-08-10 09:22:30,358 - WARNING -  * Debugger is active!
+2026-08-10 09:22:30,362 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 09:22:32,068 - INFO - 127.0.0.1 - - [10/Aug/2026 09:22:32] "GET / HTTP/1.1" 200 -
+2026-08-10 09:22:32,249 - INFO - 127.0.0.1 - - [10/Aug/2026 09:22:32] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 09:22:32,251 - INFO - 127.0.0.1 - - [10/Aug/2026 09:22:32] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 09:22:32,256 - INFO - 127.0.0.1 - - [10/Aug/2026 09:22:32] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 09:22:36,039 - INFO - 127.0.0.1 - - [10/Aug/2026 09:22:36] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 09:22:36,058 - INFO - 127.0.0.1 - - [10/Aug/2026 09:22:36] "GET /expert HTTP/1.1" 200 -
+2026-08-10 09:22:36,076 - INFO - 127.0.0.1 - - [10/Aug/2026 09:22:36] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-10 09:22:36,082 - INFO - 127.0.0.1 - - [10/Aug/2026 09:22:36] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 09:22:45,548 - INFO - delivery 6 deleted.
+2026-08-10 09:22:45,549 - INFO - 127.0.0.1 - - [10/Aug/2026 09:22:45] "[32mPOST /delete-delivery/6 HTTP/1.1[0m" 302 -
+2026-08-10 09:22:45,557 - INFO - 127.0.0.1 - - [10/Aug/2026 09:22:45] "GET /expert HTTP/1.1" 200 -
+2026-08-10 09:22:45,576 - INFO - 127.0.0.1 - - [10/Aug/2026 09:22:45] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:24:03,675 - INFO - 127.0.0.1 - - [10/Aug/2026 09:24:03] "GET /expert HTTP/1.1" 200 -
+2026-08-10 09:24:03,696 - INFO - 127.0.0.1 - - [10/Aug/2026 09:24:03] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-10 09:24:03,704 - INFO - 127.0.0.1 - - [10/Aug/2026 09:24:03] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 09:24:04,536 - INFO - 127.0.0.1 - - [10/Aug/2026 09:24:04] "GET /expert HTTP/1.1" 200 -
+2026-08-10 09:24:04,553 - INFO - 127.0.0.1 - - [10/Aug/2026 09:24:04] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:24:51,843 - INFO - 127.0.0.1 - - [10/Aug/2026 09:24:51] "GET /expert HTTP/1.1" 200 -
+2026-08-10 09:24:51,864 - INFO - 127.0.0.1 - - [10/Aug/2026 09:24:51] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-10 09:24:51,869 - INFO - 127.0.0.1 - - [10/Aug/2026 09:24:51] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 09:25:01,440 - INFO - delivery 2 deleted.
+2026-08-10 09:25:01,440 - INFO - 127.0.0.1 - - [10/Aug/2026 09:25:01] "[32mPOST /delete-delivery/2 HTTP/1.1[0m" 302 -
+2026-08-10 09:25:01,450 - INFO - 127.0.0.1 - - [10/Aug/2026 09:25:01] "GET /expert HTTP/1.1" 200 -
+2026-08-10 09:25:01,474 - INFO - 127.0.0.1 - - [10/Aug/2026 09:25:01] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:25:05,480 - INFO - delivery 1 deleted.
+2026-08-10 09:25:05,481 - INFO - 127.0.0.1 - - [10/Aug/2026 09:25:05] "[32mPOST /delete-delivery/1 HTTP/1.1[0m" 302 -
+2026-08-10 09:25:05,489 - INFO - 127.0.0.1 - - [10/Aug/2026 09:25:05] "GET /expert HTTP/1.1" 200 -
+2026-08-10 09:25:05,509 - INFO - 127.0.0.1 - - [10/Aug/2026 09:25:05] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:25:26,971 - INFO - POST request received in expert_dashboard
+2026-08-10 09:25:26,977 - INFO - Farmer ID:2
+    Expert ID: 3
+    Date: 2005-01-01
+    Gross Weight: 1000.0
+    Net Weight: 900.0
+    Rainy: 1
+    Payment: Immediate
+2026-08-10 09:25:26,985 - INFO - 127.0.0.1 - - [10/Aug/2026 09:25:26] "POST /expert HTTP/1.1" 200 -
+2026-08-10 09:25:27,005 - INFO - 127.0.0.1 - - [10/Aug/2026 09:25:27] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:25:34,733 - INFO - delivery 7 deleted.
+2026-08-10 09:25:34,734 - INFO - 127.0.0.1 - - [10/Aug/2026 09:25:34] "[32mPOST /delete-delivery/7 HTTP/1.1[0m" 302 -
+2026-08-10 09:25:34,742 - INFO - 127.0.0.1 - - [10/Aug/2026 09:25:34] "GET /expert HTTP/1.1" 200 -
+2026-08-10 09:25:34,760 - INFO - 127.0.0.1 - - [10/Aug/2026 09:25:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:28:23,472 - INFO - 127.0.0.1 - - [10/Aug/2026 09:28:23] "GET /expert HTTP/1.1" 200 -
+2026-08-10 09:28:23,558 - INFO - 127.0.0.1 - - [10/Aug/2026 09:28:23] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 09:28:23,574 - INFO - 127.0.0.1 - - [10/Aug/2026 09:28:23] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 09:33:24,295 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-10 09:33:24,358 - INFO -  * Restarting with stat
+2026-08-10 09:33:24,469 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-10 09:33:24,538 - INFO -  * Restarting with stat
+2026-08-10 09:33:24,971 - WARNING -  * Debugger is active!
+2026-08-10 09:33:24,975 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 09:33:25,045 - WARNING -  * Debugger is active!
+2026-08-10 09:33:25,049 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 09:41:15,873 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-10 09:41:15,902 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-10 09:41:15,932 - INFO -  * Restarting with stat
+2026-08-10 09:41:15,979 - INFO -  * Restarting with stat
+2026-08-10 09:41:16,501 - WARNING -  * Debugger is active!
+2026-08-10 09:41:16,506 - WARNING -  * Debugger is active!
+2026-08-10 09:41:16,506 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 09:41:16,510 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 09:44:24,039 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-10 09:44:24,040 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-10 09:44:24,105 - INFO -  * Restarting with stat
+2026-08-10 09:44:24,105 - INFO -  * Restarting with stat
+2026-08-10 09:44:24,604 - WARNING -  * Debugger is active!
+2026-08-10 09:44:24,605 - WARNING -  * Debugger is active!
+2026-08-10 09:44:24,608 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 09:44:24,610 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 09:47:27,936 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-10 09:47:27,945 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-10 09:47:28,004 - INFO -  * Restarting with stat
+2026-08-10 09:47:28,014 - INFO -  * Restarting with stat
+2026-08-10 09:47:28,516 - WARNING -  * Debugger is active!
+2026-08-10 09:47:28,518 - WARNING -  * Debugger is active!
+2026-08-10 09:47:28,520 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 09:47:28,522 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 09:47:35,709 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-10 09:47:35,711 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-10 09:47:35,776 - INFO -  * Restarting with stat
+2026-08-10 09:47:35,779 - INFO -  * Restarting with stat
+2026-08-10 09:47:36,300 - WARNING -  * Debugger is active!
+2026-08-10 09:47:36,301 - WARNING -  * Debugger is active!
+2026-08-10 09:47:36,305 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 09:47:36,306 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 09:47:50,642 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-10 09:47:50,696 - INFO -  * Restarting with stat
+2026-08-10 09:47:51,234 - WARNING -  * Debugger is active!
+2026-08-10 09:47:51,241 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 09:47:51,658 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-10 09:47:51,724 - INFO -  * Restarting with stat
+2026-08-10 09:47:52,223 - WARNING -  * Debugger is active!
+2026-08-10 09:47:52,227 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 09:51:30,144 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 09:51:30,194 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 09:51:30,210 - INFO -  * Restarting with stat
+2026-08-10 09:51:30,295 - INFO -  * Restarting with stat
+2026-08-10 10:02:00,949 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-10 10:02:00,949 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-10 10:02:00,951 - INFO -  * Restarting with stat
+2026-08-10 10:02:01,503 - WARNING -  * Debugger is active!
+2026-08-10 10:02:01,511 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 10:02:02,736 - INFO - 127.0.0.1 - - [10/Aug/2026 10:02:02] "GET / HTTP/1.1" 200 -
+2026-08-10 10:02:02,903 - INFO - 127.0.0.1 - - [10/Aug/2026 10:02:02] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 10:02:02,905 - INFO - 127.0.0.1 - - [10/Aug/2026 10:02:02] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 10:02:02,911 - INFO - 127.0.0.1 - - [10/Aug/2026 10:02:02] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 10:02:06,925 - INFO - 127.0.0.1 - - [10/Aug/2026 10:02:06] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 10:02:06,948 - INFO - 127.0.0.1 - - [10/Aug/2026 10:02:06] "[35m[1mGET /expert HTTP/1.1[0m" 500 -
+2026-08-10 10:02:06,969 - INFO - 127.0.0.1 - - [10/Aug/2026 10:02:06] "GET /expert?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2026-08-10 10:02:06,969 - INFO - 127.0.0.1 - - [10/Aug/2026 10:02:06] "GET /expert?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2026-08-10 10:02:07,014 - INFO - 127.0.0.1 - - [10/Aug/2026 10:02:07] "GET /expert?__debugger__=yes&cmd=resource&f=console.png&s=dMYgYwNCEmUmrdZZsqkf HTTP/1.1" 200 -
+2026-08-10 10:02:07,025 - INFO - 127.0.0.1 - - [10/Aug/2026 10:02:07] "GET /expert?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2026-08-10 10:03:46,413 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 10:03:46,470 - INFO -  * Restarting with stat
+2026-08-10 10:03:47,111 - WARNING -  * Debugger is active!
+2026-08-10 10:03:47,117 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 10:04:13,603 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 10:04:13,653 - INFO -  * Restarting with stat
+2026-08-10 10:04:14,201 - WARNING -  * Debugger is active!
+2026-08-10 10:04:14,206 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 10:05:22,463 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 10:05:22,536 - INFO -  * Restarting with stat
+2026-08-10 10:11:18,769 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-10 10:11:18,770 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-10 10:11:18,771 - INFO -  * Restarting with stat
+2026-08-10 10:11:19,291 - WARNING -  * Debugger is active!
+2026-08-10 10:11:19,296 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 10:11:21,195 - INFO - 127.0.0.1 - - [10/Aug/2026 10:11:21] "GET / HTTP/1.1" 200 -
+2026-08-10 10:11:21,353 - INFO - 127.0.0.1 - - [10/Aug/2026 10:11:21] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 10:11:21,359 - INFO - 127.0.0.1 - - [10/Aug/2026 10:11:21] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 10:11:21,365 - INFO - 127.0.0.1 - - [10/Aug/2026 10:11:21] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 10:11:28,235 - INFO - 127.0.0.1 - - [10/Aug/2026 10:11:28] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 10:11:28,322 - INFO - 127.0.0.1 - - [10/Aug/2026 10:11:28] "[35m[1mGET /expert HTTP/1.1[0m" 500 -
+2026-08-10 10:11:28,349 - INFO - 127.0.0.1 - - [10/Aug/2026 10:11:28] "[36mGET /expert?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-10 10:11:28,350 - INFO - 127.0.0.1 - - [10/Aug/2026 10:11:28] "[36mGET /expert?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-10 10:11:28,406 - INFO - 127.0.0.1 - - [10/Aug/2026 10:11:28] "GET /expert?__debugger__=yes&cmd=resource&f=console.png&s=FkdrrEFjWkr4JSTzUGEf HTTP/1.1" 200 -
+2026-08-10 10:11:30,443 - INFO - 127.0.0.1 - - [10/Aug/2026 10:11:30] "GET / HTTP/1.1" 200 -
+2026-08-10 10:11:30,472 - INFO - 127.0.0.1 - - [10/Aug/2026 10:11:30] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 10:11:33,992 - INFO - 127.0.0.1 - - [10/Aug/2026 10:11:33] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 10:11:34,002 - INFO - 127.0.0.1 - - [10/Aug/2026 10:11:34] "GET /admin HTTP/1.1" 200 -
+2026-08-10 10:11:34,024 - INFO - 127.0.0.1 - - [10/Aug/2026 10:11:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 10:11:34,031 - INFO - 127.0.0.1 - - [10/Aug/2026 10:11:34] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 10:36:59,269 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 10:36:59,327 - INFO -  * Restarting with stat
+2026-08-10 10:36:59,881 - WARNING -  * Debugger is active!
+2026-08-10 10:36:59,886 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 10:41:42,735 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 10:41:42,790 - INFO -  * Restarting with stat
+2026-08-10 10:41:43,356 - WARNING -  * Debugger is active!
+2026-08-10 10:41:43,360 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 10:41:47,472 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 10:41:47,523 - INFO -  * Restarting with stat
+2026-08-10 10:41:48,034 - WARNING -  * Debugger is active!
+2026-08-10 10:41:48,039 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 11:15:59,951 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 11:16:00,015 - INFO -  * Restarting with stat
+2026-08-10 11:16:00,595 - WARNING -  * Debugger is active!
+2026-08-10 11:16:00,601 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 11:17:35,199 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 11:17:35,257 - INFO -  * Restarting with stat
+2026-08-10 11:17:35,777 - WARNING -  * Debugger is active!
+2026-08-10 11:17:35,783 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 11:18:37,836 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 11:18:37,895 - INFO -  * Restarting with stat
+2026-08-10 11:18:38,435 - WARNING -  * Debugger is active!
+2026-08-10 11:18:38,441 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 11:18:52,029 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-10 11:18:52,030 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-10 11:18:52,032 - INFO -  * Restarting with stat
+2026-08-10 11:18:52,528 - WARNING -  * Debugger is active!
+2026-08-10 11:18:52,532 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 11:18:54,044 - INFO - 127.0.0.1 - - [10/Aug/2026 11:18:54] "GET / HTTP/1.1" 200 -
+2026-08-10 11:18:54,214 - INFO - 127.0.0.1 - - [10/Aug/2026 11:18:54] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 11:18:54,218 - INFO - 127.0.0.1 - - [10/Aug/2026 11:18:54] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 11:18:54,224 - INFO - 127.0.0.1 - - [10/Aug/2026 11:18:54] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 11:18:59,557 - INFO - 127.0.0.1 - - [10/Aug/2026 11:18:59] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 11:18:59,595 - INFO - 127.0.0.1 - - [10/Aug/2026 11:18:59] "[35m[1mGET /dashboard HTTP/1.1[0m" 500 -
+2026-08-10 11:18:59,618 - INFO - 127.0.0.1 - - [10/Aug/2026 11:18:59] "GET /dashboard?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2026-08-10 11:18:59,619 - INFO - 127.0.0.1 - - [10/Aug/2026 11:18:59] "GET /dashboard?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2026-08-10 11:18:59,670 - INFO - 127.0.0.1 - - [10/Aug/2026 11:18:59] "GET /dashboard?__debugger__=yes&cmd=resource&f=console.png&s=ydEjUlQ7qkMWezVa9biV HTTP/1.1" 200 -
+2026-08-10 11:18:59,685 - INFO - 127.0.0.1 - - [10/Aug/2026 11:18:59] "GET /dashboard?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2026-08-10 11:20:50,758 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 11:20:50,824 - INFO -  * Restarting with stat
+2026-08-10 11:20:50,958 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 11:20:51,019 - INFO -  * Restarting with stat
+2026-08-10 11:29:31,302 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-10 11:29:31,302 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-10 11:29:31,304 - INFO -  * Restarting with stat
+2026-08-10 11:29:31,950 - WARNING -  * Debugger is active!
+2026-08-10 11:29:31,955 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 11:29:33,520 - INFO - 127.0.0.1 - - [10/Aug/2026 11:29:33] "GET / HTTP/1.1" 200 -
+2026-08-10 11:29:33,695 - INFO - 127.0.0.1 - - [10/Aug/2026 11:29:33] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 11:29:33,700 - INFO - 127.0.0.1 - - [10/Aug/2026 11:29:33] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 11:29:33,703 - INFO - 127.0.0.1 - - [10/Aug/2026 11:29:33] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 11:29:39,616 - INFO - 127.0.0.1 - - [10/Aug/2026 11:29:39] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 11:29:39,639 - INFO - 127.0.0.1 - - [10/Aug/2026 11:29:39] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 11:29:39,667 - INFO - 127.0.0.1 - - [10/Aug/2026 11:29:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 11:29:39,674 - INFO - 127.0.0.1 - - [10/Aug/2026 11:29:39] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 11:30:15,273 - INFO - 127.0.0.1 - - [10/Aug/2026 11:30:15] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 11:30:15,277 - INFO - 127.0.0.1 - - [10/Aug/2026 11:30:15] "GET / HTTP/1.1" 200 -
+2026-08-10 11:30:15,300 - INFO - 127.0.0.1 - - [10/Aug/2026 11:30:15] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 11:30:15,300 - INFO - 127.0.0.1 - - [10/Aug/2026 11:30:15] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 11:30:15,310 - INFO - 127.0.0.1 - - [10/Aug/2026 11:30:15] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 11:31:09,317 - INFO - 127.0.0.1 - - [10/Aug/2026 11:31:09] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 11:31:09,322 - INFO - 127.0.0.1 - - [10/Aug/2026 11:31:09] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 11:31:09,344 - INFO - 127.0.0.1 - - [10/Aug/2026 11:31:09] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 11:31:09,350 - INFO - 127.0.0.1 - - [10/Aug/2026 11:31:09] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 11:31:10,717 - INFO - 127.0.0.1 - - [10/Aug/2026 11:31:10] "GET /new-delivery HTTP/1.1" 200 -
+2026-08-10 11:31:10,738 - INFO - 127.0.0.1 - - [10/Aug/2026 11:31:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 11:33:53,671 - INFO - 127.0.0.1 - - [10/Aug/2026 11:33:53] "GET /new-delivery HTTP/1.1" 200 -
+2026-08-10 11:33:53,695 - INFO - 127.0.0.1 - - [10/Aug/2026 11:33:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 11:33:54,876 - INFO - 127.0.0.1 - - [10/Aug/2026 11:33:54] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 11:33:56,476 - INFO - 127.0.0.1 - - [10/Aug/2026 11:33:56] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 11:33:56,495 - INFO - 127.0.0.1 - - [10/Aug/2026 11:33:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 11:34:09,869 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-10 11:34:09,936 - INFO -  * Restarting with stat
+2026-08-10 11:34:10,480 - WARNING -  * Debugger is active!
+2026-08-10 11:34:10,485 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 11:34:11,553 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 11:34:11,619 - INFO -  * Restarting with stat
+2026-08-10 11:34:12,115 - WARNING -  * Debugger is active!
+2026-08-10 11:34:12,119 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 12:56:34,382 - INFO - 127.0.0.1 - - [10/Aug/2026 12:56:34] "GET /new-delivery HTTP/1.1" 200 -
+2026-08-10 12:56:34,472 - INFO - 127.0.0.1 - - [10/Aug/2026 12:56:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 12:56:46,253 - INFO - Farmer ID:1
+    Expert ID: 3
+    Date: 2006-02-02
+    Gross Weight: 150.0
+    Net Weight: 135.0
+    Rainy: 1
+    Payment: Immediate
+2026-08-10 12:56:46,260 - INFO - 127.0.0.1 - - [10/Aug/2026 12:56:46] "[32mPOST /new-delivery HTTP/1.1[0m" 302 -
+2026-08-10 12:56:46,277 - INFO - 127.0.0.1 - - [10/Aug/2026 12:56:46] "GET /deliveries HTTP/1.1" 200 -
+2026-08-10 12:56:46,299 - INFO - 127.0.0.1 - - [10/Aug/2026 12:56:46] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 12:59:22,663 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 12:59:22,733 - INFO -  * Restarting with stat
+2026-08-10 12:59:23,450 - WARNING -  * Debugger is active!
+2026-08-10 12:59:23,457 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 12:59:34,709 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 12:59:34,768 - INFO -  * Restarting with stat
+2026-08-10 12:59:35,322 - WARNING -  * Debugger is active!
+2026-08-10 12:59:35,327 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 13:00:53,836 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 13:00:53,910 - INFO -  * Restarting with stat
+2026-08-10 13:00:54,451 - WARNING -  * Debugger is active!
+2026-08-10 13:00:54,456 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 13:07:31,762 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-10 13:07:31,762 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-10 13:07:31,765 - INFO -  * Restarting with stat
+2026-08-10 13:07:32,350 - WARNING -  * Debugger is active!
+2026-08-10 13:07:32,354 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 13:07:34,657 - INFO - 127.0.0.1 - - [10/Aug/2026 13:07:34] "GET / HTTP/1.1" 200 -
+2026-08-10 13:07:34,840 - INFO - 127.0.0.1 - - [10/Aug/2026 13:07:34] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 13:07:34,844 - INFO - 127.0.0.1 - - [10/Aug/2026 13:07:34] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 13:07:34,848 - INFO - 127.0.0.1 - - [10/Aug/2026 13:07:34] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 13:07:39,649 - INFO - 127.0.0.1 - - [10/Aug/2026 13:07:39] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 13:07:39,666 - INFO - 127.0.0.1 - - [10/Aug/2026 13:07:39] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 13:07:39,687 - INFO - 127.0.0.1 - - [10/Aug/2026 13:07:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 13:07:39,692 - INFO - 127.0.0.1 - - [10/Aug/2026 13:07:39] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 13:07:43,437 - INFO - 127.0.0.1 - - [10/Aug/2026 13:07:43] "GET /new-delivery HTTP/1.1" 200 -
+2026-08-10 13:07:43,462 - INFO - 127.0.0.1 - - [10/Aug/2026 13:07:43] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 13:07:49,197 - INFO - 127.0.0.1 - - [10/Aug/2026 13:07:49] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 13:12:00,638 - INFO - 127.0.0.1 - - [10/Aug/2026 13:12:00] "GET /new-delivery HTTP/1.1" 200 -
+2026-08-10 13:12:00,658 - INFO - 127.0.0.1 - - [10/Aug/2026 13:12:00] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 13:12:16,798 - INFO - 127.0.0.1 - - [10/Aug/2026 13:12:16] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 13:12:16,802 - INFO - 127.0.0.1 - - [10/Aug/2026 13:12:16] "GET / HTTP/1.1" 200 -
+2026-08-10 13:12:16,822 - INFO - 127.0.0.1 - - [10/Aug/2026 13:12:16] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 13:12:16,823 - INFO - 127.0.0.1 - - [10/Aug/2026 13:12:16] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 13:12:16,829 - INFO - 127.0.0.1 - - [10/Aug/2026 13:12:16] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 13:27:08,418 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-10 13:27:08,419 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-10 13:27:08,421 - INFO -  * Restarting with stat
+2026-08-10 13:27:08,876 - WARNING -  * Debugger is active!
+2026-08-10 13:27:08,881 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 13:27:13,983 - INFO - 127.0.0.1 - - [10/Aug/2026 13:27:13] "GET / HTTP/1.1" 200 -
+2026-08-10 13:27:14,067 - INFO - 127.0.0.1 - - [10/Aug/2026 13:27:14] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 13:27:14,074 - INFO - 127.0.0.1 - - [10/Aug/2026 13:27:14] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 13:27:14,122 - INFO - 127.0.0.1 - - [10/Aug/2026 13:27:14] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-08-10 13:27:42,175 - INFO - 127.0.0.1 - - [10/Aug/2026 13:27:42] "GET / HTTP/1.1" 200 -
+2026-08-10 13:27:42,211 - INFO - 127.0.0.1 - - [10/Aug/2026 13:27:42] "GET /static/css/login.css HTTP/1.1" 200 -
+2026-08-10 13:27:42,213 - INFO - 127.0.0.1 - - [10/Aug/2026 13:27:42] "GET /static/images/tea_logo.jpg HTTP/1.1" 200 -
+2026-08-10 13:27:42,252 - INFO - 127.0.0.1 - - [10/Aug/2026 13:27:42] "GET /static/images/background_image.png HTTP/1.1" 200 -
+2026-08-10 13:27:45,650 - INFO - 127.0.0.1 - - [10/Aug/2026 13:27:45] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 13:27:45,720 - INFO - 127.0.0.1 - - [10/Aug/2026 13:27:45] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 13:27:45,770 - INFO - 127.0.0.1 - - [10/Aug/2026 13:27:45] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-10 13:27:45,779 - INFO - 127.0.0.1 - - [10/Aug/2026 13:27:45] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 13:27:49,421 - INFO - 127.0.0.1 - - [10/Aug/2026 13:27:49] "GET /new-delivery HTTP/1.1" 200 -
+2026-08-10 13:27:49,451 - INFO - 127.0.0.1 - - [10/Aug/2026 13:27:49] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 13:27:49,459 - INFO - 127.0.0.1 - - [10/Aug/2026 13:27:49] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 13:29:31,130 - INFO - 127.0.0.1 - - [10/Aug/2026 13:29:31] "[35m[1mGET /new-delivery HTTP/1.1[0m" 500 -
+2026-08-10 13:29:31,189 - INFO - 127.0.0.1 - - [10/Aug/2026 13:29:31] "GET /new-delivery?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2026-08-10 13:29:31,208 - INFO - 127.0.0.1 - - [10/Aug/2026 13:29:31] "GET /new-delivery?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2026-08-10 13:29:31,271 - INFO - 127.0.0.1 - - [10/Aug/2026 13:29:31] "GET /new-delivery?__debugger__=yes&cmd=resource&f=console.png&s=iQbTXVks3ZQUS5Elij0s HTTP/1.1" 200 -
+2026-08-10 13:29:31,286 - INFO - 127.0.0.1 - - [10/Aug/2026 13:29:31] "GET /new-delivery?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2026-08-10 13:33:00,762 - INFO - 127.0.0.1 - - [10/Aug/2026 13:33:00] "GET /new-delivery HTTP/1.1" 200 -
+2026-08-10 13:33:00,789 - INFO - 127.0.0.1 - - [10/Aug/2026 13:33:00] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 13:33:00,798 - INFO - 127.0.0.1 - - [10/Aug/2026 13:33:00] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 13:34:23,849 - INFO - 127.0.0.1 - - [10/Aug/2026 13:34:23] "GET /new-delivery HTTP/1.1" 200 -
+2026-08-10 13:34:23,891 - INFO - 127.0.0.1 - - [10/Aug/2026 13:34:23] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 13:34:23,902 - INFO - 127.0.0.1 - - [10/Aug/2026 13:34:23] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 13:34:36,414 - INFO - 127.0.0.1 - - [10/Aug/2026 13:34:36] "GET /deliveries HTTP/1.1" 200 -
+2026-08-10 13:34:36,505 - INFO - 127.0.0.1 - - [10/Aug/2026 13:34:36] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 13:34:36,525 - INFO - 127.0.0.1 - - [10/Aug/2026 13:34:36] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 13:34:46,725 - INFO - 127.0.0.1 - - [10/Aug/2026 13:34:46] "GET /new-delivery HTTP/1.1" 200 -
+2026-08-10 13:34:46,748 - INFO - 127.0.0.1 - - [10/Aug/2026 13:34:46] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 13:34:48,434 - INFO - 127.0.0.1 - - [10/Aug/2026 13:34:48] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 13:35:08,918 - INFO - 127.0.0.1 - - [10/Aug/2026 13:35:08] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 13:35:08,923 - INFO - 127.0.0.1 - - [10/Aug/2026 13:35:08] "GET / HTTP/1.1" 200 -
+2026-08-10 13:35:08,949 - INFO - 127.0.0.1 - - [10/Aug/2026 13:35:08] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 13:35:08,950 - INFO - 127.0.0.1 - - [10/Aug/2026 13:35:08] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 13:35:08,958 - INFO - 127.0.0.1 - - [10/Aug/2026 13:35:08] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 13:35:27,601 - INFO - 127.0.0.1 - - [10/Aug/2026 13:35:27] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 13:35:27,609 - INFO - 127.0.0.1 - - [10/Aug/2026 13:35:27] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 13:35:27,632 - INFO - 127.0.0.1 - - [10/Aug/2026 13:35:27] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 13:35:35,296 - INFO - 127.0.0.1 - - [10/Aug/2026 13:35:35] "GET /deliveries HTTP/1.1" 200 -
+2026-08-10 13:35:35,320 - INFO - 127.0.0.1 - - [10/Aug/2026 13:35:35] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 13:48:27,438 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 13:48:27,514 - INFO -  * Restarting with stat
+2026-08-10 13:48:28,928 - WARNING -  * Debugger is active!
+2026-08-10 13:48:28,933 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 13:49:08,585 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-10 13:49:08,585 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-10 13:49:08,587 - INFO -  * Restarting with stat
+2026-08-10 13:49:09,147 - WARNING -  * Debugger is active!
+2026-08-10 13:49:09,160 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 13:49:10,972 - INFO - 127.0.0.1 - - [10/Aug/2026 13:49:10] "GET / HTTP/1.1" 200 -
+2026-08-10 13:49:11,119 - INFO - 127.0.0.1 - - [10/Aug/2026 13:49:11] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 13:49:11,137 - INFO - 127.0.0.1 - - [10/Aug/2026 13:49:11] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 13:49:11,143 - INFO - 127.0.0.1 - - [10/Aug/2026 13:49:11] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 13:49:15,597 - INFO - 127.0.0.1 - - [10/Aug/2026 13:49:15] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 13:49:15,658 - INFO - 127.0.0.1 - - [10/Aug/2026 13:49:15] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 13:49:15,679 - INFO - 127.0.0.1 - - [10/Aug/2026 13:49:15] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-10 13:49:15,685 - INFO - 127.0.0.1 - - [10/Aug/2026 13:49:15] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 13:49:18,799 - INFO - 127.0.0.1 - - [10/Aug/2026 13:49:18] "[35m[1mGET /deliveries HTTP/1.1[0m" 500 -
+2026-08-10 13:49:18,849 - INFO - 127.0.0.1 - - [10/Aug/2026 13:49:18] "GET /deliveries?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2026-08-10 13:49:18,874 - INFO - 127.0.0.1 - - [10/Aug/2026 13:49:18] "GET /deliveries?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2026-08-10 13:49:18,933 - INFO - 127.0.0.1 - - [10/Aug/2026 13:49:18] "GET /deliveries?__debugger__=yes&cmd=resource&f=console.png&s=w754kLfuqPiqYeLWCarI HTTP/1.1" 200 -
+2026-08-10 13:49:18,946 - INFO - 127.0.0.1 - - [10/Aug/2026 13:49:18] "GET /deliveries?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2026-08-10 13:56:14,851 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 13:56:14,911 - INFO -  * Restarting with stat
+2026-08-10 13:56:15,308 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 13:56:15,394 - INFO -  * Restarting with stat
+2026-08-10 13:56:15,548 - WARNING -  * Debugger is active!
+2026-08-10 13:56:15,553 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 13:56:15,966 - WARNING -  * Debugger is active!
+2026-08-10 13:56:15,971 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 13:58:40,546 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 13:58:40,603 - INFO -  * Restarting with stat
+2026-08-10 13:58:40,997 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 13:58:41,084 - INFO -  * Restarting with stat
+2026-08-10 13:58:41,151 - WARNING -  * Debugger is active!
+2026-08-10 13:58:41,156 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 13:58:41,619 - WARNING -  * Debugger is active!
+2026-08-10 13:58:41,624 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 13:59:27,420 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 13:59:27,471 - INFO -  * Restarting with stat
+2026-08-10 13:59:27,965 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 13:59:28,024 - INFO -  * Restarting with stat
+2026-08-10 13:59:28,030 - WARNING -  * Debugger is active!
+2026-08-10 13:59:28,035 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 13:59:28,542 - WARNING -  * Debugger is active!
+2026-08-10 13:59:28,548 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 13:59:43,251 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-10 13:59:43,251 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-10 13:59:43,253 - INFO -  * Restarting with stat
+2026-08-10 13:59:43,805 - WARNING -  * Debugger is active!
+2026-08-10 13:59:43,811 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 13:59:45,114 - INFO - 127.0.0.1 - - [10/Aug/2026 13:59:45] "GET / HTTP/1.1" 200 -
+2026-08-10 13:59:45,280 - INFO - 127.0.0.1 - - [10/Aug/2026 13:59:45] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 13:59:45,282 - INFO - 127.0.0.1 - - [10/Aug/2026 13:59:45] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 13:59:45,289 - INFO - 127.0.0.1 - - [10/Aug/2026 13:59:45] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 13:59:49,127 - INFO - 127.0.0.1 - - [10/Aug/2026 13:59:49] "POST / HTTP/1.1" 200 -
+2026-08-10 13:59:49,149 - INFO - 127.0.0.1 - - [10/Aug/2026 13:59:49] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 13:59:49,150 - INFO - 127.0.0.1 - - [10/Aug/2026 13:59:49] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 13:59:49,156 - INFO - 127.0.0.1 - - [10/Aug/2026 13:59:49] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 13:59:53,689 - INFO - 127.0.0.1 - - [10/Aug/2026 13:59:53] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 13:59:53,715 - INFO - 127.0.0.1 - - [10/Aug/2026 13:59:53] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 13:59:53,744 - INFO - 127.0.0.1 - - [10/Aug/2026 13:59:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 13:59:53,751 - INFO - 127.0.0.1 - - [10/Aug/2026 13:59:53] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 13:59:56,283 - INFO - 127.0.0.1 - - [10/Aug/2026 13:59:56] "[35m[1mGET /deliveries HTTP/1.1[0m" 500 -
+2026-08-10 13:59:56,305 - INFO - 127.0.0.1 - - [10/Aug/2026 13:59:56] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-10 13:59:56,306 - INFO - 127.0.0.1 - - [10/Aug/2026 13:59:56] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-10 13:59:56,349 - INFO - 127.0.0.1 - - [10/Aug/2026 13:59:56] "GET /deliveries?__debugger__=yes&cmd=resource&f=console.png&s=fulMpNrKj4UZKDXjYAKK HTTP/1.1" 200 -
+2026-08-10 14:00:10,791 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:00:10,845 - INFO -  * Restarting with stat
+2026-08-10 14:00:11,312 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:00:11,319 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:00:11,402 - INFO -  * Restarting with stat
+2026-08-10 14:00:11,403 - INFO -  * Restarting with stat
+2026-08-10 14:00:11,434 - WARNING -  * Debugger is active!
+2026-08-10 14:00:11,439 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:00:11,961 - WARNING -  * Debugger is active!
+2026-08-10 14:00:11,961 - WARNING -  * Debugger is active!
+2026-08-10 14:00:11,966 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:00:11,967 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:00:24,176 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-10 14:00:24,177 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-10 14:00:24,179 - INFO -  * Restarting with stat
+2026-08-10 14:00:24,772 - WARNING -  * Debugger is active!
+2026-08-10 14:00:24,779 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:00:25,885 - INFO - 127.0.0.1 - - [10/Aug/2026 14:00:25] "GET / HTTP/1.1" 200 -
+2026-08-10 14:00:26,060 - INFO - 127.0.0.1 - - [10/Aug/2026 14:00:26] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 14:00:26,064 - INFO - 127.0.0.1 - - [10/Aug/2026 14:00:26] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 14:00:26,070 - INFO - 127.0.0.1 - - [10/Aug/2026 14:00:26] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:00:29,084 - INFO - 127.0.0.1 - - [10/Aug/2026 14:00:29] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 14:00:29,104 - INFO - 127.0.0.1 - - [10/Aug/2026 14:00:29] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 14:00:29,126 - INFO - 127.0.0.1 - - [10/Aug/2026 14:00:29] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:00:29,131 - INFO - 127.0.0.1 - - [10/Aug/2026 14:00:29] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:00:30,917 - INFO - 127.0.0.1 - - [10/Aug/2026 14:00:30] "[35m[1mGET /deliveries HTTP/1.1[0m" 500 -
+2026-08-10 14:00:30,954 - INFO - 127.0.0.1 - - [10/Aug/2026 14:00:30] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:00:30,956 - INFO - 127.0.0.1 - - [10/Aug/2026 14:00:30] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-10 14:00:30,997 - INFO - 127.0.0.1 - - [10/Aug/2026 14:00:30] "GET /deliveries?__debugger__=yes&cmd=resource&f=console.png&s=uW4F0ch5beA3JcfQQbQ2 HTTP/1.1" 200 -
+2026-08-10 14:09:01,797 - INFO - 127.0.0.1 - - [10/Aug/2026 14:09:01] "[35m[1mGET /deliveries HTTP/1.1[0m" 500 -
+2026-08-10 14:09:01,820 - INFO - 127.0.0.1 - - [10/Aug/2026 14:09:01] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:09:01,821 - INFO - 127.0.0.1 - - [10/Aug/2026 14:09:01] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-10 14:09:01,831 - INFO - 127.0.0.1 - - [10/Aug/2026 14:09:01] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=console.png&s=uW4F0ch5beA3JcfQQbQ2 HTTP/1.1[0m" 304 -
+2026-08-10 14:09:02,423 - INFO - 127.0.0.1 - - [10/Aug/2026 14:09:02] "[35m[1mGET /deliveries HTTP/1.1[0m" 500 -
+2026-08-10 14:09:02,443 - INFO - 127.0.0.1 - - [10/Aug/2026 14:09:02] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:09:02,443 - INFO - 127.0.0.1 - - [10/Aug/2026 14:09:02] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-10 14:09:02,451 - INFO - 127.0.0.1 - - [10/Aug/2026 14:09:02] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=console.png&s=uW4F0ch5beA3JcfQQbQ2 HTTP/1.1[0m" 304 -
+2026-08-10 14:09:16,842 - INFO - 127.0.0.1 - - [10/Aug/2026 14:09:16] "GET /new-delivery HTTP/1.1" 200 -
+2026-08-10 14:09:16,862 - INFO - 127.0.0.1 - - [10/Aug/2026 14:09:16] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:09:18,718 - INFO - 127.0.0.1 - - [10/Aug/2026 14:09:18] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:09:19,772 - INFO - 127.0.0.1 - - [10/Aug/2026 14:09:19] "[35m[1mGET /deliveries HTTP/1.1[0m" 500 -
+2026-08-10 14:09:19,792 - INFO - 127.0.0.1 - - [10/Aug/2026 14:09:19] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:09:19,793 - INFO - 127.0.0.1 - - [10/Aug/2026 14:09:19] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-10 14:09:19,810 - INFO - 127.0.0.1 - - [10/Aug/2026 14:09:19] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=console.png&s=uW4F0ch5beA3JcfQQbQ2 HTTP/1.1[0m" 304 -
+2026-08-10 14:10:13,287 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:10:13,292 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:10:13,353 - INFO -  * Restarting with stat
+2026-08-10 14:10:13,363 - INFO -  * Restarting with stat
+2026-08-10 14:10:13,902 - WARNING -  * Debugger is active!
+2026-08-10 14:10:13,902 - WARNING -  * Debugger is active!
+2026-08-10 14:10:13,907 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:10:13,907 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:10:13,907 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:10:13,976 - INFO -  * Restarting with stat
+2026-08-10 14:10:14,016 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:10:14,109 - INFO -  * Restarting with stat
+2026-08-10 14:10:14,589 - WARNING -  * Debugger is active!
+2026-08-10 14:10:14,596 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:10:14,681 - WARNING -  * Debugger is active!
+2026-08-10 14:10:14,686 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:11:45,580 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:11:45,584 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:11:45,645 - INFO -  * Restarting with stat
+2026-08-10 14:11:45,648 - INFO -  * Restarting with stat
+2026-08-10 14:11:46,191 - WARNING -  * Debugger is active!
+2026-08-10 14:11:46,191 - WARNING -  * Debugger is active!
+2026-08-10 14:11:46,197 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:11:46,197 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:11:46,260 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:11:46,270 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:11:46,323 - INFO -  * Restarting with stat
+2026-08-10 14:11:46,331 - INFO -  * Restarting with stat
+2026-08-10 14:11:46,861 - WARNING -  * Debugger is active!
+2026-08-10 14:11:46,867 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:11:46,871 - WARNING -  * Debugger is active!
+2026-08-10 14:11:46,875 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:11:51,337 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:11:51,339 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:11:51,405 - INFO -  * Restarting with stat
+2026-08-10 14:11:51,416 - INFO -  * Restarting with stat
+2026-08-10 14:11:51,970 - WARNING -  * Debugger is active!
+2026-08-10 14:11:51,974 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:11:51,975 - WARNING -  * Debugger is active!
+2026-08-10 14:11:51,980 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:11:52,001 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:11:52,013 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:11:52,071 - INFO -  * Restarting with stat
+2026-08-10 14:11:52,077 - INFO -  * Restarting with stat
+2026-08-10 14:11:52,632 - WARNING -  * Debugger is active!
+2026-08-10 14:11:52,634 - WARNING -  * Debugger is active!
+2026-08-10 14:11:52,637 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:11:52,639 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:11:52,945 - INFO - 127.0.0.1 - - [10/Aug/2026 14:11:52] "GET /deliveries HTTP/1.1" 200 -
+2026-08-10 14:11:53,019 - INFO - 127.0.0.1 - - [10/Aug/2026 14:11:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:11:53,024 - INFO - 127.0.0.1 - - [10/Aug/2026 14:11:53] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:12:02,003 - INFO - delivery 3 deleted.
+2026-08-10 14:12:02,004 - INFO - 127.0.0.1 - - [10/Aug/2026 14:12:02] "[32mPOST /delete-delivery/3 HTTP/1.1[0m" 302 -
+2026-08-10 14:12:02,012 - INFO - 127.0.0.1 - - [10/Aug/2026 14:12:02] "GET /deliveries HTTP/1.1" 200 -
+2026-08-10 14:12:02,030 - INFO - 127.0.0.1 - - [10/Aug/2026 14:12:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:17:40,415 - INFO - 127.0.0.1 - - [10/Aug/2026 14:17:40] "GET /deliveries HTTP/1.1" 200 -
+2026-08-10 14:17:40,435 - INFO - 127.0.0.1 - - [10/Aug/2026 14:17:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:17:41,090 - INFO - 127.0.0.1 - - [10/Aug/2026 14:17:41] "GET /deliveries HTTP/1.1" 200 -
+2026-08-10 14:17:41,108 - INFO - 127.0.0.1 - - [10/Aug/2026 14:17:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:17:41,698 - INFO - 127.0.0.1 - - [10/Aug/2026 14:17:41] "GET /deliveries HTTP/1.1" 200 -
+2026-08-10 14:17:41,716 - INFO - 127.0.0.1 - - [10/Aug/2026 14:17:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:19:28,199 - INFO - 127.0.0.1 - - [10/Aug/2026 14:19:28] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 14:19:28,218 - INFO - 127.0.0.1 - - [10/Aug/2026 14:19:28] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:20:00,035 - INFO - 127.0.0.1 - - [10/Aug/2026 14:20:00] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 14:20:00,044 - INFO - 127.0.0.1 - - [10/Aug/2026 14:20:00] "GET / HTTP/1.1" 200 -
+2026-08-10 14:20:00,065 - INFO - 127.0.0.1 - - [10/Aug/2026 14:20:00] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 14:20:00,066 - INFO - 127.0.0.1 - - [10/Aug/2026 14:20:00] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 14:20:00,074 - INFO - 127.0.0.1 - - [10/Aug/2026 14:20:00] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:21:21,115 - INFO - 127.0.0.1 - - [10/Aug/2026 14:21:21] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 14:21:21,120 - INFO - 127.0.0.1 - - [10/Aug/2026 14:21:21] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 14:21:21,144 - INFO - 127.0.0.1 - - [10/Aug/2026 14:21:21] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:21:21,150 - INFO - 127.0.0.1 - - [10/Aug/2026 14:21:21] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:23:23,628 - INFO - 127.0.0.1 - - [10/Aug/2026 14:23:23] "GET / HTTP/1.1" 200 -
+2026-08-10 14:23:23,722 - INFO - 127.0.0.1 - - [10/Aug/2026 14:23:23] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 14:23:23,723 - INFO - 127.0.0.1 - - [10/Aug/2026 14:23:23] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 14:23:23,737 - INFO - 127.0.0.1 - - [10/Aug/2026 14:23:23] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:23:24,472 - INFO - 127.0.0.1 - - [10/Aug/2026 14:23:24] "GET / HTTP/1.1" 200 -
+2026-08-10 14:23:24,495 - INFO - 127.0.0.1 - - [10/Aug/2026 14:23:24] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 14:23:24,496 - INFO - 127.0.0.1 - - [10/Aug/2026 14:23:24] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 14:23:27,025 - INFO - 127.0.0.1 - - [10/Aug/2026 14:23:27] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 14:23:27,041 - INFO - 127.0.0.1 - - [10/Aug/2026 14:23:27] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 14:23:27,079 - INFO - 127.0.0.1 - - [10/Aug/2026 14:23:27] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-10 14:23:27,086 - INFO - 127.0.0.1 - - [10/Aug/2026 14:23:27] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:23:40,075 - INFO - 127.0.0.1 - - [10/Aug/2026 14:23:40] "[33mGET /expert HTTP/1.1[0m" 404 -
+2026-08-10 14:25:24,551 - INFO - 127.0.0.1 - - [10/Aug/2026 14:25:24] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 14:25:24,556 - INFO - 127.0.0.1 - - [10/Aug/2026 14:25:24] "GET / HTTP/1.1" 200 -
+2026-08-10 14:25:24,578 - INFO - 127.0.0.1 - - [10/Aug/2026 14:25:24] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 14:25:24,579 - INFO - 127.0.0.1 - - [10/Aug/2026 14:25:24] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 14:25:24,586 - INFO - 127.0.0.1 - - [10/Aug/2026 14:25:24] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:27:49,514 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:27:49,518 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:27:49,589 - INFO -  * Restarting with stat
+2026-08-10 14:27:49,592 - INFO -  * Restarting with stat
+2026-08-10 14:27:49,792 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:27:49,793 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:27:49,875 - INFO -  * Restarting with stat
+2026-08-10 14:27:49,876 - INFO -  * Restarting with stat
+2026-08-10 14:27:50,163 - WARNING -  * Debugger is active!
+2026-08-10 14:27:50,163 - WARNING -  * Debugger is active!
+2026-08-10 14:27:50,168 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:27:50,416 - WARNING -  * Debugger is active!
+2026-08-10 14:27:50,416 - WARNING -  * Debugger is active!
+2026-08-10 14:27:50,422 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:27:50,422 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:29:35,432 - INFO - 127.0.0.1 - - [10/Aug/2026 14:29:35] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 14:29:35,444 - INFO - 127.0.0.1 - - [10/Aug/2026 14:29:35] "GET / HTTP/1.1" 200 -
+2026-08-10 14:29:35,548 - INFO - 127.0.0.1 - - [10/Aug/2026 14:29:35] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 14:29:35,549 - INFO - 127.0.0.1 - - [10/Aug/2026 14:29:35] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 14:29:35,556 - INFO - 127.0.0.1 - - [10/Aug/2026 14:29:35] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:29:39,407 - INFO - 127.0.0.1 - - [10/Aug/2026 14:29:39] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 14:29:39,425 - INFO - 127.0.0.1 - - [10/Aug/2026 14:29:39] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 14:29:39,444 - INFO - 127.0.0.1 - - [10/Aug/2026 14:29:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:29:39,450 - INFO - 127.0.0.1 - - [10/Aug/2026 14:29:39] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:31:25,906 - INFO - 127.0.0.1 - - [10/Aug/2026 14:31:25] "GET /deliveries HTTP/1.1" 200 -
+2026-08-10 14:31:25,926 - INFO - 127.0.0.1 - - [10/Aug/2026 14:31:25] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:31:25,932 - INFO - 127.0.0.1 - - [10/Aug/2026 14:31:25] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:33:45,007 - INFO - 127.0.0.1 - - [10/Aug/2026 14:33:45] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 14:33:45,029 - INFO - 127.0.0.1 - - [10/Aug/2026 14:33:45] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:33:45,037 - INFO - 127.0.0.1 - - [10/Aug/2026 14:33:45] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:34:20,526 - INFO - 127.0.0.1 - - [10/Aug/2026 14:34:20] "GET /new-delivery HTTP/1.1" 200 -
+2026-08-10 14:34:20,546 - INFO - 127.0.0.1 - - [10/Aug/2026 14:34:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:34:20,551 - INFO - 127.0.0.1 - - [10/Aug/2026 14:34:20] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:34:55,293 - INFO - 127.0.0.1 - - [10/Aug/2026 14:34:55] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 14:34:55,298 - INFO - 127.0.0.1 - - [10/Aug/2026 14:34:55] "GET / HTTP/1.1" 200 -
+2026-08-10 14:34:55,321 - INFO - 127.0.0.1 - - [10/Aug/2026 14:34:55] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 14:34:55,322 - INFO - 127.0.0.1 - - [10/Aug/2026 14:34:55] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 14:34:55,330 - INFO - 127.0.0.1 - - [10/Aug/2026 14:34:55] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:34:59,854 - INFO - 127.0.0.1 - - [10/Aug/2026 14:34:59] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 14:34:59,859 - INFO - 127.0.0.1 - - [10/Aug/2026 14:34:59] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 14:34:59,890 - INFO - 127.0.0.1 - - [10/Aug/2026 14:34:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:34:59,903 - INFO - 127.0.0.1 - - [10/Aug/2026 14:34:59] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:36:55,691 - INFO - 127.0.0.1 - - [10/Aug/2026 14:36:55] "GET /new-delivery HTTP/1.1" 200 -
+2026-08-10 14:36:55,713 - INFO - 127.0.0.1 - - [10/Aug/2026 14:36:55] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:36:55,719 - INFO - 127.0.0.1 - - [10/Aug/2026 14:36:55] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:37:09,194 - INFO - 127.0.0.1 - - [10/Aug/2026 14:37:09] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 14:37:09,199 - INFO - 127.0.0.1 - - [10/Aug/2026 14:37:09] "GET / HTTP/1.1" 200 -
+2026-08-10 14:37:09,218 - INFO - 127.0.0.1 - - [10/Aug/2026 14:37:09] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 14:37:09,219 - INFO - 127.0.0.1 - - [10/Aug/2026 14:37:09] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 14:37:09,225 - INFO - 127.0.0.1 - - [10/Aug/2026 14:37:09] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:37:12,719 - INFO - 127.0.0.1 - - [10/Aug/2026 14:37:12] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 14:37:12,723 - INFO - 127.0.0.1 - - [10/Aug/2026 14:37:12] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 14:37:12,742 - INFO - 127.0.0.1 - - [10/Aug/2026 14:37:12] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:37:20,511 - INFO - 127.0.0.1 - - [10/Aug/2026 14:37:20] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 14:37:20,531 - INFO - 127.0.0.1 - - [10/Aug/2026 14:37:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:37:22,866 - INFO - 127.0.0.1 - - [10/Aug/2026 14:37:22] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 14:37:22,887 - INFO - 127.0.0.1 - - [10/Aug/2026 14:37:22] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:37:24,224 - INFO - 127.0.0.1 - - [10/Aug/2026 14:37:24] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 14:37:24,245 - INFO - 127.0.0.1 - - [10/Aug/2026 14:37:24] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:38:44,684 - INFO - 127.0.0.1 - - [10/Aug/2026 14:38:44] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 14:38:44,688 - INFO - 127.0.0.1 - - [10/Aug/2026 14:38:44] "GET / HTTP/1.1" 200 -
+2026-08-10 14:38:44,710 - INFO - 127.0.0.1 - - [10/Aug/2026 14:38:44] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 14:38:44,711 - INFO - 127.0.0.1 - - [10/Aug/2026 14:38:44] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 14:38:44,718 - INFO - 127.0.0.1 - - [10/Aug/2026 14:38:44] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:38:48,477 - INFO - 127.0.0.1 - - [10/Aug/2026 14:38:48] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 14:38:48,482 - INFO - 127.0.0.1 - - [10/Aug/2026 14:38:48] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 14:38:48,507 - INFO - 127.0.0.1 - - [10/Aug/2026 14:38:48] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:40:27,683 - INFO - 127.0.0.1 - - [10/Aug/2026 14:40:27] "GET /deliveries HTTP/1.1" 200 -
+2026-08-10 14:40:27,708 - INFO - 127.0.0.1 - - [10/Aug/2026 14:40:27] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:48:18,852 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:48:18,885 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:48:18,912 - INFO -  * Restarting with stat
+2026-08-10 14:48:18,948 - INFO -  * Restarting with stat
+2026-08-10 14:48:19,292 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:48:19,293 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-10 14:48:19,376 - INFO -  * Restarting with stat
+2026-08-10 14:48:19,376 - INFO -  * Restarting with stat
+2026-08-10 14:48:19,496 - WARNING -  * Debugger is active!
+2026-08-10 14:48:19,502 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:48:19,519 - WARNING -  * Debugger is active!
+2026-08-10 14:48:19,524 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:48:19,915 - WARNING -  * Debugger is active!
+2026-08-10 14:48:19,918 - WARNING -  * Debugger is active!
+2026-08-10 14:48:19,920 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:48:19,923 - INFO -  * Debugger PIN: 106-751-790
+2026-08-10 14:48:21,045 - INFO - 127.0.0.1 - - [10/Aug/2026 14:48:21] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 14:48:21,069 - INFO - 127.0.0.1 - - [10/Aug/2026 14:48:21] "GET / HTTP/1.1" 200 -
+2026-08-10 14:48:21,237 - INFO - 127.0.0.1 - - [10/Aug/2026 14:48:21] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 14:48:21,244 - INFO - 127.0.0.1 - - [10/Aug/2026 14:48:21] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 14:48:21,250 - INFO - 127.0.0.1 - - [10/Aug/2026 14:48:21] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:48:23,961 - INFO - 127.0.0.1 - - [10/Aug/2026 14:48:23] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 14:48:23,979 - INFO - 127.0.0.1 - - [10/Aug/2026 14:48:23] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 14:48:23,998 - INFO - 127.0.0.1 - - [10/Aug/2026 14:48:23] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:48:25,991 - INFO - 127.0.0.1 - - [10/Aug/2026 14:48:25] "GET /deliveries HTTP/1.1" 200 -
+2026-08-10 14:48:26,021 - INFO - 127.0.0.1 - - [10/Aug/2026 14:48:26] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:48:30,969 - INFO - 127.0.0.1 - - [10/Aug/2026 14:48:30] "[32mPOST /delete-delivery/8 HTTP/1.1[0m" 302 -
+2026-08-10 14:48:30,975 - INFO - 127.0.0.1 - - [10/Aug/2026 14:48:30] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 14:48:30,999 - INFO - 127.0.0.1 - - [10/Aug/2026 14:48:30] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:48:33,593 - INFO - 127.0.0.1 - - [10/Aug/2026 14:48:33] "GET /deliveries HTTP/1.1" 200 -
+2026-08-10 14:48:33,615 - INFO - 127.0.0.1 - - [10/Aug/2026 14:48:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:53:07,495 - INFO - 127.0.0.1 - - [10/Aug/2026 14:53:07] "GET /deliveries HTTP/1.1" 200 -
+2026-08-10 14:53:07,515 - INFO - 127.0.0.1 - - [10/Aug/2026 14:53:07] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:54:19,210 - INFO - 127.0.0.1 - - [10/Aug/2026 14:54:19] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 14:54:19,214 - INFO - 127.0.0.1 - - [10/Aug/2026 14:54:19] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 14:54:19,234 - INFO - 127.0.0.1 - - [10/Aug/2026 14:54:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:54:19,241 - INFO - 127.0.0.1 - - [10/Aug/2026 14:54:19] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:54:20,988 - INFO - 127.0.0.1 - - [10/Aug/2026 14:54:20] "[35m[1mGET /deliveries HTTP/1.1[0m" 500 -
+2026-08-10 14:54:21,007 - INFO - 127.0.0.1 - - [10/Aug/2026 14:54:21] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:54:21,008 - INFO - 127.0.0.1 - - [10/Aug/2026 14:54:21] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-10 14:54:21,053 - INFO - 127.0.0.1 - - [10/Aug/2026 14:54:21] "GET /deliveries?__debugger__=yes&cmd=resource&f=console.png&s=K7xZMFaXAdqcYaZKCyqq HTTP/1.1" 200 -
+2026-08-10 14:55:07,997 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:07] "[35m[1mGET /deliveries HTTP/1.1[0m" 500 -
+2026-08-10 14:55:08,017 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:08] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:55:08,018 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:08] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-10 14:55:08,034 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:08] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=console.png&s=K7xZMFaXAdqcYaZKCyqq HTTP/1.1[0m" 304 -
+2026-08-10 14:55:08,501 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:08] "[35m[1mGET /deliveries HTTP/1.1[0m" 500 -
+2026-08-10 14:55:08,519 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:08] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:55:08,519 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:08] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-10 14:55:08,532 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:08] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=console.png&s=K7xZMFaXAdqcYaZKCyqq HTTP/1.1[0m" 304 -
+2026-08-10 14:55:34,039 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:34] "[35m[1mGET /deliveries HTTP/1.1[0m" 500 -
+2026-08-10 14:55:34,060 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:34] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:55:34,062 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:34] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-10 14:55:34,077 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:34] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=console.png&s=K7xZMFaXAdqcYaZKCyqq HTTP/1.1[0m" 304 -
+2026-08-10 14:55:34,701 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:34] "[35m[1mGET /deliveries HTTP/1.1[0m" 500 -
+2026-08-10 14:55:34,718 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:34] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:55:34,718 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:34] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-10 14:55:34,732 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:34] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=console.png&s=K7xZMFaXAdqcYaZKCyqq HTTP/1.1[0m" 304 -
+2026-08-10 14:55:34,886 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:34] "[35m[1mGET /deliveries HTTP/1.1[0m" 500 -
+2026-08-10 14:55:34,907 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:34] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:55:34,908 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:34] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-10 14:55:34,923 - INFO - 127.0.0.1 - - [10/Aug/2026 14:55:34] "[36mGET /deliveries?__debugger__=yes&cmd=resource&f=console.png&s=K7xZMFaXAdqcYaZKCyqq HTTP/1.1[0m" 304 -
+2026-08-10 14:57:09,528 - INFO - 127.0.0.1 - - [10/Aug/2026 14:57:09] "GET /deliveries HTTP/1.1" 200 -
+2026-08-10 14:57:09,546 - INFO - 127.0.0.1 - - [10/Aug/2026 14:57:09] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:57:09,552 - INFO - 127.0.0.1 - - [10/Aug/2026 14:57:09] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:57:11,688 - INFO - 127.0.0.1 - - [10/Aug/2026 14:57:11] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-10 14:57:11,692 - INFO - 127.0.0.1 - - [10/Aug/2026 14:57:11] "GET / HTTP/1.1" 200 -
+2026-08-10 14:57:11,712 - INFO - 127.0.0.1 - - [10/Aug/2026 14:57:11] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-10 14:57:11,712 - INFO - 127.0.0.1 - - [10/Aug/2026 14:57:11] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-10 14:57:11,720 - INFO - 127.0.0.1 - - [10/Aug/2026 14:57:11] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-10 14:57:14,376 - INFO - 127.0.0.1 - - [10/Aug/2026 14:57:14] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-10 14:57:14,382 - INFO - 127.0.0.1 - - [10/Aug/2026 14:57:14] "GET /dashboard HTTP/1.1" 200 -
+2026-08-10 14:57:14,420 - INFO - 127.0.0.1 - - [10/Aug/2026 14:57:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:57:14,516 - INFO - 127.0.0.1 - - [10/Aug/2026 14:57:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-10 14:57:16,905 - INFO - 127.0.0.1 - - [10/Aug/2026 14:57:16] "GET /deliveries HTTP/1.1" 200 -
+2026-08-10 14:57:16,929 - INFO - 127.0.0.1 - - [10/Aug/2026 14:57:16] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
