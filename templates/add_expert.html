@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Add New Expert
+{% endblock %}
+
+{% block content %}
+
+<div class="header">
+    <div>
+        <h1>Add New Expert</h1>
+        <p>Register a new expert to the Tea Tracking System.</p>
+    </div>
+</div>
+
+<form id="expertForm" onsubmit="event.preventDefault();">
+
+    <div class="input-group">
+        <label for="tc_no">TC Number</label>
+        <input
+            type="text"
+            id="tc_no"
+            name="tc_no"
+            placeholder="Enter TC Number"
+            required
+        >
+    </div>
+
+    <div class="input-group">
+        <label for="password">Password</label>
+        <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter Password"
+            required
+        >
+    </div>
+
+    <div class="input-group">
+        <label for="first_name">First Name</label>
+        <input
+            type="text"
+            id="first_name"
+            name="first_name"
+            placeholder="Enter First Name"
+            required
+        >
+    </div>
+
+    <div class="input-group">
+        <label for="last_name">Last Name</label>
+        <input
+            type="text"
+            id="last_name"
+            name="last_name"
+            placeholder="Enter Last Name"
+            required
+        >
+    </div>
+
+    
+  <button type="button" id="saveBtnExpert" class="btn">Add Expert</button>
+
+</form>
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+   
+    const saveBtnExpert = document.getElementById("saveBtnExpert");
+
+    // Butona tıklandığında çalışacak kod
+    saveBtnExpert.addEventListener("click", function() {
+        
+        // Çift tıklamayı engellemek için butonu geçici olarak pasif yapıyoruz
+        saveBtnExpert.disabled = true;
+        saveBtnExpert.innerText = "Adding...";
+
+        const farmerData = {
+            tc_no: document.getElementById("tc_no").value,
+            password: document.getElementById("password").value,
+            first_name: document.getElementById("first_name").value,
+            last_name: document.getElementById("last_name").value
+        };
+
+        fetch("/api/experts/add", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(farmerData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                window.location.href = "/admin/experts";
+            } else {
+                alert(data.message);
+                saveBtnExpert.disabled = false;
+                saveBtnExpert.innerText = "Add Expert";
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Check database.py.");
+            saveBtnExpert.disabled = false;
+            saveBtnExpert.innerText = "Add Farmer";
+        });
+    });
+</script>
+{% endblock %}

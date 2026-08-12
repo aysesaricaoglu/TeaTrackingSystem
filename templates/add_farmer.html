@@ -1,0 +1,162 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Add New Farmer
+{% endblock %}
+
+{% block content %}
+
+<div class="header">
+    <div>
+        <h1>Add New Farmer</h1>
+        <p>Register a new farmer to the Tea Tracking System.</p>
+    </div>
+</div>
+
+<form id="farmerForm" onsubmit="event.preventDefault();">
+
+    <div class="input-group">
+        <label for="tc_no">TC Number</label>
+        <input
+            type="text"
+            id="tc_no"
+            name="tc_no"
+            placeholder="Enter TC Number"
+            required
+        >
+    </div>
+
+    <div class="input-group">
+        <label for="password">Password</label>
+        <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter Password"
+            required
+        >
+    </div>
+
+    <div class="input-group">
+        <label for="first_name">First Name</label>
+        <input
+            type="text"
+            id="first_name"
+            name="first_name"
+            placeholder="Enter First Name"
+            required
+        >
+    </div>
+
+    <div class="input-group">
+        <label for="last_name">Last Name</label>
+        <input
+            type="text"
+            id="last_name"
+            name="last_name"
+            placeholder="Enter Last Name"
+            required
+        >
+    </div>
+
+    <div class="input-group">
+        <label for="city">City</label>
+        <input
+            type="text"
+            id="city"
+            name="city"
+            placeholder="Enter City"
+            required
+        >
+    </div>
+
+    <div class="input-group">
+        <label for="district">District</label>
+        <input
+            type="text"
+            id="district"
+            name="district"
+            placeholder="Enter District"
+            required
+        >
+    </div>
+
+    <div class="input-group">
+        <label for="phone_number">Phone Number</label>
+        <input
+            type="text"
+            id="phone_number"
+            name="phone_number"
+            placeholder="Enter Phone Number"
+            required
+        >
+    </div>
+
+    <div class="input-group">
+        <label for="village">Village</label>
+        <input
+            type="text"
+            id="village"
+            name="village"
+            placeholder="Enter Village"
+            required
+        >
+    </div>
+
+  <button type="button" id="saveBtn" class="btn">Add Farmer</button>
+
+</form>
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+   
+    const saveBtn = document.getElementById("saveBtn");
+
+    // Butona tıklandığında çalışacak kod
+    saveBtn.addEventListener("click", function() {
+        
+        // Çift tıklamayı engellemek için butonu geçici olarak pasif yapıyoruz
+        saveBtn.disabled = true;
+        saveBtn.innerText = "Adding...";
+
+        const farmerData = {
+            tc_no: document.getElementById("tc_no").value,
+            password: document.getElementById("password").value,
+            first_name: document.getElementById("first_name").value,
+            last_name: document.getElementById("last_name").value,
+            city: document.getElementById("city").value,
+            district: document.getElementById("district").value,
+            phone_number: document.getElementById("phone_number").value,
+            village: document.getElementById("village").value
+        };
+
+        fetch("/api/farmers/add", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(farmerData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                window.location.href = "/admin/farmers";
+            } else {
+                alert(data.message);
+                saveBtn.disabled = false;
+                saveBtn.innerText = "Add Farmer";
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Sistem hatası! Lütfen database.py dosyasındaki add_farmer fonksiyonunu kontrol et.");
+            saveBtn.disabled = false;
+            saveBtn.innerText = "Add Farmer";
+        });
+    });
+</script>
+{% endblock %}

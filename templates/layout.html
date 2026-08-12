@@ -54,16 +54,21 @@
             {% if session["role"] == "admin" %}
 
                 <li>
-                    <a href="#">
-                        User Management
+                    <a href="{{ url_for('expert_management') }}">
+                        Expert Management
                     </a>
                 </li>
 
+          
+
                 <li>
-                    <a href="#">
+                     <a href="{{ url_for('farmer_management') }}">
                         Farmer Management
-                    </a>
-                </li>
+                         </a>
+                 </li>
+                
+
+
 
             {% endif %}
 
@@ -80,13 +85,13 @@
 
 
             <li>
-                <a href="#">
+                <a href="{{url_for('statistics')}}">
                     Statistics
                 </a>
             </li>
 
             <li>
-                <a href="#">
+                <a href="{{ url_for('ai_assistant') }}">
                     AI Assistant
                 </a>
             </li>

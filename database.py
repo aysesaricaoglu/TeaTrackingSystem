@@ -122,29 +122,6 @@ def add_user(tc_no, password, role, first_name, last_name):
     connection.close()
     return True
 
-def add_farmer(user_id, first_name, last_name, city, district, phone_number, village):
-    connection =create_connection()
-    cursor = connection.cursor()
-    cursor.execute(
-        "SELECT * FROM farmers WHERE user_id =? ",(user_id,)
-
-    )
-    existing_farmer= (
-        cursor.fetchone()
-        )
-    if existing_farmer:
-        connection.close()
-        return False
-    cursor.execute(
-        "INSERT INTO farmers (user_id,first_name,last_name,city,district,phone_number,village) VALUES (?,?,?,?,?,?,?)",
-        (user_id, first_name, last_name, city, district, phone_number, village),
-    
-    )
-
-    logger.info("farmer saved!")
-    connection.commit()
-    connection.close()
-    return True
 
 def get_all_users():
     connection = create_connection()
@@ -160,7 +137,7 @@ def get_all_users():
 print("aaaaaaaaa")  # kod buraya kadar çalışıyor
 
 
-def get_all_deliveries():
+def get_all_deliveries():#bunu şu anda kullanmıyorum ama dashboarda ekleyeceğim
     connection = create_connection()
     cursor = connection.cursor()
 
@@ -276,6 +253,7 @@ def get_all_deliveries_full():
      experts.first_name||' '||experts.last_name,
      tea_delivers.delivery_date,
      tea_delivers.gross_weight,
+     tea_delivers.net_weight,
      tea_delivers.is_rainy,
      tea_delivers.payment_option
      FROM tea_delivers
@@ -286,3 +264,264 @@ def get_all_deliveries_full():
     deliveries = cursor.fetchall()
     connection.close()
     return deliveries
+
+def get_all_experts(search=""):
+    connection = create_connection()
+    cursor=connection.cursor()
+    if search:
+        search= "f%{search}%"# sql de '%' LIKE  kullanıldığı zaman önünde veya arkasında birşey yazabilir manasında kullanılır 
+
+        cursor.execute("""
+        SELECT
+          id,
+          tc_no,
+          first_name,
+          last_name
+        FROM users
+        WHERE role ='expert'
+         AND(
+            tc_no LIKE ?
+            OR first_name LIKE ?
+            OR last_name LIKE ?
+        ) 
+        ORDER BY  first_name, last_name
+    """,(search,search,search))#
+
+    else:
+        cursor.execute("""
+            SELECT
+                id,
+                tc_no,
+                first_name,
+                last_name
+            FROM users
+            WHERE role ='expert'
+            ORDER BY first_name , last_name
+        """)
+    experts =cursor.fetchall()
+    connection.close()
+    return experts
+
+def delete_expert(expert_id):
+    connection = create_connection()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        DELETE FROM users
+        WHERE id = ?
+        AND role = 'expert'
+    """, (expert_id,))
+
+    connection.commit()
+    connection.close()
+
+    logger.info(f"Expert {expert_id} deleted.")
+
+    return True
+
+def add_expert(tc_no,password,role,first_name,last_name):
+    connection =create_connection()
+    cursor=connection.cursor()
+    cursor.execute(
+        "SELECT * FROM users WHERE tc_no=?",(tc_no,)
+    )
+
+    existing_user= cursor.fetchone()
+    if existing_user:
+        connection.close()
+        return False
+
+
+    cursor.execute("""
+
+         INSERT INTO users(
+            tc_no,
+            password,
+            role,
+            first_name,
+            last_name) VALUES(?,?,?,?,?)
+            """,(
+                tc_no,
+                password,
+                role,
+                first_name,
+                
+                last_name
+            )
+    )
+
+    connection.commit()
+    connection.close()
+
+    return True
+
+
+
+
+
+
+def get_all_farmers(search=""):
+    connection= create_connection()
+    cursor= connection.cursor()
+
+    if search:
+        search= f"%{search}%"
+
+        cursor.execute("""
+            SELECT 
+                farmers.id,
+                users.tc_no,
+                farmers.first_name,
+                farmers.last_name,
+                farmers.city,
+                farmers.district,
+                farmers.phone_number,
+                farmers.village 
+
+            FROM farmers
+            JOIN users ON farmers.user_id = users.id
+            WHERE 
+                users.role = 'farmer'
+            AND(
+                users.tc_no LIKE ? 
+                OR farmers.first_name LIKE ?
+                OR farmers.last_name LIKE ?
+                OR farmers.city LIKE ?
+                OR farmers.district LIKE ?
+                OR farmers.phone_number LIKE ?
+                OR farmers.village LIKE ?
+
+            )
+        ORDER BY farmers.first_name, farmers.last_name
+
+    """,(
+            search,
+            search,
+            search,
+            search,
+            search,
+            search,
+            search,
+
+))
+    else:
+        cursor.execute("""
+            SELECT
+                farmers.id,
+                users.tc_no,
+                farmers.first_name,
+                farmers.last_name,
+                farmers.city,
+                farmers.district,
+                farmers.phone_number,
+                farmers.village
+            FROM farmers
+            JOIN users
+                ON farmers.user_id = users.id
+            WHERE users.role = 'farmer'
+            ORDER BY farmers.first_name, farmers.last_name
+        """)
+
+    farmers = cursor.fetchall()
+
+    connection.close()
+
+    return farmers
+
+def add_farmer(tc_no,password,role,first_name,last_name,city,district,phone_number,village):
+        connection=create_connection()
+        cursor= connection.cursor()
+        cursor.execute(
+            "SELECT * FROM users WHERE tc_no =?",(tc_no,)
+
+        )
+        existing_user = cursor.fetchone()
+        if existing_user: 
+            connection.close()
+            return False
+
+
+        cursor.execute("""
+            INSERT INTO users (
+            tc_no,
+            password,
+            role,
+            first_name,
+            last_name) VALUES (?,?,?,?,?)
+            """,(
+                tc_no,
+                password,
+                role,
+                first_name,
+                last_name
+            )
+
+        )
+        user_id = cursor.lastrowid# en son eklediğim şeyin id sini alıyorum
+
+        cursor.execute("""INSERT INTO farmers( 
+                user_id,
+                first_name,
+                last_name,
+                city,
+                district,
+                phone_number,
+                village
+
+                )VALUES (?,?,?,?,?,?,?)
+                """, (
+                    
+                user_id,
+                first_name,
+                last_name,
+                city,
+                district,
+                phone_number,
+                village
+        )
+
+    )
+
+        connection.commit()
+        connection.close()
+
+        logger.info(f"farmer added {first_name} {last_name} TC: {tc_no}"
+    )
+
+        return True
+def delete_farmer(farmer_id):
+    connection = create_connection()
+    cursor = connection.cursor()
+
+    # Farmer'ın bağlı olduğu user_id'yi bulmalıyım
+    cursor.execute("""
+        SELECT user_id
+        FROM farmers
+        WHERE id = ?
+    """, (farmer_id,))
+
+    farmer = cursor.fetchone()
+
+    if farmer is None:
+        connection.close()
+        return False
+
+    user_id = farmer[0]
+
+    cursor.execute("""
+        DELETE FROM farmers
+        WHERE id = ?
+    """, (farmer_id,))
+
+    cursor.execute("""
+        DELETE FROM users
+        WHERE id = ?
+        AND role = 'farmer'
+    """, (user_id,))
+
+    connection.commit()
+    connection.close()
+
+    logger.info(f"Farmer {farmer_id} deleted.")
+
+    return True

@@ -411,3 +411,38 @@ td form {
 
     
 }
+.farmer_ekle{
+
+   display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: rgba(226, 233, 227, 0.846); /* Hafif yeşil arka plan */
+    color: #2E7D32;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px solid #2E7D32;
+    transition: all 0.3s ease;
+
+
+
+}
+
+
+.expert_ekle{
+       display: inline-block;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    background-color: rgba(226, 233, 227, 0.846); /* Hafif yeşil arka plan */
+    color: #2E7D32;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px solid #2E7D32;
+    transition: all 0.3s ease;
+
+
+
+
+}
