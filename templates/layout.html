@@ -37,12 +37,6 @@
             {% if session["role"] in ["admin", "expert"] %}
 
                 <li>
-                    <a href="{{ url_for('new_delivery') }}">
-                        New Delivery
-                    </a>
-                </li>
-
-                <li>
                     <a href="{{ url_for('all_deliveries') }}">
                         Delivery Records
                     </a>

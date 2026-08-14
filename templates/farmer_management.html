@@ -26,9 +26,10 @@ Farmer Management
 
     <h2>Search Farmers</h2>
 
-    <form method="GET" action="{{ url_for('farmer_management') }}">
+    <form id="farmer-search-form">
 
         <input
+             id="farmer-search-input"
             type="text"
             name="search"
             placeholder="Search by name, TC, city, district or village"
@@ -67,7 +68,7 @@ Farmer Management
 
             </thead>
 
-            <tbody>
+            <tbody id="farmer-table-body">
 
                 {% for farmer in farmers %}
 
@@ -91,9 +92,9 @@ Farmer Management
 
                     <td>
 
-                        <button class="btn-delete">
+                       <button class="btn-delete" data-url="{{ url_for('delete_farmer_api', farmer_id=farmer[0]) }}">
                             Delete
-                        </button>
+                       </button>
 
                     </td>
 
@@ -109,4 +110,103 @@ Farmer Management
 
 </div>
 
+{% endblock %}
+{% block scripts %}
+<script>
+const tableBody = document.getElementById("farmer-table-body");
+
+tableBody.addEventListener("click", function(event) {
+
+    if (event.target.classList.contains("btn-delete")) {
+
+        const button = event.target;
+
+        const url = button.getAttribute("data-url");
+
+        if (confirm("Are you sure you want to delete this farmer?")) {
+
+            fetch(url, {
+                method: "POST"
+            })
+            .then(response => response.json())
+            .then(data => {
+
+                if (data.success) {
+
+                    alert(data.message);
+
+                    button.closest("tr").remove();
+
+                } else {
+
+                    alert(data.message);
+
+                }
+
+            })
+            .catch(error => {
+
+                console.error("Error:", error);
+
+                alert("An error occurred while deleting the farmer.");
+
+            });
+        }
+    }
+
+});
+
+    const searchForm = document.getElementById("farmer-search-form");
+
+    console.log("SEARCH FORM:", searchForm);
+
+    searchForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    console.log("SEARCH SUBMIT CALISTI");
+
+    const searchValue = document.getElementById("farmer-search-input").value;
+
+    console.log("SEARCH VALUE:", searchValue);
+    fetch(`/api/farmers/search?search=${encodeURIComponent(searchValue)}`) 
+    .then(response => response.json())
+    .then(data => {
+
+    console.log("SEARCH RESULT:", data);
+    console.log("FARMERS:", data.farmers);
+    const tableBody = document.getElementById("farmer-table-body");
+
+    console.log("TABLE BODY:", tableBody);
+    tableBody.innerHTML = "";
+
+data.farmers.forEach(farmer => {
+
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+        <td>${farmer[0]}</td>
+        <td>${farmer[1]}</td>
+        <td>${farmer[2]} ${farmer[3]}</td>
+        <td>${farmer[4]}</td>
+        <td>${farmer[5]}</td>
+        <td>${farmer[6]}</td>
+        <td>${farmer[7]}</td>
+        <td>
+            <button class="btn-delete" data-url="/admin/farmers/delete/${farmer[0]}">
+                Delete
+            </button>
+        </td>
+    `;
+
+    tableBody.appendChild(row);
+
+});
+    })
+    .catch(error => {
+        console.error("Search error:", error);
+    });
+
+});
+</script>
 {% endblock %}

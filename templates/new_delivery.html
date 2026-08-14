@@ -10,21 +10,21 @@ New Tea Delivery
 
     <h1>New Tea Delivery</h1>
 
-    <form method="POST" action="{{ url_for('new_delivery') }}">
+    <form id="delivery-form"  method="POST" action="{{ url_for('new_delivery') }}">
 
         <div class="input-group">
             <label>Farmer TC Number</label>
-            <input type="text" name="farmer_tc" placeholder="Enter Farmer TC Number" required>
+            <input type="text" name="farmer_tc" placeholder="Enter Farmer TC Number" required id="farmer_tc">
         </div>
 
         <div class="input-group">
             <label>Gross Weight (kg)</label>
-            <input type="number" name="gross_weight" placeholder="Enter Gross Weight" step="0.01" required>
+            <input type="number" name="gross_weight" placeholder="Enter Gross Weight" step="0.01" required id="gross_weight">
         </div>
 
         <div class="input-group">
             <label>Is it raining?</label>
-            <select name="is_rainy">
+            <select name="is_rainy" id="is_rainy">
                 <option value="1">Yes</option>
                 <option value="0">No</option>
             </select>
@@ -32,7 +32,7 @@ New Tea Delivery
 
         <div class="input-group">
             <label>Payment Option</label>
-            <select name="payment_option">
+            <select name="payment_option" id="payment_option">
                 <option>Immediate</option>
                 <option>1 Month</option>
                 <option>3 Months</option>
@@ -41,7 +41,7 @@ New Tea Delivery
 
         <div class="input-group">
             <label>Delivery Date</label>
-            <input type="date" name="delivery_date" required>
+            <input type="date" name="delivery_date" required id="delivery_date">
         </div>
 
         <button type="submit" class="btn">
@@ -52,4 +52,48 @@ New Tea Delivery
 
 </div>
 
+{% endblock %}
+
+{% block scripts%}
+
+<script>
+console.log("NEW DELIVERY JS CALISTI");
+document.getElementById("delivery-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    console.log("FORM SUBMIT CALISTI");
+    const data = {
+        farmer_tc: document.getElementById("farmer_tc").value,
+        delivery_date: document.getElementById("delivery_date").value,
+        gross_weight: document.getElementById("gross_weight").value,
+        is_rainy: document.getElementById("is_rainy").value,
+        payment_option: document.getElementById("payment_option").value
+    };
+
+    fetch("{{ url_for('create_delivery') }}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    //url for daha gğvenliymiş ama direkt "/api/new_delivery de yazabilirdim"
+    .then(response => response.json())
+    .then(data => {
+
+        if (data.success) {
+            alert(data.message);
+
+            window.location.href = "{{ url_for('all_deliveries') }}";
+        } else {
+            alert(data.message);
+        }
+
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("Something went wrong.");
+    });
+
+});
+</script>
 {% endblock %}

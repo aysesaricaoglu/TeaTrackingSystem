@@ -25,7 +25,8 @@ from database import (
     get_all_farmers,
     get_all_experts,
     add_expert,
-    delete_expert
+    delete_expert,
+    delete_farmer
 )
 
 # logging.basicConfig(filename='myapp.log', level=logging.INFO)
@@ -123,56 +124,71 @@ def dashboard():
 
 @app.route("/new-delivery", methods=["GET", "POST"])
 def new_delivery():
+     if "user_id" not in session:
+         return redirect(url_for ("home"))
+     if session["role"] not in ["admin","expert"]:
+         return redirect (url_for("dashboard"))
+     return render_template("new_delivery.html")
 
+@app.route("/api/new_delivery",methods=["POST"])
+def create_delivery():
     if "user_id" not in session:
-        return redirect(url_for("home"))
+        return jsonify({"success":False, "message":"Unauthorized"}),401
+    if session["role"] not in ["admin","expert"]:
+        return jsonify({"success":False, "message":"Forbidden"}),403
 
-    if session["role"] not in ["admin", "expert"]:
-        return redirect(url_for("dashboard"))
+    data= request.get_json()
+    farmer_tc = data.get("farmer_tc")
+    
+    user = get_user_by_tc(farmer_tc)
 
-    if request.method == "POST":
+    if user is None:
+        return jsonify({
+            "success":False,
+            "message":"Farmer not found"
+        }),404
+    
+    user_id=user[0]
+    farmer= get_farmer_by_user_id(user_id)
+    if farmer is None:
+        return jsonify({
+            "success":False, 
+            "message":"farmer not found!"
+        }),404
 
-        farmer_tc = request.form.get("farmer_tc")
 
-        user = get_user_by_tc(farmer_tc)
+    farmer_id = farmer[0]
 
-        if user is None:
-            return "Farmer not found!"
+    gross_weight = float (data.get("gross_weight"))
+    is_rainy = int(data.get("is_rainy"))
+    if is_rainy ==1:
 
-        user_id = user[0]
+        net_weight= gross_weight*0.9
+    else:
+        net_weight= gross_weight        
 
-        farmer = get_farmer_by_user_id(user_id)
+    payment_option =data.get("payment_option")
+    delivery_date = data.get("delivery_date")
+    expert_id= session["user_id"]
 
-        if farmer is None:
-            return "Farmer not found!"
+    add_delivery(
+        farmer_id,
+        expert_id,
+        delivery_date,
+        gross_weight,
+        net_weight,
+        is_rainy,
+        payment_option,
+)
+    return jsonify({
+        "succcess": True,
+        "message": "delivery added successfully!"
+    })
 
-        farmer_id = farmer[0]
+  
+   
+  
 
-        delivery_date = request.form.get("delivery_date")
-        gross_weight = float(request.form.get("gross_weight"))
-        is_rainy = int(request.form.get("is_rainy"))
-
-        if is_rainy == 1:
-            net_weight = gross_weight * 0.9
-        else:
-            net_weight = gross_weight
-
-        payment_option = request.form.get("payment_option")
-        expert_id = session["user_id"]
-
-        add_delivery(
-            farmer_id,
-            expert_id,
-            delivery_date,
-            gross_weight,
-            net_weight,
-            is_rainy,
-            payment_option,
-        )
-
-        return redirect(url_for("all_deliveries"))
-
-    return render_template("new_delivery.html")
 
 
 #ADMİN - FARMER#
@@ -182,19 +198,94 @@ def farmer_management():
 
     if "user_id" not in session:
         return redirect(url_for("home"))
-    if session ["role"] != "admin":
+
+    if session["role"] != "admin":
         return redirect(url_for("dashboard"))
 
-    search= request.args.get("search","")
+    farmers = get_all_farmers()
+
+    return render_template(
+        "farmer_management.html",
+        farmers=farmers
+    )
+
+# @app.route("/api/farmers/search")
+# def search_farmers_api():
+
+#     if "user_id" not in session:
+#         return jsonify({
+#             "success": False,
+#             "message": "Unauthorized"
+#         }), 401
+
+#     if session["role"] != "admin":
+#         return jsonify({
+#             "success": False,
+#             "message": "Forbidden"
+#         }), 403
+
+#     search = request.args.get("search", "")
+
+#     farmers = get_all_farmers(search)
+
+#     return jsonify({
+#         "success": True,
+#         "farmers": farmers
+#     })
+# @app.route("/api/farmers/search")
+# def search_farmers_api():
+
+#     if "user_id" not in session:
+#         return jsonify({
+#             "success": False,
+#             "message": "Unauthorized"
+#         }), 401
+
+#     if session["role"] != "admin":
+#         return jsonify({
+#             "success": False,
+#             "message": "Forbidden"
+#         }), 403
+
+#     search = request.args.get("search", "")
+
+#     print("SEARCH FROM API:", search)
+
+#     farmers = get_all_farmers(search)
+
+#     print("FARMERS FROM API:", farmers)
+
+#     return jsonify({
+#         "success": True,
+#         "farmers": farmers
+#     })
+
+@app.route("/api/farmers/search")
+def search_farmers_api():
+
+    if "user_id" not in session:
+        return jsonify({
+            "success": False,
+            "message": "Unauthorized"
+        }), 401
+
+    if session["role"] != "admin":
+        return jsonify({
+            "success": False,
+            "message": "Forbidden"
+        }), 403
+
+    search = request.args.get("search", "")
+
 
     farmers = get_all_farmers(search)
 
-    return render_template (
-        "farmer_management.html",
-        farmers=farmers,
-        search=search
+    print("FARMERS FROM API:", farmers)
 
-    )
+    return jsonify({
+        "success": True,
+        "farmers": farmers
+    })
 @app.route("/admin/farmers/add", methods=["GET", "POST"])
 def add_farmer_route():
 
@@ -257,6 +348,39 @@ def add_farmer_api():
 
 
 #ADMIN - EXPERT#
+@app.route("/api/experts/search")
+def search_experts_api():
+
+    if "user_id" not in session:
+        return jsonify({
+
+            "success": False,
+            "message":"Unauthorized"
+        }),401
+
+    if session ["role"] != "admin":
+        return jsonify({
+            "success":False,
+            "message": "Forbidden"
+
+        }) ,403
+    search= request.args.get("search","")
+
+    experts= get_all_experts(search)
+
+    return jsonify({
+        "success":True,
+        "experts": experts
+    })
+
+
+
+
+
+
+
+
+
 @app.route("/admin/experts")
 def expert_management():
 
@@ -275,6 +399,26 @@ def expert_management():
         experts=experts,
         search=search
     )
+from flask import jsonify, request, session
+
+@app.route("/api/experts/search", methods=["GET"])
+def api_search_experts():
+    # Güvenlik kontrolü (Sadece yetkili adminler arama yapabilsin)
+    if "user_id" not in session or session.get("role") != "admin":
+        return jsonify({"success": False, "message": "Yetkisiz erişim"}), 403
+
+    # URL'den gelen search parametresini al
+    search_query = request.args.get("search", "")
+    
+    # get_all_experts fonksiyonunu kullanarak verileri çek
+    experts = get_all_experts(search_query)
+    
+    # JavaScript'in beklediği formatta JSON olarak döndür
+    return jsonify({
+        "success": True,
+        "experts": experts
+    })
+
 @app.route("/admin/experts/add",methods=["GET","POST"])
 
 def add_expert_route():
@@ -338,7 +482,22 @@ def delete_expert_api(expert_id):
     if delete_success:
         return jsonify({"success": True, "message": "Expert deleted succesfully!"})
     else:
-        return jsonify({"success": False, "message": "Error occured when exper's deleteing process."}), 400
+        return jsonify({"success": False, "message": "Error occured when expert's deleting process."}), 400
+
+
+@app.route("/admin/farmers/delete/<int:farmer_id>", methods=["POST"])
+def delete_farmer_api(farmer_id):
+    if "user_id" not in session:
+        return jsonify({"success": False, "message":"Unauthorized"}),401
+    if session["role"] != "admin":
+        return jsonify({"success": False,"message":"forbidden"}),403
+
+    delete_success= delete_farmer(farmer_id)
+
+    if delete_success:
+        return jsonify({"success": True, "message": "Farmer deleted succesfully!"})
+    else:
+        return jsonify({"success": False, "message": "Error occured when expert's deleting process."}), 400
 
 
 @app.route("/ai_assistant")

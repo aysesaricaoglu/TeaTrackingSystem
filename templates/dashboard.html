@@ -2,6 +2,7 @@
 
 {% block title %}
 Dashboard
+Statistics
 {% endblock %}
 
 {% block sidebar_links %}
@@ -137,6 +138,203 @@ Dashboard
     </section>
 
 {% endif %}
-```
+
+<div class="statistics-header">
+
+    <h1>Tea Production Statistics</h1>
+
+    <p>
+        View tea production data, delivery statistics,
+        weather information and current tea industry data.
+    </p>
+
+</div>
+
+
+<!-- ================= SUMMARY CARDS ================= -->
+
+<div class="statistics-grid">
+
+    <div class="stat-card">
+
+        <h2>Total Tea Production</h2>
+
+        <div class="stat-value">
+            -
+        </div>
+
+        <p>kg</p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <h2>Total Deliveries</h2>
+
+        <div class="stat-value">
+            -
+        </div>
+
+        <p>deliveries</p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <h2>Active Farmers</h2>
+
+        <div class="stat-value">
+            -
+        </div>
+
+        <p>farmers</p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <h2>Average Delivery</h2>
+
+        <div class="stat-value">
+            -
+        </div>
+
+        <p>kg</p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= PRODUCTION CHART ================= -->
+
+<div class="chart-card">
+
+    <h2>Tea Production by Year</h2>
+
+    <div class="chart-placeholder">
+
+        Production chart will be displayed here.
+
+    </div>
+
+</div>
+
+
+<!-- ================= MONTHLY CHART ================= -->
+
+<div class="chart-card">
+
+    <h2>Monthly Tea Production</h2>
+
+    <div class="chart-placeholder">
+
+        Monthly production chart will be displayed here.
+
+    </div>
+
+</div>
+
+
+<!-- ================= WEATHER ================= -->
+
+<div class="chart-card">
+
+    <h2>Weather Information</h2>
+
+    <div class="chart-placeholder">
+
+        Weather information will be displayed here.
+
+    </div>
+
+</div>
+
+
+<!-- ================= TEA INDUSTRY ================= -->
+
+<div class="chart-card">
+
+    <h2>Current Tea Industry Information</h2>
+
+    <div class="chart-placeholder">
+
+        Current ÇAYKUR / tea industry information will be displayed here.
+
+    </div>
+
+</div>
+
 
 {% endblock %}
+
+
+
+
+{% block css %}
+<style>
+    /* Statistics sayfasına özel stiller */
+    .statistics-header {
+        margin-bottom: 30px;
+    }
+
+    .statistics-header h1 {
+        margin-bottom: 8px;
+    }
+
+    .statistics-header p {
+        color: #666;
+    }
+
+    .statistics-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .stat-card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .stat-card h2 {
+        margin-bottom: 15px;
+    }
+
+    .stat-value {
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    .chart-card {
+        background: white;
+        padding: 25px;
+        margin-top: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .chart-placeholder {
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #888;
+        border: 2px dashed #ddd;
+        border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .statistics-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+

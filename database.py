@@ -29,7 +29,8 @@ def create_table():
          password TEXT NOT NULL,
          role TEXT NOT NULL,
          first_name TEXT NOT NULL,
-         last_name TEXT NOT NULL
+         last_name TEXT NOT NULL,
+         is_active INTEGER DEFAULT 1
     )""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS tea_delivers(
@@ -55,6 +56,7 @@ def create_table():
     district TEXT NOT NULL,
     phone_number TEXT NOT NULL,
     village TEXT NOT NULL,
+    is_active INTEGER DEFAULT 1,
     FOREIGN KEY (user_id) REFERENCES users(id)
     )""")
 
@@ -71,6 +73,15 @@ def create_table():
     amount REAL NOT NULL,
     status TEXT NOT NULL,
     FOREIGN KEY (delivery_id) REFERENCES tea_delivers(id))""")
+    try:
+        cursor.execute("ALTER TABLE users ADD COLUMN is_active INTEGER DEFAULT 1")
+    except:
+        pass # Hata verirse (kolon zaten eklenmişse) umursama, geç.
+
+    try:
+        cursor.execute("ALTER TABLE farmers ADD COLUMN is_active INTEGER DEFAULT 1")
+    except:
+        pass # Hata verirse umursama, geç
     connection.commit()  # commit işlemi veritabanına değişiklikleri kaydeder. yani garson mutfağa ilettiği siparişin tamamlandığını ve artık mutfakta hazır olduğunu bildirir.
     connection.close()
 
@@ -134,7 +145,6 @@ def get_all_users():
     return users
 
 
-print("aaaaaaaaa")  # kod buraya kadar çalışıyor
 
 
 def get_all_deliveries():#bunu şu anda kullanmıyorum ama dashboarda ekleyeceğim
@@ -174,7 +184,6 @@ def add_delivery(
     is_rainy,
     payment_option,
 ):
-    print("bu çalışıyor mu????")
     connection = create_connection()
     cursor = connection.cursor()
     cursor.execute(
@@ -244,32 +253,41 @@ def delete_delivery(delivery_id):
     return True
 
 def get_all_deliveries_full():
-    connection=create_connection()
-    cursor= connection.cursor()
+    print(">>> get_all_deliveries_full CALLED <<<", flush=True)
+    connection = create_connection()
+    cursor = connection.cursor()
+
     cursor.execute("""
-     SELECT 
-       tea_delivers.id,
-     farmers.first_name ||' '||farmers.last_name,
-     experts.first_name||' '||experts.last_name,
-     tea_delivers.delivery_date,
-     tea_delivers.gross_weight,
-     tea_delivers.net_weight,
-     tea_delivers.is_rainy,
-     tea_delivers.payment_option
-     FROM tea_delivers
-     JOIN farmers ON tea_delivers.farmer_id = farmers.id
-     JOIN users AS experts ON tea_delivers.expert_id = experts.id 
-     ORDER BY tea_delivers.id DESC
-     """)
+        SELECT 
+            tea_delivers.id,
+            farmers.first_name || ' ' || farmers.last_name,
+            experts.first_name || ' ' || experts.last_name,
+            tea_delivers.delivery_date,
+            tea_delivers.gross_weight,
+            tea_delivers.net_weight,
+            tea_delivers.is_rainy,
+            tea_delivers.payment_option
+        FROM tea_delivers
+        JOIN farmers
+            ON tea_delivers.farmer_id = farmers.id
+        JOIN users AS experts
+            ON tea_delivers.expert_id = experts.id
+        ORDER BY tea_delivers.id DESC
+    """)
+
     deliveries = cursor.fetchall()
+
+    print("DELIVERIES:", deliveries)
+
     connection.close()
+
     return deliveries
 
 def get_all_experts(search=""):
     connection = create_connection()
     cursor=connection.cursor()
     if search:
-        search= "f%{search}%"# sql de '%' LIKE  kullanıldığı zaman önünde veya arkasında birşey yazabilir manasında kullanılır 
+        search= f"%{search}%"# sql de '%' LIKE  kullanıldığı zaman önünde veya arkasında birşey yazabilir manasında kullanılır 
 
         cursor.execute("""
         SELECT
@@ -305,15 +323,22 @@ def get_all_experts(search=""):
 def delete_expert(expert_id):
     connection = create_connection()
     cursor = connection.cursor()
+    try:
 
-    cursor.execute("""
-        DELETE FROM users
-        WHERE id = ?
-        AND role = 'expert'
-    """, (expert_id,))
+        cursor.execute("""
+            UPDATE users
+            SET is_active = 0
+            WHERE id = ?
+            AND role = 'expert'
+        """, (expert_id,))
 
-    connection.commit()
-    connection.close()
+        connection.commit()
+        return True
+    except Exception as e:
+        print("delete problem occured:",e)
+        return False
+    finally:
+        connection.close()
 
     logger.info(f"Expert {expert_id} deleted.")
 
@@ -428,6 +453,52 @@ def get_all_farmers(search=""):
 
     return farmers
 
+
+def delete_farmer(farmer_id):
+    connection = create_connection()
+    cursor = connection.cursor()
+    try:
+        cursor.execute("""
+            SELECT user_id FROM farmers
+            WHERE id =? 
+
+        """,(farmer_id,))
+        farmer =cursor.fetchone()
+
+        if farmer is None:
+            connection.close()
+            return False
+
+        user_id= farmer[0]
+
+
+
+        cursor.execute("""
+        
+            UPDATE farmers
+            SET is_active=0 
+            WHERE id=?
+        """,(farmer_id,))
+
+        cursor.execute("""
+            UPDATE users
+            SET is_active=0
+            WHERE id=?
+            AND role = 'farmer'
+        """,(user_id,))
+
+        connection.commit()
+        return True
+    except Exception as e:
+        print("delete problem occured:",e)
+        return False
+    finally:
+     connection.close()
+
+
+
+
+
 def add_farmer(tc_no,password,role,first_name,last_name,city,district,phone_number,village):
         connection=create_connection()
         cursor= connection.cursor()
@@ -489,39 +560,13 @@ def add_farmer(tc_no,password,role,first_name,last_name,city,district,phone_numb
     )
 
         return True
-def delete_farmer(farmer_id):
-    connection = create_connection()
-    cursor = connection.cursor()
+# def reset_test_data():
+#     connection = create_connection()
+#     cursor = connection.cursor()
 
-    # Farmer'ın bağlı olduğu user_id'yi bulmalıyım
-    cursor.execute("""
-        SELECT user_id
-        FROM farmers
-        WHERE id = ?
-    """, (farmer_id,))
+#     cursor.execute("DELETE FROM users WHERE id = 4")
 
-    farmer = cursor.fetchone()
+#     connection.commit()
+#     connection.close()
 
-    if farmer is None:
-        connection.close()
-        return False
-
-    user_id = farmer[0]
-
-    cursor.execute("""
-        DELETE FROM farmers
-        WHERE id = ?
-    """, (farmer_id,))
-
-    cursor.execute("""
-        DELETE FROM users
-        WHERE id = ?
-        AND role = 'farmer'
-    """, (user_id,))
-
-    connection.commit()
-    connection.close()
-
-    logger.info(f"Farmer {farmer_id} deleted.")
-
-    return True
+#     print("Test data deleted successfully.")

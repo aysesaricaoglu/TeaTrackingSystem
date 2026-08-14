@@ -15,8 +15,11 @@ Expert Management
 </div>
 
 <div class="search-container">
-    <form method="GET" action="{{ url_for('expert_management') }}">
+    <!-- Form'a ID eklendi -->
+    <form id="expert-search-form" method="GET" action="{{ url_for('expert_management') }}">
+        <!-- Input'a ID eklendi -->
         <input
+            id="expert-search-input"
             type="text"
             name="search"
             placeholder="Search by TC, first name or last name..."
@@ -38,11 +41,12 @@ Expert Management
                 <th>TC Number</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Actions</th> <!-- Buton için başlık eklendi -->
+                <th>Actions</th> 
             </tr>
         </thead>
 
-        <tbody>
+        <!-- Tbody'ye ID eklendi -->
+        <tbody id="expert-table-body">
             {% for expert in experts %}
             <tr>
                 <td>{{ expert[0] }}</td>
@@ -50,7 +54,8 @@ Expert Management
                 <td>{{ expert[2] }}</td>
                 <td>{{ expert[3] }}</td>
                 <td>
-                    <button class="btn-delete" data-id="{{ expert[0] }}">Delete</button>
+                    <!-- data-id yerine data-url yapısı kuruldu -->
+                    <button class="btn-delete" data-url="/api/experts/delete/{{ expert[0] }}">Delete</button>
                 </td>
             </tr>
             {% else %}
@@ -69,32 +74,75 @@ Expert Management
 
 {% block scripts %}
 <script>
-    const deleteButtons = document.querySelectorAll(".btn-delete");
+    const tableBody = document.getElementById("expert-table-body");
 
-    deleteButtons.forEach(button => {
-        button.addEventListener("click", function() {
-            const expertId = this.getAttribute("data-id");
-
+    // 1. SİLME İŞLEMİ (Event Delegation ile)
+    tableBody.addEventListener("click", function(event) {
+        if (event.target.classList.contains("btn-delete")) {
+            const button = event.target;
+            const url = button.getAttribute("data-url");
 
             if (confirm("Are you sure you want to delete this expert?")) {
-                
-                fetch(`/api/experts/delete/${expertId}`, {
+                fetch(url, {
                     method: "POST"
                 })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
                         alert(data.message);
-                        window.location.reload(); 
+                        button.closest("tr").remove(); // Sayfa yenilenmeden satırı siler
                     } else {
                         alert(data.message);
                     }
                 })
                 .catch(error => {
                     console.error("Error:", error);
-                    alert("An error occurred while deleting the expert. Check F12 Console.");
+                    alert("An error occurred while deleting the expert.");
                 });
             }
+        }
+    });
+
+    // 2. ARAMA İŞLEMİ (AJAX ile)
+    const searchForm = document.getElementById("expert-search-form");
+
+    searchForm.addEventListener("submit", function(event) {
+        event.preventDefault(); // Sayfanın yenilenmesini engeller
+
+        const searchValue = document.getElementById("expert-search-input").value;
+
+        // Backend'deki arama rotana (api/experts/search) istek atıyoruz
+        fetch(`/api/experts/search?search=${encodeURIComponent(searchValue)}`) 
+        .then(response => response.json())
+        .then(data => {
+            // Tabloyu temizle
+            tableBody.innerHTML = "";
+
+            // Gelen verilere göre tabloyu yeniden oluştur
+            // Backend'den 'experts' adında bir liste döndüğünü varsayıyoruz (data.experts)
+            if (data.experts && data.experts.length > 0) {
+                data.experts.forEach(expert => {
+                    const row = document.createElement("tr");
+
+                    row.innerHTML = `
+                        <td>${expert[0]}</td>
+                        <td>${expert[1]}</td>
+                        <td>${expert[2]}</td>
+                        <td>${expert[3]}</td>
+                        <td>
+                            <button class="btn-delete" data-url="/api/experts/delete/${expert[0]}">
+                                Delete
+                            </button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } else {
+                tableBody.innerHTML = `<tr><td colspan="5">No experts found.</td></tr>`;
+            }
+        })
+        .catch(error => {
+            console.error("Search error:", error);
         });
     });
 </script>
