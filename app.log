@@ -4396,3 +4396,895 @@
 2026-08-14 11:09:22,535 - INFO - 127.0.0.1 - - [14/Aug/2026 11:09:22] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
 2026-08-14 11:24:07,909 - INFO - 127.0.0.1 - - [14/Aug/2026 11:24:07] "GET /deliveries HTTP/1.1" 200 -
 2026-08-14 11:24:07,933 - INFO - 127.0.0.1 - - [14/Aug/2026 11:24:07] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:00:31,570 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 09:00:31,571 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 09:00:31,574 - INFO -  * Restarting with stat
+2026-08-17 09:00:31,974 - WARNING -  * Debugger is active!
+2026-08-17 09:00:31,979 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 09:00:36,194 - INFO - 127.0.0.1 - - [17/Aug/2026 09:00:36] "GET / HTTP/1.1" 200 -
+2026-08-17 09:00:36,329 - INFO - 127.0.0.1 - - [17/Aug/2026 09:00:36] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 09:00:36,343 - INFO - 127.0.0.1 - - [17/Aug/2026 09:00:36] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 09:00:36,350 - INFO - 127.0.0.1 - - [17/Aug/2026 09:00:36] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 09:00:39,199 - INFO - 127.0.0.1 - - [17/Aug/2026 09:00:39] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 09:00:39,268 - INFO - 127.0.0.1 - - [17/Aug/2026 09:00:39] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 09:00:39,309 - INFO - 127.0.0.1 - - [17/Aug/2026 09:00:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:00:39,318 - INFO - 127.0.0.1 - - [17/Aug/2026 09:00:39] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 09:00:40,914 - INFO - 127.0.0.1 - - [17/Aug/2026 09:00:40] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 09:00:40,932 - INFO - 127.0.0.1 - - [17/Aug/2026 09:00:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:02:15,006 - INFO - 127.0.0.1 - - [17/Aug/2026 09:02:15] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 09:02:15,028 - INFO - 127.0.0.1 - - [17/Aug/2026 09:02:15] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 09:02:15,035 - INFO - 127.0.0.1 - - [17/Aug/2026 09:02:15] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 09:02:38,361 - INFO - 127.0.0.1 - - [17/Aug/2026 09:02:38] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 09:02:38,382 - INFO - 127.0.0.1 - - [17/Aug/2026 09:02:38] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 09:02:38,388 - INFO - 127.0.0.1 - - [17/Aug/2026 09:02:38] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 09:02:39,045 - INFO - 127.0.0.1 - - [17/Aug/2026 09:02:39] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 09:02:39,065 - INFO - 127.0.0.1 - - [17/Aug/2026 09:02:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:04:23,583 - INFO - 127.0.0.1 - - [17/Aug/2026 09:04:23] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 09:04:23,606 - INFO - 127.0.0.1 - - [17/Aug/2026 09:04:23] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 09:04:23,613 - INFO - 127.0.0.1 - - [17/Aug/2026 09:04:23] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 09:04:52,016 - INFO - 127.0.0.1 - - [17/Aug/2026 09:04:52] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 09:04:52,036 - INFO - 127.0.0.1 - - [17/Aug/2026 09:04:52] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 09:04:52,044 - INFO - 127.0.0.1 - - [17/Aug/2026 09:04:52] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 09:09:03,789 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-17 09:09:03,856 - INFO -  * Restarting with stat
+2026-08-17 09:23:22,192 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 09:23:22,193 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 09:23:22,195 - INFO -  * Restarting with stat
+2026-08-17 09:23:22,764 - WARNING -  * Debugger is active!
+2026-08-17 09:23:22,770 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 09:23:24,157 - INFO - 127.0.0.1 - - [17/Aug/2026 09:23:24] "GET / HTTP/1.1" 200 -
+2026-08-17 09:23:24,318 - INFO - 127.0.0.1 - - [17/Aug/2026 09:23:24] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 09:23:24,323 - INFO - 127.0.0.1 - - [17/Aug/2026 09:23:24] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 09:23:24,326 - INFO - 127.0.0.1 - - [17/Aug/2026 09:23:24] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 09:23:26,908 - INFO - 127.0.0.1 - - [17/Aug/2026 09:23:26] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 09:23:26,930 - INFO - 127.0.0.1 - - [17/Aug/2026 09:23:26] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 09:23:26,951 - INFO - 127.0.0.1 - - [17/Aug/2026 09:23:26] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:23:26,957 - INFO - 127.0.0.1 - - [17/Aug/2026 09:23:26] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 09:23:28,655 - INFO - 127.0.0.1 - - [17/Aug/2026 09:23:28] "[35m[1mGET /admin/farmers HTTP/1.1[0m" 500 -
+2026-08-17 09:23:28,701 - INFO - 127.0.0.1 - - [17/Aug/2026 09:23:28] "GET /admin/farmers?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2026-08-17 09:23:28,720 - INFO - 127.0.0.1 - - [17/Aug/2026 09:23:28] "GET /admin/farmers?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2026-08-17 09:23:28,776 - INFO - 127.0.0.1 - - [17/Aug/2026 09:23:28] "GET /admin/farmers?__debugger__=yes&cmd=resource&f=console.png&s=CgbrgDqT8S4Y7B5CAGAf HTTP/1.1" 200 -
+2026-08-17 09:23:28,785 - INFO - 127.0.0.1 - - [17/Aug/2026 09:23:28] "GET /admin/farmers?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2026-08-17 09:24:14,763 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 09:24:14,821 - INFO -  * Restarting with stat
+2026-08-17 09:27:23,005 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 09:27:23,006 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 09:27:23,008 - INFO -  * Restarting with stat
+2026-08-17 09:27:23,603 - WARNING -  * Debugger is active!
+2026-08-17 09:27:23,608 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 09:27:24,660 - INFO - 127.0.0.1 - - [17/Aug/2026 09:27:24] "GET / HTTP/1.1" 200 -
+2026-08-17 09:27:24,819 - INFO - 127.0.0.1 - - [17/Aug/2026 09:27:24] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 09:27:24,824 - INFO - 127.0.0.1 - - [17/Aug/2026 09:27:24] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 09:27:24,830 - INFO - 127.0.0.1 - - [17/Aug/2026 09:27:24] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 09:27:27,099 - INFO - 127.0.0.1 - - [17/Aug/2026 09:27:27] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 09:27:27,120 - INFO - 127.0.0.1 - - [17/Aug/2026 09:27:27] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 09:27:27,142 - INFO - 127.0.0.1 - - [17/Aug/2026 09:27:27] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:27:27,148 - INFO - 127.0.0.1 - - [17/Aug/2026 09:27:27] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 09:27:33,356 - INFO - 127.0.0.1 - - [17/Aug/2026 09:27:33] "[35m[1mGET /admin/farmers HTTP/1.1[0m" 500 -
+2026-08-17 09:27:33,377 - INFO - 127.0.0.1 - - [17/Aug/2026 09:27:33] "[36mGET /admin/farmers?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:27:33,377 - INFO - 127.0.0.1 - - [17/Aug/2026 09:27:33] "[36mGET /admin/farmers?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-17 09:27:33,389 - INFO - 127.0.0.1 - - [17/Aug/2026 09:27:33] "GET /admin/farmers?__debugger__=yes&cmd=resource&f=console.png&s=jKCbE2SYwLJyfOkysuOl HTTP/1.1" 200 -
+2026-08-17 09:28:21,659 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 09:28:21,717 - INFO -  * Restarting with stat
+2026-08-17 09:28:22,294 - WARNING -  * Debugger is active!
+2026-08-17 09:28:22,301 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 09:28:23,359 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 09:28:23,410 - INFO -  * Restarting with stat
+2026-08-17 09:31:54,293 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 09:31:54,293 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 09:31:54,296 - INFO -  * Restarting with stat
+2026-08-17 09:31:54,847 - WARNING -  * Debugger is active!
+2026-08-17 09:31:54,851 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 09:31:56,075 - INFO - 127.0.0.1 - - [17/Aug/2026 09:31:56] "GET / HTTP/1.1" 200 -
+2026-08-17 09:31:56,242 - INFO - 127.0.0.1 - - [17/Aug/2026 09:31:56] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 09:31:56,244 - INFO - 127.0.0.1 - - [17/Aug/2026 09:31:56] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 09:31:56,253 - INFO - 127.0.0.1 - - [17/Aug/2026 09:31:56] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 09:31:58,541 - INFO - 127.0.0.1 - - [17/Aug/2026 09:31:58] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 09:31:58,565 - INFO - 127.0.0.1 - - [17/Aug/2026 09:31:58] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 09:31:58,588 - INFO - 127.0.0.1 - - [17/Aug/2026 09:31:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:31:58,595 - INFO - 127.0.0.1 - - [17/Aug/2026 09:31:58] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 09:32:01,491 - INFO - 127.0.0.1 - - [17/Aug/2026 09:32:01] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 09:32:01,513 - INFO - 127.0.0.1 - - [17/Aug/2026 09:32:01] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:32:03,885 - INFO - 127.0.0.1 - - [17/Aug/2026 09:32:03] "GET /admin/experts HTTP/1.1" 200 -
+2026-08-17 09:32:03,906 - INFO - 127.0.0.1 - - [17/Aug/2026 09:32:03] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:32:05,653 - INFO - 127.0.0.1 - - [17/Aug/2026 09:32:05] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 09:32:05,676 - INFO - 127.0.0.1 - - [17/Aug/2026 09:32:05] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:32:34,209 - INFO - 127.0.0.1 - - [17/Aug/2026 09:32:34] "GET /admin/farmers/add HTTP/1.1" 200 -
+2026-08-17 09:32:34,232 - INFO - 127.0.0.1 - - [17/Aug/2026 09:32:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:33:23,332 - INFO - farmer added Ecem Altýnbaþ TC: 12345678
+2026-08-17 09:33:23,332 - INFO - Farmer added: Ecem Altýnbaþ, TC: 12345678
+2026-08-17 09:33:23,333 - INFO - 127.0.0.1 - - [17/Aug/2026 09:33:23] "POST /api/farmers/add HTTP/1.1" 200 -
+2026-08-17 09:33:24,623 - INFO - 127.0.0.1 - - [17/Aug/2026 09:33:24] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 09:33:24,650 - INFO - 127.0.0.1 - - [17/Aug/2026 09:33:24] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:35:37,731 - INFO - 127.0.0.1 - - [17/Aug/2026 09:35:37] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 09:35:37,752 - INFO - 127.0.0.1 - - [17/Aug/2026 09:35:37] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:35:38,582 - INFO - 127.0.0.1 - - [17/Aug/2026 09:35:38] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 09:35:38,601 - INFO - 127.0.0.1 - - [17/Aug/2026 09:35:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:37:49,369 - INFO - 127.0.0.1 - - [17/Aug/2026 09:37:49] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 09:37:49,397 - INFO - 127.0.0.1 - - [17/Aug/2026 09:37:49] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:37:49,419 - INFO - 127.0.0.1 - - [17/Aug/2026 09:37:49] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:38:12,658 - INFO - 127.0.0.1 - - [17/Aug/2026 09:38:12] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 09:50:58,870 - INFO - 127.0.0.1 - - [17/Aug/2026 09:50:58] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 09:50:58,895 - INFO - 127.0.0.1 - - [17/Aug/2026 09:50:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:50:58,919 - INFO - 127.0.0.1 - - [17/Aug/2026 09:50:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:51:08,610 - INFO - 127.0.0.1 - - [17/Aug/2026 09:51:08] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 09:51:58,061 - INFO - 127.0.0.1 - - [17/Aug/2026 09:51:58] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 09:51:58,086 - INFO - 127.0.0.1 - - [17/Aug/2026 09:51:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:51:58,109 - INFO - 127.0.0.1 - - [17/Aug/2026 09:51:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 09:52:05,011 - INFO - 127.0.0.1 - - [17/Aug/2026 09:52:05] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 09:59:55,994 - INFO - 127.0.0.1 - - [17/Aug/2026 09:59:55] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 09:59:56,066 - INFO - 127.0.0.1 - - [17/Aug/2026 09:59:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 10:00:03,902 - INFO - 127.0.0.1 - - [17/Aug/2026 10:00:03] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 10:00:14,299 - INFO - 127.0.0.1 - - [17/Aug/2026 10:00:14] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 10:00:18,772 - INFO - 127.0.0.1 - - [17/Aug/2026 10:00:18] "GET /admin/farmers/add HTTP/1.1" 200 -
+2026-08-17 10:00:18,802 - INFO - 127.0.0.1 - - [17/Aug/2026 10:00:18] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 10:00:18,822 - INFO - 127.0.0.1 - - [17/Aug/2026 10:00:18] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 10:01:42,541 - INFO - 127.0.0.1 - - [17/Aug/2026 10:01:42] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 10:04:23,104 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-17 10:04:23,162 - INFO -  * Restarting with stat
+2026-08-17 10:04:23,756 - WARNING -  * Debugger is active!
+2026-08-17 10:04:23,761 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 10:05:14,811 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 10:05:14,874 - INFO -  * Restarting with stat
+2026-08-17 10:05:15,392 - WARNING -  * Debugger is active!
+2026-08-17 10:05:15,398 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 10:05:28,660 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 10:05:28,714 - INFO -  * Restarting with stat
+2026-08-17 10:05:29,216 - WARNING -  * Debugger is active!
+2026-08-17 10:05:29,220 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 10:08:16,162 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 10:08:16,222 - INFO -  * Restarting with stat
+2026-08-17 10:08:16,872 - WARNING -  * Debugger is active!
+2026-08-17 10:08:16,878 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 10:08:17,940 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 10:08:17,995 - INFO -  * Restarting with stat
+2026-08-17 10:09:16,250 - INFO - farmer added TestFarmer1 Test TC: 90000000001
+2026-08-17 10:09:16,259 - INFO - farmer added TestFarmer2 Test TC: 90000000002
+2026-08-17 10:09:16,267 - INFO - farmer added TestFarmer3 Test TC: 90000000003
+2026-08-17 10:09:16,274 - INFO - farmer added TestFarmer4 Test TC: 90000000004
+2026-08-17 10:09:16,282 - INFO - farmer added TestFarmer5 Test TC: 90000000005
+2026-08-17 10:09:16,290 - INFO - farmer added TestFarmer6 Test TC: 90000000006
+2026-08-17 10:09:16,298 - INFO - farmer added TestFarmer7 Test TC: 90000000007
+2026-08-17 10:09:16,305 - INFO - farmer added TestFarmer8 Test TC: 90000000008
+2026-08-17 10:09:16,313 - INFO - farmer added TestFarmer9 Test TC: 90000000009
+2026-08-17 10:09:16,321 - INFO - farmer added TestFarmer10 Test TC: 90000000010
+2026-08-17 10:09:16,329 - INFO - farmer added TestFarmer11 Test TC: 90000000011
+2026-08-17 10:09:16,338 - INFO - farmer added TestFarmer12 Test TC: 90000000012
+2026-08-17 10:09:16,347 - INFO - farmer added TestFarmer13 Test TC: 90000000013
+2026-08-17 10:09:16,355 - INFO - farmer added TestFarmer14 Test TC: 90000000014
+2026-08-17 10:09:16,363 - INFO - farmer added TestFarmer15 Test TC: 90000000015
+2026-08-17 10:09:16,370 - INFO - farmer added TestFarmer16 Test TC: 90000000016
+2026-08-17 10:09:16,378 - INFO - farmer added TestFarmer17 Test TC: 90000000017
+2026-08-17 10:09:16,391 - INFO - farmer added TestFarmer18 Test TC: 90000000018
+2026-08-17 10:09:16,399 - INFO - farmer added TestFarmer19 Test TC: 90000000019
+2026-08-17 10:09:16,407 - INFO - farmer added TestFarmer20 Test TC: 90000000020
+2026-08-17 10:09:16,414 - INFO - farmer added TestFarmer21 Test TC: 90000000021
+2026-08-17 10:09:16,422 - INFO - farmer added TestFarmer22 Test TC: 90000000022
+2026-08-17 10:09:16,430 - INFO - farmer added TestFarmer23 Test TC: 90000000023
+2026-08-17 10:09:16,438 - INFO - farmer added TestFarmer24 Test TC: 90000000024
+2026-08-17 10:09:16,446 - INFO - farmer added TestFarmer25 Test TC: 90000000025
+2026-08-17 10:09:16,453 - INFO - farmer added TestFarmer26 Test TC: 90000000026
+2026-08-17 10:09:16,463 - INFO - farmer added TestFarmer27 Test TC: 90000000027
+2026-08-17 10:09:16,471 - INFO - farmer added TestFarmer28 Test TC: 90000000028
+2026-08-17 10:09:16,478 - INFO - farmer added TestFarmer29 Test TC: 90000000029
+2026-08-17 10:09:16,488 - INFO - farmer added TestFarmer30 Test TC: 90000000030
+2026-08-17 10:09:16,496 - INFO - farmer added TestFarmer31 Test TC: 90000000031
+2026-08-17 10:09:16,505 - INFO - farmer added TestFarmer32 Test TC: 90000000032
+2026-08-17 10:09:16,513 - INFO - farmer added TestFarmer33 Test TC: 90000000033
+2026-08-17 10:09:16,521 - INFO - farmer added TestFarmer34 Test TC: 90000000034
+2026-08-17 10:09:16,530 - INFO - farmer added TestFarmer35 Test TC: 90000000035
+2026-08-17 10:09:16,538 - INFO - farmer added TestFarmer36 Test TC: 90000000036
+2026-08-17 10:09:16,547 - INFO - farmer added TestFarmer37 Test TC: 90000000037
+2026-08-17 10:09:16,555 - INFO - farmer added TestFarmer38 Test TC: 90000000038
+2026-08-17 10:09:16,563 - INFO - farmer added TestFarmer39 Test TC: 90000000039
+2026-08-17 10:09:16,571 - INFO - farmer added TestFarmer40 Test TC: 90000000040
+2026-08-17 10:09:16,580 - INFO - farmer added TestFarmer41 Test TC: 90000000041
+2026-08-17 10:09:16,588 - INFO - farmer added TestFarmer42 Test TC: 90000000042
+2026-08-17 10:09:16,597 - INFO - farmer added TestFarmer43 Test TC: 90000000043
+2026-08-17 10:09:16,604 - INFO - farmer added TestFarmer44 Test TC: 90000000044
+2026-08-17 10:09:16,612 - INFO - farmer added TestFarmer45 Test TC: 90000000045
+2026-08-17 10:09:16,620 - INFO - farmer added TestFarmer46 Test TC: 90000000046
+2026-08-17 10:09:16,629 - INFO - farmer added TestFarmer47 Test TC: 90000000047
+2026-08-17 10:09:16,638 - INFO - farmer added TestFarmer48 Test TC: 90000000048
+2026-08-17 10:09:16,646 - INFO - farmer added TestFarmer49 Test TC: 90000000049
+2026-08-17 10:09:16,655 - INFO - farmer added TestFarmer50 Test TC: 90000000050
+2026-08-17 10:09:16,711 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 10:09:16,711 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 10:09:16,713 - INFO -  * Restarting with stat
+2026-08-17 10:09:17,275 - WARNING -  * Debugger is active!
+2026-08-17 10:09:17,279 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 10:09:31,545 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 10:09:31,597 - INFO -  * Restarting with stat
+2026-08-17 10:09:32,176 - WARNING -  * Debugger is active!
+2026-08-17 10:09:32,180 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 10:09:39,723 - INFO - 127.0.0.1 - - [17/Aug/2026 10:09:39] "GET / HTTP/1.1" 200 -
+2026-08-17 10:09:39,899 - INFO - 127.0.0.1 - - [17/Aug/2026 10:09:39] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 10:09:39,899 - INFO - 127.0.0.1 - - [17/Aug/2026 10:09:39] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 10:09:39,908 - INFO - 127.0.0.1 - - [17/Aug/2026 10:09:39] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 10:09:42,205 - INFO - 127.0.0.1 - - [17/Aug/2026 10:09:42] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 10:09:42,227 - INFO - 127.0.0.1 - - [17/Aug/2026 10:09:42] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 10:09:42,251 - INFO - 127.0.0.1 - - [17/Aug/2026 10:09:42] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 10:09:42,257 - INFO - 127.0.0.1 - - [17/Aug/2026 10:09:42] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 10:09:44,044 - INFO - 127.0.0.1 - - [17/Aug/2026 10:09:44] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 10:09:44,063 - INFO - 127.0.0.1 - - [17/Aug/2026 10:09:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 10:10:01,383 - INFO - 127.0.0.1 - - [17/Aug/2026 10:10:01] "POST /admin/farmers/delete/62 HTTP/1.1" 200 -
+2026-08-17 10:10:20,459 - INFO - 127.0.0.1 - - [17/Aug/2026 10:10:20] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 10:10:20,486 - INFO - 127.0.0.1 - - [17/Aug/2026 10:10:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 10:10:38,916 - INFO - 127.0.0.1 - - [17/Aug/2026 10:10:38] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 10:10:59,484 - INFO - 127.0.0.1 - - [17/Aug/2026 10:10:59] "GET /admin/experts HTTP/1.1" 200 -
+2026-08-17 10:10:59,506 - INFO - 127.0.0.1 - - [17/Aug/2026 10:10:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 10:12:38,494 - INFO - 127.0.0.1 - - [17/Aug/2026 10:12:38] "GET / HTTP/1.1" 200 -
+2026-08-17 10:12:38,577 - INFO - 127.0.0.1 - - [17/Aug/2026 10:12:38] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 10:12:38,577 - INFO - 127.0.0.1 - - [17/Aug/2026 10:12:38] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 10:12:38,587 - INFO - 127.0.0.1 - - [17/Aug/2026 10:12:38] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 10:12:40,770 - INFO - 127.0.0.1 - - [17/Aug/2026 10:12:40] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 10:12:40,776 - INFO - 127.0.0.1 - - [17/Aug/2026 10:12:40] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 10:12:40,806 - INFO - 127.0.0.1 - - [17/Aug/2026 10:12:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 10:12:40,812 - INFO - 127.0.0.1 - - [17/Aug/2026 10:12:40] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 10:12:44,638 - INFO - 127.0.0.1 - - [17/Aug/2026 10:12:44] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 10:12:44,659 - INFO - 127.0.0.1 - - [17/Aug/2026 10:12:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 10:12:54,306 - INFO - 127.0.0.1 - - [17/Aug/2026 10:12:54] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 10:17:55,214 - INFO - 127.0.0.1 - - [17/Aug/2026 10:17:55] "[35m[1mGET /admin/experts HTTP/1.1[0m" 500 -
+2026-08-17 10:17:55,234 - INFO - 127.0.0.1 - - [17/Aug/2026 10:17:55] "GET /admin/experts?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2026-08-17 10:17:55,236 - INFO - 127.0.0.1 - - [17/Aug/2026 10:17:55] "GET /admin/experts?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2026-08-17 10:17:55,249 - INFO - 127.0.0.1 - - [17/Aug/2026 10:17:55] "GET /admin/experts?__debugger__=yes&cmd=resource&f=console.png&s=RY65hFErwnbafSNZwpmn HTTP/1.1" 200 -
+2026-08-17 10:17:55,286 - INFO - 127.0.0.1 - - [17/Aug/2026 10:17:55] "GET /admin/experts?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2026-08-17 10:17:57,748 - INFO - 127.0.0.1 - - [17/Aug/2026 10:17:57] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 10:17:59,874 - INFO - 127.0.0.1 - - [17/Aug/2026 10:17:59] "GET /deliveries HTTP/1.1" 200 -
+2026-08-17 10:17:59,894 - INFO - 127.0.0.1 - - [17/Aug/2026 10:17:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 10:18:06,157 - INFO - 127.0.0.1 - - [17/Aug/2026 10:18:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 10:18:45,981 - INFO - 127.0.0.1 - - [17/Aug/2026 10:18:45] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 10:19:15,399 - INFO - 127.0.0.1 - - [17/Aug/2026 10:19:15] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 10:19:16,234 - INFO - 127.0.0.1 - - [17/Aug/2026 10:19:16] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 10:19:16,600 - INFO - 127.0.0.1 - - [17/Aug/2026 10:19:16] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 10:19:16,785 - INFO - 127.0.0.1 - - [17/Aug/2026 10:19:16] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 10:19:16,985 - INFO - 127.0.0.1 - - [17/Aug/2026 10:19:16] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 10:20:07,167 - INFO - 127.0.0.1 - - [17/Aug/2026 10:20:07] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 10:20:15,521 - INFO - 127.0.0.1 - - [17/Aug/2026 10:20:15] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 10:20:25,067 - INFO - 127.0.0.1 - - [17/Aug/2026 10:20:25] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 10:20:34,497 - INFO - 127.0.0.1 - - [17/Aug/2026 10:20:34] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 10:29:56,613 - INFO - 127.0.0.1 - - [17/Aug/2026 10:29:56] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-17 10:29:56,618 - INFO - 127.0.0.1 - - [17/Aug/2026 10:29:56] "GET / HTTP/1.1" 200 -
+2026-08-17 10:29:56,659 - INFO - 127.0.0.1 - - [17/Aug/2026 10:29:56] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 10:29:56,660 - INFO - 127.0.0.1 - - [17/Aug/2026 10:29:56] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 10:29:56,686 - INFO - 127.0.0.1 - - [17/Aug/2026 10:29:56] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 10:36:31,641 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 10:36:31,705 - INFO -  * Restarting with stat
+2026-08-17 10:36:32,414 - WARNING -  * Debugger is active!
+2026-08-17 10:36:32,419 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 10:38:16,190 - INFO - 127.0.0.1 - - [17/Aug/2026 10:38:16] "GET / HTTP/1.1" 200 -
+2026-08-17 10:38:16,296 - INFO - 127.0.0.1 - - [17/Aug/2026 10:38:16] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 10:38:16,301 - INFO - 127.0.0.1 - - [17/Aug/2026 10:38:16] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 10:38:16,310 - INFO - 127.0.0.1 - - [17/Aug/2026 10:38:16] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 10:38:18,786 - INFO - 127.0.0.1 - - [17/Aug/2026 10:38:18] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 10:38:18,806 - INFO - 127.0.0.1 - - [17/Aug/2026 10:38:18] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 10:38:18,826 - INFO - 127.0.0.1 - - [17/Aug/2026 10:38:18] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 10:38:18,833 - INFO - 127.0.0.1 - - [17/Aug/2026 10:38:18] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 10:38:20,310 - INFO - 127.0.0.1 - - [17/Aug/2026 10:38:20] "[35m[1mGET /admin/farmers HTTP/1.1[0m" 500 -
+2026-08-17 10:38:20,332 - INFO - 127.0.0.1 - - [17/Aug/2026 10:38:20] "[36mGET /admin/farmers?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-17 10:38:20,332 - INFO - 127.0.0.1 - - [17/Aug/2026 10:38:20] "[36mGET /admin/farmers?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-17 10:38:20,340 - INFO - 127.0.0.1 - - [17/Aug/2026 10:38:20] "GET /admin/farmers?__debugger__=yes&cmd=resource&f=console.png&s=jSL2EfCfhAqYUEemSwCA HTTP/1.1" 200 -
+2026-08-17 10:38:55,961 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 10:38:56,024 - INFO -  * Restarting with stat
+2026-08-17 10:38:56,596 - WARNING -  * Debugger is active!
+2026-08-17 10:38:56,601 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 10:38:57,246 - INFO - 127.0.0.1 - - [17/Aug/2026 10:38:57] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 10:38:57,318 - INFO - 127.0.0.1 - - [17/Aug/2026 10:38:57] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 10:38:57,325 - INFO - 127.0.0.1 - - [17/Aug/2026 10:38:57] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 10:39:05,046 - INFO - 127.0.0.1 - - [17/Aug/2026 10:39:05] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 10:41:00,760 - INFO - 127.0.0.1 - - [17/Aug/2026 10:41:00] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 10:41:00,782 - INFO - 127.0.0.1 - - [17/Aug/2026 10:41:00] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 10:41:00,789 - INFO - 127.0.0.1 - - [17/Aug/2026 10:41:00] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 10:54:59,963 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-17 10:55:00,028 - INFO -  * Restarting with stat
+2026-08-17 10:55:00,608 - WARNING -  * Debugger is active!
+2026-08-17 10:55:00,614 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 10:55:10,827 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-17 10:55:10,895 - INFO -  * Restarting with stat
+2026-08-17 10:55:11,556 - WARNING -  * Debugger is active!
+2026-08-17 10:55:11,560 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 10:55:51,248 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-17 10:55:51,307 - INFO -  * Restarting with stat
+2026-08-17 11:02:14,545 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 11:02:14,545 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 11:02:14,547 - INFO -  * Restarting with stat
+2026-08-17 11:02:15,067 - WARNING -  * Debugger is active!
+2026-08-17 11:02:15,072 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 11:02:16,608 - INFO - 127.0.0.1 - - [17/Aug/2026 11:02:16] "GET / HTTP/1.1" 200 -
+2026-08-17 11:02:16,772 - INFO - 127.0.0.1 - - [17/Aug/2026 11:02:16] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 11:02:16,776 - INFO - 127.0.0.1 - - [17/Aug/2026 11:02:16] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 11:02:16,783 - INFO - 127.0.0.1 - - [17/Aug/2026 11:02:16] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 11:02:19,093 - INFO - 127.0.0.1 - - [17/Aug/2026 11:02:19] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 11:02:19,116 - INFO - 127.0.0.1 - - [17/Aug/2026 11:02:19] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 11:02:19,139 - INFO - 127.0.0.1 - - [17/Aug/2026 11:02:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 11:02:19,146 - INFO - 127.0.0.1 - - [17/Aug/2026 11:02:19] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 11:02:25,304 - INFO - 127.0.0.1 - - [17/Aug/2026 11:02:25] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 11:02:25,330 - INFO - 127.0.0.1 - - [17/Aug/2026 11:02:25] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 11:02:33,430 - INFO - 127.0.0.1 - - [17/Aug/2026 11:02:33] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 11:04:04,476 - INFO - 127.0.0.1 - - [17/Aug/2026 11:04:04] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 11:10:14,256 - INFO - 127.0.0.1 - - [17/Aug/2026 11:10:14] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 11:10:14,278 - INFO - 127.0.0.1 - - [17/Aug/2026 11:10:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 11:28:55,035 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 11:28:55,103 - INFO -  * Restarting with stat
+2026-08-17 11:28:55,636 - WARNING -  * Debugger is active!
+2026-08-17 11:28:55,641 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 11:29:34,345 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 11:29:34,406 - INFO -  * Restarting with stat
+2026-08-17 11:29:34,988 - WARNING -  * Debugger is active!
+2026-08-17 11:29:34,992 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 13:42:37,219 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 13:42:37,281 - INFO -  * Restarting with stat
+2026-08-17 13:42:37,876 - WARNING -  * Debugger is active!
+2026-08-17 13:42:37,881 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 13:44:05,507 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 13:44:05,567 - INFO -  * Restarting with stat
+2026-08-17 13:45:55,193 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 13:45:55,193 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 13:45:55,196 - INFO -  * Restarting with stat
+2026-08-17 13:45:55,750 - WARNING -  * Debugger is active!
+2026-08-17 13:45:55,755 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 13:45:57,070 - INFO - 127.0.0.1 - - [17/Aug/2026 13:45:57] "GET / HTTP/1.1" 200 -
+2026-08-17 13:45:57,237 - INFO - 127.0.0.1 - - [17/Aug/2026 13:45:57] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 13:45:57,241 - INFO - 127.0.0.1 - - [17/Aug/2026 13:45:57] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 13:45:57,244 - INFO - 127.0.0.1 - - [17/Aug/2026 13:45:57] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 13:45:59,706 - INFO - 127.0.0.1 - - [17/Aug/2026 13:45:59] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 13:45:59,731 - INFO - 127.0.0.1 - - [17/Aug/2026 13:45:59] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 13:45:59,751 - INFO - 127.0.0.1 - - [17/Aug/2026 13:45:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 13:45:59,756 - INFO - 127.0.0.1 - - [17/Aug/2026 13:45:59] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 13:46:05,782 - INFO - 127.0.0.1 - - [17/Aug/2026 13:46:05] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 13:46:05,802 - INFO - 127.0.0.1 - - [17/Aug/2026 13:46:05] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 13:46:20,873 - INFO - 127.0.0.1 - - [17/Aug/2026 13:46:20] "GET /deliveries HTTP/1.1" 200 -
+2026-08-17 13:46:20,896 - INFO - 127.0.0.1 - - [17/Aug/2026 13:46:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 13:46:22,765 - INFO - 127.0.0.1 - - [17/Aug/2026 13:46:22] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 13:46:22,788 - INFO - 127.0.0.1 - - [17/Aug/2026 13:46:22] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 13:51:06,924 - INFO - 127.0.0.1 - - [17/Aug/2026 13:51:06] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 13:51:06,946 - INFO - 127.0.0.1 - - [17/Aug/2026 13:51:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 13:51:10,347 - INFO - 127.0.0.1 - - [17/Aug/2026 13:51:10] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 13:52:34,553 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 13:52:34,620 - INFO -  * Restarting with stat
+2026-08-17 13:54:02,471 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 13:54:02,472 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 13:54:02,475 - INFO -  * Restarting with stat
+2026-08-17 13:54:03,035 - WARNING -  * Debugger is active!
+2026-08-17 13:54:03,040 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 13:54:05,944 - INFO - 127.0.0.1 - - [17/Aug/2026 13:54:05] "GET / HTTP/1.1" 200 -
+2026-08-17 13:54:06,108 - INFO - 127.0.0.1 - - [17/Aug/2026 13:54:06] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 13:54:06,112 - INFO - 127.0.0.1 - - [17/Aug/2026 13:54:06] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 13:54:06,116 - INFO - 127.0.0.1 - - [17/Aug/2026 13:54:06] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 13:54:10,216 - INFO - 127.0.0.1 - - [17/Aug/2026 13:54:10] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 13:54:10,237 - INFO - 127.0.0.1 - - [17/Aug/2026 13:54:10] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 13:54:10,262 - INFO - 127.0.0.1 - - [17/Aug/2026 13:54:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 13:54:10,268 - INFO - 127.0.0.1 - - [17/Aug/2026 13:54:10] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 13:54:13,355 - INFO - 127.0.0.1 - - [17/Aug/2026 13:54:13] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 13:54:13,377 - INFO - 127.0.0.1 - - [17/Aug/2026 13:54:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 13:54:20,258 - INFO - 127.0.0.1 - - [17/Aug/2026 13:54:20] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 13:57:44,311 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 13:57:44,312 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 13:57:44,315 - INFO -  * Restarting with stat
+2026-08-17 13:57:44,858 - WARNING -  * Debugger is active!
+2026-08-17 13:57:44,862 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 13:57:45,778 - INFO - 127.0.0.1 - - [17/Aug/2026 13:57:45] "GET / HTTP/1.1" 200 -
+2026-08-17 13:57:45,884 - INFO - 127.0.0.1 - - [17/Aug/2026 13:57:45] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 13:57:45,885 - INFO - 127.0.0.1 - - [17/Aug/2026 13:57:45] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 13:57:45,897 - INFO - 127.0.0.1 - - [17/Aug/2026 13:57:45] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 13:57:47,838 - INFO - 127.0.0.1 - - [17/Aug/2026 13:57:47] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 13:57:47,843 - INFO - 127.0.0.1 - - [17/Aug/2026 13:57:47] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 13:57:47,866 - INFO - 127.0.0.1 - - [17/Aug/2026 13:57:47] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 13:57:47,873 - INFO - 127.0.0.1 - - [17/Aug/2026 13:57:47] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 13:57:52,942 - INFO - 127.0.0.1 - - [17/Aug/2026 13:57:52] "GET /deliveries HTTP/1.1" 200 -
+2026-08-17 13:57:52,968 - INFO - 127.0.0.1 - - [17/Aug/2026 13:57:52] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 13:57:55,894 - INFO - 127.0.0.1 - - [17/Aug/2026 13:57:55] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 13:57:55,914 - INFO - 127.0.0.1 - - [17/Aug/2026 13:57:55] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 13:58:00,489 - INFO - 127.0.0.1 - - [17/Aug/2026 13:58:00] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 14:01:07,639 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 14:01:07,639 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 14:01:07,641 - INFO -  * Restarting with stat
+2026-08-17 14:01:08,153 - WARNING -  * Debugger is active!
+2026-08-17 14:01:08,157 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 14:01:13,981 - INFO - 127.0.0.1 - - [17/Aug/2026 14:01:13] "GET / HTTP/1.1" 200 -
+2026-08-17 14:01:14,073 - INFO - 127.0.0.1 - - [17/Aug/2026 14:01:14] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 14:01:14,074 - INFO - 127.0.0.1 - - [17/Aug/2026 14:01:14] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 14:01:14,084 - INFO - 127.0.0.1 - - [17/Aug/2026 14:01:14] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 14:01:17,289 - INFO - 127.0.0.1 - - [17/Aug/2026 14:01:17] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 14:01:17,294 - INFO - 127.0.0.1 - - [17/Aug/2026 14:01:17] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 14:01:17,316 - INFO - 127.0.0.1 - - [17/Aug/2026 14:01:17] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:01:17,322 - INFO - 127.0.0.1 - - [17/Aug/2026 14:01:17] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 14:01:19,622 - INFO - 127.0.0.1 - - [17/Aug/2026 14:01:19] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 14:01:19,641 - INFO - 127.0.0.1 - - [17/Aug/2026 14:01:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:01:24,126 - INFO - 127.0.0.1 - - [17/Aug/2026 14:01:24] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 14:03:13,001 - INFO - 127.0.0.1 - - [17/Aug/2026 14:03:13] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 14:03:13,064 - INFO - 127.0.0.1 - - [17/Aug/2026 14:03:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:04:06,598 - INFO - 127.0.0.1 - - [17/Aug/2026 14:04:06] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 14:04:16,321 - INFO - 127.0.0.1 - - [17/Aug/2026 14:04:16] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 14:04:17,564 - INFO - 127.0.0.1 - - [17/Aug/2026 14:04:17] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 14:04:17,787 - INFO - 127.0.0.1 - - [17/Aug/2026 14:04:17] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 14:04:17,972 - INFO - 127.0.0.1 - - [17/Aug/2026 14:04:17] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 14:04:52,059 - INFO - 127.0.0.1 - - [17/Aug/2026 14:04:52] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 14:06:23,503 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 14:06:23,504 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 14:06:23,508 - INFO -  * Restarting with stat
+2026-08-17 14:06:24,098 - WARNING -  * Debugger is active!
+2026-08-17 14:06:24,102 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 14:06:36,702 - INFO - 127.0.0.1 - - [17/Aug/2026 14:06:36] "GET / HTTP/1.1" 200 -
+2026-08-17 14:06:36,869 - INFO - 127.0.0.1 - - [17/Aug/2026 14:06:36] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 14:06:36,870 - INFO - 127.0.0.1 - - [17/Aug/2026 14:06:36] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 14:06:36,878 - INFO - 127.0.0.1 - - [17/Aug/2026 14:06:36] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 14:06:39,220 - INFO - 127.0.0.1 - - [17/Aug/2026 14:06:39] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 14:06:39,256 - INFO - 127.0.0.1 - - [17/Aug/2026 14:06:39] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 14:06:39,281 - INFO - 127.0.0.1 - - [17/Aug/2026 14:06:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:06:39,288 - INFO - 127.0.0.1 - - [17/Aug/2026 14:06:39] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 14:06:41,007 - INFO - 127.0.0.1 - - [17/Aug/2026 14:06:41] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 14:06:41,027 - INFO - 127.0.0.1 - - [17/Aug/2026 14:06:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:06:56,293 - INFO - 127.0.0.1 - - [17/Aug/2026 14:06:56] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 14:07:03,452 - INFO - 127.0.0.1 - - [17/Aug/2026 14:07:03] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 14:07:26,527 - INFO - 127.0.0.1 - - [17/Aug/2026 14:07:26] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 14:08:01,507 - INFO - 127.0.0.1 - - [17/Aug/2026 14:08:01] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 14:08:01,534 - INFO - 127.0.0.1 - - [17/Aug/2026 14:08:01] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:08:05,049 - INFO - 127.0.0.1 - - [17/Aug/2026 14:08:05] "[35m[1mPOST /api/farmers/search HTTP/1.1[0m" 500 -
+2026-08-17 14:08:08,448 - INFO - 127.0.0.1 - - [17/Aug/2026 14:08:08] "[35m[1mPOST /api/farmers/search HTTP/1.1[0m" 500 -
+2026-08-17 14:08:13,038 - INFO - 127.0.0.1 - - [17/Aug/2026 14:08:13] "[35m[1mPOST /api/farmers/search HTTP/1.1[0m" 500 -
+2026-08-17 14:11:02,910 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-17 14:11:02,971 - INFO -  * Restarting with stat
+2026-08-17 14:11:03,581 - WARNING -  * Debugger is active!
+2026-08-17 14:11:03,585 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 14:11:15,414 - INFO - 127.0.0.1 - - [17/Aug/2026 14:11:15] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 14:11:15,493 - INFO - 127.0.0.1 - - [17/Aug/2026 14:11:15] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:11:40,145 - INFO - 127.0.0.1 - - [17/Aug/2026 14:11:40] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 14:17:47,172 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-17 14:17:47,234 - INFO -  * Restarting with stat
+2026-08-17 14:17:47,826 - WARNING -  * Debugger is active!
+2026-08-17 14:17:47,831 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 14:19:46,822 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-17 14:19:46,871 - INFO -  * Restarting with stat
+2026-08-17 14:19:47,398 - WARNING -  * Debugger is active!
+2026-08-17 14:19:47,404 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 14:20:24,108 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-17 14:20:24,165 - INFO -  * Restarting with stat
+2026-08-17 14:20:24,737 - WARNING -  * Debugger is active!
+2026-08-17 14:20:24,742 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 14:20:25,804 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-17 14:20:25,874 - INFO -  * Restarting with stat
+2026-08-17 14:20:26,472 - WARNING -  * Debugger is active!
+2026-08-17 14:20:26,478 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 14:20:28,560 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-17 14:20:28,621 - INFO -  * Restarting with stat
+2026-08-17 14:23:06,749 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 14:23:06,750 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 14:23:06,752 - INFO -  * Restarting with stat
+2026-08-17 14:23:07,281 - WARNING -  * Debugger is active!
+2026-08-17 14:23:07,286 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 14:23:09,402 - INFO - 127.0.0.1 - - [17/Aug/2026 14:23:09] "GET / HTTP/1.1" 200 -
+2026-08-17 14:23:09,569 - INFO - 127.0.0.1 - - [17/Aug/2026 14:23:09] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 14:23:09,571 - INFO - 127.0.0.1 - - [17/Aug/2026 14:23:09] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 14:23:09,581 - INFO - 127.0.0.1 - - [17/Aug/2026 14:23:09] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 14:23:12,279 - INFO - 127.0.0.1 - - [17/Aug/2026 14:23:12] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 14:23:12,300 - INFO - 127.0.0.1 - - [17/Aug/2026 14:23:12] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 14:23:12,321 - INFO - 127.0.0.1 - - [17/Aug/2026 14:23:12] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:23:12,327 - INFO - 127.0.0.1 - - [17/Aug/2026 14:23:12] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 14:23:19,008 - INFO - 127.0.0.1 - - [17/Aug/2026 14:23:19] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 14:23:19,041 - INFO - 127.0.0.1 - - [17/Aug/2026 14:23:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:23:36,050 - INFO - 127.0.0.1 - - [17/Aug/2026 14:23:36] "GET /admin/farmers/add HTTP/1.1" 200 -
+2026-08-17 14:23:36,072 - INFO - 127.0.0.1 - - [17/Aug/2026 14:23:36] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:24:07,638 - INFO - farmer added Ahmet Ahmetoðlu TC: 99999999999
+2026-08-17 14:24:07,638 - INFO - Farmer added: Ahmet Ahmetoðlu, TC: 99999999999
+2026-08-17 14:24:07,639 - INFO - 127.0.0.1 - - [17/Aug/2026 14:24:07] "POST /api/farmers/add HTTP/1.1" 200 -
+2026-08-17 14:24:08,675 - INFO - 127.0.0.1 - - [17/Aug/2026 14:24:08] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 14:24:08,704 - INFO - 127.0.0.1 - - [17/Aug/2026 14:24:08] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:25:26,654 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-17 14:25:26,723 - INFO -  * Restarting with stat
+2026-08-17 14:28:56,592 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 14:28:56,592 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 14:28:56,595 - INFO -  * Restarting with stat
+2026-08-17 14:28:57,187 - WARNING -  * Debugger is active!
+2026-08-17 14:28:57,191 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 14:29:01,519 - INFO - 127.0.0.1 - - [17/Aug/2026 14:29:01] "GET / HTTP/1.1" 200 -
+2026-08-17 14:29:01,678 - INFO - 127.0.0.1 - - [17/Aug/2026 14:29:01] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 14:29:01,680 - INFO - 127.0.0.1 - - [17/Aug/2026 14:29:01] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 14:29:01,687 - INFO - 127.0.0.1 - - [17/Aug/2026 14:29:01] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 14:29:03,824 - INFO - 127.0.0.1 - - [17/Aug/2026 14:29:03] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 14:29:03,844 - INFO - 127.0.0.1 - - [17/Aug/2026 14:29:03] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 14:29:03,868 - INFO - 127.0.0.1 - - [17/Aug/2026 14:29:03] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:29:03,874 - INFO - 127.0.0.1 - - [17/Aug/2026 14:29:03] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 14:29:06,085 - INFO - 127.0.0.1 - - [17/Aug/2026 14:29:06] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 14:29:06,106 - INFO - 127.0.0.1 - - [17/Aug/2026 14:29:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:29:11,581 - INFO - 127.0.0.1 - - [17/Aug/2026 14:29:11] "GET /admin/farmers/add HTTP/1.1" 200 -
+2026-08-17 14:29:11,603 - INFO - 127.0.0.1 - - [17/Aug/2026 14:29:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:29:44,896 - INFO - farmer added Seda Sedaoðlu TC: 88888888888
+2026-08-17 14:29:44,897 - INFO - Farmer added: Seda Sedaoðlu, TC: 88888888888
+2026-08-17 14:29:44,898 - INFO - 127.0.0.1 - - [17/Aug/2026 14:29:44] "POST /api/farmers/add HTTP/1.1" 200 -
+2026-08-17 14:29:46,868 - INFO - 127.0.0.1 - - [17/Aug/2026 14:29:46] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 14:29:46,896 - INFO - 127.0.0.1 - - [17/Aug/2026 14:29:46] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:32:20,633 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 14:32:20,695 - INFO -  * Restarting with stat
+2026-08-17 14:33:48,967 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 14:33:48,968 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 14:33:48,970 - INFO -  * Restarting with stat
+2026-08-17 14:33:49,520 - WARNING -  * Debugger is active!
+2026-08-17 14:33:49,525 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 14:33:50,981 - INFO - 127.0.0.1 - - [17/Aug/2026 14:33:50] "GET / HTTP/1.1" 200 -
+2026-08-17 14:33:51,144 - INFO - 127.0.0.1 - - [17/Aug/2026 14:33:51] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 14:33:51,147 - INFO - 127.0.0.1 - - [17/Aug/2026 14:33:51] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 14:33:51,155 - INFO - 127.0.0.1 - - [17/Aug/2026 14:33:51] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 14:34:02,005 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:02] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 14:34:02,032 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:02] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 14:34:02,058 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:34:02,064 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:02] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 14:34:09,707 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:09] "GET /statistics HTTP/1.1" 200 -
+2026-08-17 14:34:09,728 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:09] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:34:11,283 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:11] "GET /ai_assistant HTTP/1.1" 200 -
+2026-08-17 14:34:11,304 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 14:34:24,156 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:24] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-17 14:34:24,163 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:24] "GET / HTTP/1.1" 200 -
+2026-08-17 14:34:24,188 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:24] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 14:34:24,189 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:24] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 14:34:24,198 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:24] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 14:34:38,873 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:38] "POST / HTTP/1.1" 200 -
+2026-08-17 14:34:38,898 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:38] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 14:34:38,899 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:38] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 14:34:42,226 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:42] "POST / HTTP/1.1" 200 -
+2026-08-17 14:34:42,248 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:42] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 14:34:42,248 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:42] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 14:34:49,946 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:49] "POST / HTTP/1.1" 200 -
+2026-08-17 14:34:49,993 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:49] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 14:34:49,994 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:49] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 14:34:55,802 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:55] "POST / HTTP/1.1" 200 -
+2026-08-17 14:34:55,827 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:55] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 14:34:55,827 - INFO - 127.0.0.1 - - [17/Aug/2026 14:34:55] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 14:37:41,547 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-17 14:37:41,604 - INFO -  * Restarting with stat
+2026-08-17 14:37:42,182 - WARNING -  * Debugger is active!
+2026-08-17 14:37:42,186 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 14:38:18,859 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 14:38:18,919 - INFO -  * Restarting with stat
+2026-08-17 14:39:41,142 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 14:39:41,143 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 14:39:41,145 - INFO -  * Restarting with stat
+2026-08-17 14:39:42,041 - WARNING -  * Debugger is active!
+2026-08-17 14:39:42,048 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 14:39:46,165 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 14:39:46,235 - INFO -  * Restarting with stat
+2026-08-17 14:39:46,849 - WARNING -  * Debugger is active!
+2026-08-17 14:39:46,853 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 14:39:51,649 - INFO - 127.0.0.1 - - [17/Aug/2026 14:39:51] "GET / HTTP/1.1" 200 -
+2026-08-17 14:39:51,819 - INFO - 127.0.0.1 - - [17/Aug/2026 14:39:51] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 14:39:51,820 - INFO - 127.0.0.1 - - [17/Aug/2026 14:39:51] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 14:39:51,829 - INFO - 127.0.0.1 - - [17/Aug/2026 14:39:51] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 14:39:57,921 - INFO - 127.0.0.1 - - [17/Aug/2026 14:39:57] "POST / HTTP/1.1" 200 -
+2026-08-17 14:39:57,941 - INFO - 127.0.0.1 - - [17/Aug/2026 14:39:57] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 14:39:57,942 - INFO - 127.0.0.1 - - [17/Aug/2026 14:39:57] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 14:39:57,949 - INFO - 127.0.0.1 - - [17/Aug/2026 14:39:57] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 14:40:21,499 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\app.py', reloading
+2026-08-17 14:40:21,551 - INFO -  * Restarting with stat
+2026-08-17 14:40:22,348 - WARNING -  * Debugger is active!
+2026-08-17 14:40:22,354 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 14:40:40,684 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 14:40:40,684 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 14:40:40,687 - INFO -  * Restarting with stat
+2026-08-17 14:40:41,532 - WARNING -  * Debugger is active!
+2026-08-17 14:40:41,536 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 14:40:42,537 - INFO - 127.0.0.1 - - [17/Aug/2026 14:40:42] "GET / HTTP/1.1" 200 -
+2026-08-17 14:40:42,703 - INFO - 127.0.0.1 - - [17/Aug/2026 14:40:42] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 14:40:42,704 - INFO - 127.0.0.1 - - [17/Aug/2026 14:40:42] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 14:40:42,710 - INFO - 127.0.0.1 - - [17/Aug/2026 14:40:42] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 14:40:48,717 - INFO - 127.0.0.1 - - [17/Aug/2026 14:40:48] "POST / HTTP/1.1" 200 -
+2026-08-17 14:40:48,737 - INFO - 127.0.0.1 - - [17/Aug/2026 14:40:48] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 14:40:48,738 - INFO - 127.0.0.1 - - [17/Aug/2026 14:40:48] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 14:40:48,744 - INFO - 127.0.0.1 - - [17/Aug/2026 14:40:48] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 14:42:09,168 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-17 14:42:09,224 - INFO -  * Restarting with stat
+2026-08-17 14:42:09,275 - INFO -  * Detected change in 'C:\\Users\\Ayse Sarýcaoglu\\Desktop\\TeaTrackingSystem\\database.py', reloading
+2026-08-17 14:42:09,328 - INFO -  * Restarting with stat
+2026-08-17 15:16:12,333 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 15:16:12,334 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 15:16:12,337 - INFO -  * Restarting with stat
+2026-08-17 15:16:13,192 - WARNING -  * Debugger is active!
+2026-08-17 15:16:13,197 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 15:16:14,207 - INFO - 127.0.0.1 - - [17/Aug/2026 15:16:14] "GET / HTTP/1.1" 200 -
+2026-08-17 15:16:14,393 - INFO - 127.0.0.1 - - [17/Aug/2026 15:16:14] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 15:16:14,406 - INFO - 127.0.0.1 - - [17/Aug/2026 15:16:14] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 15:16:14,409 - INFO - 127.0.0.1 - - [17/Aug/2026 15:16:14] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:16:18,349 - INFO - 127.0.0.1 - - [17/Aug/2026 15:16:18] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 15:16:18,369 - INFO - 127.0.0.1 - - [17/Aug/2026 15:16:18] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 15:16:18,391 - INFO - 127.0.0.1 - - [17/Aug/2026 15:16:18] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:16:18,397 - INFO - 127.0.0.1 - - [17/Aug/2026 15:16:18] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:19:33,476 - INFO - 127.0.0.1 - - [17/Aug/2026 15:19:33] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 15:19:33,482 - INFO - 127.0.0.1 - - [17/Aug/2026 15:19:33] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 15:19:33,506 - INFO - 127.0.0.1 - - [17/Aug/2026 15:19:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:19:33,512 - INFO - 127.0.0.1 - - [17/Aug/2026 15:19:33] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:19:37,871 - INFO - 127.0.0.1 - - [17/Aug/2026 15:19:37] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:19:37,891 - INFO - 127.0.0.1 - - [17/Aug/2026 15:19:37] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:28:39,146 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 15:28:39,146 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 15:28:39,148 - INFO -  * Restarting with stat
+2026-08-17 15:28:39,998 - WARNING -  * Debugger is active!
+2026-08-17 15:28:40,003 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 15:28:41,483 - INFO - 127.0.0.1 - - [17/Aug/2026 15:28:41] "GET / HTTP/1.1" 200 -
+2026-08-17 15:28:41,576 - INFO - 127.0.0.1 - - [17/Aug/2026 15:28:41] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 15:28:41,577 - INFO - 127.0.0.1 - - [17/Aug/2026 15:28:41] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 15:28:41,588 - INFO - 127.0.0.1 - - [17/Aug/2026 15:28:41] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:28:48,444 - INFO - 127.0.0.1 - - [17/Aug/2026 15:28:48] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 15:28:48,448 - INFO - 127.0.0.1 - - [17/Aug/2026 15:28:48] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 15:28:48,471 - INFO - 127.0.0.1 - - [17/Aug/2026 15:28:48] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 15:28:48,478 - INFO - 127.0.0.1 - - [17/Aug/2026 15:28:48] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:28:54,877 - INFO - 127.0.0.1 - - [17/Aug/2026 15:28:54] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:28:54,897 - INFO - 127.0.0.1 - - [17/Aug/2026 15:28:54] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:29:07,680 - INFO - 127.0.0.1 - - [17/Aug/2026 15:29:07] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 15:30:26,401 - INFO - 127.0.0.1 - - [17/Aug/2026 15:30:26] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-17 15:30:26,408 - INFO - 127.0.0.1 - - [17/Aug/2026 15:30:26] "GET / HTTP/1.1" 200 -
+2026-08-17 15:30:26,440 - INFO - 127.0.0.1 - - [17/Aug/2026 15:30:26] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 15:30:26,442 - INFO - 127.0.0.1 - - [17/Aug/2026 15:30:26] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 15:30:26,456 - INFO - 127.0.0.1 - - [17/Aug/2026 15:30:26] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:30:36,222 - INFO - 127.0.0.1 - - [17/Aug/2026 15:30:36] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 15:30:36,228 - INFO - 127.0.0.1 - - [17/Aug/2026 15:30:36] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 15:30:36,254 - INFO - 127.0.0.1 - - [17/Aug/2026 15:30:36] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:30:51,046 - INFO - 127.0.0.1 - - [17/Aug/2026 15:30:51] "GET /deliveries HTTP/1.1" 200 -
+2026-08-17 15:30:51,078 - INFO - 127.0.0.1 - - [17/Aug/2026 15:30:51] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:30:53,827 - INFO - 127.0.0.1 - - [17/Aug/2026 15:30:53] "[35m[1mGET /admin/experts HTTP/1.1[0m" 500 -
+2026-08-17 15:30:53,960 - INFO - 127.0.0.1 - - [17/Aug/2026 15:30:53] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:30:53,984 - INFO - 127.0.0.1 - - [17/Aug/2026 15:30:53] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-17 15:30:54,045 - INFO - 127.0.0.1 - - [17/Aug/2026 15:30:54] "GET /admin/experts?__debugger__=yes&cmd=resource&f=console.png&s=R2HShhPKIp8aDUExEaHD HTTP/1.1" 200 -
+2026-08-17 15:30:55,771 - INFO - 127.0.0.1 - - [17/Aug/2026 15:30:55] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:30:56,915 - INFO - 127.0.0.1 - - [17/Aug/2026 15:30:56] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:30:56,946 - INFO - 127.0.0.1 - - [17/Aug/2026 15:30:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:31:48,762 - INFO - 127.0.0.1 - - [17/Aug/2026 15:31:48] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 15:31:54,157 - INFO - 127.0.0.1 - - [17/Aug/2026 15:31:54] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 15:32:18,749 - INFO - 127.0.0.1 - - [17/Aug/2026 15:32:18] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 15:32:55,694 - INFO - 127.0.0.1 - - [17/Aug/2026 15:32:55] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 15:32:55,720 - INFO - 127.0.0.1 - - [17/Aug/2026 15:32:55] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:32:58,908 - INFO - 127.0.0.1 - - [17/Aug/2026 15:32:58] "GET /deliveries HTTP/1.1" 200 -
+2026-08-17 15:32:58,929 - INFO - 127.0.0.1 - - [17/Aug/2026 15:32:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:33:00,365 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:00] "[35m[1mGET /admin/experts HTTP/1.1[0m" 500 -
+2026-08-17 15:33:00,398 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:00] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:33:00,401 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:00] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-17 15:33:00,426 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:00] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=console.png&s=R2HShhPKIp8aDUExEaHD HTTP/1.1[0m" 304 -
+2026-08-17 15:33:02,105 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:33:03,433 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:03] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:33:03,455 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:03] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:33:03,983 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:03] "GET /deliveries HTTP/1.1" 200 -
+2026-08-17 15:33:04,001 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:04] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:33:05,140 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:05] "[35m[1mGET /admin/experts HTTP/1.1[0m" 500 -
+2026-08-17 15:33:05,172 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:05] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:33:05,174 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:05] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-17 15:33:05,192 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:05] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=console.png&s=R2HShhPKIp8aDUExEaHD HTTP/1.1[0m" 304 -
+2026-08-17 15:33:37,841 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:37] "[35m[1mGET /admin/experts HTTP/1.1[0m" 500 -
+2026-08-17 15:33:37,865 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:37] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:33:37,867 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:37] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-17 15:33:37,883 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:37] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=console.png&s=R2HShhPKIp8aDUExEaHD HTTP/1.1[0m" 304 -
+2026-08-17 15:33:38,395 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:38] "[35m[1mGET /admin/experts HTTP/1.1[0m" 500 -
+2026-08-17 15:33:38,455 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:38] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-17 15:33:38,459 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:38] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:33:38,498 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:38] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=console.png&s=R2HShhPKIp8aDUExEaHD HTTP/1.1[0m" 304 -
+2026-08-17 15:33:41,556 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:41] "[32mGET /logout HTTP/1.1[0m" 302 -
+2026-08-17 15:33:41,563 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:41] "GET / HTTP/1.1" 200 -
+2026-08-17 15:33:41,589 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:41] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 15:33:41,589 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:41] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 15:33:41,599 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:41] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:33:57,486 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 15:33:57,487 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 15:33:57,492 - INFO -  * Restarting with stat
+2026-08-17 15:33:58,474 - WARNING -  * Debugger is active!
+2026-08-17 15:33:58,480 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 15:33:59,996 - INFO - 127.0.0.1 - - [17/Aug/2026 15:33:59] "GET / HTTP/1.1" 200 -
+2026-08-17 15:34:00,098 - INFO - 127.0.0.1 - - [17/Aug/2026 15:34:00] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 15:34:00,099 - INFO - 127.0.0.1 - - [17/Aug/2026 15:34:00] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 15:34:00,112 - INFO - 127.0.0.1 - - [17/Aug/2026 15:34:00] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:34:03,932 - INFO - 127.0.0.1 - - [17/Aug/2026 15:34:03] "POST / HTTP/1.1" 200 -
+2026-08-17 15:34:03,967 - INFO - 127.0.0.1 - - [17/Aug/2026 15:34:03] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 15:34:03,968 - INFO - 127.0.0.1 - - [17/Aug/2026 15:34:03] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 15:34:07,737 - INFO - 127.0.0.1 - - [17/Aug/2026 15:34:07] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 15:34:07,742 - INFO - 127.0.0.1 - - [17/Aug/2026 15:34:07] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 15:34:07,767 - INFO - 127.0.0.1 - - [17/Aug/2026 15:34:07] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:34:07,774 - INFO - 127.0.0.1 - - [17/Aug/2026 15:34:07] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:34:14,729 - INFO - 127.0.0.1 - - [17/Aug/2026 15:34:14] "[35m[1mGET /admin/experts HTTP/1.1[0m" 500 -
+2026-08-17 15:34:14,758 - INFO - 127.0.0.1 - - [17/Aug/2026 15:34:14] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:34:14,759 - INFO - 127.0.0.1 - - [17/Aug/2026 15:34:14] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-17 15:34:14,817 - INFO - 127.0.0.1 - - [17/Aug/2026 15:34:14] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=console.png&s=R2HShhPKIp8aDUExEaHD HTTP/1.1[0m" 304 -
+2026-08-17 15:35:15,676 - INFO - 127.0.0.1 - - [17/Aug/2026 15:35:15] "[35m[1mGET /admin/experts HTTP/1.1[0m" 500 -
+2026-08-17 15:35:15,699 - INFO - 127.0.0.1 - - [17/Aug/2026 15:35:15] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:35:15,700 - INFO - 127.0.0.1 - - [17/Aug/2026 15:35:15] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-17 15:35:15,718 - INFO - 127.0.0.1 - - [17/Aug/2026 15:35:15] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=console.png&s=R2HShhPKIp8aDUExEaHD HTTP/1.1[0m" 304 -
+2026-08-17 15:35:16,204 - INFO - 127.0.0.1 - - [17/Aug/2026 15:35:16] "[35m[1mGET /admin/experts HTTP/1.1[0m" 500 -
+2026-08-17 15:35:16,226 - INFO - 127.0.0.1 - - [17/Aug/2026 15:35:16] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:35:16,226 - INFO - 127.0.0.1 - - [17/Aug/2026 15:35:16] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-17 15:35:16,242 - INFO - 127.0.0.1 - - [17/Aug/2026 15:35:16] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=console.png&s=R2HShhPKIp8aDUExEaHD HTTP/1.1[0m" 304 -
+2026-08-17 15:35:19,006 - INFO - 127.0.0.1 - - [17/Aug/2026 15:35:19] "[35m[1mGET /admin/experts HTTP/1.1[0m" 500 -
+2026-08-17 15:35:19,030 - INFO - 127.0.0.1 - - [17/Aug/2026 15:35:19] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:35:19,030 - INFO - 127.0.0.1 - - [17/Aug/2026 15:35:19] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-08-17 15:35:19,042 - INFO - 127.0.0.1 - - [17/Aug/2026 15:35:19] "[36mGET /admin/experts?__debugger__=yes&cmd=resource&f=console.png&s=R2HShhPKIp8aDUExEaHD HTTP/1.1[0m" 304 -
+2026-08-17 15:35:41,307 - INFO - 127.0.0.1 - - [17/Aug/2026 15:35:41] "GET /admin/experts HTTP/1.1" 200 -
+2026-08-17 15:35:41,328 - INFO - 127.0.0.1 - - [17/Aug/2026 15:35:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:37:04,624 - INFO - 127.0.0.1 - - [17/Aug/2026 15:37:04] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:37:04,651 - INFO - 127.0.0.1 - - [17/Aug/2026 15:37:04] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:37:31,952 - INFO - 127.0.0.1 - - [17/Aug/2026 15:37:31] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:37:31,981 - INFO - 127.0.0.1 - - [17/Aug/2026 15:37:31] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:42:20,453 - INFO - 127.0.0.1 - - [17/Aug/2026 15:42:20] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 15:42:20,458 - INFO - 127.0.0.1 - - [17/Aug/2026 15:42:20] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 15:42:20,483 - INFO - 127.0.0.1 - - [17/Aug/2026 15:42:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:42:20,490 - INFO - 127.0.0.1 - - [17/Aug/2026 15:42:20] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:42:24,161 - INFO - 127.0.0.1 - - [17/Aug/2026 15:42:24] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:42:24,182 - INFO - 127.0.0.1 - - [17/Aug/2026 15:42:24] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:42:30,421 - INFO - 127.0.0.1 - - [17/Aug/2026 15:42:30] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 15:42:32,276 - INFO - 127.0.0.1 - - [17/Aug/2026 15:42:32] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 15:42:40,268 - INFO - 127.0.0.1 - - [17/Aug/2026 15:42:40] "POST /api/farmers/search HTTP/1.1" 200 -
+2026-08-17 15:42:54,469 - INFO - 127.0.0.1 - - [17/Aug/2026 15:42:54] "GET /admin/experts HTTP/1.1" 200 -
+2026-08-17 15:42:54,501 - INFO - 127.0.0.1 - - [17/Aug/2026 15:42:54] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:42:59,272 - INFO - 127.0.0.1 - - [17/Aug/2026 15:42:59] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:42:59,302 - INFO - 127.0.0.1 - - [17/Aug/2026 15:42:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:49:02,185 - INFO - 127.0.0.1 - - [17/Aug/2026 15:49:02] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 15:49:02,238 - INFO - 127.0.0.1 - - [17/Aug/2026 15:49:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:49:40,017 - INFO - 127.0.0.1 - - [17/Aug/2026 15:49:40] "GET /deliveries HTTP/1.1" 200 -
+2026-08-17 15:49:40,046 - INFO - 127.0.0.1 - - [17/Aug/2026 15:49:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:50:36,145 - INFO - 127.0.0.1 - - [17/Aug/2026 15:50:36] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:50:36,172 - INFO - 127.0.0.1 - - [17/Aug/2026 15:50:36] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:52:08,238 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:08] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:52:08,272 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:08] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 15:52:08,280 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:08] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:52:08,734 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:08] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:52:08,759 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:08] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:52:09,238 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:09] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:52:09,264 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:09] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:52:10,187 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:52:12,055 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:12] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:52:12,080 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:12] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:52:41,920 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:41] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:52:41,946 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:41] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 15:52:41,953 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:41] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:52:42,455 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:42] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:52:42,479 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:42] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:52:42,642 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:42] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:52:42,666 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:42] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:52:57,297 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:57] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:52:57,323 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:57] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 15:52:57,330 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:57] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:52:57,816 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:57] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:52:57,839 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:57] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:52:58,017 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:58] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:52:58,045 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:52:58,588 - INFO - 127.0.0.1 - - [17/Aug/2026 15:52:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:53:13,039 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 15:53:13,039 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 15:53:13,043 - INFO -  * Restarting with stat
+2026-08-17 15:53:13,962 - WARNING -  * Debugger is active!
+2026-08-17 15:53:13,967 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 15:53:15,525 - INFO - 127.0.0.1 - - [17/Aug/2026 15:53:15] "GET / HTTP/1.1" 200 -
+2026-08-17 15:53:15,628 - INFO - 127.0.0.1 - - [17/Aug/2026 15:53:15] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 15:53:15,629 - INFO - 127.0.0.1 - - [17/Aug/2026 15:53:15] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 15:53:15,648 - INFO - 127.0.0.1 - - [17/Aug/2026 15:53:15] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:53:26,019 - INFO - 127.0.0.1 - - [17/Aug/2026 15:53:26] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 15:53:26,025 - INFO - 127.0.0.1 - - [17/Aug/2026 15:53:26] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 15:53:26,056 - INFO - 127.0.0.1 - - [17/Aug/2026 15:53:26] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:53:26,077 - INFO - 127.0.0.1 - - [17/Aug/2026 15:53:26] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:53:27,993 - INFO - 127.0.0.1 - - [17/Aug/2026 15:53:27] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:53:28,020 - INFO - 127.0.0.1 - - [17/Aug/2026 15:53:28] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:53:55,362 - INFO - 127.0.0.1 - - [17/Aug/2026 15:53:55] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:53:55,386 - INFO - 127.0.0.1 - - [17/Aug/2026 15:53:55] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 15:53:55,393 - INFO - 127.0.0.1 - - [17/Aug/2026 15:53:55] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:56:31,535 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:31] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:56:31,557 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:31] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 15:56:31,568 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:31] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:56:32,329 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:32] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:56:32,355 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:56:32,820 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:32] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:56:32,841 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:56:32,992 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:32] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:56:33,015 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:56:33,160 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:33] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:56:33,181 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:56:33,324 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:33] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:56:33,381 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:56:33,408 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:56:47,624 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-08-17 15:56:47,624 - INFO - [33mPress CTRL+C to quit[0m
+2026-08-17 15:56:47,628 - INFO -  * Restarting with stat
+2026-08-17 15:56:48,814 - WARNING -  * Debugger is active!
+2026-08-17 15:56:48,821 - INFO -  * Debugger PIN: 106-751-790
+2026-08-17 15:56:50,857 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:50] "GET / HTTP/1.1" 200 -
+2026-08-17 15:56:50,959 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:50] "[36mGET /static/css/login.css HTTP/1.1[0m" 304 -
+2026-08-17 15:56:50,959 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:50] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 15:56:50,974 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:50] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:56:56,732 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:56] "[32mPOST / HTTP/1.1[0m" 302 -
+2026-08-17 15:56:56,738 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:56] "GET /dashboard HTTP/1.1" 200 -
+2026-08-17 15:56:56,762 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 15:56:56,769 - INFO - 127.0.0.1 - - [17/Aug/2026 15:56:56] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 15:57:00,391 - INFO - 127.0.0.1 - - [17/Aug/2026 15:57:00] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 15:57:00,413 - INFO - 127.0.0.1 - - [17/Aug/2026 15:57:00] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 16:00:36,130 - INFO - 127.0.0.1 - - [17/Aug/2026 16:00:36] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:00:36,156 - INFO - 127.0.0.1 - - [17/Aug/2026 16:00:36] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 16:01:09,787 - INFO - 127.0.0.1 - - [17/Aug/2026 16:01:09] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:01:09,812 - INFO - 127.0.0.1 - - [17/Aug/2026 16:01:09] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 16:01:25,052 - INFO - 127.0.0.1 - - [17/Aug/2026 16:01:25] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:01:25,078 - INFO - 127.0.0.1 - - [17/Aug/2026 16:01:25] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 16:01:38,839 - INFO - 127.0.0.1 - - [17/Aug/2026 16:01:38] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:01:38,863 - INFO - 127.0.0.1 - - [17/Aug/2026 16:01:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 16:02:07,100 - INFO - 127.0.0.1 - - [17/Aug/2026 16:02:07] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:02:07,132 - INFO - 127.0.0.1 - - [17/Aug/2026 16:02:07] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 16:02:21,685 - INFO - 127.0.0.1 - - [17/Aug/2026 16:02:21] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:02:21,711 - INFO - 127.0.0.1 - - [17/Aug/2026 16:02:21] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 16:02:40,042 - INFO - 127.0.0.1 - - [17/Aug/2026 16:02:40] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:02:40,062 - INFO - 127.0.0.1 - - [17/Aug/2026 16:02:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 16:05:14,653 - INFO - 127.0.0.1 - - [17/Aug/2026 16:05:14] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:05:14,677 - INFO - 127.0.0.1 - - [17/Aug/2026 16:05:14] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 16:05:14,685 - INFO - 127.0.0.1 - - [17/Aug/2026 16:05:14] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 16:05:35,202 - INFO - 127.0.0.1 - - [17/Aug/2026 16:05:35] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:05:35,229 - INFO - 127.0.0.1 - - [17/Aug/2026 16:05:35] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 16:05:35,235 - INFO - 127.0.0.1 - - [17/Aug/2026 16:05:35] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 16:05:49,239 - INFO - 127.0.0.1 - - [17/Aug/2026 16:05:49] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:05:49,266 - INFO - 127.0.0.1 - - [17/Aug/2026 16:05:49] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 16:05:49,273 - INFO - 127.0.0.1 - - [17/Aug/2026 16:05:49] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 16:21:48,894 - INFO - 127.0.0.1 - - [17/Aug/2026 16:21:48] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:21:48,920 - INFO - 127.0.0.1 - - [17/Aug/2026 16:21:48] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 16:21:48,928 - INFO - 127.0.0.1 - - [17/Aug/2026 16:21:48] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 16:22:00,795 - INFO - 127.0.0.1 - - [17/Aug/2026 16:22:00] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:22:00,820 - INFO - 127.0.0.1 - - [17/Aug/2026 16:22:00] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 16:22:00,828 - INFO - 127.0.0.1 - - [17/Aug/2026 16:22:00] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 16:24:12,119 - INFO - 127.0.0.1 - - [17/Aug/2026 16:24:12] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:24:12,144 - INFO - 127.0.0.1 - - [17/Aug/2026 16:24:12] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 16:24:12,152 - INFO - 127.0.0.1 - - [17/Aug/2026 16:24:12] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 16:24:54,574 - INFO - 127.0.0.1 - - [17/Aug/2026 16:24:54] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:24:54,600 - INFO - 127.0.0.1 - - [17/Aug/2026 16:24:54] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 16:24:54,607 - INFO - 127.0.0.1 - - [17/Aug/2026 16:24:54] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 16:25:08,872 - INFO - 127.0.0.1 - - [17/Aug/2026 16:25:08] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:25:08,898 - INFO - 127.0.0.1 - - [17/Aug/2026 16:25:08] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 16:25:08,906 - INFO - 127.0.0.1 - - [17/Aug/2026 16:25:08] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 16:25:25,355 - INFO - 127.0.0.1 - - [17/Aug/2026 16:25:25] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:25:25,378 - INFO - 127.0.0.1 - - [17/Aug/2026 16:25:25] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 16:25:25,386 - INFO - 127.0.0.1 - - [17/Aug/2026 16:25:25] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 16:25:35,776 - INFO - 127.0.0.1 - - [17/Aug/2026 16:25:35] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:25:35,802 - INFO - 127.0.0.1 - - [17/Aug/2026 16:25:35] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 16:25:35,809 - INFO - 127.0.0.1 - - [17/Aug/2026 16:25:35] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 16:27:47,199 - INFO - 127.0.0.1 - - [17/Aug/2026 16:27:47] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:27:47,226 - INFO - 127.0.0.1 - - [17/Aug/2026 16:27:47] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 16:27:47,226 - INFO - 127.0.0.1 - - [17/Aug/2026 16:27:47] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 16:27:47,238 - INFO - 127.0.0.1 - - [17/Aug/2026 16:27:47] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 16:28:45,735 - INFO - 127.0.0.1 - - [17/Aug/2026 16:28:45] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:28:45,763 - INFO - 127.0.0.1 - - [17/Aug/2026 16:28:45] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 16:28:45,764 - INFO - 127.0.0.1 - - [17/Aug/2026 16:28:45] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 16:28:45,773 - INFO - 127.0.0.1 - - [17/Aug/2026 16:28:45] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 16:29:04,967 - INFO - 127.0.0.1 - - [17/Aug/2026 16:29:04] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:29:04,994 - INFO - 127.0.0.1 - - [17/Aug/2026 16:29:04] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 16:29:04,995 - INFO - 127.0.0.1 - - [17/Aug/2026 16:29:04] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 16:29:05,003 - INFO - 127.0.0.1 - - [17/Aug/2026 16:29:05] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 16:29:17,443 - INFO - 127.0.0.1 - - [17/Aug/2026 16:29:17] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:29:17,468 - INFO - 127.0.0.1 - - [17/Aug/2026 16:29:17] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 16:29:17,469 - INFO - 127.0.0.1 - - [17/Aug/2026 16:29:17] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 16:29:17,478 - INFO - 127.0.0.1 - - [17/Aug/2026 16:29:17] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 16:30:07,884 - INFO - 127.0.0.1 - - [17/Aug/2026 16:30:07] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:30:07,918 - INFO - 127.0.0.1 - - [17/Aug/2026 16:30:07] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 16:30:07,918 - INFO - 127.0.0.1 - - [17/Aug/2026 16:30:07] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 16:30:07,928 - INFO - 127.0.0.1 - - [17/Aug/2026 16:30:07] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 16:30:08,482 - INFO - 127.0.0.1 - - [17/Aug/2026 16:30:08] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:30:08,512 - INFO - 127.0.0.1 - - [17/Aug/2026 16:30:08] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-08-17 16:30:08,513 - INFO - 127.0.0.1 - - [17/Aug/2026 16:30:08] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 16:32:19,729 - INFO - 127.0.0.1 - - [17/Aug/2026 16:32:19] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:32:19,757 - INFO - 127.0.0.1 - - [17/Aug/2026 16:32:19] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 16:32:19,757 - INFO - 127.0.0.1 - - [17/Aug/2026 16:32:19] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 16:32:19,767 - INFO - 127.0.0.1 - - [17/Aug/2026 16:32:19] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 16:32:39,093 - INFO - 127.0.0.1 - - [17/Aug/2026 16:32:39] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:32:39,118 - INFO - 127.0.0.1 - - [17/Aug/2026 16:32:39] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 16:32:39,119 - INFO - 127.0.0.1 - - [17/Aug/2026 16:32:39] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 16:32:39,127 - INFO - 127.0.0.1 - - [17/Aug/2026 16:32:39] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -
+2026-08-17 16:32:49,220 - INFO - 127.0.0.1 - - [17/Aug/2026 16:32:49] "GET /admin/farmers HTTP/1.1" 200 -
+2026-08-17 16:32:49,244 - INFO - 127.0.0.1 - - [17/Aug/2026 16:32:49] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-08-17 16:32:49,246 - INFO - 127.0.0.1 - - [17/Aug/2026 16:32:49] "[36mGET /static/images/tea_logo.jpg HTTP/1.1[0m" 304 -
+2026-08-17 16:32:49,252 - INFO - 127.0.0.1 - - [17/Aug/2026 16:32:49] "[36mGET /static/images/background_image.png HTTP/1.1[0m" 304 -

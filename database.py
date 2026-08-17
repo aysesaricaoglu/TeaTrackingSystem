@@ -1,5 +1,6 @@
 import sqlite3
 import logging
+from werkzeug.security import generate_password_hash, check_password_hash
 
 logging.basicConfig(
     level=logging.INFO,
@@ -11,9 +12,39 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 DATABASE_NAME = "tea.db"
 
+def normalize_search_text(text):
+    if text is None:
+        return ""
+
+    text = str(text).strip()
+
+    replacements = str.maketrans({
+        "ç": "c",
+        "Ç": "c",
+        "ğ": "g",
+        "Ğ": "g",
+        "ı": "i",
+        "I": "i",
+        "İ": "i",
+        "i": "i",
+        "ö": "o",
+        "Ö": "o",
+        "ş": "s",
+        "Ş": "s",
+        "ü": "u",
+        "Ü": "u"
+    })
+
+    return text.translate(replacements).casefold()
 
 def create_connection():
     connection = sqlite3.connect(DATABASE_NAME)
+
+    connection.create_function(
+            "normalize_text",
+            1,
+            normalize_search_text
+    )
 
     return connection
 
@@ -124,10 +155,11 @@ def add_user(tc_no, password, role, first_name, last_name):
     if existing_user:
         connection.close()
         return False
+    hashed_password = generate_password_hash(password)
 
     cursor.execute(
         "INSERT INTO users (tc_no, password, role, first_name, last_name) VALUES (?, ?, ?, ?, ?)",
-        (tc_no, password, role, first_name, last_name),
+        (tc_no, hashed_password, role, first_name, last_name),
     )
     connection.commit()
     connection.close()
@@ -356,7 +388,7 @@ def add_expert(tc_no,password,role,first_name,last_name):
         connection.close()
         return False
 
-
+    hashed_password = generate_password_hash(password)
     cursor.execute("""
 
          INSERT INTO users(
@@ -367,7 +399,7 @@ def add_expert(tc_no,password,role,first_name,last_name):
             last_name) VALUES(?,?,?,?,?)
             """,(
                 tc_no,
-                password,
+                hashed_password,
                 role,
                 first_name,
                 
@@ -382,8 +414,95 @@ def add_expert(tc_no,password,role,first_name,last_name):
 
 
 
+def search_farmers(filters):
+    connection = create_connection()
+    cursor = connection.cursor()
 
+    query = """
+        SELECT
+            farmers.id,
+            users.tc_no,
+            farmers.first_name,
+            farmers.last_name,
+            farmers.city,
+            farmers.district,
+            farmers.phone_number,
+            farmers.village
+        FROM farmers
+        JOIN users
+            ON farmers.user_id = users.id
+        WHERE users.role = 'farmer'
+    """
 
+    parameters = []
+
+    if filters.get("name"):
+        query += """
+            AND normalize_text(farmers.first_name) LIKE ?
+        """
+        parameters.append(
+            f"%{normalize_search_text(filters['name'])}%"
+        )
+
+    if filters.get("surname"):
+        query += """
+            AND normalize_text(farmers.last_name) LIKE ?
+        """
+        parameters.append(
+            f"%{normalize_search_text(filters['surname'])}%"
+        )
+
+    if filters.get("tc"):
+        query += """
+            AND users.tc_no LIKE ?
+        """
+        parameters.append(
+            f"%{filters['tc']}%"
+        )
+
+    if filters.get("city"):
+        query += """
+            AND normalize_text(farmers.city) LIKE ?
+        """
+        parameters.append(
+            f"%{normalize_search_text(filters['city'])}%"
+        )
+
+    if filters.get("district"):
+        query += """
+            AND normalize_text(farmers.district) LIKE ?
+        """
+        parameters.append(
+            f"%{normalize_search_text(filters['district'])}%"
+        )
+
+    if filters.get("village"):
+        query += """
+            AND normalize_text(farmers.village) LIKE ?
+        """
+        parameters.append(
+            f"%{normalize_search_text(filters['village'])}%"
+        )
+
+    if filters.get("phone"):
+        query += """
+            AND farmers.phone_number LIKE ?
+        """
+        parameters.append(
+            f"%{filters['phone']}%"
+        )
+
+    query += """
+        ORDER BY farmers.first_name, farmers.last_name
+    """
+
+    cursor.execute(query, tuple(parameters))
+
+    farmers = cursor.fetchall()
+
+    connection.close()
+
+    return farmers
 
 def get_all_farmers(search=""):
     connection= create_connection()
@@ -511,7 +630,7 @@ def add_farmer(tc_no,password,role,first_name,last_name,city,district,phone_numb
             connection.close()
             return False
 
-
+        hashed_password = generate_password_hash(password)
         cursor.execute("""
             INSERT INTO users (
             tc_no,
@@ -521,7 +640,7 @@ def add_farmer(tc_no,password,role,first_name,last_name,city,district,phone_numb
             last_name) VALUES (?,?,?,?,?)
             """,(
                 tc_no,
-                password,
+                hashed_password,
                 role,
                 first_name,
                 last_name
@@ -570,3 +689,23 @@ def add_farmer(tc_no,password,role,first_name,last_name,city,district,phone_numb
 #     connection.close()
 
 #     print("Test data deleted successfully.")
+def update_admin_password(user_id, new_password):
+
+    connection = create_connection()
+    cursor = connection.cursor()
+
+    hashed_password = generate_password_hash(new_password)
+
+    cursor.execute("""
+        UPDATE users
+        SET password = ?
+        WHERE id = ?
+        AND role = 'admin'
+    """, (hashed_password, user_id))
+
+    print("Updated rows:", cursor.rowcount, flush=True)
+
+    connection.commit()
+    connection.close()
+
+    return cursor.rowcount > 0

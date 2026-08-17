@@ -1,6 +1,6 @@
 /* =========================================================
    ORTAK STYLE.CSS
-   Admin, Farmer ve Expert ekranlarının birleşik stili
+   Admin, Farmer ve Expert ekranlarının birleşik stili (Glassmorphism UI)
 ========================================================= */
 
 /* ---------------- GENEL AYARLAR & ARKA PLAN ---------------- */
@@ -8,43 +8,42 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f4f1eb; /* Resim yüklenmezse diye yedek renk */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a1a; 
+    color: #ffffff; /* Genel metin rengi beyaza çekildi */
 }
 
 /* Tüm sayfayı kaplayan ve arka plan görselini tutan ana kapsayıcı */
-/* Html'deki container class'larını (admin-container, farmer-container, expert-container) 
-   ortaklaştırmak için tek bir isim verdik: dashboard-container */
 .dashboard-container {
     display: flex;
     min-height: 100vh;
-    background-image: url("../images/background_image.png");
+    background-image: url("../images/background_image.png"); /* Arka plana dokunulmadı */
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Scroll yaparken arka planın sabit kalması için admin'den alındı */
+    background-attachment: fixed;
     background-repeat: no-repeat;
 }
 
 /* ---------------- SOL MENÜ (SIDEBAR) ---------------- */
-/* Admin'deki cam efekti (backdrop-filter) ve daha şık duruşu baz alınarak birleştirildi */
 .sidebar {
     width: 260px;
-    background: rgba(46, 125, 50, 0.75); /* Koyu yeşilin yarı saydam hali */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(20, 45, 25, 0.6); /* Koyu şeffaf yeşil */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     color: white;
     padding: 40px 25px;
-    border-right: 1px solid rgba(218, 165, 32, 0.4); /* Altın sarısı sağ kenarlık */
-    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.15); /* İnce beyaz/şeffaf kenarlık */
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
     z-index: 10;
 }
 
 .sidebar h2 {
     text-align: center;
     margin-bottom: 40px;
-    font-family: "Times New Roman", Times, serif;
+    font-family: "Segoe UI", sans-serif;
+    font-weight: 600;
     letter-spacing: 1px;
-    border-bottom: 1px solid rgba(218, 165, 32, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding-bottom: 15px;
 }
 
@@ -58,133 +57,256 @@ body {
 }
 
 .sidebar a {
-    color: white;
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     font-size: 16px;
     display: block;
     padding: 12px 15px;
     border-radius: 8px;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .sidebar a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #ebd19d;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    box-shadow: inset 2px 0 0 0 #4ade80; /* Sol tarafta hover efekti çizgisi */
 }
 
 /* ---------------- SAĞ İÇERİK (MAIN CONTENT) ---------------- */
 .main-content {
     flex: 1;
     padding: 40px 50px;
+    overflow-y: auto;
 }
 
-/* Üst Başlık (Admin'in daha şık yapısı baz alındı) */
+/* Üst Başlık */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
-    border-bottom: 2px solid rgba(235, 209, 157, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding-bottom: 15px;
 }
 
 .header h1 {
     color: #ffffff;
-    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6);
-    font-family: "Times New Roman", Times, serif;
+    font-family: "Segoe UI", sans-serif;
     margin-bottom: 5px;
+    font-weight: 600;
 }
 
 .header p {
-    color: #f4f1eb;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 15px;
     margin-top: 0;
+}
+
+/* ---------------- ARAMA VE FİLTRE KARTLARI (GLASSMORPHISM) ---------------- */
+.search-content-card {
+    background: rgba(20, 45, 25, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.search-content-card h2 {
+    margin-top: 0;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 150px;
+    height: 80px;
+}
+
+/* --- ÖZEL CHECKBOX TASARIMI --- */
+.filter-item label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.9);
+    position: relative;
+    padding-left: 28px;
+    user-select: none;
+}
+
+.filter-item label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Checkbox'ın kendisi (Kutu) */
+.filter-item label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Checkbox İşaretlendiğinde */
+.filter-item label input:checked ~ ::before,
+.filter-item label:has(input:checked)::before {
+    background: #3a7d44;
+    border-color: #4ade80;
+}
+
+/* Checkbox İçindeki Tik İşareti */
+.filter-item label::after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-60%) rotate(45deg);
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.filter-item label input:checked ~ ::after,
+.filter-item label:has(input:checked)::after {
+    opacity: 1;
+}
+
+/* Filtre Input Alanları */
+.filter-input input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.filter-input input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.filter-input input:focus {
+    outline: none;
+    border-color: #4ade80;
+    box-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
 }
 
 /* ---------------- İSTATİSTİK KARTLARI ---------------- */
 .cards {
     display: grid;
-    /* Otomatik sığdırma: Ekran küçülürse alt satıra geçer, Admin ve Farmer'da ortak çalışır */
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 25px;
 }
 
-/* Admin'deki Krem Cam Efekti Kart Yapısı */
 .stat-card {
-    background-color: rgba(244, 241, 235, 0.4); 
+    background: rgba(20, 45, 25, 0.45);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(218, 165, 32, 0.6); 
-    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.15); 
+    border-radius: 16px;
     padding: 25px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .stat-card:hover {
     transform: translateY(-5px);
-    background-color: rgba(244, 241, 235, 0.6);
+    background: rgba(30, 60, 35, 0.55);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .stat-card h3 {
-    color: #111;
-    font-size: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
     margin-bottom: 10px;
     margin-top: 0;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 .stat-card p {
     font-size: 32px;
     font-weight: bold;
-    color: #1a471d;
+    color: #ffffff;
     margin: 0;
 }
 
 /* ---------------- TABLO BÖLÜMÜ ---------------- */
-.table-section {
-    margin-top: 40px;
+.table-section, .content-card {
+    margin-top: 30px;
+    background: rgba(20, 45, 25, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
-.table-section h2,
-.recentdel h2 {
+.table-section h2, .content-card h2 {
     color: #ffffff;
-    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6);
-    font-family: "Times New Roman", Times, serif;
+    font-weight: 500;
+    margin-top: 0;
     margin-bottom: 20px;
 }
 
-/* Admin ve Farmer'daki ortak tablo görünümü */
+.table-container {
+    overflow-x: auto;
+}
+
 table {
     width: 100%;
-    margin-top: 20px;
     border-collapse: collapse;
-    background-color: rgba(244, 241, 235, 0.4); 
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(218, 165, 32, 0.6);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    background: transparent;
 }
 
 table th {
-    background: rgba(46, 125, 50, 0.85);
-    color: white;
-    padding: 18px 15px;
-    font-weight: 600;
+    background: rgba(0, 0, 0, 0.2);
+    color: #4ade80;
+    padding: 16px 15px;
+    font-weight: 500;
     letter-spacing: 0.5px;
-    text-align: center;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 table td {
-    padding: 15px;
-    text-align: center;
-    border-bottom: 1px solid rgba(218, 165, 32, 0.3);
-    color: #111;
-    font-weight: 500;
+    padding: 16px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    font-weight: 400;
 }
 
 table tr:last-child td {
@@ -192,28 +314,26 @@ table tr:last-child td {
 }
 
 table tr:hover {
-    background: rgba(255, 255, 255, 0.3); 
+    background: rgba(255, 255, 255, 0.05); 
 }
 
-/* ---------------- EXPERT FORMU VE SON TESLİMATLAR KUTUSU ---------------- */
-/* Expert sayfasındaki form tasarımı */
-#form-alani,
-form {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+/* ---------------- FORMLAR VE İNPUTLAR ---------------- */
+#form-alani, form {
+    background: rgba(20, 45, 25, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.1);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
     max-width: 800px;
     margin-bottom: 40px;
-    border: 1px solid rgba(218, 165, 32, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 #form-alani h1 {
-    color: #2E7D32;
+    color: #ffffff;
     margin-bottom: 25px;
-    text-shadow: none; /* Header'daki h1 ile karışmaması için */
+    font-weight: 500;
 }
 
 .input-group {
@@ -223,8 +343,8 @@ form {
 .input-group label {
     display: block;
     margin-bottom: 8px;
-    font-weight: bold;
-    color: #111;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .input-group input,
@@ -232,84 +352,147 @@ form {
     width: 100%;
     padding: 14px;
     border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 16px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 15px;
     box-sizing: border-box; 
+    transition: all 0.3s ease;
 }
 
 .input-group input:focus,
 .input-group select:focus {
     outline: none;
-    border: 2px solid #2E7D32;
+    border-color: #4ade80;
+    box-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
 }
 
-/* Buton Tasarımı */
+/* ---------------- BUTONLAR ---------------- */
 .btn {
-    background-color: #2E7D32;
+    background: #3a7d44;
     color: white;
-    padding: 15px 20px;
-    border: none;
+    padding: 12px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .btn:hover {
-    background-color: #1b5e20;
+    background: #2b5c38;
+    border-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Son Teslimatlar Kutusu (Expert sayfasındaki yapı) */
-.recentdel {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    color: rgb(0, 0, 0);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.1);
-    max-width: 800px; /* Form ile aynı genişlikte tutuldu */
-    margin-top: 30px;
-    border: 1px solid rgba(218, 165, 32, 0.4);
-}
-
-.view-all {
-    margin-top: 20px;
-    text-align: right;
-}
-
-.view-all a {
-    color: #2E7D32;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.view-all a:hover {
-    text-decoration: underline;
-}
-/* ACTİONLAR*/
 .btn-delete {
-    border: none;
-    background: #dc3545;
+    background: rgba(211, 47, 47, 0.8);
     color: white;
-    padding: 7px 12px;
+    padding: 8px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 13px;
     cursor: pointer;
-    transition: 0.2s ease;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
 }
 
 .btn-delete:hover {
-    background: #b02a37;
+    background: #d32f2f;
+    box-shadow: 0 0 10px rgba(211, 47, 47, 0.5);
 }
-/* =========================================
-   TABLO İÇİNDEKİ FORMLAR VE SİLME BUTONU
-========================================= */
 
-/* Tablo içindeki formların, devasa dashboard form tasarımından etkilenmesini engelliyoruz */
+.farmer_ekle, .expert_ekle {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    margin-bottom: 20px;
+}
+
+.farmer_ekle:hover, .expert_ekle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #ffffff;
+    padding: 40px;
+    margin-bottom: 20px;
+
+}
+
+/* ---------------- DİĞER KARTLAR VE DETAYLAR ---------------- */
+.recentdel {
+    background: rgba(20, 45, 25, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    max-width: 800px; 
+    margin-top: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.view-all-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: rgba(74, 222, 128, 0.15); 
+    color: #4ade80;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 8px;
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    transition: all 0.3s ease;
+}
+
+.view-all-btn:hover {
+    background: #4ade80;
+    color: #1a1a1a;
+}
+
+.dashboard-section {
+    background: rgba(20, 45, 25, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 30px;
+    margin-top: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.dashboard-section:hover {
+    transform: translateY(-3px);
+    background: rgba(30, 60, 35, 0.55);
+}
+
+.dashboard-section h2 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #ffffff;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.dashboard-section p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Tablo içindeki form resetleyici */
 td form {
     background: transparent !important;
     padding: 0 !important;
@@ -319,130 +502,49 @@ td form {
     max-width: none !important;
     backdrop-filter: none !important;
 }
-
-/* Kırmızı Silme Butonu (.btn-delete) */
-.btn-delete {
-    background-color: #d32f2f; /* Kırmızı renk */
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 6px;
-    font-size: 14px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.btn-delete:hover {
-    background-color: #b71c1c; /* Üzerine gelince daha koyu kırmızı */
-}
-
-/* View All Deliveries Buton/Link Tasarımı */
-.view-all-btn {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: rgba(46, 125, 50, 0.1); /* Hafif yeşil arka plan */
-    color: #2E7D32;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 8px;
-    border: 1px solid #2E7D32;
-    transition: all 0.3s ease;
-}
-
-.view-all-btn:hover {
-    background-color: #2E7D32;
-    color: white;
-}
-/* =========================================================
-   DASHBOARD ROLE SECTION
-   Admin / Expert / Farmer dashboard açıklama kartı
-========================================================= */
-
-.dashboard-section {
-    background: rgba(244, 241, 235, 0.55);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-
-    border: 1px solid rgba(218, 165, 32, 0.55);
-    border-radius: 15px;
-
-    padding: 30px;
-    margin-top: 30px;
-
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-
-    max-width: 800px;
-
-    transition: transform 0.3s ease,
-                background-color 0.3s ease;
-}
-
-.dashboard-section:hover {
-    transform: translateY(-3px);
-    background: rgba(244, 241, 235, 0.7);
-}
-
-.dashboard-section h2 {
+/* Filtre inputlarının varsayılan kapalı (gizli) hali */
+.filter-input {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
     margin-top: 0;
-    margin-bottom: 12px;
-
-    color: #1a471d;
-
-    font-family: "Times New Roman",
-                 Times,
-                 serif;
-
-    font-size: 28px;
+    transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
 }
 
-.dashboard-section p {
-    margin: 0;
-
-    color: #333;
-
-    font-size: 16px;
-    line-height: 1.6;
+/* Checkbox seçildiğinde JS ile eklenecek açık hali */
+.filter-input.show {
+    max-height: 60px; /* Input'un sığacağı kadar alan */
+    opacity: 1;
+    margin-top: 10px;
 }
-.name_surname{
-
-
-
-    
-}
-.farmer_ekle{
-
-   display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: rgba(226, 233, 227, 0.846); /* Hafif yeşil arka plan */
-    color: #2E7D32;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 8px;
-    border: 1px solid #2E7D32;
-    transition: all 0.3s ease;
-
-
-
-}
-
-
-.expert_ekle{
-    display: inline-block;
-    margin-top: 15px;
+.logo {
+    width: 70px;
+    border-radius: 50%; /* Logoyu tek satırda yuvarlak yapar */
+    display: flex;
+    margin: auto;
     margin-bottom: 15px;
-    padding: 10px 20px;
-    background-color: rgba(226, 233, 227, 0.846); /* Hafif yeşil arka plan */
-    color: #2E7D32;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 8px;
-    border: 1px solid #2E7D32;
-    transition: all 0.3s ease;
+}
+/* Başlık kapsayıcısını esnek (flex) yapıyoruz */
+.sidebar-header {
+    display: flex;
+    align-items: center; /* Logoyu ve yazıyı dikeyde birbirine göre tam ortalar */
+    justify-content: center; /* İkisini birden sidebar'ın yatayda ortasına hizalar */
+    gap: 12px; /* Logo ile yazı arasındaki boşluk (istediğin gibi artırıp azaltabilirsin) */
+    
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Alt çizgi artık kapsayıcıda */
+    padding-bottom: 15px;
+}
 
+/* Yazının kendi dış boşluklarını sıfırlıyoruz ki Flexbox'ın hizalamasını bozmasın */
+.sidebar-header h2 {
+    margin: 0; 
+    padding: 0;
+    border-bottom: none; /* Çizgiyi üst kapsayıcıya taşıdık, o yüzden buradan siliyoruz */
+}
 
-
-
+/* Logonun boyutunu ayarlamak için (eğer resim dosyası kullanıyorsan) */
+.sidebar-logo {
+    width: 28px; /* Logonun büyüklüğüne göre bu değeri değiştirebilirsin */
+    height: auto;
 }

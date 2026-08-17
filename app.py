@@ -1,5 +1,5 @@
 import logging
-
+from werkzeug.security import check_password_hash
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
@@ -26,19 +26,108 @@ from database import (
     get_all_experts,
     add_expert,
     delete_expert,
-    delete_farmer
+    delete_farmer,
+    search_farmers,
+    update_admin_password
+    
 )
 
 # logging.basicConfig(filename='myapp.log', level=logging.INFO)
 
 # logger = logging.getLogger(__name__)
-
-
+update_admin_password(1, "1234")
 app = Flask(__name__)  # uygulamayı oluşturdum
 app.secret_key = "tea_tracking_secret_key"  # session için gizli anahtar
 print("Connected to database successfully.")
 create_table()  # Program açılırken tabloları oluştur.
 # show_tables()  # Program açılırken tabloları göster.
+# add_test_farmers()#mutlaka yorum satırına çevir!!!
+def validate_search_filters(filters):
+
+    # Name
+    if "name" in filters:
+
+        value = filters["name"].strip()
+
+        if not value:
+            raise ValueError("Name cannot be empty.")
+
+        if not value.replace(" ", "").isalpha():
+            raise ValueError("Name can contain only letters.")
+
+    # Surname
+    if "surname" in filters:
+
+        value = filters["surname"].strip()
+
+        if not value:
+            raise ValueError("Surname cannot be empty.")
+
+        if not value.replace(" ", "").isalpha():
+            raise ValueError("Surname can contain only letters.")
+
+    # TC Number
+    if "tc" in filters:
+
+        value = filters["tc"].strip()
+
+        if not value:
+            raise ValueError("TC Number cannot be empty.")
+
+        if not value.isdigit():
+            raise ValueError("TC Number can contain only digits.")
+
+        if len(value) != 11:
+            raise ValueError("TC Number must contain exactly 11 digits.")
+
+    # City
+    if "city" in filters:
+
+        value = filters["city"].strip()
+
+        if not value:
+            raise ValueError("City cannot be empty.")
+
+        if not value.replace(" ", "").isalpha():
+            raise ValueError("City can contain only letters.")
+
+    # District
+    if "district" in filters:
+
+        value = filters["district"].strip()
+
+        if not value:
+            raise ValueError("District cannot be empty.")
+
+        if not value.replace(" ", "").isalpha():
+            raise ValueError("District can contain only letters.")
+
+    # Village
+    if "village" in filters:
+
+        value = filters["village"].strip()
+
+        if not value:
+            raise ValueError("Village cannot be empty.")
+
+        if not value.replace(" ", "").isalpha():
+            raise ValueError("Village can contain only letters.")
+
+    # Phone
+    if "phone" in filters:
+
+        value = filters["phone"].strip()
+
+        if not value:
+            raise ValueError("Phone number cannot be empty.")
+
+        if not value.isdigit():
+            raise ValueError("Phone number can contain only digits.")
+
+        if len(value) < 10 or len(value) > 11:
+            raise ValueError(
+                "Phone number must contain 10 or 11 digits."
+            )
 
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -59,8 +148,7 @@ def home():
 
         else:
 
-            if password == user[2]:
-
+            if check_password_hash(user[2], password):
                 print("Login successful", flush=True)
                 session["user_id"] = user[0]
                 session["tc_no"] = user[1]
@@ -187,10 +275,6 @@ def create_delivery():
 
   
    
-  
-
-
-
 #ADMİN - FARMER#
 
 @app.route("/admin/farmers")
@@ -202,65 +286,12 @@ def farmer_management():
     if session["role"] != "admin":
         return redirect(url_for("dashboard"))
 
-    farmers = get_all_farmers()
 
     return render_template(
         "farmer_management.html",
-        farmers=farmers
+       
     )
-
-# @app.route("/api/farmers/search")
-# def search_farmers_api():
-
-#     if "user_id" not in session:
-#         return jsonify({
-#             "success": False,
-#             "message": "Unauthorized"
-#         }), 401
-
-#     if session["role"] != "admin":
-#         return jsonify({
-#             "success": False,
-#             "message": "Forbidden"
-#         }), 403
-
-#     search = request.args.get("search", "")
-
-#     farmers = get_all_farmers(search)
-
-#     return jsonify({
-#         "success": True,
-#         "farmers": farmers
-#     })
-# @app.route("/api/farmers/search")
-# def search_farmers_api():
-
-#     if "user_id" not in session:
-#         return jsonify({
-#             "success": False,
-#             "message": "Unauthorized"
-#         }), 401
-
-#     if session["role"] != "admin":
-#         return jsonify({
-#             "success": False,
-#             "message": "Forbidden"
-#         }), 403
-
-#     search = request.args.get("search", "")
-
-#     print("SEARCH FROM API:", search)
-
-#     farmers = get_all_farmers(search)
-
-#     print("FARMERS FROM API:", farmers)
-
-#     return jsonify({
-#         "success": True,
-#         "farmers": farmers
-#     })
-
-@app.route("/api/farmers/search")
+@app.route("/api/farmers/search", methods=["POST"])
 def search_farmers_api():
 
     if "user_id" not in session:
@@ -275,17 +306,57 @@ def search_farmers_api():
             "message": "Forbidden"
         }), 403
 
-    search = request.args.get("search", "")
+    data = request.get_json()
+    print("BACKEND DATA:", data, flush=True)
 
+    filters = data.get("filters", {})
+    print("BACKEND FILTERS:", filters, flush=True)
 
-    farmers = get_all_farmers(search)
+    try:
+        validate_search_filters(filters)
 
-    print("FARMERS FROM API:", farmers)
+    except ValueError as e:
+        print("VALIDATION ERROR:", str(e), flush=True)
+        return jsonify({
+            "success": False,
+            "message": str(e)
+        }), 400
+
+    farmers = search_farmers(filters)
 
     return jsonify({
         "success": True,
         "farmers": farmers
-    })
+    }), 200
+
+
+
+# @app.route("/api/farmers/search")
+# def search_farmers_api():
+
+#     if "user_id" not in session:
+#         return jsonify({
+#             "success": False,
+#             "message": "Unauthorized"
+#         }), 401
+
+#     if session["role"] != "admin":
+#         return jsonify({
+#             "success": False,
+#             "message": "Forbidden"
+#         }), 403
+
+#     search = request.args.get("search", "")
+
+
+#     farmers = get_all_farmers(search)
+
+#     print("FARMERS FROM API:", farmers)
+
+#     return jsonify({
+#         "success": True,
+#         "farmers": farmers
+#     })
 @app.route("/admin/farmers/add", methods=["GET", "POST"])
 def add_farmer_route():
 
@@ -296,6 +367,7 @@ def add_farmer_route():
         return redirect(url_for("dashboard"))
 
     return render_template("add_farmer.html")
+
 
 @app.route("/api/farmers/add", methods=["POST"])
 def add_farmer_api():

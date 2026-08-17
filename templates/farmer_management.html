@@ -21,7 +21,7 @@ Farmer Management
 
 </div>
 
-
+<!--
 <div class="content-card">
 
     <h2>Search Farmers</h2>
@@ -43,8 +43,100 @@ Farmer Management
     </form>
 
 </div>
+-->
+<div class="search-content-card">
 
+    <h2>Search Farmers</h2>
 
+    <div class="filter-options">
+
+        <!-- Name -->
+        <div class="filter-item">
+            <label>
+                <input type="checkbox" class="filter-checkbox" data-target="nameFilter">
+                Name
+            </label>
+            <div id="nameFilter" class="filter-input">
+                <input type="text" id="name" placeholder="Enter first name">
+            </div>
+        </div>
+
+        <!-- Surname -->
+        <div class="filter-item">
+            <label>
+                <input type="checkbox" class="filter-checkbox" data-target="surnameFilter">
+                Surname
+            </label>
+            <div id="surnameFilter" class="filter-input">
+                <input type="text" id="surname" placeholder="Enter last name">
+            </div>
+        </div>
+
+        <!-- TC Number -->
+        <div class="filter-item">
+            <label>
+                <input type="checkbox" class="filter-checkbox" data-target="tcFilter">
+                TC Number
+            </label>
+            <div id="tcFilter" class="filter-input">
+                <input type="text" id="tc" placeholder="Enter TC number">
+            </div>
+        </div>
+
+        <!-- City -->
+        <div class="filter-item">
+            <label>
+                <input type="checkbox" class="filter-checkbox" data-target="cityFilter">
+                City
+            </label>
+            <div id="cityFilter" class="filter-input">
+                <input type="text" id="city" placeholder="Enter city">
+            </div>
+        </div>
+
+        <!-- District -->
+        <div class="filter-item">
+            <label>
+                <input type="checkbox" class="filter-checkbox" data-target="districtFilter">
+                District
+            </label>
+            <div id="districtFilter" class="filter-input">
+                <input type="text" id="district" placeholder="Enter district">
+            </div>
+        </div>
+
+        <!-- Village -->
+        <div class="filter-item">
+            <label>
+                <input type="checkbox" class="filter-checkbox" data-target="villageFilter">
+                Village
+            </label>
+            <div id="villageFilter" class="filter-input">
+                <input type="text" id="village" placeholder="Enter village">
+            </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="filter-item">
+            <label>
+                <input type="checkbox" class="filter-checkbox" data-target="phoneFilter">
+                Phone Number
+            </label>
+            <div id="phoneFilter" class="filter-input">
+                <input type="text" id="phone" placeholder="Enter phone number">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Butonu yeniden en alta, sağa hizalı şekilde yerleştiriyoruz -->
+    <div style="margin-top: 25px; display: flex; justify-content: flex-end;">
+        <button type="button" id="searchFarmersButton" class="btn">
+            Show Results
+        </button>
+    </div>
+
+</div>
 <div class="content-card">
 
     <h2>Farmers</h2>
@@ -70,38 +162,6 @@ Farmer Management
 
             <tbody id="farmer-table-body">
 
-                {% for farmer in farmers %}
-
-                <tr>
-
-                    <td>{{ farmer[0] }}</td>
-
-                    <td>{{ farmer[1] }}</td>
-
-                    <td>
-                        {{ farmer[2] }} {{ farmer[3] }}
-                    </td>
-
-                    <td>{{ farmer[4] }}</td>
-
-                    <td>{{ farmer[5] }}</td>
-
-                    <td>{{ farmer[6] }}</td>
-
-                    <td>{{ farmer[7] }}</td>
-
-                    <td>
-
-                       <button class="btn-delete" data-url="{{ url_for('delete_farmer_api', farmer_id=farmer[0]) }}">
-                            Delete
-                       </button>
-
-                    </td>
-
-                </tr>
-
-                {% endfor %}
-
             </tbody>
 
         </table>
@@ -112,7 +172,306 @@ Farmer Management
 
 {% endblock %}
 {% block scripts %}
+
+
 <script>
+
+    const filterCheckboxes = document.querySelectorAll(".filter-checkbox");
+
+    filterCheckboxes.forEach(function(checkbox) {
+
+        checkbox.addEventListener("change", function() {
+
+            const targetId = this.getAttribute("data-target");
+            const targetElement = document.getElementById(targetId);
+
+        if (this.checked) {
+                targetElement.classList.add("show"); // CSS'teki .show sınıfını ekler
+            } else {
+                targetElement.classList.remove("show");
+            }
+
+        });
+
+    });
+    function isLettersOnly(value) {
+    return /^[A-Za-zÇĞİÖŞÜçğıöşü\s]+$/.test(value);
+}
+
+    function isDigitsOnly(value) {
+        return /^\d+$/.test(value);
+    }
+document
+    .getElementById("searchFarmersButton")
+    .addEventListener("click", function () {
+
+        const filters = {};
+
+        const name = document.getElementById("name").value.trim();
+        const surname = document.getElementById("surname").value.trim();
+        const tc = document.getElementById("tc").value.trim();
+        const tcCheckbox =
+            document.querySelector('[data-target="tcFilter"]');
+
+        console.log("TC value:", tc);
+        console.log("TC checkbox checked:", tcCheckbox.checked);    
+        const city = document.getElementById("city").value.trim();
+        const district = document.getElementById("district").value.trim();
+        const village = document.getElementById("village").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+
+        /*
+        ----------------------------------------
+        CHECKBOX KONTROLLERİ
+        ----------------------------------------
+        */
+
+        const nameChecked =
+            document.querySelector('[data-target="nameFilter"]').checked;
+
+        const surnameChecked =
+            document.querySelector('[data-target="surnameFilter"]').checked;
+
+        const tcChecked =
+            document.querySelector('[data-target="tcFilter"]').checked;
+
+        const cityChecked =
+            document.querySelector('[data-target="cityFilter"]').checked;
+
+        const districtChecked =
+            document.querySelector('[data-target="districtFilter"]').checked;
+
+        const villageChecked =
+            document.querySelector('[data-target="villageFilter"]').checked;
+
+        const phoneChecked =
+            document.querySelector('[data-target="phoneFilter"]').checked;
+
+
+        /*
+        ----------------------------------------
+        EN AZ BİR FİLTRE SEÇİLMELİ
+        ----------------------------------------
+        */
+
+        if (
+            !nameChecked &&
+            !surnameChecked &&
+            !tcChecked &&
+            !cityChecked &&
+            !districtChecked &&
+            !villageChecked &&
+            !phoneChecked
+        ) {
+            alert("Please select at least one filter.");
+            return;
+        }
+
+
+        /*
+        ----------------------------------------
+        NAME
+        ----------------------------------------
+        */
+
+        if (nameChecked) {
+
+            if (!name) {
+                alert("Please enter a name.");
+                return;
+            }
+
+            if (!isLettersOnly(name)) {
+                alert("Name can contain only letters.");
+                return;
+            }
+
+            filters.name = name;
+        }
+
+
+        /*
+        ----------------------------------------
+        SURNAME
+        ----------------------------------------
+        */
+
+        if (surnameChecked) {
+
+            if (!surname) {
+                alert("Please enter a surname.");
+                return;
+            }
+
+            if (!isLettersOnly(surname)) {
+                alert("Surname can contain only letters.");
+                return;
+            }
+
+            filters.surname = surname;
+        }
+
+
+        /*
+        ----------------------------------------
+        TC NUMBER
+        ----------------------------------------
+        */
+        console.log("tcChecked:", tcChecked);
+        if (tcChecked) {
+
+            if (!tc) {
+                alert("Please enter a TC number.");
+                return;
+            }
+
+            if (!isDigitsOnly(tc)) {
+                alert("TC Number can contain only digits.");
+                return;
+            }
+
+            if (tc.length !== 11) {
+                alert("TC Number must contain exactly 11 digits.");
+                return;
+            }
+
+            filters.tc = tc;
+        }
+
+
+        /*
+        ----------------------------------------
+        CITY
+        ----------------------------------------
+        */
+
+        if (cityChecked) {
+
+            if (!city) {
+                alert("Please enter a city.");
+                return;
+            }
+
+            if (!isLettersOnly(city)) {
+                alert("City can contain only letters.");
+                return;
+            }
+
+            filters.city = city;
+        }
+
+
+        /*
+        ----------------------------------------
+        DISTRICT
+        ----------------------------------------
+        */
+
+        if (districtChecked) {
+
+            if (!district) {
+                alert("Please enter a district.");
+                return;
+            }
+
+            if (!isLettersOnly(district)) {
+                alert("District can contain only letters.");
+                return;
+            }
+
+            filters.district = district;
+        }
+
+
+        /*
+        ----------------------------------------
+        VILLAGE
+        ----------------------------------------
+        */
+
+        if (villageChecked) {
+
+            if (!village) {
+                alert("Please enter a village.");
+                return;
+            }
+
+            if (!isLettersOnly(village)) {
+                alert("Village can contain only letters.");
+                return;
+            }
+
+            filters.village = village;
+        }
+
+
+        /*
+        ----------------------------------------
+        PHONE
+        ----------------------------------------
+        */
+
+        if (phoneChecked) {
+
+            if (!phone) {
+                alert("Please enter a phone number.");
+                return;
+            }
+
+            if (!isDigitsOnly(phone)) {
+                alert("Phone Number can contain only digits.");
+                return;
+            }
+
+            if (phone.length < 10 || phone.length > 11) {
+                alert("Phone Number must contain 10 or 11 digits.");
+                return;
+            }
+
+            filters.phone = phone;
+        }
+
+
+        /*
+        ----------------------------------------
+        FETCH
+        ----------------------------------------
+        */
+
+        console.log("Gönderilecek filtreler:", filters);
+        console.log("TC FILTER:", filters.tc);
+
+        fetch("/api/farmers/search", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                filters: filters
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+
+            console.log("Backend response:", data);
+
+            if (!data.success) {
+                alert(data.message);
+                return;
+            }
+
+            displayFarmers(data.farmers);
+
+        })
+        .catch(error => {
+
+            console.error("Search error:", error);
+
+            alert("An error occurred while searching farmers.");
+
+        });
+
+    });
 const tableBody = document.getElementById("farmer-table-body");
 
 tableBody.addEventListener("click", function(event) {
@@ -120,7 +479,6 @@ tableBody.addEventListener("click", function(event) {
     if (event.target.classList.contains("btn-delete")) {
 
         const button = event.target;
-
         const url = button.getAttribute("data-url");
 
         if (confirm("Are you sure you want to delete this farmer?")) {
@@ -128,13 +486,14 @@ tableBody.addEventListener("click", function(event) {
             fetch(url, {
                 method: "POST"
             })
+
             .then(response => response.json())
+
             .then(data => {
 
                 if (data.success) {
 
                     alert(data.message);
-
                     button.closest("tr").remove();
 
                 } else {
@@ -144,6 +503,7 @@ tableBody.addEventListener("click", function(event) {
                 }
 
             })
+
             .catch(error => {
 
                 console.error("Error:", error);
@@ -151,62 +511,51 @@ tableBody.addEventListener("click", function(event) {
                 alert("An error occurred while deleting the farmer.");
 
             });
+
         }
     }
 
 });
+function displayFarmers(farmers) {
 
-    const searchForm = document.getElementById("farmer-search-form");
-
-    console.log("SEARCH FORM:", searchForm);
-
-    searchForm.addEventListener("submit", function(event) {
-
-    event.preventDefault();
-
-    console.log("SEARCH SUBMIT CALISTI");
-
-    const searchValue = document.getElementById("farmer-search-input").value;
-
-    console.log("SEARCH VALUE:", searchValue);
-    fetch(`/api/farmers/search?search=${encodeURIComponent(searchValue)}`) 
-    .then(response => response.json())
-    .then(data => {
-
-    console.log("SEARCH RESULT:", data);
-    console.log("FARMERS:", data.farmers);
     const tableBody = document.getElementById("farmer-table-body");
 
-    console.log("TABLE BODY:", tableBody);
     tableBody.innerHTML = "";
 
-data.farmers.forEach(farmer => {
+    farmers.forEach(function (farmer) {
 
-    const row = document.createElement("tr");
+        const row = `
+            <tr>
 
-    row.innerHTML = `
-        <td>${farmer[0]}</td>
-        <td>${farmer[1]}</td>
-        <td>${farmer[2]} ${farmer[3]}</td>
-        <td>${farmer[4]}</td>
-        <td>${farmer[5]}</td>
-        <td>${farmer[6]}</td>
-        <td>${farmer[7]}</td>
-        <td>
-            <button class="btn-delete" data-url="/admin/farmers/delete/${farmer[0]}">
-                Delete
-            </button>
-        </td>
-    `;
+                <td>${farmer[0]}</td>
+                <td>${farmer[1]}</td>
+                <td>${farmer[2]} ${farmer[3]}</td>
+                <td>${farmer[4]}</td>
+                <td>${farmer[5]}</td>
+                <td>${farmer[6]}</td>
+                <td>${farmer[7]}</td>
 
-    tableBody.appendChild(row);
+                <td>
 
-});
-    })
-    .catch(error => {
-        console.error("Search error:", error);
+                    <button
+                        type="button"
+                        class="btn-delete"
+                        data-url="/admin/farmers/delete/${farmer[0]}">
+                        Delete
+                    </button>
+
+                </td>
+
+            </tr>
+        `;
+
+        tableBody.innerHTML += row;
+
     });
 
-});
+}
+
 </script>
+
+
 {% endblock %}

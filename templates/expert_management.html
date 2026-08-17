@@ -1,3 +1,5 @@
+
+
 {% extends "layout.html" %}
 
 {% block title %}
@@ -7,29 +9,262 @@ Expert Management
 {% block content %}
 
 <div class="page-header">
-    <h1>Expert Management</h1>
-    <p>Search and manage expert accounts.</p>
-    <a href="{{ url_for('add_expert_route') }}" class="expert_ekle">
-    + New Expert
+
+    <div>
+        <h1>Expert Management</h1>
+        <p>View and manage registered experts.</p>
+    </div>
+
+    <a href="#" class="expert_ekle">
+        + New Expert
     </a>
+
 </div>
 
-<div class="search-container">
-    <!-- Form'a ID eklendi -->
-    <form id="expert-search-form" method="GET" action="{{ url_for('expert_management') }}">
-        <!-- Input'a ID eklendi -->
-        <input
-            id="expert-search-input"
-            type="text"
-            name="search"
-            placeholder="Search by TC, first name or last name..."
-            value="{{ search }}"
+
+<!-- ================= SEARCH ================= -->
+
+<div class="search-content-card">
+
+    <h2>Search Experts</h2>
+
+    <div class="filter-options">
+
+        <!-- Name -->
+        <div class="filter-item">
+
+            <label>
+                <input
+                    type="checkbox"
+                    class="filter-checkbox"
+                    data-target="nameFilter"
+                >
+                Name
+            </label>
+
+            <div
+                id="nameFilter"
+                class="filter-input"
+                style="display: none;"
+            >
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter first name"
+                >
+            </div>
+
+        </div>
+
+
+        <!-- Surname -->
+        <div class="filter-item">
+
+            <label>
+                <input
+                    type="checkbox"
+                    class="filter-checkbox"
+                    data-target="surnameFilter"
+                >
+                Surname
+            </label>
+
+            <div
+                id="surnameFilter"
+                class="filter-input"
+                style="display: none;"
+            >
+                <input
+                    type="text"
+                    id="surname"
+                    placeholder="Enter last name"
+                >
+            </div>
+
+        </div>
+
+
+        <!-- TC Number -->
+        <div class="filter-item">
+
+            <label>
+                <input
+                    type="checkbox"
+                    class="filter-checkbox"
+                    data-target="tcFilter"
+                >
+                TC Number
+            </label>
+
+            <div
+                id="tcFilter"
+                class="filter-input"
+                style="display: none;"
+            >
+                <input
+                    type="text"
+                    id="tc"
+                    placeholder="Enter TC number"
+                >
+            </div>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="searchExpertsButton"
+            class="btn"
         >
-        <button type="submit" class="btn">
             Search
         </button>
-    </form>
+
+    </div>
+
 </div>
+
+
+<!-- ================= EXPERT TABLE ================= -->
+
+<div class="content-card">
+
+    <h2>Experts</h2>
+
+    <div class="table-container">
+
+        <table class="experts">
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>TC Number</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="expert-table-body">
+
+                {% for expert in experts %}
+
+                <tr>
+
+                    <td>{{ expert[0] }}</td>
+
+                    <td>{{ expert[1] }}</td>
+
+                    <td>
+                        {{ expert[2] }} {{ expert[3] }}
+                    </td>
+
+                    <td>
+
+                        <button
+                            type="button"
+                            class="btn-delete"
+                            data-url="{{ url_for('delete_expert_api', expert_id=expert[0]) }}"
+                        >
+                            Delete
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+
+    // =========================
+    // FILTER INPUTS
+    // =========================
+
+    const filterCheckboxes =
+        document.querySelectorAll(".filter-checkbox");
+
+    filterCheckboxes.forEach(function(checkbox) {
+
+        checkbox.addEventListener("change", function() {
+
+            const targetId =
+                this.getAttribute("data-target");
+
+            const targetElement =
+                document.getElementById(targetId);
+
+            if (this.checked) {
+
+                targetElement.style.display = "block";
+
+            } else {
+
+                targetElement.style.display = "none";
+
+            }
+
+        });
+
+    });
+
+
+    // =========================
+    // SEARCH BUTTON
+    // =========================
+
+    document
+        .getElementById("searchExpertsButton")
+        .addEventListener("click", function() {
+
+            const filters = {};
+
+            const name =
+                document.getElementById("name").value;
+
+            const surname =
+                document.getElementById("surname").value;
+
+            const tc =
+                document.getElementById("tc").value;
+
+
+            if (name) {
+                filters.name = name;
+            }
+
+            if (surname) {
+                filters.surname = surname;
+            }
+
+            if (tc) {
+                filters.tc = tc;
+            }
+
+
+            console.log(
+                "Expert filters:",
+                filters
+            );
+
+        });
+
+</script>
+
+
 
 <h2>Expert Records</h2>
 
@@ -69,10 +304,7 @@ Expert Management
     </table>
 </div>
 
-{% endblock %}
 
-
-{% block scripts %}
 <script>
     const tableBody = document.getElementById("expert-table-body");
 
