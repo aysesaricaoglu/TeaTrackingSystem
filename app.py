@@ -28,14 +28,14 @@ from database import (
     delete_expert,
     delete_farmer,
     search_farmers,
-    update_admin_password
+    search_experts
+    
     
 )
 
 # logging.basicConfig(filename='myapp.log', level=logging.INFO)
 
 # logger = logging.getLogger(__name__)
-update_admin_password(1, "1234")
 app = Flask(__name__)  # uygulamayı oluşturdum
 app.secret_key = "tea_tracking_secret_key"  # session için gizli anahtar
 print("Connected to database successfully.")
@@ -307,10 +307,12 @@ def search_farmers_api():
         }), 403
 
     data = request.get_json()
-    print("BACKEND DATA:", data, flush=True)
+
+
+    
 
     filters = data.get("filters", {})
-    print("BACKEND FILTERS:", filters, flush=True)
+  
 
     try:
         validate_search_filters(filters)
@@ -331,32 +333,6 @@ def search_farmers_api():
 
 
 
-# @app.route("/api/farmers/search")
-# def search_farmers_api():
-
-#     if "user_id" not in session:
-#         return jsonify({
-#             "success": False,
-#             "message": "Unauthorized"
-#         }), 401
-
-#     if session["role"] != "admin":
-#         return jsonify({
-#             "success": False,
-#             "message": "Forbidden"
-#         }), 403
-
-#     search = request.args.get("search", "")
-
-
-#     farmers = get_all_farmers(search)
-
-#     print("FARMERS FROM API:", farmers)
-
-#     return jsonify({
-#         "success": True,
-#         "farmers": farmers
-#     })
 @app.route("/admin/farmers/add", methods=["GET", "POST"])
 def add_farmer_route():
 
@@ -420,37 +396,6 @@ def add_farmer_api():
 
 
 #ADMIN - EXPERT#
-@app.route("/api/experts/search")
-def search_experts_api():
-
-    if "user_id" not in session:
-        return jsonify({
-
-            "success": False,
-            "message":"Unauthorized"
-        }),401
-
-    if session ["role"] != "admin":
-        return jsonify({
-            "success":False,
-            "message": "Forbidden"
-
-        }) ,403
-    search= request.args.get("search","")
-
-    experts= get_all_experts(search)
-
-    return jsonify({
-        "success":True,
-        "experts": experts
-    })
-
-
-
-
-
-
-
 
 
 @app.route("/admin/experts")
@@ -468,28 +413,50 @@ def expert_management():
 
     return render_template(
         "expert_management.html",
-        experts=experts,
-        search=search
+    
     )
 from flask import jsonify, request, session
 
-@app.route("/api/experts/search", methods=["GET"])
-def api_search_experts():
-    # Güvenlik kontrolü (Sadece yetkili adminler arama yapabilsin)
-    if "user_id" not in session or session.get("role") != "admin":
-        return jsonify({"success": False, "message": "Yetkisiz erişim"}), 403
+@app.route("/api/experts/search", methods=["POST"])
+def search_experts_api():
 
-    # URL'den gelen search parametresini al
-    search_query = request.args.get("search", "")
+        if "user_id" not in session:
+            return jsonify({
+                "success": False,
+                "message": "Unauthorized"
+            }), 401
+
+        if session["role"] != "admin":
+            return jsonify({
+                "success": False,
+                "message": "Forbidden"
+            }), 403
+
+        data = request.get_json()
+
+
+        
+
+        filters = data.get("filters", {})
     
-    # get_all_experts fonksiyonunu kullanarak verileri çek
-    experts = get_all_experts(search_query)
-    
-    # JavaScript'in beklediği formatta JSON olarak döndür
-    return jsonify({
-        "success": True,
-        "experts": experts
-    })
+
+        try:
+            validate_search_filters(filters)
+
+        except ValueError as e:
+            print("VALIDATION ERROR:", str(e), flush=True)
+            return jsonify({
+                "success": False,
+                "message": str(e)
+            }), 400
+
+        experts = search_experts(filters)
+
+        return jsonify({
+            "success": True,
+            "experts": experts
+        }), 200
+
 
 @app.route("/admin/experts/add",methods=["GET","POST"])
 
@@ -586,9 +553,6 @@ def logout():
     return redirect(url_for("home"))  # login sayfasına yönlendir
 
 
-if (
-    __name__ == "__main__"
-):  # eğer bu dosyayı doğrudan çalıştırıyorsam aşağıdaki kodu çalıştır demekmiş
-    app.run(
-        debug=True
-    )  # Flask uygulamasını başlatır ve debug modunu açar(koddaki değişiklikleri otomatik olarak algılar ve uygulamayı yeniden başlatır)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=80, debug=True)  # Flask uygulamasını başlatır ve debug modunu açar(koddaki değişiklikleri otomatik olarak algılar ve uygulamayı yeniden başlatır)
+

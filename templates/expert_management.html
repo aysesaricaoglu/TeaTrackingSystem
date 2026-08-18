@@ -15,7 +15,7 @@ Expert Management
         <p>View and manage registered experts.</p>
     </div>
 
-    <a href="#" class="expert_ekle">
+    <a href="{{url_for('add_expert_route')}}" class="expert_ekle">
         + New Expert
     </a>
 
@@ -45,7 +45,7 @@ Expert Management
             <div
                 id="nameFilter"
                 class="filter-input"
-                style="display: none;"
+                
             >
                 <input
                     type="text"
@@ -72,7 +72,7 @@ Expert Management
             <div
                 id="surnameFilter"
                 class="filter-input"
-                style="display: none;"
+                
             >
                 <input
                     type="text"
@@ -99,7 +99,7 @@ Expert Management
             <div
                 id="tcFilter"
                 class="filter-input"
-                style="display: none;"
+                
             >
                 <input
                     type="text"
@@ -111,81 +111,42 @@ Expert Management
         </div>
 
 
-        <button
+
+    </div>
+    <div style="display: flex; justify-content: center;">
+    
+        <button style="margin-top: 25px; display: flex;"
             type="button"
             id="searchExpertsButton"
             class="btn"
         >
-            Search
+            Show Results
         </button>
-
-    </div>
-
+        </div>
 </div>
 
 
 <!-- ================= EXPERT TABLE ================= -->
-
 <div class="content-card">
-
     <h2>Experts</h2>
-
     <div class="table-container">
-
         <table class="experts">
-
             <thead>
-
                 <tr>
                     <th>ID</th>
                     <th>TC Number</th>
                     <th>Name</th>
                     <th>Actions</th>
                 </tr>
-
             </thead>
-
             <tbody id="expert-table-body">
-
-                {% for expert in experts %}
-
-                <tr>
-
-                    <td>{{ expert[0] }}</td>
-
-                    <td>{{ expert[1] }}</td>
-
-                    <td>
-                        {{ expert[2] }} {{ expert[3] }}
-                    </td>
-
-                    <td>
-
-                        <button
-                            type="button"
-                            class="btn-delete"
-                            data-url="{{ url_for('delete_expert_api', expert_id=expert[0]) }}"
-                        >
-                            Delete
-                        </button>
-
-                    </td>
-
-                </tr>
-
-                {% endfor %}
-
+                <!-- Javascript arama sonuçlarını buraya basacak -->
             </tbody>
-
         </table>
-
     </div>
-
 </div>
 
 {% endblock %}
-
-
 {% block scripts %}
 
 <script>
@@ -193,6 +154,9 @@ Expert Management
     // =========================
     // FILTER INPUTS
     // =========================
+    function showGlassAlert(title, text, icon = 'info') {
+    Swal.fire({ title: title, text: text, icon: icon, confirmButtonColor: '#3a7d44', customClass: { popup: 'glass-swal' } });
+    }
 
     const filterCheckboxes =
         document.querySelectorAll(".filter-checkbox");
@@ -209,11 +173,11 @@ Expert Management
 
             if (this.checked) {
 
-                targetElement.style.display = "block";
+                targetElement.classList.add ("show");
 
             } else {
 
-                targetElement.style.display = "none";
+                targetElement.classList.remove ("show");
 
             }
 
@@ -221,161 +185,386 @@ Expert Management
 
     });
 
+        function isLettersOnly(value) {
+    return /^[A-Za-zÇĞİÖŞÜçğıöşü\s]+$/.test(value);
+        }
 
+    function isDigitsOnly(value) {
+        return /^\d+$/.test(value);
+    }
     // =========================
     // SEARCH BUTTON
     // =========================
 
-    document
-        .getElementById("searchExpertsButton")
-        .addEventListener("click", function() {
+    document.getElementById("searchExpertsButton").addEventListener("click", function() {
 
             const filters = {};
 
             const name =
-                document.getElementById("name").value;
+                document.getElementById("name").value.trim();
 
             const surname =
-                document.getElementById("surname").value;
+                document.getElementById("surname").value.trim();
 
             const tc =
-                document.getElementById("tc").value;
+                document.getElementById("tc").value.trim();
 
-
-            if (name) {
+            /* CHECKBOX İÇİN*/
+            const nameChecked = document.querySelector('[data-target="nameFilter"]').checked;
+            const surnameChecked = document.querySelector('[data-target="surnameFilter"]').checked;
+            const tcChecked = document.querySelector('[data-target="tcFilter"]').checked;
+           
+            /* EN AZ BİR FİLTRE SEÇİLMELİ */
+            if (!nameChecked && !surnameChecked && !tcChecked) {
+                showGlassAlert("Warning", "Please select at least one filter.", "warning");
+                return;
+            }
+ 
+            
+            if (nameChecked) {
+                if (!name) {
+                    showGlassAlert("Warning", "Please enter a name.", "warning");
+                    return;
+                }
+                if (!isLettersOnly(name)) {
+                    showGlassAlert("Error", "Name can contain only letters.", "error");
+                    return;
+                }
                 filters.name = name;
             }
 
-            if (surname) {
+
+          
+            /* SURNAME */
+            if (surnameChecked) {
+                if (!surname) {
+                    showGlassAlert("Warning", "Please enter a surname.", "warning");
+                    return;
+                }
+                if (!isLettersOnly(surname)) {
+                    showGlassAlert("Error", "Surname can contain only letters.", "error");
+                    return;
+                }
                 filters.surname = surname;
             }
 
-            if (tc) {
+            /* TC NUMBER */
+            if (tcChecked) {
+                if (!tc) {
+                    showGlassAlert("Warning", "Please enter a TC number.", "warning");
+                    return;
+                }
+                if (!isDigitsOnly(tc)) {
+                    showGlassAlert("Error", "TC Number can contain only digits.", "error");
+                    return;
+                }
+                if (tc.length !== 11) {
+                    showGlassAlert("Error", "TC Number must contain exactly 11 digits.", "error");
+                    return;
+                }
                 filters.tc = tc;
             }
-
-
-            console.log(
-                "Expert filters:",
-                filters
-            );
+            fetch("/api/experts/search", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    filters: filters
+                })
+            })
 
         });
 
 </script>
 
 
-
-<h2>Expert Records</h2>
-
-<div class="table-container">
-    <table class="experts">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>TC Number</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Actions</th> 
-            </tr>
-        </thead>
-
-        <!-- Tbody'ye ID eklendi -->
-        <tbody id="expert-table-body">
-            {% for expert in experts %}
-            <tr>
-                <td>{{ expert[0] }}</td>
-                <td>{{ expert[1] }}</td>
-                <td>{{ expert[2] }}</td>
-                <td>{{ expert[3] }}</td>
-                <td>
-                    <!-- data-id yerine data-url yapısı kuruldu -->
-                    <button class="btn-delete" data-url="/api/experts/delete/{{ expert[0] }}">Delete</button>
-                </td>
-            </tr>
-            {% else %}
-            <tr>
-                <td colspan="5">
-                    No experts found.
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-
-
 <script>
     const tableBody = document.getElementById("expert-table-body");
 
+    // 1. SİLME İŞLEMİ (Event Delegation ile)
     // 1. SİLME İŞLEMİ (Event Delegation ile)
     tableBody.addEventListener("click", function(event) {
         if (event.target.classList.contains("btn-delete")) {
             const button = event.target;
             const url = button.getAttribute("data-url");
 
-            if (confirm("Are you sure you want to delete this expert?")) {
-                fetch(url, {
-                    method: "POST"
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert(data.message);
-                        button.closest("tr").remove(); // Sayfa yenilenmeden satırı siler
-                    } else {
-                        alert(data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    alert("An error occurred while deleting the expert.");
-                });
-            }
+            // Eski tip confirm() yerine cam tasarımlı SweetAlert
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to delete this expert?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d32f2f',
+                cancelButtonColor: 'transparent',
+                confirmButtonText: 'Yes, delete it!',
+                customClass: {
+                    popup: 'glass-swal',
+                    cancelButton: 'swal-cancel-btn'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(url, { method: "POST" })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Eski alert() yerine showGlassAlert
+                            showGlassAlert("Deleted!", data.message, "success");
+                            
+                            // Hata vermeden satırı güvenli silme
+                            const row = button.closest("tr");
+                            if (row) {
+                                row.remove();
+                            }
+                        } else {
+                            // Eski alert() yerine showGlassAlert
+                            showGlassAlert("Failed!", data.message, "error");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        showGlassAlert("Error!", "An error occurred while deleting the expert.", "error");
+                    });
+                }
+            });
         }
     });
 
-    // 2. ARAMA İŞLEMİ (AJAX ile)
-    const searchForm = document.getElementById("expert-search-form");
+    document
+    .getElementById("searchExpertsButton")
+    .addEventListener("click", function () {
 
-    searchForm.addEventListener("submit", function(event) {
-        event.preventDefault(); // Sayfanın yenilenmesini engeller
+        const filters = {};
 
-        const searchValue = document.getElementById("expert-search-input").value;
+        const name =
+            document.getElementById("name").value.trim();
 
-        // Backend'deki arama rotana (api/experts/search) istek atıyoruz
-        fetch(`/api/experts/search?search=${encodeURIComponent(searchValue)}`) 
-        .then(response => response.json())
-        .then(data => {
-            // Tabloyu temizle
-            tableBody.innerHTML = "";
+        const surname =
+            document.getElementById("surname").value.trim();
 
-            // Gelen verilere göre tabloyu yeniden oluştur
-            // Backend'den 'experts' adında bir liste döndüğünü varsayıyoruz (data.experts)
-            if (data.experts && data.experts.length > 0) {
-                data.experts.forEach(expert => {
-                    const row = document.createElement("tr");
+        const tc =
+            document.getElementById("tc").value.trim();
 
-                    row.innerHTML = `
-                        <td>${expert[0]}</td>
-                        <td>${expert[1]}</td>
-                        <td>${expert[2]}</td>
-                        <td>${expert[3]}</td>
-                        <td>
-                            <button class="btn-delete" data-url="/api/experts/delete/${expert[0]}">
-                                Delete
-                            </button>
-                        </td>
-                    `;
-                    tableBody.appendChild(row);
-                });
-            } else {
-                tableBody.innerHTML = `<tr><td colspan="5">No experts found.</td></tr>`;
+
+        const nameChecked =
+            document.querySelector(
+                '[data-target="nameFilter"]'
+            ).checked;
+
+        const surnameChecked =
+            document.querySelector(
+                '[data-target="surnameFilter"]'
+            ).checked;
+
+        const tcChecked =
+            document.querySelector(
+                '[data-target="tcFilter"]'
+            ).checked;
+
+
+        // En az bir filtre seçilmeli
+        if (!nameChecked && !surnameChecked && !tcChecked) {
+
+            showGlassAlert(
+                "Warning",
+                "Please select at least one filter.",
+                "warning"
+            );
+
+            return;
+        }
+
+
+        // Name
+        if (nameChecked) {
+
+            if (!name) {
+
+                showGlassAlert(
+                    "Warning",
+                    "Please enter a name.",
+                    "warning"
+                );
+
+                return;
             }
+
+            if (!isLettersOnly(name)) {
+
+                showGlassAlert(
+                    "Error",
+                    "Name can contain only letters.",
+                    "error"
+                );
+
+                return;
+            }
+
+            filters.name = name;
+        }
+
+
+        // Surname
+        if (surnameChecked) {
+
+            if (!surname) {
+
+                showGlassAlert(
+                    "Warning",
+                    "Please enter a surname.",
+                    "warning"
+                );
+
+                return;
+            }
+
+            if (!isLettersOnly(surname)) {
+
+                showGlassAlert(
+                    "Error",
+                    "Surname can contain only letters.",
+                    "error"
+                );
+
+                return;
+            }
+
+            filters.surname = surname;
+        }
+
+
+        // TC
+        if (tcChecked) {
+
+            if (!tc) {
+
+                showGlassAlert(
+                    "Warning",
+                    "Please enter a TC number.",
+                    "warning"
+                );
+
+                return;
+            }
+
+            if (!isDigitsOnly(tc)) {
+
+                showGlassAlert(
+                    "Error",
+                    "TC Number can contain only digits.",
+                    "error"
+                );
+
+                return;
+            }
+
+            if (tc.length !== 11) {
+
+                showGlassAlert(
+                    "Error",
+                    "TC Number must contain exactly 11 digits.",
+                    "error"
+                );
+
+                return;
+            }
+
+            filters.tc = tc;
+        }
+
+
+        console.log("Expert filters:", filters);
+
+
+        fetch("/api/experts/search", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                filters: filters
+            })
+
         })
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            console.log("Backend response:", data);
+
+            if (!data.success) {
+
+                showGlassAlert(
+                    "Error",
+                    data.message,
+                    "error"
+                );
+
+                return;
+            }
+
+            displayExperts(data.experts);
+
+        })
+
         .catch(error => {
+
             console.error("Search error:", error);
+
+            showGlassAlert(
+                "Error",
+                "An error occurred while searching experts.",
+                "error"
+            );
+
         });
+
     });
+    function displayExperts(experts) {
+
+    const tableBody =
+        document.getElementById("expert-table-body");
+
+    tableBody.innerHTML = "";
+
+    experts.forEach(function (expert) {
+
+        const row = `
+            <tr>
+
+                <td>${expert[0]}</td>
+
+                <td>${expert[1]}</td>
+
+                <td>
+                    ${expert[2]} ${expert[3]}
+                </td>
+
+                <td>
+
+                    <button
+                        type="button"
+                        class="btn-delete"
+                        data-url="/admin/experts/delete/${expert[0]}">
+
+                        Delete
+
+                    </button>
+
+                </td>
+
+            </tr>
+        `;
+
+        tableBody.innerHTML += row;
+
+    });
+
+}
+
 </script>
 {% endblock %}

@@ -9,9 +9,8 @@
     </title>
 
     <!-- Ortak CSS -->
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Sayfaya özel CSS -->
     {% block css %}{% endblock %}
 </head>
@@ -19,95 +18,106 @@
 <body>
 
 <div class="dashboard-container">
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- ================= SIDEBAR ================= -->
-
     <aside class="sidebar">
         <div class="sidebar-header">
             <img src="{{ url_for('static', filename='images/tea_logo.jpg') }}" alt="ÇAY Logo" class="logo">
             <h2>Tea Tracking</h2>
-         </div>
+        </div>
         
-
-        <ul>
-
+       <ul>
             <li>
                 <a href="{{ url_for('dashboard') }}">
-                    Dashboard
+                    <i class="fa-solid fa-chart-line"></i>  Dashboard
                 </a>
             </li>
 
             {% if session["role"] in ["admin", "expert"] %}
-
                 <li>
                     <a href="{{ url_for('all_deliveries') }}">
-                        Delivery Records
+                        <i class="fa-solid fa-truck"></i>  Delivery Records
                     </a>
                 </li>
-
             {% endif %}
-
 
             {% if session["role"] == "admin" %}
-
                 <li>
                     <a href="{{ url_for('expert_management') }}">
-                        Expert Management
+                        <i class="fa-solid fa-users"></i>  Expert Management
                     </a>
                 </li>
-
-          
-
                 <li>
-                     <a href="{{ url_for('farmer_management') }}">
-                        Farmer Management
-                         </a>
-                 </li>
-                
-
-
-
+                    <a href="{{ url_for('farmer_management') }}">
+                        <i class="fa-solid fa-tractor"></i>  Farmer Management
+                    </a>
+                </li>
             {% endif %}
-
 
             {% if session["role"] == "farmer" %}
-
                 <li>
                     <a href="#">
-                        My Deliveries
+                        <i class="fa-solid fa-box-open"></i>  My Deliveries
                     </a>
                 </li>
-
             {% endif %}
 
-
             <li>
-                <a href="{{url_for('statistics')}}">
-                    Statistics
+                <a href="{{ url_for('statistics') }}">
+                    <i class="fa-solid fa-chart-simple"></i>  Statistics
                 </a>
             </li>
-
+            
             <li>
                 <a href="{{ url_for('ai_assistant') }}">
-                    AI Assistant
+                    <i class="fa-solid fa-robot"></i>  AI Assistant
                 </a>
             </li>
-
+            
             <li>
                 <a href="{{ url_for('logout') }}">
-                    Logout
+                    <i class="fa-solid fa-power-off"></i>  Logout
                 </a>
             </li>
-
         </ul>
-
     </aside>
 
-
     <!-- ================= MAIN CONTENT ================= -->
-
     <main class="main-content">
+        
+        
 
+<!-- ================= TOP NAV BAR (Tam olarak buraya geldi) ================= -->
+        <div class="top-nav">
+            <div class="nav-title">
+            </div>
+
+            <div class="nav-actions">
+                <!-- Bildirim ve Mesaj İkonları -->
+                <a href="#" class="nav-icon"><i class="far fa-bell"></i></a>
+
+                <!-- Profil Alanı ve Dropdown -->
+                <div class="profile-dropdown">
+                    <button class="profile-btn" id="profileDropdownBtn">
+                        <!-- Profil resmi yoksa Ayşe S. harflerinden resim üretir -->
+                        <img src="{{ url_for('static', filename='img/avatar.png') }}" alt="Profile" class="profile-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Ayşe+S&background=142d19&color=fff'">
+                        <span class="profile-name">Ayşe S.</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    
+                    <!-- Açılır Menü (Varsayılan olarak gizli) -->
+                    <div class="dropdown-menu" id="profileDropdownMenu">
+                        <a href="#"><i class="far fa-user"></i> Profile</a>
+                        <a href="#"><i class="fas fa-lock"></i> Change Password</a>
+                        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="{{ url_for('logout') }}" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         {% block content %}
         {% endblock %}
 
@@ -115,10 +125,32 @@
 
 </div>
 
-
 <!-- Sayfaya özel JavaScript -->
 {% block scripts %}
 {% endblock %}
+
+<!-- ================= DROPDOWN (AŞAĞI AÇILIR MENÜ) SCRİPTİ ================= -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const profileBtn = document.getElementById("profileDropdownBtn");
+        const dropdownMenu = document.getElementById("profileDropdownMenu");
+
+        if (profileBtn && dropdownMenu) {
+            // Butona tıklandığında menüyü aç/kapat
+            profileBtn.addEventListener("click", function(event) {
+                event.stopPropagation(); // Tıklamanın dışarı yayılmasını engeller
+                dropdownMenu.classList.toggle("show");
+            });
+
+            // Ekranda başka bir yere tıklanırsa menüyü kapat
+            document.addEventListener("click", function(event) {
+                if (!profileBtn.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.classList.remove("show");
+                }
+            });
+        }
+    });
+</script>
 
 </body>
 </html>

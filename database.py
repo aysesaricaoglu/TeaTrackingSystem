@@ -206,6 +206,120 @@ def get_all_deliveries():#bunu şu anda kullanmıyorum ama dashboarda ekleyeceğ
     connection.close()
 
     return deliveries
+def search_deliveries(filters):
+    connection = create_connection()
+    cursor = connection.cursor()
+
+    query = """
+        SELECT
+            tea_delivers.id,
+            farmers.first_name,
+            farmers.last_name,
+            experts.first_name,
+            experts.last_name,
+            tea_delivers.delivery_date,
+            tea_delivers.gross_weight,
+            tea_delivers.net_weight,
+            tea_delivers.is_rainy,
+            tea_delivers.payment_option
+        FROM tea_delivers
+
+        JOIN farmers
+            ON tea_delivers.farmer_id = farmers.id
+
+        JOIN users AS experts
+            ON tea_delivers.expert_id = experts.id
+
+        WHERE 1 = 1
+    """
+
+    parameters = []
+
+    if filters.get("farmer_name"):
+        query += """
+            AND normalize_text(farmers.first_name) LIKE ?
+        """
+        parameters.append(
+            f"%{normalize_search_text(filters['farmer_name'])}%"
+        )
+
+    if filters.get("farmer_surname"):
+        query += """
+            AND normalize_text(farmers.last_name) LIKE ?
+        """
+        parameters.append(
+            f"%{normalize_search_text(filters['farmer_surname'])}%"
+        )
+
+    if filters.get("expert_name"):
+        query += """
+            AND normalize_text(experts.first_name) LIKE ?
+        """
+        parameters.append(
+            f"%{normalize_search_text(filters['expert_name'])}%"
+        )
+
+    if filters.get("expert_surname"):
+        query += """
+            AND normalize_text(experts.last_name) LIKE ?
+        """
+        parameters.append(
+            f"%{normalize_search_text(filters['expert_surname'])}%"
+        )
+
+    if filters.get("farmer_tc"):
+        query += """
+            AND farmers.user_id IN (
+                SELECT id
+                FROM users
+                WHERE tc_no LIKE ?
+            )
+        """
+        parameters.append(f"%{filters['farmer_tc'].strip()}%")
+
+    if filters.get("date"):
+        query += """
+            AND tea_delivers.delivery_date = ?
+        """
+        parameters.append(filters["date"])
+
+    if filters.get("is_rainy") is not None:
+        query += """
+            AND tea_delivers.is_rainy = ?
+        """
+        parameters.append(filters["is_rainy"])
+
+    if filters.get("payment_option"):
+        query += """
+            AND normalize_text(tea_delivers.payment_option) LIKE ?
+        """
+        parameters.append(
+            f"%{normalize_search_text(filters['payment_option'])}%"
+        )
+
+    if filters.get("gross_weight"):
+        query += """
+            AND tea_delivers.gross_weight >= ?
+        """
+        parameters.append(float(filters["gross_weight"]))
+
+    if filters.get("net_weight"):
+        query += """
+            AND tea_delivers.net_weight >= ?
+        """
+        parameters.append(float(filters["net_weight"]))
+
+    query += """
+        ORDER BY tea_delivers.id DESC
+    """
+
+    cursor.execute(query, tuple(parameters))
+
+    deliveries = cursor.fetchall()
+
+    connection.close()
+
+    return deliveries
 
 def add_delivery(
     farmer_id,
@@ -333,6 +447,7 @@ def get_all_experts(search=""):
             tc_no LIKE ?
             OR first_name LIKE ?
             OR last_name LIKE ?
+            is_active = 1
         ) 
         ORDER BY  first_name, last_name
     """,(search,search,search))#
@@ -402,7 +517,6 @@ def add_expert(tc_no,password,role,first_name,last_name):
                 hashed_password,
                 role,
                 first_name,
-                
                 last_name
             )
     )
@@ -412,7 +526,52 @@ def add_expert(tc_no,password,role,first_name,last_name):
 
     return True
 
+def search_experts(filters):
+        connection =create_connection()
+        cursor= connection.cursor()
+        query ="""
+            SELECT
+                users.id,
+                users.tc_no,
+                users.first_name,
+                users.last_name
+            FROM users WHERE users.role ='expert'     
+        """
+        parameters=[]
 
+        if filters.get("name"):
+            query += """
+                AND normalize_text(users.first_name) LIKE ?
+            """
+            parameters.append(
+                f"%{normalize_search_text(filters['name'])}%"
+            )
+
+        if filters.get("surname"):
+            query += """
+                AND normalize_text (users.last_name) LIKE ?
+            """
+            parameters.append(
+                f"%{normalize_search_text(filters['surname'])}%"
+            )
+        if filters.get("tc"):
+                query += """
+                    AND users.tc_no LIKE ?
+                """
+                parameters.append(
+                    f"%{filters['tc']}%"
+                )
+
+        query += """
+        ORDER BY users.first_name, users.last_name
+        """
+        cursor.execute(query, tuple(parameters))
+
+        experts = cursor.fetchall()
+
+        connection.close()
+
+        return experts
 
 def search_farmers(filters):
     connection = create_connection()
@@ -689,23 +848,23 @@ def add_farmer(tc_no,password,role,first_name,last_name,city,district,phone_numb
 #     connection.close()
 
 #     print("Test data deleted successfully.")
-def update_admin_password(user_id, new_password):
+# def update_admin_password(user_id, new_password):
 
-    connection = create_connection()
-    cursor = connection.cursor()
+#     connection = create_connection()
+#     cursor = connection.cursor()
 
-    hashed_password = generate_password_hash(new_password)
+#     hashed_password = generate_password_hash(new_password)
 
-    cursor.execute("""
-        UPDATE users
-        SET password = ?
-        WHERE id = ?
-        AND role = 'admin'
-    """, (hashed_password, user_id))
+#     cursor.execute("""
+#         UPDATE users
+#         SET password = ?
+#         WHERE id = ?
+#         AND role = 'admin'
+#     """, (hashed_password, user_id))
 
-    print("Updated rows:", cursor.rowcount, flush=True)
+#     print("Updated rows:", cursor.rowcount, flush=True)
 
-    connection.commit()
-    connection.close()
+#     connection.commit()
+#     connection.close()
 
-    return cursor.rowcount > 0
+#     return cursor.rowcount > 0

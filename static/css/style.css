@@ -74,9 +74,12 @@ body {
 
 /* ---------------- SAĞ İÇERİK (MAIN CONTENT) ---------------- */
 .main-content {
+    position: relative;
     flex: 1;
     padding: 40px 50px;
     overflow-y: auto;
+    position: relative; 
+    padding-top: 80px;
 }
 
 /* Üst Başlık */
@@ -404,7 +407,7 @@ table tr:hover {
     box-shadow: 0 0 10px rgba(211, 47, 47, 0.5);
 }
 
-.farmer_ekle, .expert_ekle {
+.farmer_ekle, .expert_ekle,.new_delivery{
     display: inline-block;
     padding: 10px 20px;
     background: rgba(255, 255, 255, 0.1);
@@ -418,7 +421,7 @@ table tr:hover {
     margin-bottom: 20px;
 }
 
-.farmer_ekle:hover, .expert_ekle:hover {
+.farmer_ekle:hover, .expert_ekle:hover , .new_delivery:hover{
     background: rgba(255, 255, 255, 0.2);
     border-color: #ffffff;
     padding: 40px;
@@ -540,11 +543,215 @@ td form {
 .sidebar-header h2 {
     margin: 0; 
     padding: 0;
-    border-bottom: none; /* Çizgiyi üst kapsayıcıya taşıdık, o yüzden buradan siliyoruz */
+    border-bottom: none; 
 }
 
-/* Logonun boyutunu ayarlamak için (eğer resim dosyası kullanıyorsan) */
 .sidebar-logo {
     width: 28px; /* Logonun büyüklüğüne göre bu değeri değiştirebilirsin */
     height: auto;
+}
+/* =========================================================
+   SWEETALERT2 ÖZEL CAM EFEKTİ TASARIMI
+========================================================= */
+.glass-swal {
+    background: rgba(20, 45, 25, 0.85) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* SweetAlert içindeki yazılar için */
+.glass-swal .swal2-title, 
+.glass-swal .swal2-html-container {
+    color: #ffffff !important;
+}
+
+/* İptal Butonu Tasarımı */
+.swal-cancel-btn {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #ffffff !important;
+    backdrop-filter: blur(4px) !important;
+}
+
+/* =========================================================
+   TOP NAV BAR & PROFILE DROPDOWN
+========================================================= */
+.top-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(20, 45, 25, 0); /* Şeffaf koyu yeşil */
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 0;
+    z-index: 1000;
+   
+    
+}
+
+/* Sidebar ve İçeriğin bulunduğu alt kapsayıcı */
+.dashboard-container {
+    display: flex;
+    min-height: calc(100vh - 70px); /* Üst navbar yüksekliğini düşerek tam ekran yapar */
+    width: 100%;
+}
+.nav-title h1 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #ffffff;
+    margin: 0;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-icon {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 20px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-icon:hover {
+    color: #ffffff;
+}
+
+/* Profil Butonu (Yuvarlak Resim ve İsim) */
+.profile-dropdown {
+    position: relative;
+}
+
+.profile-btn {
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    padding: 5px;
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.3s;
+}
+
+.profile-btn:hover {
+    color: #ffffff;
+}
+
+.profile-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.profile-name {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.profile-btn i {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Açılır Menü (Glassmorphism Efekti) */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 15px;
+    background: rgba(20, 45, 25, 0.9); /* Sweetalert'te kullandığımız koyu yeşil tonu */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    width: 210px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    
+    /* Animasyon başlangıç değerleri */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+/* Javascript ile 'show' class'ı eklendiğinde devreye girer */
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu a {
+    padding: 14px 18px;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.dropdown-menu a i {
+    width: 16px;
+    text-align: center;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.dropdown-menu a:first-child {
+    border-radius: 12px 12px 0 0;
+}
+
+.dropdown-menu a:last-child {
+    border-radius: 0 0 12px 12px;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 4px 0;
+}
+
+/* Çıkış Yap butonu için özel kırmızı uyarı rengi */
+.logout-link {
+    color: #ff6b6b !important;
+}
+
+.logout-link:hover {
+    background: rgba(255, 107, 107, 0.15) !important;
+}
+/* Menü linklerini yan yana (flex) ve ortalı hizalar */
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* İkon ile yazı arasındaki şık boşluk */
+    text-decoration: none;
+}
+
+/* İkonların hepsinin aynı hizada düzgün durması için */
+.sidebar ul li a i {
+    font-size: 18px; /* İkonların boyutu */
+    width: 25px; /* Tüm ikonlara sabit genişlik vererek yazıları aynı hizadan başlatır */
+    text-align: center;
 }
