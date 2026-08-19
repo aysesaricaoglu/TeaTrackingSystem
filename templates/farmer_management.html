@@ -148,33 +148,10 @@ Farmer Management
 
 </div>
 
-{% endblock %}
-{% block scripts %}
 
 
 <script>
-    function showGlassAlert(title, text, icon = 'info') {
-    Swal.fire({ title: title, text: text, icon: icon, confirmButtonColor: '#3a7d44', customClass: { popup: 'glass-swal' } });
-    }
 
-    const filterCheckboxes = document.querySelectorAll(".filter-checkbox");
-
-    filterCheckboxes.forEach(function(checkbox) {
-
-        checkbox.addEventListener("change", function() {
-
-            const targetId = this.getAttribute("data-target");
-            const targetElement = document.getElementById(targetId);
-
-        if (this.checked) {
-                targetElement.classList.add("show"); 
-            } else {
-                targetElement.classList.remove("show");
-            }
-
-        });
-
-    });
     function isLettersOnly(value) {
     return /^[A-Za-zÇĞİÖŞÜçğıöşü\s]+$/.test(value);
 }

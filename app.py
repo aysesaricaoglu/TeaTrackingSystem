@@ -3,8 +3,8 @@ from werkzeug.security import check_password_hash
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[logging.StreamHandler(),
-              logging.FileHandler("app.log")]
+    handlers= logging.StreamHandler(),
+             # logging.FileHandler("app.log")]
 )
 
 logger = logging.getLogger(__name__)
@@ -28,7 +28,8 @@ from database import (
     delete_expert,
     delete_farmer,
     search_farmers,
-    search_experts
+    search_experts,
+    search_deliveries
     
     
 )
@@ -200,6 +201,31 @@ def all_deliveries():
         "all_deliveries.html",
         deliveries=deliveries
     )
+@app.route("/api/deliveries/search", methods=["POST"])
+def search_deliveries_api():
+
+    if "user_id" not in session:
+        return jsonify({
+            "success": False,
+            "message": "Unauthorized"
+        }), 401
+
+    if session["role"] not in ["admin", "expert"]:
+        return jsonify({
+            "success": False,
+            "message": "Forbidden"
+        }), 403
+
+    data = request.get_json()
+
+    filters = data.get("filters", {})
+
+    deliveries = search_deliveries(filters)
+    
+    return jsonify({
+        "success": True,
+        "deliveries": deliveries
+    }), 200
 
 @app.route("/dashboard")
 def dashboard():

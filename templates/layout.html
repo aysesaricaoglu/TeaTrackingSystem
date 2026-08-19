@@ -14,7 +14,6 @@
     <!-- Sayfaya özel CSS -->
     {% block css %}{% endblock %}
 </head>
-
 <body>
 
 <div class="dashboard-container">
@@ -107,7 +106,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     
-                    <!-- Açılır Menü (Varsayılan olarak gizli) -->
+                    <!-- Açılır Menü sol üstte nav-bardaki -->
                     <div class="dropdown-menu" id="profileDropdownMenu">
                         <a href="#"><i class="far fa-user"></i> Profile</a>
                         <a href="#"><i class="fas fa-lock"></i> Change Password</a>
@@ -124,12 +123,72 @@
     </main>
 
 </div>
+<script> // SWEETALERT FONKSİYONU
+  
+    function showGlassAlert(title, text, icon = 'info') {
+        Swal.fire({ 
+            title: title, 
+            text: text, 
+            icon: icon, 
+            confirmButtonColor: '#3a7d44', 
+            customClass: { popup: 'glass-swal' } 
+        });
+    }
 
+ 
+    // FILTER INPUTS
+
+    const filterCheckboxes = document.querySelectorAll(".filter-checkbox");
+
+    filterCheckboxes.forEach(function (checkbox) {
+        checkbox.addEventListener("change", function () {
+            const targetId = this.getAttribute("data-target");
+            const targetElement = document.getElementById(targetId);
+            if (this.checked) {
+                targetElement.classList.add("show");
+            } else {
+                targetElement.classList.remove("show");
+            }
+        });
+    });
+
+   
+
+    // TABLOYU GÜNCELLEME FONKSİYONU
+  
+    function displayDeliveries(deliveries) {
+        const tableBody = document.querySelector(".deliveries tbody");
+        tableBody.innerHTML = ""; 
+
+        deliveries.forEach(function (delivery) {
+            const isRainy = delivery[6] === 1 ? "Yes" : "No";
+
+            const row = `
+                <tr>
+                    <td>${delivery[0]}</td>
+                    <td>${delivery[1]}</td>
+                    <td>${delivery[2]}</td>
+                    <td>${delivery[3]}</td>
+                    <td>${delivery[4]}</td>
+                    <td>${delivery[5]}</td>
+                    <td>${isRainy}</td>
+                    <td>${delivery[7]}</td>
+                    <td>
+                        <form method="POST" action="/admin/deliveries/delete/${delivery[0]}" onsubmit="return confirm('Are you sure you want to delete this delivery?');">
+                            <button type="submit" class="btn-delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+    }</script>
 <!-- Sayfaya özel JavaScript -->
 {% block scripts %}
+
 {% endblock %}
 
-<!-- ================= DROPDOWN (AŞAĞI AÇILIR MENÜ) SCRİPTİ ================= -->
+<!--  DROPDOWN (AŞAĞI AÇILIR MENÜ) SCRİPTİ -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const profileBtn = document.getElementById("profileDropdownBtn");
@@ -142,12 +201,6 @@
                 dropdownMenu.classList.toggle("show");
             });
 
-            // Ekranda başka bir yere tıklanırsa menüyü kapat
-            document.addEventListener("click", function(event) {
-                if (!profileBtn.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    dropdownMenu.classList.remove("show");
-                }
-            });
         }
     });
 </script>

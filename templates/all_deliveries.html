@@ -9,7 +9,7 @@ Deliveries
 <div class="page-header">
 
     <div>
-        <h1>All Deliveries</h1>
+        <h1>Deliveries</h1>
         <p>View and manage all tea delivery records.</p>
     </div>
 
@@ -19,7 +19,255 @@ Deliveries
     </a>
 
 </div>
+<div class="search-content-card">
 
+    <h2>Search Deliveries</h2>
+
+
+    <!-- ================= FARMER FILTERS ================= -->
+
+    <details class="filter-dropdown">
+
+        <summary>
+            Farmer Filters
+        </summary>
+
+        <div class="filter-options">
+
+            <!-- Farmer Name -->
+            <div class="filter-item">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        class="filter-checkbox"
+                        data-target="farmerNameFilter"
+                    >
+                    Farmer Name
+                </label>
+
+                <div
+                    id="farmerNameFilter"
+                    class="filter-input"
+                >
+                    <input
+                        type="text"
+                        id="farmer_name"
+                        placeholder="Enter farmer name"
+                    >
+                </div>
+
+            </div>
+
+
+            <!-- Farmer Surname -->
+            <div class="filter-item">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        class="filter-checkbox"
+                        data-target="farmerSurnameFilter"
+                    >
+                    Farmer Surname
+                </label>
+
+                <div
+                    id="farmerSurnameFilter"
+                    class="filter-input"
+                >
+                    <input
+                        type="text"
+                        id="farmer_surname"
+                        placeholder="Enter farmer surname"
+                    >
+                </div>
+
+            </div>
+
+
+            <!-- Farmer TC -->
+            <div class="filter-item">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        class="filter-checkbox"
+                        data-target="farmerTcFilter"
+                    >
+                    Farmer TC Number
+                </label>
+
+                <div
+                    id="farmerTcFilter"
+                    class="filter-input"
+                >
+                    <input
+                        type="text"
+                        id="farmer_tc"
+                        placeholder="Enter farmer TC number"
+                    >
+                </div>
+
+            </div>
+
+        </div>
+
+    </details>
+
+
+    <!-- ================= EXPERT FILTERS ================= -->
+
+    <details class="filter-dropdown">
+
+        <summary>
+            Expert Filters
+        </summary>
+
+        <div class="filter-options">
+
+            <!-- Expert Name -->
+            <div class="filter-item">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        class="filter-checkbox"
+                        data-target="expertNameFilter"
+                    >
+                    Expert Name
+                </label>
+
+                <div
+                    id="expertNameFilter"
+                    class="filter-input"
+                >
+                    <input
+                        type="text"
+                        id="expert_name"
+                        placeholder="Enter expert name"
+                    >
+                </div>
+
+            </div>
+
+
+            <!-- Expert Surname -->
+            <div class="filter-item">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        class="filter-checkbox"
+                        data-target="expertSurnameFilter"
+                    >
+                    Expert Surname
+                </label>
+
+                <div
+                    id="expertSurnameFilter"
+                    class="filter-input"
+                >
+                    <input
+                        type="text"
+                        id="expert_surname"
+                        placeholder="Enter expert surname"
+                    >
+                </div>
+
+            </div>
+
+        </div>
+
+    </details>
+
+
+    <!-- ================= DELIVERY FILTERS ================= -->
+
+    <details class="filter-dropdown">
+
+        <summary>
+            Delivery Filters
+        </summary>
+
+        <div class="filter-options">
+
+            <!-- Delivery Date -->
+            <div class="filter-item">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        class="filter-checkbox"
+                        data-target="deliveryDateFilter"
+                    >
+                    Delivery Date
+                </label>
+
+                <div
+                    id="deliveryDateFilter"
+                    class="filter-input"
+                >
+                    <input
+                        type="date"
+                        id="delivery_date"
+                    >
+                </div>
+
+            </div>
+
+
+            <!-- Payment Option -->
+            <div class="filter-item">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        class="filter-checkbox"
+                        data-target="paymentOptionFilter"
+                    >
+                    Payment Option
+                </label>
+
+                <div
+                    id="paymentOptionFilter"
+                    class="filter-input"
+                >
+                    <select id="payment_option">
+
+                        <option value="">
+                            Select payment option
+                        </option>
+
+                        <option value="Immediate">
+                            Immediate
+                        </option>
+
+                        <option value="Deferred">
+                            Deferred
+                        </option>
+
+                    </select>
+                </div>
+
+            </div>
+
+        </div>
+
+    </details>
+
+
+    <!-- ================= SEARCH BUTTON ================= -->
+
+    <button
+        type="button"
+        id="searchDeliveriesButton"
+        class="btn"
+    >
+        Search
+    </button>
+
+</div>
 
 <div class="content-card">
 
@@ -98,3 +346,319 @@ Deliveries
 </div>
 
 {% endblock %}
+{%block scripts%}
+<script>
+ 
+    // =========================
+    // FILTER INPUTS
+    // =========================
+
+    
+
+
+    // =========================
+    // SEARCH BUTTON
+    // =========================
+
+    document
+        .getElementById("searchDeliveriesButton")
+        .addEventListener("click", function () {
+
+            const filters = {};
+
+
+            // =========================
+            // GET INPUT VALUES
+            // =========================
+
+            const farmerName =
+                document.getElementById("farmer_name").value.trim();
+
+            const farmerSurname =
+                document.getElementById("farmer_surname").value.trim();
+
+            const farmerTc =
+                document.getElementById("farmer_tc").value.trim();
+
+            const expertName =
+                document.getElementById("expert_name").value.trim();
+
+            const expertSurname =
+                document.getElementById("expert_surname").value.trim();
+
+            const deliveryDate =
+                document.getElementById("delivery_date").value;
+
+            const paymentOption =
+                document.getElementById("payment_option").value;
+
+
+            // =========================
+            // GET CHECKBOX STATES
+            // =========================
+
+            const farmerNameChecked =
+                document.querySelector(
+                    '[data-target="farmerNameFilter"]'
+                ).checked;
+
+            const farmerSurnameChecked =
+                document.querySelector(
+                    '[data-target="farmerSurnameFilter"]'
+                ).checked;
+
+            const farmerTcChecked =
+                document.querySelector(
+                    '[data-target="farmerTcFilter"]'
+                ).checked;
+
+            const expertNameChecked =
+                document.querySelector(
+                    '[data-target="expertNameFilter"]'
+                ).checked;
+
+            const expertSurnameChecked =
+                document.querySelector(
+                    '[data-target="expertSurnameFilter"]'
+                ).checked;
+
+            const deliveryDateChecked =
+                document.querySelector(
+                    '[data-target="deliveryDateFilter"]'
+                ).checked;
+
+            const paymentOptionChecked =
+                document.querySelector(
+                    '[data-target="paymentOptionFilter"]'
+                ).checked;
+
+
+            // =========================
+            // AT LEAST ONE FILTER
+            // =========================
+
+            if (
+                !farmerNameChecked &&
+                !farmerSurnameChecked &&
+                !farmerTcChecked &&
+                !expertNameChecked &&
+                !expertSurnameChecked &&
+                !deliveryDateChecked &&
+                !paymentOptionChecked
+            ) {
+
+                showGlassAlert(
+                "Warning",
+                "Please select at least one filter.",
+                "warning"
+             );
+
+                return;
+            }
+
+
+            // =========================
+            // FARMER NAME
+            // =========================
+
+            if (farmerNameChecked) {
+
+                if (!farmerName) {
+
+                    showGlassAlert(
+                    "Warning",
+                    "Please enter farmer name.",
+                    "warning"
+                    );
+
+                    return;
+                }
+
+                filters.farmer_name = farmerName;
+            }
+
+
+            // =========================
+            // FARMER SURNAME
+            // =========================
+
+            if (farmerSurnameChecked) {
+
+                if (!farmerSurname) {
+
+                    showGlassAlert(
+                        "Warning",
+                        "Please enter farmer surname.",
+                        "warning"
+                    );
+                    return;
+                }
+
+                filters.farmer_surname = farmerSurname;
+            }
+
+
+            // =========================
+            // FARMER TC
+            // =========================
+
+            if (farmerTcChecked) {
+
+                if (!farmerTc) {
+
+                    showGlassAlert(
+                        "Warning",
+                        "Please enter farmer TC number.",
+                        "warning");
+                    return;
+                }
+
+                filters.farmer_tc = farmerTc;
+            }
+
+
+            // =========================
+            // EXPERT NAME
+            // =========================
+
+            if (expertNameChecked) {
+
+                if (!expertName) {
+
+                   showGlassAlert(
+                        "Warning",
+                        "Please enter expert name.",
+                        "warning");
+                    
+                    return;
+                }
+
+                filters.expert_name = expertName;
+            }
+
+
+            // =========================
+            // EXPERT SURNAME
+            // =========================
+
+            if (expertSurnameChecked) {
+
+                if (!expertSurname) {
+
+                   showGlassAlert(
+                    "Warning",   
+                    "Please enter expert surname.",
+                    "warning");
+
+                    return;
+                }
+
+                filters.expert_surname = expertSurname;
+            }
+
+
+            // =========================
+            // DELIVERY DATE
+            // =========================
+
+            if (deliveryDateChecked) {
+
+                if (!deliveryDate) {
+
+                   showGlassAlert(
+                        "Warning",
+                        "Please select a delivery date.",
+                        "warning"
+                    );
+                    return;
+                }
+
+                filters.delivery_date = deliveryDate;
+            }
+
+
+            // =========================
+            // PAYMENT OPTION
+            // =========================
+
+            if (paymentOptionChecked) {
+
+                if (!paymentOption) {
+
+                    showGlassAlert(
+                        "Warning",
+                        "Please select a payment option.",
+                        "warning"
+                        );
+
+                    return;
+                }
+
+                filters.payment_option = paymentOption;
+            }
+
+      // API'ye veriyi gönderiyoruz
+            fetch("/api/deliveries/search", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    filters: filters
+                })
+            })
+            .then(response => response.json()) // Backendden gelen cevabı JSON'a çevir
+            .then(data => {
+                if (!data.success) {
+                    showGlassAlert(data.message || "Error occured while searching.");
+                    return;
+                }
+                
+                // Başarılıysa tabloyu güncelle
+                displayDeliveries(data.deliveries);
+            })
+            .catch(error => {
+                console.error("Search error:", error);
+                showGlassAlert("Connection error.");
+            });
+
+        }); // Buton click eventinin sonu
+
+
+    // =========================
+    // TABLOYU GÜNCELLEME FONKSİYONU
+    // =========================
+    function displayDeliveries(deliveries) {
+        // Tablonun gövdesini (tbody) bul
+        const tableBody = document.querySelector(".deliveries tbody");
+        tableBody.innerHTML = ""; // Eski verileri temizle
+
+        // Gelen her bir teslimat kaydı için yeni bir satır oluştur
+        deliveries.forEach(function (delivery) {
+            
+            // Yağmur durumu 1 ise Yes, değilse No yazsın
+            const isRainy = delivery[6] === 1 ? "Yes" : "No";
+
+            const row = `
+                <tr>
+                    <td>${delivery[0]}</td>
+                    <td>${delivery[1]}</td>
+                    <td>${delivery[2]}</td>
+                    <td>${delivery[3]}</td>
+                    <td>${delivery[4]}</td>
+                    <td>${delivery[5]}</td>
+                    <td>${isRainy}</td>
+                    <td>${delivery[7]}</td>
+                    <td>
+                        <button type="button" class="btn-delete" data-url="/admin/deliveries/delete/${delivery[0]}">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+    }
+
+</script>
+{%endblock%}

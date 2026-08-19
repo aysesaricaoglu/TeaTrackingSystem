@@ -351,7 +351,6 @@ def add_delivery(
             payment_option,
         ),
     )
-    print("inş bu çalışır")
     logger.info(f"""Farmer ID:{farmer_id}
     Expert ID: {expert_id}
     Date: {delivery_date}

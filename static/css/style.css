@@ -755,3 +755,140 @@ td form {
     width: 25px; /* Tüm ikonlara sabit genişlik vererek yazıları aynı hizadan başlatır */
     text-align: center;
 }
+/* =========================================================
+   AÇILIR FİLTRE MENÜLERİ (MİNİMALİST VE İNCE CAM EFEKTİ)
+========================================================= */
+.filter-dropdown {
+    background: rgba(255, 255, 255, 0.05); /* Koyu yeşil yerine ferah/ince cam efekti */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px; /* Daha zarif bir köşe dönüşü */
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.filter-dropdown summary {
+    padding: 12px 15px; /* Kutu yüksekliğini daralttık */
+    cursor: pointer;
+    font-weight: 400; /* Yazı kalınlığını normale çektik */
+    font-size: 14px; /* Yazı boyutunu küçülttük */
+    color: rgba(255, 255, 255, 0.9);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent; /* Koyu arka planı kaldırdık */
+}
+
+.filter-dropdown summary::-webkit-details-marker {
+    display: none; 
+}
+
+.filter-dropdown summary::after {
+    content: '\25BC';
+    font-size: 10px; /* Sağdaki oku küçülttük */
+    color: rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.filter-dropdown[open] summary::after {
+    transform: rotate(180deg);
+}
+
+.filter-options {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Elemanlar arası boşluğu kıstık */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================================
+   CHECKBOX VE İNPUT TASARIMLARI
+========================================================= */
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-item label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px; /* Etiket yazılarını daha ince ve zarif yaptık */
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.filter-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px; /* Kutu boyutunu ufalttık */
+    height: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Çerçeveyi incelttik */
+    border-radius: 4px;
+    background-color: transparent; /* İçini boş ve şeffaf yaptık */
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.filter-checkbox:checked {
+    background-color: #3a7d44; 
+    border-color: #3a7d44;
+}
+
+.filter-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 11px; /* Onay tikini küçülttük */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.filter-input {
+    display: none; 
+    margin-left: 26px; /* Checkbox hizasına tam oturması için ayarladık */
+}
+
+.filter-input.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.filter-input input,
+.filter-input select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 12px; /* Kutu içindeki metin alanını daralttık */
+    background: rgba(255, 255, 255, 0.05); /* Siyahlık yerine ferah şeffaf beyaz */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 300;
+    transition: border-color 0.3s, background 0.3s;
+}
+
+.filter-input input:focus,
+.filter-input select:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.3); /* Tıklanınca çok parlamaması için yumuşak sınır */
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.filter-input select option {
+    background-color: #142d19; /* Tarayıcı seçenekleri okutabilsin diye arka plan zorunlu */
+    color: #ffffff;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
