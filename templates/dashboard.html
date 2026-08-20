@@ -20,9 +20,12 @@ Statistics
 {% if session["role"] in ["admin", "expert"] %}
 
     <li>
-        <a href="{{ url_for('new_delivery') }}">
+        <div class="button-container">
+            <a href="{{ url_for('new_delivery') }}">
             New Delivery
-        </a>
+            </a>
+        </div>
+     
     </li>
 
     <li>

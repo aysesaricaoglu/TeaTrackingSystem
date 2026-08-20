@@ -14,10 +14,12 @@ Expert Management
         <h1>Expert Management</h1>
         <p>View and manage registered experts.</p>
     </div>
-
-    <a href="{{url_for('add_expert_route')}}" class="expert_ekle">
+    <div class="button-container">
+       <a href="{{url_for('add_expert_route')}}" class="expert_ekle">
         + New Expert
-    </a>
+         </a>
+    </div>
+
 
 </div>
 
@@ -136,6 +138,7 @@ Expert Management
                     <th>ID</th>
                     <th>TC Number</th>
                     <th>Name</th>
+                    <th>Surname</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -149,109 +152,6 @@ Expert Management
 {% endblock %}
 {% block scripts %}
 
-<script>
-
-    // =========================
-    // FILTER INPUTS
-    // =========================
-    function showGlassAlert(title, text, icon = 'info') {
-    Swal.fire({ title: title, text: text, icon: icon, confirmButtonColor: '#3a7d44', customClass: { popup: 'glass-swal' } });
-    }
-
-    
-
-        function isLettersOnly(value) {
-    return /^[A-Za-zÇĞİÖŞÜçğıöşü\s]+$/.test(value);
-        }
-
-    function isDigitsOnly(value) {
-        return /^\d+$/.test(value);
-    }
-    // =========================
-    // SEARCH BUTTON
-    // =========================
-
-    document.getElementById("searchExpertsButton").addEventListener("click", function() {
-
-            const filters = {};
-
-            const name =
-                document.getElementById("name").value.trim();
-
-            const surname =
-                document.getElementById("surname").value.trim();
-
-            const tc =
-                document.getElementById("tc").value.trim();
-
-            /* CHECKBOX İÇİN*/
-            const nameChecked = document.querySelector('[data-target="nameFilter"]').checked;
-            const surnameChecked = document.querySelector('[data-target="surnameFilter"]').checked;
-            const tcChecked = document.querySelector('[data-target="tcFilter"]').checked;
-           
-            /* EN AZ BİR FİLTRE SEÇİLMELİ */
-            if (!nameChecked && !surnameChecked && !tcChecked) {
-                showGlassAlert("Warning", "Please select at least one filter.", "warning");
-                return;
-            }
- 
-            
-            if (nameChecked) {
-                if (!name) {
-                    showGlassAlert("Warning", "Please enter a name.", "warning");
-                    return;
-                }
-                if (!isLettersOnly(name)) {
-                    showGlassAlert("Error", "Name can contain only letters.", "error");
-                    return;
-                }
-                filters.name = name;
-            }
-
-
-          
-            /* SURNAME */
-            if (surnameChecked) {
-                if (!surname) {
-                    showGlassAlert("Warning", "Please enter a surname.", "warning");
-                    return;
-                }
-                if (!isLettersOnly(surname)) {
-                    showGlassAlert("Error", "Surname can contain only letters.", "error");
-                    return;
-                }
-                filters.surname = surname;
-            }
-
-            /* TC NUMBER */
-            if (tcChecked) {
-                if (!tc) {
-                    showGlassAlert("Warning", "Please enter a TC number.", "warning");
-                    return;
-                }
-                if (!isDigitsOnly(tc)) {
-                    showGlassAlert("Error", "TC Number can contain only digits.", "error");
-                    return;
-                }
-                if (tc.length !== 11) {
-                    showGlassAlert("Error", "TC Number must contain exactly 11 digits.", "error");
-                    return;
-                }
-                filters.tc = tc;
-            }
-            fetch("/api/experts/search", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    filters: filters
-                })
-            })
-
-        });
-
-</script>
 
 
 <script>
@@ -516,9 +416,8 @@ Expert Management
                 <td>${expert[1]}</td>
 
                 <td>
-                    ${expert[2]} ${expert[3]}
-                </td>
-
+                    ${expert[2]} </td>
+                <td>${expert[3]}</td>
                 <td>
 
                     <button

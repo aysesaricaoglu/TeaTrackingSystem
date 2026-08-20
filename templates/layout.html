@@ -27,60 +27,66 @@
             <h2>Tea Tracking</h2>
         </div>
         
-       <ul>
-            <li>
-                <a href="{{ url_for('dashboard') }}">
-                    <i class="fa-solid fa-chart-line"></i>  Dashboard
-                </a>
-            </li>
+      <ul>
+    <li>
+        <a href="{{ url_for('dashboard') }}"
+           class="{{ 'active' if request.path == url_for('dashboard') else '' }}">
+            <i class="fa-solid fa-chart-line"></i>  Dashboard
+        </a>
+    </li>
 
-            {% if session["role"] in ["admin", "expert"] %}
-                <li>
-                    <a href="{{ url_for('all_deliveries') }}">
-                        <i class="fa-solid fa-truck"></i>  Delivery Records
-                    </a>
-                </li>
-            {% endif %}
+    {% if session["role"] in ["admin", "expert"] %}
+        <li>
+           <a href="{{ url_for('all_deliveries') }}"
+            class="{{ 'active' if request.endpoint in ['all_deliveries', 'new_delivery'] else '' }}">
+            <i class="fa-solid fa-truck"></i> Delivery Records
+</a>
+        </li>
+    {% endif %}
 
-            {% if session["role"] == "admin" %}
-                <li>
-                    <a href="{{ url_for('expert_management') }}">
-                        <i class="fa-solid fa-users"></i>  Expert Management
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url_for('farmer_management') }}">
-                        <i class="fa-solid fa-tractor"></i>  Farmer Management
-                    </a>
-                </li>
-            {% endif %}
+    {% if session["role"] == "admin" %}
+        <li>
+            <a href="{{ url_for('expert_management') }}"
+               class="{{ 'active' if request.endpoint in['expert_management','add_expert_route'] else '' }}">
+                <i class="fa-solid fa-users"></i>  Expert Management
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('farmer_management') }}"
+               class="{{ 'active' if request.endpoint in['farmer_management','add_farmer_route'] else '' }}">
+                <i class="fa-solid fa-tractor"></i>  Farmer Management
+            </a>
+        </li>
+    {% endif %}
 
-            {% if session["role"] == "farmer" %}
-                <li>
-                    <a href="#">
-                        <i class="fa-solid fa-box-open"></i>  My Deliveries
-                    </a>
-                </li>
-            {% endif %}
+    {% if session["role"] == "farmer" %}
+        <li>
+            <a href="#">
+                <i class="fa-solid fa-box-open"></i>  My Deliveries
+            </a>
+        </li>
+    {% endif %}
 
-            <li>
-                <a href="{{ url_for('statistics') }}">
-                    <i class="fa-solid fa-chart-simple"></i>  Statistics
-                </a>
-            </li>
-            
-            <li>
-                <a href="{{ url_for('ai_assistant') }}">
-                    <i class="fa-solid fa-robot"></i>  AI Assistant
-                </a>
-            </li>
-            
-            <li>
-                <a href="{{ url_for('logout') }}">
-                    <i class="fa-solid fa-power-off"></i>  Logout
-                </a>
-            </li>
-        </ul>
+    <li>
+        <a href="{{ url_for('statistics') }}"
+           class="{{ 'active' if request.path == url_for('statistics') else '' }}">
+            <i class="fa-solid fa-chart-simple"></i>  Statistics
+        </a>
+    </li>
+
+    <li>
+        <a href="{{ url_for('ai_assistant') }}"
+           class="{{ 'active' if request.path == url_for('ai_assistant') else '' }}">
+            <i class="fa-solid fa-robot"></i>  AI Assistant
+        </a>
+    </li>
+
+    <li>
+        <a href="{{ url_for('logout') }}">
+            <i class="fa-solid fa-power-off"></i>  Logout
+        </a>
+    </li>
+</ul>
     </aside>
 
     <!-- ================= MAIN CONTENT ================= -->
@@ -152,7 +158,13 @@
         });
     });
 
-   
+           function isLettersOnly(value) {
+    return /^[A-Za-zÇĞİÖŞÜçğıöşü\s]+$/.test(value);
+        }
+
+    function isDigitsOnly(value) {
+        return /^\d+$/.test(value);
+    }
 
     // TABLOYU GÜNCELLEME FONKSİYONU
   

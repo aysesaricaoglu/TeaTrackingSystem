@@ -9,14 +9,16 @@ Deliveries
 <div class="page-header">
 
     <div>
-        <h1>Deliveries</h1>
+        <h1>Delivery Records</h1>
         <p>View and manage all tea delivery records.</p>
     </div>
 
-    <a href="{{ url_for('new_delivery') }}"
-       class="new_delivery">
-        + New Delivery
-    </a>
+    <div class="button-container">
+        <a href="{{ url_for('new_delivery') }}" class="new_delivery">
+            + New Delivery
+        </a>
+    </div>
+ 
 
 </div>
 <div class="search-content-card">
@@ -38,23 +40,12 @@ Deliveries
             <div class="filter-item">
 
                 <label>
-                    <input
-                        type="checkbox"
-                        class="filter-checkbox"
-                        data-target="farmerNameFilter"
-                    >
+                    <input type="checkbox" class="filter-checkbox" data-target="farmerNameFilter">
                     Farmer Name
                 </label>
 
-                <div
-                    id="farmerNameFilter"
-                    class="filter-input"
-                >
-                    <input
-                        type="text"
-                        id="farmer_name"
-                        placeholder="Enter farmer name"
-                    >
+                <div id="farmerNameFilter" class="filter-input">
+                    <input type="text" id="farmer_name" placeholder="Enter farmer name">
                 </div>
 
             </div>
@@ -64,23 +55,12 @@ Deliveries
             <div class="filter-item">
 
                 <label>
-                    <input
-                        type="checkbox"
-                        class="filter-checkbox"
-                        data-target="farmerSurnameFilter"
-                    >
+                    <input type="checkbox" class="filter-checkbox" data-target="farmerSurnameFilter">
                     Farmer Surname
                 </label>
 
-                <div
-                    id="farmerSurnameFilter"
-                    class="filter-input"
-                >
-                    <input
-                        type="text"
-                        id="farmer_surname"
-                        placeholder="Enter farmer surname"
-                    >
+                <div id="farmerSurnameFilter" class="filter-input">
+                    <input type="text" id="farmer_surname" placeholder="Enter farmer surname">
                 </div>
 
             </div>
@@ -90,23 +70,12 @@ Deliveries
             <div class="filter-item">
 
                 <label>
-                    <input
-                        type="checkbox"
-                        class="filter-checkbox"
-                        data-target="farmerTcFilter"
-                    >
+                    <input type="checkbox" class="filter-checkbox" data-target="farmerTcFilter">
                     Farmer TC Number
                 </label>
 
-                <div
-                    id="farmerTcFilter"
-                    class="filter-input"
-                >
-                    <input
-                        type="text"
-                        id="farmer_tc"
-                        placeholder="Enter farmer TC number"
-                    >
+                <div id="farmerTcFilter" class="filter-input">
+                    <input type="text" id="farmer_tc" placeholder="Enter farmer TC number">
                 </div>
 
             </div>
@@ -130,23 +99,12 @@ Deliveries
             <div class="filter-item">
 
                 <label>
-                    <input
-                        type="checkbox"
-                        class="filter-checkbox"
-                        data-target="expertNameFilter"
-                    >
+                    <input type="checkbox" class="filter-checkbox" data-target="expertNameFilter">
                     Expert Name
                 </label>
 
-                <div
-                    id="expertNameFilter"
-                    class="filter-input"
-                >
-                    <input
-                        type="text"
-                        id="expert_name"
-                        placeholder="Enter expert name"
-                    >
+                <div id="expertNameFilter" class="filter-input">
+                    <input type="text" id="expert_name" placeholder="Enter expert name">
                 </div>
 
             </div>
@@ -156,23 +114,12 @@ Deliveries
             <div class="filter-item">
 
                 <label>
-                    <input
-                        type="checkbox"
-                        class="filter-checkbox"
-                        data-target="expertSurnameFilter"
-                    >
+                    <input type="checkbox" class="filter-checkbox" data-target="expertSurnameFilter">
                     Expert Surname
                 </label>
 
-                <div
-                    id="expertSurnameFilter"
-                    class="filter-input"
-                >
-                    <input
-                        type="text"
-                        id="expert_surname"
-                        placeholder="Enter expert surname"
-                    >
+                <div id="expertSurnameFilter" class="filter-input">
+                    <input type="text" id="expert_surname" placeholder="Enter expert surname">
                 </div>
 
             </div>
@@ -192,47 +139,41 @@ Deliveries
 
         <div class="filter-options">
 
-            <!-- Delivery Date -->
-            <div class="filter-item">
+        <!-- Delivery Date -->
+        <div class="filter-item" style="height: auto;">
+            
+            <!-- 1. Ana Checkbox -->
+            <label>
+                <input type="checkbox" class="filter-checkbox" data-target="deliveryDateInputs">
+                Delivery Date
+            </label>
 
-                <label>
-                    <input
-                        type="checkbox"
-                        class="filter-checkbox"
-                        data-target="deliveryDateFilter"
-                    >
-                    Delivery Date
-                </label>
+            <!-- 2. Yan Yana Duracak Tarih Alanları -->
+            <div id="deliveryDateInputs" class="filter-input date-inputs-container">
+                
+                <div class="date-field">
+                    <span class="date-label">Start Date</span>
+                    <input type="date" id="delivery_start_date">
+                </div>
 
-                <div
-                    id="deliveryDateFilter"
-                    class="filter-input"
-                >
-                    <input
-                        type="date"
-                        id="delivery_date"
-                    >
+                <div class="date-field">
+                    <span class="date-label">End Date</span>
+                    <input type="date" id="delivery_end_date">
                 </div>
 
             </div>
+        </div>
 
 
             <!-- Payment Option -->
             <div class="filter-item">
 
                 <label>
-                    <input
-                        type="checkbox"
-                        class="filter-checkbox"
-                        data-target="paymentOptionFilter"
-                    >
+                    <input type="checkbox" class="filter-checkbox" data-target="paymentOptionFilter">
                     Payment Option
                 </label>
 
-                <div
-                    id="paymentOptionFilter"
-                    class="filter-input"
-                >
+                <div id="paymentOptionFilter" class="filter-input">
                     <select id="payment_option">
 
                         <option value="">
@@ -259,11 +200,7 @@ Deliveries
 
     <!-- ================= SEARCH BUTTON ================= -->
 
-    <button
-        type="button"
-        id="searchDeliveriesButton"
-        class="btn"
-    >
+    <button type="button" id="searchDeliveriesButton" class="btn">
         Search
     </button>
 
@@ -291,52 +228,8 @@ Deliveries
                 </tr>
             </thead>
 
-            <tbody>
-
-                {% for delivery in deliveries %}
-
-                <tr>
-
-                    <td>{{ delivery[0] }}</td>
-                    <td>{{ delivery[1] }}</td>
-                    <td>{{ delivery[2] }}</td>
-                    <td>{{ delivery[3] }}</td>
-                    <td>{{ delivery[4] }}</td>
-                    <td>{{ delivery[5] }}</td>
-
-                    <td>
-                        {% if delivery[6] == 1 %}
-                            Yes
-                        {% else %}
-                            No
-                        {% endif %}
-                    </td>
-
-                    <td>{{ delivery[7] }}</td>
-
-
-                    {% if session["role"] == "admin" %}
-
-                    <td>
-                        
-
-                        <form method="POST"
-                              action="{{ url_for('delete_delivery_route', delivery_id=delivery[0]) }}"
-                              onsubmit="return confirm('Are you sure you want to delete this delivery?');">
-
-                            <button type="submit" class="btn-delete">
-                                Delete
-                            </button>
-
-                        </form>
-
-                    </td>
-                    {% endif %}
-
-                </tr>
-
-                {% endfor %}
-
+            <tbody id="delivery-table-body">
+  
             </tbody>
 
         </table>
@@ -348,12 +241,7 @@ Deliveries
 {% endblock %}
 {%block scripts%}
 <script>
- 
-    // =========================
-    // FILTER INPUTS
-    // =========================
 
-    
 
 
     // =========================
@@ -386,8 +274,10 @@ Deliveries
             const expertSurname =
                 document.getElementById("expert_surname").value.trim();
 
-            const deliveryDate =
-                document.getElementById("delivery_date").value;
+            const deliveryDateChecked =
+                document.querySelector(
+                    '[data-target="deliveryDateInputs"]'
+                ).checked;
 
             const paymentOption =
                 document.getElementById("payment_option").value;
@@ -422,11 +312,6 @@ Deliveries
                     '[data-target="expertSurnameFilter"]'
                 ).checked;
 
-            const deliveryDateChecked =
-                document.querySelector(
-                    '[data-target="deliveryDateFilter"]'
-                ).checked;
-
             const paymentOptionChecked =
                 document.querySelector(
                     '[data-target="paymentOptionFilter"]'
@@ -448,10 +333,10 @@ Deliveries
             ) {
 
                 showGlassAlert(
-                "Warning",
-                "Please select at least one filter.",
-                "warning"
-             );
+                    "Warning",
+                    "Please select at least one filter.",
+                    "warning"
+                );
 
                 return;
             }
@@ -466,14 +351,24 @@ Deliveries
                 if (!farmerName) {
 
                     showGlassAlert(
-                    "Warning",
-                    "Please enter farmer name.",
-                    "warning"
+                        "Warning",
+                        "Please enter farmer name.",
+                        "warning"
                     );
 
                     return;
                 }
 
+                if (!isLettersOnly(farmerName)) {
+
+                    showGlassAlert(
+                        "Error",
+                        "Name can contain only letters.",
+                        "error"
+                    );
+
+                    return;
+                }
                 filters.farmer_name = farmerName;
             }
 
@@ -493,7 +388,16 @@ Deliveries
                     );
                     return;
                 }
+                if (!isLettersOnly(farmerSurname)) {
 
+                    showGlassAlert(
+                        "Error",
+                        "Surname can contain only letters.",
+                        "error"
+                    );
+
+                    return;
+                }
                 filters.farmer_surname = farmerSurname;
             }
 
@@ -513,7 +417,31 @@ Deliveries
                     return;
                 }
 
-                filters.farmer_tc = farmerTc;
+                if (!isDigitsOnly(farmerTc)) {
+
+                    showGlassAlert(
+                        "Error",
+                        "TC Number can contain only digits.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                if (farmerTc.length !== 11) {
+
+                    showGlassAlert(
+                        "Error",
+                        "TC Number must contain exactly 11 digits.",
+                        "error"
+                    );
+                 
+                     
+                    return;
+
+                   
+                }
             }
 
 
@@ -525,14 +453,24 @@ Deliveries
 
                 if (!expertName) {
 
-                   showGlassAlert(
+                    showGlassAlert(
                         "Warning",
                         "Please enter expert name.",
                         "warning");
-                    
+
                     return;
                 }
 
+                if (!isLettersOnly(expertName)) {
+
+                    showGlassAlert(
+                        "Error",
+                        "Name can contain only letters.",
+                        "error"
+                    );
+
+                    return;
+                }
                 filters.expert_name = expertName;
             }
 
@@ -545,14 +483,24 @@ Deliveries
 
                 if (!expertSurname) {
 
-                   showGlassAlert(
-                    "Warning",   
-                    "Please enter expert surname.",
-                    "warning");
+                    showGlassAlert(
+                        "Warning",
+                        "Please enter expert surname.",
+                        "warning");
 
                     return;
                 }
 
+                if (!isLettersOnly(expertSurname)) {
+
+                    showGlassAlert(
+                        "Error",
+                        "Surname can contain only letters.",
+                        "error"
+                    );
+
+                    return;
+                }
                 filters.expert_surname = expertSurname;
             }
 
@@ -560,22 +508,22 @@ Deliveries
             // =========================
             // DELIVERY DATE
             // =========================
+        if (deliveryDateChecked) {
+            const startDate = document.getElementById("delivery_start_date").value;
+            const endDate = document.getElementById("delivery_end_date").value;
 
-            if (deliveryDateChecked) {
-
-                if (!deliveryDate) {
-
-                   showGlassAlert(
-                        "Warning",
-                        "Please select a delivery date.",
-                        "warning"
-                    );
-                    return;
-                }
-
-                filters.delivery_date = deliveryDate;
+            if (!startDate || !endDate) {
+                showGlassAlert(
+                    "Warning",
+                    "Please select both start and end dates.",
+                    "warning"
+                );
+                return;
             }
 
+            filters.delivery_start_date = startDate;
+            filters.delivery_end_date = endDate;
+        }
 
             // =========================
             // PAYMENT OPTION
@@ -589,15 +537,16 @@ Deliveries
                         "Warning",
                         "Please select a payment option.",
                         "warning"
-                        );
+                    );
 
                     return;
                 }
 
                 filters.payment_option = paymentOption;
             }
+   
 
-      // API'ye veriyi gönderiyoruz
+            // API'ye veriyi gönderiyoruz
             fetch("/api/deliveries/search", {
                 method: "POST",
                 headers: {
@@ -607,22 +556,26 @@ Deliveries
                     filters: filters
                 })
             })
-            .then(response => response.json()) // Backendden gelen cevabı JSON'a çevir
-            .then(data => {
-                if (!data.success) {
-                    showGlassAlert(data.message || "Error occured while searching.");
-                    return;
-                }
-                
-                // Başarılıysa tabloyu güncelle
-                displayDeliveries(data.deliveries);
-            })
-            .catch(error => {
-                console.error("Search error:", error);
-                showGlassAlert("Connection error.");
-            });
+                .then(response => response.json()) // Backendden gelen cevabı JSON'a çevir
+                .then(data => {
+                    if (!data.success) {
+                        showGlassAlert(data.message || "Error occured while searching.");
+                        return;
+                    }
 
-        }); // Buton click eventinin sonu
+                    // Başarılıysa tabloyu güncelle
+                    displayDeliveries(data.deliveries);
+                })
+                .catch(error => {
+                    console.error("Search error:", error);
+                    showGlassAlert(
+                        "Error",
+                        "Connection error.",
+                        "error"
+                    );
+                });
+
+        });
 
 
     // =========================
@@ -635,7 +588,7 @@ Deliveries
 
         // Gelen her bir teslimat kaydı için yeni bir satır oluştur
         deliveries.forEach(function (delivery) {
-            
+
             // Yağmur durumu 1 ise Yes, değilse No yazsın
             const isRainy = delivery[6] === 1 ? "Yes" : "No";
 
@@ -650,15 +603,64 @@ Deliveries
                     <td>${isRainy}</td>
                     <td>${delivery[7]}</td>
                     <td>
-                        <button type="button" class="btn-delete" data-url="/admin/deliveries/delete/${delivery[0]}">
+                        <button type="button" class="btn-delete" data-url="/delete-delivery/${delivery[0]}}">
                             Delete
                         </button>
                     </td>
                 </tr>
             `;
             tableBody.innerHTML += row;
+                    console.log("Tek bir kayıt örneği:", deliveries[0]); 
+        console.log("Tek bir kayıt örneği:", deliveries[1]);
+        console.log("Tek bir kayıt örneği:", deliveries[2]);
+        console.log("Tek bir kayıt örneği:", deliveries[3]);
+        console.log("Tek bir kayıt örneği:", deliveries[4]);
+        console.log("Tek bir kayıt örneği:", deliveries[5]);
         });
     }
 
+}
+// Sayfa yüklendiğinde bir kere ekleniyor, tüm gelecekteki satırlar için de çalışır
+document.querySelector(".deliveries tbody")
+    .addEventListener("click", function (event) {
+
+        const button = event.target.closest(".btn-delete");
+        if (!button) return;
+
+        const url = button.dataset.url;
+        if (!url) return;
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "This delivery record will be deleted.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d32f2f",
+            cancelButtonColor: "#3a7d44",
+            confirmButtonText: "Yes, delete it",
+            cancelButtonText: "Cancel",
+            customClass: {
+                popup: "glass-swal",
+                cancelButton: "swal-cancel-btn"
+            }
+        }).then((result) => {
+            if (!result.isConfirmed) return;
+
+            fetch(url, { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        button.closest("tr").remove();
+                    } else {
+                        showGlassAlert("Error", data.message || "Delete failed.", "error");
+                    }
+                })
+                .catch(error => {
+                    console.error("Delete error:", error);
+                    showGlassAlert("Error", "Connection error.", "error");
+                });
+        });
+    });
+    
 </script>
 {%endblock%}

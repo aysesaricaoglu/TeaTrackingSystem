@@ -1,13 +1,15 @@
 import sqlite3
 import logging
 from werkzeug.security import generate_password_hash, check_password_hash
+import random
+from datetime import datetime, timedelta
 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
     handlers=[logging.StreamHandler(),
               logging.FileHandler("database.log")
-],   
+],
 )
 logger = logging.getLogger(__name__)
 DATABASE_NAME = "tea.db"
@@ -75,7 +77,7 @@ def create_table():
     payment_option TEXT NOT NULL,
     FOREIGN KEY (farmer_id) REFERENCES farmers(id),
     FOREIGN KEY (expert_id) REFERENCES users(id)
-    
+
     )""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS farmers(
@@ -398,12 +400,12 @@ def delete_delivery(delivery_id):
     return True
 
 def get_all_deliveries_full():
-    print(">>> get_all_deliveries_full CALLED <<<", flush=True)
+    
     connection = create_connection()
     cursor = connection.cursor()
 
     cursor.execute("""
-        SELECT 
+        SELECT
             tea_delivers.id,
             farmers.first_name || ' ' || farmers.last_name,
             experts.first_name || ' ' || experts.last_name,
@@ -432,7 +434,7 @@ def get_all_experts(search=""):
     connection = create_connection()
     cursor=connection.cursor()
     if search:
-        search= f"%{search}%"# sql de '%' LIKE  kullanıldığı zaman önünde veya arkasında birşey yazabilir manasında kullanılır 
+        search= f"%{search}%"# sql de '%' LIKE  kullanıldığı zaman önünde veya arkasında birşey yazabilir manasında kullanılır
 
         cursor.execute("""
         SELECT
@@ -447,7 +449,7 @@ def get_all_experts(search=""):
             OR first_name LIKE ?
             OR last_name LIKE ?
             is_active = 1
-        ) 
+        )
         ORDER BY  first_name, last_name
     """,(search,search,search))#
 
@@ -534,7 +536,7 @@ def search_experts(filters):
                 users.tc_no,
                 users.first_name,
                 users.last_name
-            FROM users WHERE users.role ='expert'     
+            FROM users WHERE users.role ='expert'
         """
         parameters=[]
 
@@ -670,7 +672,7 @@ def get_all_farmers(search=""):
         search= f"%{search}%"
 
         cursor.execute("""
-            SELECT 
+            SELECT
                 farmers.id,
                 users.tc_no,
                 farmers.first_name,
@@ -678,14 +680,14 @@ def get_all_farmers(search=""):
                 farmers.city,
                 farmers.district,
                 farmers.phone_number,
-                farmers.village 
+                farmers.village
 
             FROM farmers
             JOIN users ON farmers.user_id = users.id
-            WHERE 
+            WHERE
                 users.role = 'farmer'
             AND(
-                users.tc_no LIKE ? 
+                users.tc_no LIKE ?
                 OR farmers.first_name LIKE ?
                 OR farmers.last_name LIKE ?
                 OR farmers.city LIKE ?
@@ -737,7 +739,7 @@ def delete_farmer(farmer_id):
     try:
         cursor.execute("""
             SELECT user_id FROM farmers
-            WHERE id =? 
+            WHERE id =?
 
         """,(farmer_id,))
         farmer =cursor.fetchone()
@@ -751,9 +753,9 @@ def delete_farmer(farmer_id):
 
 
         cursor.execute("""
-        
+
             UPDATE farmers
-            SET is_active=0 
+            SET is_active=0
             WHERE id=?
         """,(farmer_id,))
 
@@ -784,7 +786,7 @@ def add_farmer(tc_no,password,role,first_name,last_name,city,district,phone_numb
 
         )
         existing_user = cursor.fetchone()
-        if existing_user: 
+        if existing_user:
             connection.close()
             return False
 
@@ -807,7 +809,7 @@ def add_farmer(tc_no,password,role,first_name,last_name,city,district,phone_numb
         )
         user_id = cursor.lastrowid# en son eklediğim şeyin id sini alıyorum
 
-        cursor.execute("""INSERT INTO farmers( 
+        cursor.execute("""INSERT INTO farmers(
                 user_id,
                 first_name,
                 last_name,
@@ -818,7 +820,7 @@ def add_farmer(tc_no,password,role,first_name,last_name,city,district,phone_numb
 
                 )VALUES (?,?,?,?,?,?,?)
                 """, (
-                    
+
                 user_id,
                 first_name,
                 last_name,
@@ -867,3 +869,101 @@ def add_farmer(tc_no,password,role,first_name,last_name,city,district,phone_numb
 #     connection.close()
 
 #     return cursor.rowcount > 0
+# def add_test_data():
+#     add_test_experts()
+#     add_test_deliveries()
+
+
+# def add_test_experts():
+
+#     for i in range(1, 31):
+
+#         tc_no = f"800000000{i:02d}"
+#         password = "1234"
+#         role = "expert"
+#         first_name = f"TestExpert{i}"
+#         last_name = "Test"
+
+#         result = add_user(
+#             tc_no,
+#             password,
+#             role,
+#             first_name,
+#             last_name
+#         )
+
+#         if result:
+#             print(f"Expert {i} added: {first_name} {last_name}")
+#         else:
+#             print(f"Expert {i} could not be added.")
+# def add_test_deliveries():
+
+#     connection = create_connection()
+#     cursor = connection.cursor()
+
+#     # Aktif farmer ID'lerini al
+#     cursor.execute("""
+#         SELECT id
+#         FROM farmers
+#         WHERE is_active = 1
+#         ORDER BY id
+#     """)
+
+#     farmers = [row[0] for row in cursor.fetchall()]
+
+#     # Aktif expert ID'lerini al
+#     cursor.execute("""
+#         SELECT id
+#         FROM users
+#         WHERE role = 'expert'
+#         AND is_active = 1
+#         ORDER BY id
+#     """)
+
+#     experts = [row[0] for row in cursor.fetchall()]
+
+#     connection.close()
+
+#     if not farmers:
+#         print("No active farmers found.")
+#         return
+
+#     if not experts:
+#         print("No active experts found.")
+#         return
+
+#     for i in range(1, 31):
+
+#         farmer_id = farmers[(i - 1) % len(farmers)]
+#         expert_id = experts[(i - 1) % len(experts)]
+
+#         delivery_date = f"2026-08-{(i % 28) + 1:02d}"
+
+#         gross_weight = 50 + (i * 5)
+
+#         # Yağmurluysa %10 kesinti
+#         is_rainy = 1 if i % 3 == 0 else 0
+
+#         if is_rainy:
+#             net_weight = gross_weight * 0.9
+#         else:
+#             net_weight = gross_weight
+
+#         payment_option = "Immediate" if i % 2 == 0 else "Deferred"
+
+#         add_delivery(
+#             farmer_id,
+#             expert_id,
+#             delivery_date,
+#             gross_weight,
+#             net_weight,
+#             is_rainy,
+#             payment_option
+#         )
+
+#         print(
+#             f"Delivery {i} added | "
+#             f"Farmer ID: {farmer_id} | "
+#             f"Expert ID: {expert_id} | "
+#             f"Date: {delivery_date}"
+#         )

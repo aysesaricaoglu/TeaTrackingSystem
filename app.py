@@ -3,8 +3,8 @@ from werkzeug.security import check_password_hash
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers= logging.StreamHandler(),
-             # logging.FileHandler("app.log")]
+    # handlers= [logging.StreamHandler(),
+    #          logging.FileHandler("app.log")]
 )
 
 logger = logging.getLogger(__name__)
@@ -29,7 +29,7 @@ from database import (
     delete_farmer,
     search_farmers,
     search_experts,
-    search_deliveries
+    search_deliveries,
     
     
 )
@@ -182,7 +182,7 @@ def delete_delivery_route(delivery_id):
 
     delete_delivery(delivery_id)
 
-    return redirect(url_for("all_deliveries"))
+    return jsonify(success=True)
 
 
 
@@ -198,6 +198,7 @@ def all_deliveries():
     deliveries = get_all_deliveries_full()
 
     return render_template(
+
         "all_deliveries.html",
         deliveries=deliveries
     )
