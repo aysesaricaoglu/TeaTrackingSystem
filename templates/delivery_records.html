@@ -1,0 +1,452 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Deliveries
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>Delivery Records</h1>
+        <p>View and manage all tea delivery records.</p>
+    </div>
+
+    <div class="button-container">
+        <a href="{{ url_for('new_delivery') }}" class="new_delivery">
+            + New Delivery
+        </a>
+    </div>
+</div>
+
+<div class="search-content-card">
+    <h2 class="search-title">Search Deliveries</h2>
+
+    <!-- Sadece Deliveries Sayfasına Özel Dropdown Kapsayıcısı -->
+    <div class="del-dropdown-container">
+        
+        <!-- ================= FARMER FILTERS ================= -->
+        <details class="del-dropdown">
+            <summary class="del-dropdown-summary">
+                <span><i class="fa-solid fa-user-group"></i> Farmer Filters</span>
+            </summary>
+            <div class="del-options-panel">
+                <!-- Farmer Name -->
+                <div class="del-capsule">
+                    <div class="del-capsule-header">
+                        <div class="del-capsule-left">
+                            <i class="fa-solid fa-user del-icon"></i>
+                            <span class="del-title">Farmer Name</span>
+                        </div>
+                        <label class="del-checkbox-wrapper">
+                            <input type="checkbox" class="del-checkbox" data-target="farmerNameFilter">
+                        </label>
+                    </div>
+                    <div id="farmerNameFilter" class="del-input-field">
+                        <input type="text" id="farmer_name" placeholder="Enter farmer name">
+                    </div>
+                </div>
+
+                <!-- Farmer Surname -->
+                <div class="del-capsule">
+                    <div class="del-capsule-header">
+                        <div class="del-capsule-left">
+                            <i class="fa-solid fa-user-tag del-icon"></i>
+                            <span class="del-title">Farmer Surname</span>
+                        </div>
+                        <label class="del-checkbox-wrapper">
+                            <input type="checkbox" class="del-checkbox" data-target="farmerSurnameFilter">
+                        </label>
+                    </div>
+                    <div id="farmerSurnameFilter" class="del-input-field">
+                        <input type="text" id="farmer_surname" placeholder="Enter farmer surname">
+                    </div>
+                </div>
+
+                <!-- Farmer TC -->
+                <div class="del-capsule">
+                    <div class="del-capsule-header">
+                        <div class="del-capsule-left">
+                            <i class="fa-solid fa-id-card del-icon"></i>
+                            <span class="del-title">Farmer TC Number</span>
+                        </div>
+                        <label class="del-checkbox-wrapper">
+                            <input type="checkbox" class="del-checkbox" data-target="farmerTcFilter">
+                        </label>
+                    </div>
+                    <div id="farmerTcFilter" class="del-input-field">
+                        <input type="text" id="farmer_tc" placeholder="Enter farmer TC number">
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <!-- ================= EXPERT FILTERS ================= -->
+        <details class="del-dropdown">
+            <summary class="del-dropdown-summary">
+                <span><i class="fa-solid fa-user-tie"></i> Expert Filters</span>
+            </summary>
+            <div class="del-options-panel">
+                <!-- Expert Name -->
+                <div class="del-capsule">
+                    <div class="del-capsule-header">
+                        <div class="del-capsule-left">
+                            <i class="fa-solid fa-user del-icon"></i>
+                            <span class="del-title">Expert Name</span>
+                        </div>
+                        <label class="del-checkbox-wrapper">
+                            <input type="checkbox" class="del-checkbox" data-target="expertNameFilter">
+                        </label>
+                    </div>
+                    <div id="expertNameFilter" class="del-input-field">
+                        <input type="text" id="expert_name" placeholder="Enter expert name">
+                    </div>
+                </div>
+
+                <!-- Expert Surname -->
+                <div class="del-capsule">
+                    <div class="del-capsule-header">
+                        <div class="del-capsule-left">
+                            <i class="fa-solid fa-user-tag del-icon"></i>
+                            <span class="del-title">Expert Surname</span>
+                        </div>
+                        <label class="del-checkbox-wrapper">
+                            <input type="checkbox" class="del-checkbox" data-target="expertSurnameFilter">
+                        </label>
+                    </div>
+                    <div id="expertSurnameFilter" class="del-input-field">
+                        <input type="text" id="expert_surname" placeholder="Enter expert surname">
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <!-- ================= DELIVERY FILTERS ================= -->
+        <details class="del-dropdown">
+            <summary class="del-dropdown-summary">
+                <span><i class="fa-solid fa-truck"></i> Delivery Filters</span>
+            </summary>
+            <div class="del-options-panel">
+                <!-- Delivery Date -->
+                <div class="del-capsule">
+                    <div class="del-capsule-header">
+                        <div class="del-capsule-left">
+                            <i class="fa-solid fa-calendar-days del-icon"></i>
+                            <span class="del-title">Delivery Date</span>
+                        </div>
+                        <label class="del-checkbox-wrapper">
+                            <input type="checkbox" class="del-checkbox" data-target="deliveryDateInputs">
+                        </label>
+                    </div>
+                    <div id="deliveryDateInputs" class="del-input-field del-date-container">
+                        <div class="del-date-box">
+                            <span class="del-date-label">Start Date</span>
+                            <input type="date" id="delivery_start_date">
+                        </div>
+                        <div class="del-date-box">
+                            <span class="del-date-label">End Date</span>
+                            <input type="date" id="delivery_end_date">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Option -->
+                <div class="del-capsule">
+                    <div class="del-capsule-header">
+                        <div class="del-capsule-left">
+                            <i class="fa-solid fa-credit-card del-icon"></i>
+                            <span class="del-title">Payment Option</span>
+                        </div>
+                        <label class="del-checkbox-wrapper">
+                            <input type="checkbox" class="del-checkbox" data-target="paymentOptionFilter">
+                        </label>
+                    </div>
+                    <div id="paymentOptionFilter" class="del-input-field">
+                        <select id="payment_option">
+                            <option value="">Select payment option</option>
+                            <option value="Immediate">Immediate</option>
+                            <option value="Deferred">Deferred</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+    </div>
+
+    <!-- ================= SEARCH BUTTON ================= -->
+    <div class="button-wrapper">
+        <button type="button" id="searchDeliveriesButton" class="btn">
+            Show Results
+        </button>
+    </div>
+</div>
+
+<div class="content-card">
+    <h2>Delivery Records</h2>
+    <div class="table-container">
+        <table class="deliveries">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Farmer</th>
+                    <th>Expert</th>
+                    <th>Date</th>
+                    <th>Gross Weight</th>
+                    <th>Net Weight</th>
+                    <th>Rainy</th>
+                    <th>Payment</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="delivery-table-body">
+            </tbody>
+        </table>
+        <div id="pagination-controls" class="pagination-controls"></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // SEARCH BUTTON
+    document.getElementById("searchDeliveriesButton").addEventListener("click", function () {
+        const filters = {};
+
+        const farmerName = document.getElementById("farmer_name").value.trim();
+        const farmerSurname = document.getElementById("farmer_surname").value.trim();
+        const farmerTc = document.getElementById("farmer_tc").value.trim();
+        const expertName = document.getElementById("expert_name").value.trim();
+        const expertSurname = document.getElementById("expert_surname").value.trim();
+        const deliveryDateChecked = document.querySelector('[data-target="deliveryDateInputs"]').checked;
+        const paymentOption = document.getElementById("payment_option").value;
+
+        const farmerNameChecked = document.querySelector('[data-target="farmerNameFilter"]').checked;
+        const farmerSurnameChecked = document.querySelector('[data-target="farmerSurnameFilter"]').checked;
+        const farmerTcChecked = document.querySelector('[data-target="farmerTcFilter"]').checked;
+        const expertNameChecked = document.querySelector('[data-target="expertNameFilter"]').checked;
+        const expertSurnameChecked = document.querySelector('[data-target="expertSurnameFilter"]').checked;
+        const paymentOptionChecked = document.querySelector('[data-target="paymentOptionFilter"]').checked;
+
+        if (
+            !farmerNameChecked &&
+            !farmerSurnameChecked &&
+            !farmerTcChecked &&
+            !expertNameChecked &&
+            !expertSurnameChecked &&
+            !deliveryDateChecked &&
+            !paymentOptionChecked
+        ) {
+            showGlassAlert("Warning", "Please select at least one filter.", "warning");
+            return;
+        }
+
+        if (farmerNameChecked) {
+            if (!farmerName) {
+                showGlassAlert("Warning", "Please enter farmer name.", "warning");
+                return;
+            }
+            if (!isLettersOnly(farmerName)) {
+                showGlassAlert("Error", "Name can contain only letters.", "error");
+                return;
+            }
+            filters.farmer_name = farmerName;
+        }
+
+        if (farmerSurnameChecked) {
+            if (!farmerSurname) {
+                showGlassAlert("Warning", "Please enter farmer surname.", "warning");
+                return;
+            }
+            if (!isLettersOnly(farmerSurname)) {
+                showGlassAlert("Error", "Surname can contain only letters.", "error");
+                return;
+            }
+            filters.farmer_surname = farmerSurname;
+        }
+
+        if (farmerTcChecked) {
+            if (!farmerTc) {
+                showGlassAlert("Warning", "Please enter farmer TC number.", "warning");
+                return;
+            }
+            if (!isDigitsOnly(farmerTc)) {
+                showGlassAlert("Error", "TC Number can contain only digits.", "error");
+                return;
+            }
+            if (farmerTc.length !== 11) {
+                showGlassAlert("Error", "TC Number must contain exactly 11 digits.", "error");
+                return;
+            }
+            filters.farmer_tc = farmerTc;
+        }
+
+        if (expertNameChecked) {
+            if (!expertName) {
+                showGlassAlert("Warning", "Please enter expert name.", "warning");
+                return;
+            }
+            if (!isLettersOnly(expertName)) {
+                showGlassAlert("Error", "Name can contain only letters.", "error");
+                return;
+            }
+            filters.expert_name = expertName;
+        }
+
+        if (expertSurnameChecked) {
+            if (!expertSurname) {
+                showGlassAlert("Warning", "Please enter expert surname.", "warning");
+                return;
+            }
+            if (!isLettersOnly(expertSurname)) {
+                showGlassAlert("Error", "Surname can contain only letters.", "error");
+                return;
+            }
+            filters.expert_surname = expertSurname;
+        }
+
+        if (deliveryDateChecked) {
+            const startDate = document.getElementById("delivery_start_date").value;
+            const endDate = document.getElementById("delivery_end_date").value;
+
+            if (!startDate || !endDate) {
+                showGlassAlert("Warning", "Please select both start and end dates.", "warning");
+                return;
+            }
+            filters.delivery_start_date = startDate;
+            filters.delivery_end_date = endDate;
+        }
+
+        if (paymentOptionChecked) {
+            if (!paymentOption) {
+                showGlassAlert("Warning", "Please select a payment option.", "warning");
+                return;
+            }
+            filters.payment_option = paymentOption;
+        }
+
+        fetch("/api/deliveries/search", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ filters: filters })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.success) {
+                showGlassAlert("Error", data.message || "Error occurred while searching.", "error");
+                return;
+            }
+            displayDeliveries(data.deliveries);
+        })
+        .catch(error => {
+            console.error("Search error:", error);
+            showGlassAlert("Error", "Connection error.", "error");
+        });
+    });
+
+    // SAYFALAMA VE TABLO BASMA
+    let allDeliveries = [];
+    let currentPage = 1;
+    const rowsPerPage = 15;
+
+    function displayDeliveries(deliveries) {
+        allDeliveries = deliveries;
+        currentPage = 1;
+        renderDeliveriesPage();
+    }
+
+    function renderDeliveriesPage() {
+        const tableBody = document.getElementById("delivery-table-body");
+        tableBody.innerHTML = "";
+
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+        const pageItems = allDeliveries.slice(start, end);
+
+        pageItems.forEach(function (delivery) {
+            const isRainy = delivery[6] === 1 ? "Yes" : "No";
+
+            const row = `
+                <tr>
+                    <td>${delivery[0]}</td>
+                    <td>${delivery[1]}</td>
+                    <td>${delivery[2]}</td>
+                    <td>${delivery[3]}</td>
+                    <td>${delivery[4]}</td>
+                    <td>${delivery[5]}</td>
+                    <td>${isRainy}</td>
+                    <td>${delivery[7]}</td>
+                    <td>
+                        <button type="button" class="btn-delete" data-url="/delete-delivery/${delivery[0]}">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+
+        renderPaginationControls();
+    }
+
+    function renderPaginationControls() {
+        const totalPages = Math.ceil(allDeliveries.length / rowsPerPage);
+        const container = document.getElementById("pagination-controls");
+        container.innerHTML = "";
+
+        if (totalPages <= 1) return;
+
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement("button");
+            btn.textContent = i;
+            btn.className = "page-btn" + (i === currentPage ? " active" : "");
+            btn.addEventListener("click", function () {
+                currentPage = i;
+                renderDeliveriesPage();
+            });
+            container.appendChild(btn);
+        }
+    }
+
+    // SİLME İŞLEMİ
+    document.getElementById("delivery-table-body").addEventListener("click", function (event) {
+        const button = event.target.closest(".btn-delete");
+        if (!button) return;
+
+        const url = button.dataset.url;
+        if (!url) return;
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "This delivery record will be deleted.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d32f2f",
+            cancelButtonColor: "transparent",
+            confirmButtonText: "Yes, delete it",
+            cancelButtonText: "Cancel",
+            customClass: {
+                popup: "glass-swal",
+                cancelButton: "swal-cancel-btn"
+            }
+        }).then((result) => {
+            if (!result.isConfirmed) return;
+
+            fetch(url, { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        button.closest("tr").remove();
+                    } else {
+                        showGlassAlert("Error", data.message || "Delete failed.", "error");
+                    }
+                })
+                .catch(error => {
+                    console.error("Delete error:", error);
+                    showGlassAlert("Error", "Connection error.", "error");
+                });
+        });
+    });
+</script>
+{% endblock %}

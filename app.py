@@ -7,7 +7,7 @@ logging.basicConfig(
     #          logging.FileHandler("app.log")]
 )
 
-logger = logging.getLogger(__name__)
+
 from flask import Flask, render_template, url_for, redirect, request, session,jsonify
 
 from database import (
@@ -199,7 +199,7 @@ def all_deliveries():
 
     return render_template(
 
-        "all_deliveries.html",
+        "delivery_records.html",
         deliveries=deliveries
     )
 @app.route("/api/deliveries/search", methods=["POST"])
@@ -412,9 +412,7 @@ def add_farmer_api():
             "message": "Farmer could not be created."
         }), 400
 
-    logger.info(
-        f"Farmer added: {first_name} {last_name}, TC: {tc_no}"
-    )
+  
 
     return jsonify( {
         "success": True,
@@ -442,7 +440,7 @@ def expert_management():
         "expert_management.html",
     
     )
-from flask import jsonify, request, session
+
 
 @app.route("/api/experts/search", methods=["POST"])
 def search_experts_api():
@@ -520,9 +518,7 @@ def add_expert_api():
             "success":False,
             "message": "Expert could not be added"
         }),400
-    logger.info(
-        f"Expert added:{first_name} {last_name},TC: {tc_no}"
-    )
+ 
 
     return jsonify( {
         "success":True,

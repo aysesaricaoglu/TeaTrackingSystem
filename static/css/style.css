@@ -116,166 +116,155 @@ body {
 
 
 /* ---------------- ARAMA VE FİLTRE KARTLARI (GLASSMORPHISM) ---------------- */
-.search-content-card {
-    background: rgba(20, 45, 25, 0.45);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 16px;
-    padding: 25px;
-    margin-bottom: 30px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    display: grid;   /* ❗ bu satır olmadan grid-template-columns işe yaramaz */
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15px;
-
+.search-content-card .search-title {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    padding-left: 5px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffff;
 }
-.search-content-card h2,
-.search-content-card #searchDeliveriesButton {
-    grid-column: 1 / -1;   /* tüm genişliği kapla, tek satırda dursun */
+.search-title{
+    margin-left:30px;
+}
+.search-content-card{
+    background: rgba(20, 45, 25, 0.45);
+    border-radius: 30px;
+    backdrop-filter: blur(8px);
+}
+/* 2 Sütunlu Grid Izgara */
+.filter-capsules-grid {
+    grid-column: 1 / -1;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 24px;
+}
+@media (max-width: 768px) {
+    .filter-capsules-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.filter-capsules-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 24px;
+}
+/* Kapsül Kutu (Pill) Tasarımı */
+.filter-capsule {
+   background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    padding: 12px 18px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: visible; /* Kırpılmayı engeller */
+    margin-left: 15px;
+}
+.filter-capsule.active {
+    background: rgba(20, 45, 25, 0.6);
+    border-color: #4ade80;
+    border-radius: 18px; /* Açılınca kareye yakınlaşan estetik radius */
+    box-shadow: 0 4px 15px rgba(74, 222, 128, 0.15);
+    
+}
+.capsule-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.capsule-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.capsule-icon {
+    font-size: 16px;
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+.capsule-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+/* Özel Yuvarlak Checkbox */
+.custom-checkbox {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.custom-checkbox input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.button-wrapper {
+    grid-column: 1 / -1; /* Grid'in en solundan en sağına kadar tüm alanı kaplatır */
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Butonu tam merkeze alır */
+    align-items: center;
+    margin-top: 35px;
 }
 .search-content-card h2 {
-    margin-top: 0;
-    color: #ffffff;
-    font-weight: 500;
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-
-
-.search-content-card > .filter-options {
     grid-column: 1 / -1;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    padding-left: 5px;
+    padding-top: 15px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffff;
+}
+.dropdown-group, 
+.search-content-card .filter-dropdown-container .filter-options {
+    grid-column: 1 / -1;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Dropdown'ları yatayda tam ortaya toplar */
+    gap: 20px;
+    color: #1c591349;
+
 }
 
 /* ---------------- Tarih kutularını yan yana getiren taşıyıcı ---------------- */
 .date-inputs-container {
     display: flex;
-    gap: 15px; /* İki kutu arasındaki boşluk */
-    margin-top: 10px;
-    padding-left: 28px; /* Üstteki checkbox metniyle hizalı görünmesi için */
-}
-
-/* Her bir tarih sütunu (Etiket ve Kutu alt alta) */
-.date-field {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    gap: 8px;
+    padding-left: 0 !important;
     width: 100%;
-}
-
-/* Start/End Date ufak etiket yazıları */
-.date-label {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-/* Tarih Input (Takvim) Tasarımı */
-.date-field input[type="date"] {
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    border-radius: 8px;
-    padding: 8px 10px;
-    font-size: 13px;
-    outline: none;
-    transition: all 0.3s ease;
-    color-scheme: dark; /* Takvim ikonunu karanlık temaya uydurur */
-}
-
-.date-field input[type="date"]:focus {
-    border-color: #4ade80;
-    box-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
-
-}
-/* --- ÖZEL CHECKBOX TASARIMI --- */
-.filter-item label {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.9);
-    position: relative;
-    padding-left: 28px;
-    user-select: none;
-}
-
-.filter-item label input[type="checkbox"] {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
-
-/* Checkbox'ın kendisi (Kutu) */
-.filter-item label::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 18px;
-    height: 18px;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-/* Checkbox İşaretlendiğinde */
-.filter-item label input:checked ~ ::before,
-.filter-item label:has(input:checked)::before {
-    background: #3a7d44;
-    border-color: #4ade80;
-}
-
-/* Checkbox İçindeki Tik İşareti */
-.filter-item label::after {
-    content: "";
-    position: absolute;
-    left: 6px;
-    top: 50%;
-    transform: translateY(-60%) rotate(45deg);
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-}
-
-.filter-item label input:checked ~ ::after,
-.filter-item label:has(input:checked)::after {
-    opacity: 1;
-}
-
-/* Filtre Input Alanları */
-.filter-input input {
-    width: 100%;
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    border-radius: 8px;
-    padding: 10px 15px;
     box-sizing: border-box;
-    transition: all 0.3s ease;
-}
-
-.filter-input input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.filter-input input:focus {
-    outline: none;
-    border-color: #4ade80;
-    box-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
-}
-/* Tarih kutularını yan yana getiren taşıyıcı */
-.date-inputs-container {
-    display: flex;
-    gap: 15px; /* İki kutu arasındaki boşluk */
-    margin-top: 10px;
-    padding-left: 28px; /* Üstteki checkbox metniyle hizalı görünmesi için */
 }
 
 /* Her bir tarih sütunu (Etiket ve Kutu alt alta) */
@@ -285,7 +274,10 @@ body {
     gap: 5px;
     width: 100%;
 }
-
+.date-inputs-container .date-field {
+    flex: 1;
+    min-width: 0; /* Flex içinde inputların taşmasını önler */
+}
 /* Start/End Date ufak etiket yazıları */
 .date-label {
     font-size: 12px;
@@ -309,6 +301,7 @@ body {
     border-color: #4ade80;
     box-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
 }
+
 /* ---------------- İSTATİSTİK KARTLARI ---------------- */
 .cards {
     display: grid;
@@ -501,7 +494,6 @@ table tr:hover {
     display: inline-block;
     float: right;
     margin-left: 15px; /* Butonlar yan yanaysa aralarını açar */
-    
     padding: 10px 20px;
     background: rgba(255, 255, 255, 0.1);
     color: #ffffff;
@@ -516,8 +508,6 @@ table tr:hover {
 .farmer_ekle:hover, .expert_ekle:hover , .new_delivery:hover{
     background: rgba(123, 164, 113, 0.2);
     border-color: #ffffff;
-   
-
 }
 
 /* ---------------- DİĞER KARTLAR VE DETAYLAR ---------------- */
@@ -610,7 +600,6 @@ td form {
     align-items: center; /* Logoyu ve yazıyı dikeyde birbirine göre tam ortalar */
     justify-content: center; /* İkisini birden sidebar'ın yatayda ortasına hizalar */
     gap: 12px; /* Logo ile yazı arasındaki boşluk (istediğin gibi artırıp azaltabilirsin) */
-    
     margin-bottom: 40px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Alt çizgi artık kapsayıcıda */
     padding-bottom: 15px;
@@ -671,8 +660,6 @@ td form {
     -webkit-backdrop-filter: blur(12px);
     border-radius: 0;
     z-index: 1000;
-   
-    
 }
 
 /* Sidebar ve İçeriğin bulunduğu alt kapsayıcı */
@@ -729,7 +716,7 @@ td form {
 .profile-avatar {
     width: 36px;
     height: 36px;
-    border-radius: 50%;
+    border-radius: 4px;
     object-fit: cover;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -836,18 +823,16 @@ td form {
    AÇILIR FİLTRE MENÜLERİ (MİNİMALİST VE İNCE CAM EFEKTİ)
 ========================================================= */
 .filter-dropdown {
-    flex: 1; /* Bulundukları div içinde yan yana eşit alan kaplamalarını sağlar */
-    min-width: 250px; /* Ekran küçüldüğünde çok fazla ezilmemeleri için sınır */
-    
+    flex: 0 1 280px; /* Eşit genişlikte ve ortalı dururlar */
+    min-width: 240px;
+    max-width: 320px;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    margin-bottom: 0; /* Yan yana duracakları için alt boşluğu sıfırladık */
     overflow: hidden;
     transition: all 0.3s ease;
-    
 }
 .filter-dropdown summary {
     padding: 12px 15px; /* Kutu yüksekliğini daralttık */
@@ -860,7 +845,6 @@ td form {
     justify-content: space-between;
     align-items: center;
     background: transparent; /* Koyu arka planı kaldırdık */
-    
 }
 
 .filter-dropdown summary::-webkit-details-marker {
@@ -877,22 +861,30 @@ td form {
 .filter-dropdown[open] summary::after {
     transform: rotate(180deg);
 }
+
 .filter-options {
     padding: 25px;
-    display: grid;
-    /* Ekran genişliğine göre otomatik 2 veya 3 sütuna böler */
-    gap: 30px; /* Checkbox'lar arası ferah boşluk */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 20px 25px; /* Checkbox öğeleri arası yatay ve dikey boşluk */
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
+
 /* =========================================================
    FİLTRE CHECKBOX VE AÇILIR İNPUT TASARIMLARI
 ========================================================= */
 
 .filter-item {
     display: flex;
+    align-items: flex-end;
     flex-direction: column;
     gap: 10px;
-    margin-bottom: 15px;
+    flex: 1 1 200px; /* Yan yana eşit paylaşımlı ve responsive dizilim */
+    min-width: 170px;
+    margin: 0 !important;
+    padding: 0 !important;
+    
 }
 
 /* Standart Checkbox'ı Gizle ve Kendi Tasarımımızı Uygula */
@@ -909,35 +901,40 @@ td form {
 .filter-checkbox {
     appearance: none;
     -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0.3);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    background: rgba(0, 0, 0, 0.25);
     cursor: pointer;
     position: relative;
-    transition: all 0.3s ease;
+    outline: none;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
     margin: 0;
 }
 
 .filter-checkbox:checked {
     background: #3a7d44;
     border-color: #4ade80;
+    box-shadow: 0 0 8px rgba(74, 222, 128, 0.4);
 }
 
-/* Checkbox İçindeki Tik İşareti */
 .filter-checkbox:checked::after {
     content: '';
     position: absolute;
-    left: 5px;
-    top: 1px;
-    width: 4px;
-    height: 9px;
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
     border: solid white;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
-
+.filter-checkbox:hover {
+    border-color: #4ade80;
+    background: rgba(255, 255, 255, 0.1);
+}
 /* --- AÇILIR KAPANIR INPUT ALANLARI --- */
 .filter-input {
     display: none; /* Varsayılan olarak gizli */
@@ -950,22 +947,24 @@ td form {
     animation: fadeIn 0.3s ease;
 }
 
+/* Input, Select ve Tarih Kutularının Boyutlandırması */
 .filter-input input,
 .filter-input select {
-    width: 100%;
+    width: 100% !important;
     box-sizing: border-box;
-    padding: 10px 15px;
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 9px 12px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 8px;
     color: #ffffff;
-    font-size: 14px;
-    transition: all 0.3s ease;
+    font-size: 13px;
+    outline: none;
+    transition: all 0.2s ease;
 }
 
 .filter-input input:focus,
 .filter-input select:focus {
-    outline: none;
+    
     border-color: #4ade80;
     box-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
 }
@@ -976,7 +975,375 @@ td form {
     color: #ffffff;
 }
 
+/* PAGINATION AYARLARIM */
+.pagination-controls {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.page-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.page-btn.active {
+    background: #3a7d44;
+    border-color: #4ade80;
+}
+/* Dropdown'ları kartın üstünde yan yana ve eşit hizalayan konteyner */
+.filter-dropdown-container {
+    grid-column: 1 / -1;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+/* Dropdown kutularının genel şıklığı */
+.filter-dropdown {
+    flex: 1 1 300px;
+    max-width: 380px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.filter-dropdown summary {
+    padding: 14px 18px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+}
+
+.filter-dropdown summary i {
+    margin-right: 8px;
+    color: #4ade80;
+}
+
+/* Dropdown içi kapsül listesi */
+.filter-dropdown .filter-options {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+/* =========================================================
+   DELIVERY FILTER DROPDOWN & CAPSULE KESİLME DÜZELTMESİ
+========================================================= */
+
+/* 1. Dropdown menünün içindeki kapsüllerin taşmasını ve kesilmesini engeller */
+.filter-dropdown {
+    overflow: visible !important;
+}
+
+.filter-dropdown .filter-options {
+    padding: 15px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    overflow: visible !important;
+}
+
+/* 2. Kapsül kutusunu esnek yap: İçerik açıldığında aşağı doğru rahatça uzasın */
+.filter-capsule {
+    min-height: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding: 12px 16px !important;
+    border-radius: 18px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+}
+
+/* 3. Başlık satırını tam genişlik yap ve ikon/checkbox hizasını sağla */
+.capsule-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+}
+
+.capsule-left {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+/* 4. Kesilmeye sebep olan margin-left'i SIFIRLA ve kutuyu tam genişlik yap */
+.filter-capsule .filter-input {
+    margin-left: 0 !important;   /* Kesilmeyi yapan 30px'lik sol boşluğu sıfırlar */
+    margin-top: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* 5. Input, Select ve Date picker alanlarını kapsülün içine tam oturt */
+.filter-capsule .filter-input input,
+.filter-capsule .filter-input select {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 9px 12px !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border-radius: 8px !important;
+    color: #ffffff !important;
+    font-size: 13px !important;
+    outline: none !important;
+}
+
+/* 6. Tarih çiftli kutusunun yan yana düzgün sığması için */
+.filter-capsule .date-inputs-container {
+    padding-left: 0 !important;
+    gap: 8px !important;
+    display: flex !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.filter-capsule .date-inputs-container .date-field {
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+/* =========================================================
+   DELIVERIES PAGE - ÖZEL İZOLE EDİLMİŞ FİLTRE STİLLERİ
+========================================================= */
+
+/* Dropdown kapsayıcısını tüm grid sütunlarına yayıp ortalayan kural */
+.del-dropdown-container {
+    grid-column: 1 / -1; /* Kartın tüm sütunlarını baştan sona kaplar */
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Dropdown'ları yatayda tam ortalar */
+    align-items: flex-start;
+    gap: 25px; /* Dropdown'lar arasındaki mesafeyi ferahlatır */
+    margin: 0 auto; /* Kutuyu merkeze kilitler */
+    box-sizing: border-box;
+}
+
+/* Her bir Dropdown kutusu */
+.del-dropdown {
+    flex: 0 1 310px; /* Otomatik sola yayılmayı önler, sabit ve dengeli genişlik verir */
+    width: 100%;
+    max-width: 340px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    overflow: visible;
+    transition: all 0.3s ease;
+}
+/* Dropdown Başlığı (Summary) */
+.del-dropdown-summary {
+    padding: 14px 18px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    margin-left: 10px;
+}
+
+.del-dropdown-summary::-webkit-details-marker {
+    display: none;
+}
+
+.del-dropdown-summary::after {
+    content: '\25BC';
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.del-dropdown[open] .del-dropdown-summary::after {
+    transform: rotate(180deg);
+}
+
+.del-dropdown-summary i {
+    margin-right: 8px;
+    color: #4ade80;
+}
+
+/* Dropdown Açılınca Görünen Panel */
+.del-options-panel {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Kapsül (Pill) Kutu */
+.del-capsule {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 18px;
+    padding: 10px 16px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+/* Kapsül Üst Satırı: İkon/Yazı solda, Checkbox sağda */
+.del-capsule-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.del-capsule-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.del-icon {
+    font-size: 15px;
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+.del-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+/* Dairesel Checkbox */
+.del-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+.del-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    background: rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    transition: all 0.25s ease;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.del-checkbox:checked {
+    background: #3a7d44;
+    border-color: #4ade80;
+    box-shadow: 0 0 8px rgba(74, 222, 128, 0.4);
+}
+
+.del-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 4px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Checkbox Açılınca Görünen Input Alanı */
+.del-input-field {
+    width: 100%;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+.del-input-field input,
+.del-input-field select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 13px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.del-input-field select option {
+    background-color: #142d19;
+    color: #ffffff;
+}
+
+.del-input-field input:focus,
+.del-input-field select:focus {
+    border-color: #4ade80;
+    box-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
+}
+
+/* Tarih Inputları Düzeni */
+.del-date-container {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.del-date-box {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
+
+.del-date-label {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
 }

@@ -4,14 +4,14 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import random
 from datetime import datetime, timedelta
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[logging.StreamHandler(),
-              logging.FileHandler("database.log")
-],
-)
-logger = logging.getLogger(__name__)
+# logging.basicConfig(
+#     level=logging.INFO,
+#     format="%(asctime)s - %(levelname)s - %(message)s",
+#     handlers=[logging.StreamHandler(),
+#               logging.FileHandler("database.log")
+# ],
+# )
+# logger = logging.getLogger(__name__)
 DATABASE_NAME = "tea.db"
 
 def normalize_search_text(text):
@@ -215,10 +215,8 @@ def search_deliveries(filters):
     query = """
         SELECT
             tea_delivers.id,
-            farmers.first_name,
-            farmers.last_name,
-            experts.first_name,
-            experts.last_name,
+            farmers.first_name ||' '|| farmers.last_name,
+            experts.first_name||' '||experts.last_name,
             tea_delivers.delivery_date,
             tea_delivers.gross_weight,
             tea_delivers.net_weight,
@@ -281,9 +279,10 @@ def search_deliveries(filters):
 
     if filters.get("date"):
         query += """
-            AND tea_delivers.delivery_date = ?
+            AND tea_delivers.delivery_date BETWEEN ? AND ?
         """
-        parameters.append(filters["date"])
+        parameters.append(filters["delivery_start_date"])
+        parameters.append(filters["delivery_end_date"])
 
     if filters.get("is_rainy") is not None:
         query += """
@@ -353,13 +352,13 @@ def add_delivery(
             payment_option,
         ),
     )
-    logger.info(f"""Farmer ID:{farmer_id}
-    Expert ID: {expert_id}
-    Date: {delivery_date}
-    Gross Weight: {gross_weight}
-    Net Weight: {net_weight}
-    Rainy: {is_rainy}
-    Payment: {payment_option}""")
+    # logger.info(f"""Farmer ID:{farmer_id}
+    # Expert ID: {expert_id}
+    # Date: {delivery_date}
+    # Gross Weight: {gross_weight}
+    # Net Weight: {net_weight}
+    # Rainy: {is_rainy}
+    # Payment: {payment_option}""")
     connection.commit()  # yapılan değişiklikleri kaydetmek için
     connection.close()  # bağlantıyı kapatmak için
 
@@ -835,8 +834,8 @@ def add_farmer(tc_no,password,role,first_name,last_name,city,district,phone_numb
         connection.commit()
         connection.close()
 
-        logger.info(f"farmer added {first_name} {last_name} TC: {tc_no}"
-    )
+        # logger.info(f"farmer added {first_name} {last_name} TC: {tc_no}")
+    
 
         return True
 # def reset_test_data():

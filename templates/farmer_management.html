@@ -7,126 +7,148 @@ Farmer Management
 {% block content %}
 
 <div class="page-header">
-
     <div>
         <h1>Farmer Management</h1>
         <p>View and manage registered farmers.</p>
     </div>
 
     <div class="button-container">
-  
         <a href="{{ url_for('add_farmer_route') }}" class="farmer_ekle">
-        + New Farmer
+            + New Farmer
         </a>
-
     </div>
-   
 </div>
 
-
 <div class="search-content-card">
+    <h2 class="search-title">Search Farmers</h2>
 
-    <h2>Search Farmers</h2>
-
-    <div class="filter-options">
-
+    <div class="filter-capsules-grid">
         <!-- Name -->
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" class="filter-checkbox" data-target="nameFilter">
-                Name
-            </label>
+        <div class="filter-capsule">
+            <div class="capsule-header">
+                <div class="capsule-left">
+                    <i class="fa-solid fa-user capsule-icon"></i>
+                    <span class="capsule-title">Name</span>
+                </div>
+                <label class="filter-item">
+                    <input type="checkbox" class="filter-checkbox" data-target="nameFilter">
+                </label>
+            </div>
             <div id="nameFilter" class="filter-input">
                 <input type="text" id="name" placeholder="Enter first name">
             </div>
         </div>
 
-        <!-- Surname -->
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" class="filter-checkbox" data-target="surnameFilter">
-                Surname
-            </label>
-            <div id="surnameFilter" class="filter-input">
-                <input type="text" id="surname" placeholder="Enter last name">
-            </div>
-        </div>
-
-        <!-- TC Number -->
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" class="filter-checkbox" data-target="tcFilter">
-                TC Number
-            </label>
-            <div id="tcFilter" class="filter-input">
-                <input type="text" id="tc" placeholder="Enter TC number">
-            </div>
-        </div>
-
         <!-- City -->
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" class="filter-checkbox" data-target="cityFilter">
-                City
-            </label>
+        <div class="filter-capsule">
+            <div class="capsule-header">
+                <div class="capsule-left">
+                    <i class="fa-solid fa-city capsule-icon"></i>
+                    <span class="capsule-title">City</span>
+                </div>
+                <label class="filter-item">
+                    <input type="checkbox" class="filter-checkbox" data-target="cityFilter">
+                </label>
+            </div>
             <div id="cityFilter" class="filter-input">
                 <input type="text" id="city" placeholder="Enter city">
             </div>
         </div>
 
-        <!-- District -->
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" class="filter-checkbox" data-target="districtFilter">
-                District
-            </label>
-            <div id="districtFilter" class="filter-input">
-                <input type="text" id="district" placeholder="Enter district">
+        <!-- Surname -->
+        <div class="filter-capsule">
+            <div class="capsule-header">
+                <div class="capsule-left">
+                    <i class="fa-solid fa-user capsule-icon"></i>
+                    <span class="capsule-title">Surname</span>
+                </div>
+                <label class="filter-item">
+                    <input type="checkbox" class="filter-checkbox" data-target="surnameFilter">
+                </label>
+            </div>
+            <div id="surnameFilter" class="filter-input">
+                <input type="text" id="surname" placeholder="Enter last name">
             </div>
         </div>
 
         <!-- Village -->
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" class="filter-checkbox" data-target="villageFilter">
-                Village
-            </label>
+        <div class="filter-capsule">
+            <div class="capsule-header">
+                <div class="capsule-left">
+                    <i class="fa-solid fa-house capsule-icon"></i>
+                    <span class="capsule-title">Village</span>
+                </div>
+                <label class="filter-item">
+                    <input type="checkbox" class="filter-checkbox" data-target="villageFilter">
+                </label>
+            </div>
             <div id="villageFilter" class="filter-input">
                 <input type="text" id="village" placeholder="Enter village">
             </div>
         </div>
 
-        <!-- Phone -->
-        <div class="filter-item">
-            <label>
-                <input type="checkbox" class="filter-checkbox" data-target="phoneFilter">
-                Phone Number
-            </label>
+        <!-- TC Number -->
+        <div class="filter-capsule">
+            <div class="capsule-header">
+                <div class="capsule-left">
+                    <i class="fa-solid fa-id-card capsule-icon"></i>
+                    <span class="capsule-title">TC Number</span>
+                </div>
+                <label class="filter-item">
+                    <input type="checkbox" class="filter-checkbox" data-target="tcFilter">
+                </label>
+            </div>
+            <div id="tcFilter" class="filter-input">
+                <input type="text" id="tc" placeholder="Enter TC number">
+            </div>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="filter-capsule">
+            <div class="capsule-header">
+                <div class="capsule-left">
+                    <i class="fa-solid fa-phone capsule-icon"></i>
+                    <span class="capsule-title">Phone Number</span>
+                </div>
+                <label class="filter-item">
+                    <input type="checkbox" class="filter-checkbox" data-target="phoneFilter">
+                </label>
+            </div>
             <div id="phoneFilter" class="filter-input">
                 <input type="text" id="phone" placeholder="Enter phone number">
             </div>
         </div>
 
+        <!-- District -->
+        <div class="filter-capsule">
+            <div class="capsule-header">
+                <div class="capsule-left">
+                    <i class="fa-solid fa-location-dot capsule-icon"></i>
+                    <span class="capsule-title">District</span>
+                </div>
+                <label class="filter-item">
+                    <input type="checkbox" class="filter-checkbox" data-target="districtFilter">
+                </label>
+            </div>
+            <div id="districtFilter" class="filter-input">
+                <input type="text" id="district" placeholder="Enter district">
+            </div>
+        </div>
     </div>
 
-    <!-- Butonu yeniden en alta, sağa hizalı şekilde yerleştiriyoruz -->
-    <div style="margin-top: 25px; display: flex; justify-content: center;">
+    <div class="button-wrapper">
         <button type="button" id="searchFarmersButton" class="btn">
             Show Results
         </button>
     </div>
-
 </div>
-<div class="content-card">
 
+<div class="content-card">
     <h2>Farmers</h2>
 
     <div class="table-container">
-
         <table class="deliveries">
-
             <thead>
-
                 <tr>
                     <th>ID</th>
                     <th>TC Number</th>
@@ -137,257 +159,284 @@ Farmer Management
                     <th>Village</th>
                     <th>Actions</th>
                 </tr>
-
             </thead>
-
             <tbody id="farmer-table-body">
-
             </tbody>
-
         </table>
-
     </div>
-
+    <div id="pagination-controls" class="pagination-controls"></div>
 </div>
-
 
 
 <script>
 
     function isLettersOnly(value) {
-    return /^[A-Za-zÇĞİÖŞÜçğıöşü\s]+$/.test(value);
-}
+        return /^[A-Za-zÇĞİÖŞÜçğıöşü\s]+$/.test(value);
+    }
 
     function isDigitsOnly(value) {
         return /^\d+$/.test(value);
     }
-document.getElementById("searchFarmersButton").addEventListener("click", function () {
+    document.getElementById("searchFarmersButton").addEventListener("click", function () {
 
-    const filters = {};
+        const filters = {};
 
-    const name = document.getElementById("name").value.trim();
-    const surname = document.getElementById("surname").value.trim();
-    const tc = document.getElementById("tc").value.trim();
-    const city = document.getElementById("city").value.trim();
-    const district = document.getElementById("district").value.trim();
-    const village = document.getElementById("village").value.trim();
-    const phone = document.getElementById("phone").value.trim();
+        const name = document.getElementById("name").value.trim();
+        const surname = document.getElementById("surname").value.trim();
+        const tc = document.getElementById("tc").value.trim();
+        const city = document.getElementById("city").value.trim();
+        const district = document.getElementById("district").value.trim();
+        const village = document.getElementById("village").value.trim();
+        const phone = document.getElementById("phone").value.trim();
 
-    /* CHECKBOX KONTROLLERİ */
-    const nameChecked = document.querySelector('[data-target="nameFilter"]').checked;
-    const surnameChecked = document.querySelector('[data-target="surnameFilter"]').checked;
-    const tcChecked = document.querySelector('[data-target="tcFilter"]').checked;
-    const cityChecked = document.querySelector('[data-target="cityFilter"]').checked;
-    const districtChecked = document.querySelector('[data-target="districtFilter"]').checked;
-    const villageChecked = document.querySelector('[data-target="villageFilter"]').checked;
-    const phoneChecked = document.querySelector('[data-target="phoneFilter"]').checked;
+        /* CHECKBOX KONTROLLERİ */
+        const nameChecked = document.querySelector('[data-target="nameFilter"]').checked;
+        const surnameChecked = document.querySelector('[data-target="surnameFilter"]').checked;
+        const tcChecked = document.querySelector('[data-target="tcFilter"]').checked;
+        const cityChecked = document.querySelector('[data-target="cityFilter"]').checked;
+        const districtChecked = document.querySelector('[data-target="districtFilter"]').checked;
+        const villageChecked = document.querySelector('[data-target="villageFilter"]').checked;
+        const phoneChecked = document.querySelector('[data-target="phoneFilter"]').checked;
 
-    /* EN AZ BİR FİLTRE SEÇİLMELİ */
-    if (!nameChecked && !surnameChecked && !tcChecked && !cityChecked && !districtChecked && !villageChecked && !phoneChecked) {
-        showGlassAlert("Warning", "Please select at least one filter.", "warning");
-        return;
-    }
-
-    /* NAME */
-    if (nameChecked) {
-        if (!name) {
-            showGlassAlert("Warning", "Please enter a name.", "warning");
+        /* EN AZ BİR FİLTRE SEÇİLMELİ */
+        if (!nameChecked && !surnameChecked && !tcChecked && !cityChecked && !districtChecked && !villageChecked && !phoneChecked) {
+            showGlassAlert("Warning", "Please select at least one filter.", "warning");
             return;
         }
-        if (!isLettersOnly(name)) {
-            showGlassAlert("Error", "Name can contain only letters.", "error");
-            return;
-        }
-        filters.name = name;
-    }
 
-    /* SURNAME */
-    if (surnameChecked) {
-        if (!surname) {
-            showGlassAlert("Warning", "Please enter a surname.", "warning");
-            return;
-        }
-        if (!isLettersOnly(surname)) {
-            showGlassAlert("Error", "Surname can contain only letters.", "error");
-            return;
-        }
-        filters.surname = surname;
-    }
-
-    /* TC NUMBER */
-    if (tcChecked) {
-        if (!tc) {
-            showGlassAlert("Warning", "Please enter a TC number.", "warning");
-            return;
-        }
-        if (!isDigitsOnly(tc)) {
-            showGlassAlert("Error", "TC Number can contain only digits.", "error");
-            return;
-        }
-        if (tc.length !== 11) {
-            showGlassAlert("Error", "TC Number must contain exactly 11 digits.", "error");
-            return;
-        }
-        filters.tc = tc;
-    }
-
-    /* CITY */
-    if (cityChecked) {
-        if (!city) {
-            showGlassAlert("Warning", "Please enter a city.", "warning");
-            return;
-        }
-        if (!isLettersOnly(city)) {
-            showGlassAlert("Error", "City can contain only letters.", "error");
-            return;
-        }
-        filters.city = city;
-    }
-
-    /* DISTRICT */
-    if (districtChecked) {
-        if (!district) {
-            showGlassAlert("Warning", "Please enter a district.", "warning");
-            return;
-        }
-        if (!isLettersOnly(district)) {
-            showGlassAlert("Error", "District can contain only letters.", "error");
-            return;
-        }
-        filters.district = district;
-    }
-
-    /* VILLAGE */
-    if (villageChecked) {
-        if (!village) {
-            showGlassAlert("Warning", "Please enter a village.", "warning");
-            return;
-        }
-        if (!isLettersOnly(village)) {
-            showGlassAlert("Error", "Village can contain only letters.", "error");
-            return;
-        }
-        filters.village = village;
-    }
-
-    /* PHONE */
-    if (phoneChecked) {
-        if (!phone) {
-            showGlassAlert("Warning", "Please enter a phone number.", "warning");
-            return;
-        }
-        if (!isDigitsOnly(phone)) {
-            showGlassAlert("Error", "Phone Number can contain only digits.", "error");
-            return;
-        }
-        if (phone.length < 10 || phone.length > 11) {
-            showGlassAlert("Error", "Phone Number must contain 10 or 11 digits.", "error");
-            return;
-        }
-        filters.phone = phone;
-    }
-
-    /* FETCH */
-    fetch("/api/farmers/search", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            filters: filters
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (!data.success) {
-            showGlassAlert("Info", data.message, "info");
-            return;
-        }
-        displayFarmers(data.farmers);
-    })
-    .catch(error => {
-        console.error("Search error:", error);
-        showGlassAlert("Error", "An error occurred while searching farmers.", "error");
-    });
-
-});
-const tableBody = document.getElementById("farmer-table-body");
-
-tableBody.addEventListener("click", function(event) {
-
-    if (event.target.classList.contains("btn-delete")) {
-
-        const button = event.target;
-        const url = button.getAttribute("data-url");
-
-        Swal.fire({
-            title: 'Are you sure?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d32f2f',
-            cancelButtonColor: 'transparent',
-            confirmButtonText: 'Yes, delete it!',
-            customClass: { popup: 'glass-swal', cancelButton: 'swal-cancel-btn' }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch(url, { method: "POST" })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        showGlassAlert("Deleted!", data.message, "success");
-                        button.closest("tr").remove();
-                    } else {
-                        showGlassAlert("Failed!", data.message, "error");
-                    }
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    showGlassAlert("Error!", "An error occurred.", "error");
-                });
+        /* NAME */
+        if (nameChecked) {
+            if (!name) {
+                showGlassAlert("Warning", "Please enter a name.", "warning");
+                return;
             }
-        });
-    }
+            if (!isLettersOnly(name)) {
+                showGlassAlert("Error", "Name can contain only letters.", "error");
+                return;
+            }
+            filters.name = name;
+        }
 
-});
-function displayFarmers(farmers) {
+        /* SURNAME */
+        if (surnameChecked) {
+            if (!surname) {
+                showGlassAlert("Warning", "Please enter a surname.", "warning");
+                return;
+            }
+            if (!isLettersOnly(surname)) {
+                showGlassAlert("Error", "Surname can contain only letters.", "error");
+                return;
+            }
+            filters.surname = surname;
+        }
 
+        /* TC NUMBER */
+        if (tcChecked) {
+            if (!tc) {
+                showGlassAlert("Warning", "Please enter a TC number.", "warning");
+                return;
+            }
+            if (!isDigitsOnly(tc)) {
+                showGlassAlert("Error", "TC Number can contain only digits.", "error");
+                return;
+            }
+            if (tc.length !== 11) {
+                showGlassAlert("Error", "TC Number must contain exactly 11 digits.", "error");
+                return;
+            }
+            filters.tc = tc;
+        }
+
+        /* CITY */
+        if (cityChecked) {
+            if (!city) {
+                showGlassAlert("Warning", "Please enter a city.", "warning");
+                return;
+            }
+            if (!isLettersOnly(city)) {
+                showGlassAlert("Error", "City can contain only letters.", "error");
+                return;
+            }
+            filters.city = city;
+        }
+
+        /* DISTRICT */
+        if (districtChecked) {
+            if (!district) {
+                showGlassAlert("Warning", "Please enter a district.", "warning");
+                return;
+            }
+            if (!isLettersOnly(district)) {
+                showGlassAlert("Error", "District can contain only letters.", "error");
+                return;
+            }
+            filters.district = district;
+        }
+
+        /* VILLAGE */
+        if (villageChecked) {
+            if (!village) {
+                showGlassAlert("Warning", "Please enter a village.", "warning");
+                return;
+            }
+            if (!isLettersOnly(village)) {
+                showGlassAlert("Error", "Village can contain only letters.", "error");
+                return;
+            }
+            filters.village = village;
+        }
+
+        /* PHONE */
+        if (phoneChecked) {
+            if (!phone) {
+                showGlassAlert("Warning", "Please enter a phone number.", "warning");
+                return;
+            }
+            if (!isDigitsOnly(phone)) {
+                showGlassAlert("Error", "Phone Number can contain only digits.", "error");
+                return;
+            }
+            if (phone.length < 10 || phone.length > 11) {
+                showGlassAlert("Error", "Phone Number must contain 10 or 11 digits.", "error");
+                return;
+            }
+            filters.phone = phone;
+        }
+
+        /* FETCH */
+        fetch("/api/farmers/search", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                filters: filters
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success) {
+                    showGlassAlert("Info", data.message, "info");
+                    return;
+                }
+                displayFarmers(data.farmers);
+            })
+            .catch(error => {
+                console.error("Search error:", error);
+                showGlassAlert("Error", "An error occurred while searching farmers.", "error");
+            });
+
+    });
     const tableBody = document.getElementById("farmer-table-body");
 
-    tableBody.innerHTML = "";
+    tableBody.addEventListener("click", function (event) {
 
-    farmers.forEach(function (farmer) {
+        if (event.target.classList.contains("btn-delete")) {
 
-        const row = `
-            <tr>
+            const button = event.target;
+            const url = button.getAttribute("data-url");
 
-                <td>${farmer[0]}</td>
-                <td>${farmer[1]}</td>
-                <td>${farmer[2]} ${farmer[3]}</td>
-                <td>${farmer[4]}</td>
-                <td>${farmer[5]}</td>
-                <td>${farmer[6]}</td>
-                <td>${farmer[7]}</td>
-
-                <td>
-
-                    <button
-                        type="button"
-                        class="btn-delete"
-                        data-url="/admin/farmers/delete/${farmer[0]}">
-                        Delete
-                    </button>
-
-                </td>
-
-            </tr>
-        `;
-
-        tableBody.innerHTML += row;
+            Swal.fire({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d32f2f',
+                cancelButtonColor: 'transparent',
+                confirmButtonText: 'Yes, delete it!',
+                customClass: { popup: 'glass-swal', cancelButton: 'swal-cancel-btn' }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(url, { method: "POST" })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                showGlassAlert("Deleted!", data.message, "success");
+                                button.closest("tr").remove();
+                            } else {
+                                showGlassAlert("Failed!", data.message, "error");
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            showGlassAlert("Error!", "An error occurred.", "error");
+                        });
+                }
+            });
+        }
 
     });
 
-}
+    let allFarmers = [];
+    let currentPage = 1;
+    const rowsPerPage = 15;
 
+    function displayFarmers(farmers) {
+        allFarmers = farmers;
+        currentPage = 1;
+        renderFarmersPage();
+    }
+    function renderFarmersPage() {
+
+        const tableBody = document.getElementById("farmer-table-body");
+        tableBody.innerHTML = "";
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+        const pageItems = allFarmers.slice(start, end);
+
+        pageItems.forEach(function (farmer){
+
+
+            const row = `
+                <tr>
+
+                    <td>${farmer[0]}</td>
+                    <td>${farmer[1]}</td>
+                    <td>${farmer[2]} ${farmer[3]}</td>
+                    <td>${farmer[4]}</td>
+                    <td>${farmer[5]}</td>
+                    <td>${farmer[6]}</td>
+                    <td>${farmer[7]}</td>
+
+                    <td>
+
+                        <button
+                            type="button"
+                            class="btn-delete"
+                            data-url="/admin/farmers/delete/${farmer[0]}">
+                            Delete
+                        </button>
+
+                    </td>
+
+                </tr>
+            `;
+
+            tableBody.innerHTML += row;
+
+        });
+
+        renderPaginationControls();
+
+    }
+
+    function renderPaginationControls() {
+        const totalPages = Math.ceil(allFarmers.length / rowsPerPage);
+        const container = document.getElementById("pagination-controls");
+        container.innerHTML = "";
+
+        if (totalPages <= 1) return;
+
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement("button");
+            btn.textContent = i;
+            btn.className = "page-btn" + (i === currentPage ? " active" : "");
+            btn.addEventListener("click", function () {
+                currentPage = i;
+                renderFarmersPage();
+            });
+            container.appendChild(btn);
+        }
+    }
 </script>
 
 

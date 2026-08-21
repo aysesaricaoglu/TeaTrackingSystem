@@ -1,5 +1,3 @@
-
-
 {% extends "layout.html" %}
 
 {% block title %}
@@ -9,124 +7,105 @@ Expert Management
 {% block content %}
 
 <div class="page-header">
-
     <div>
         <h1>Expert Management</h1>
         <p>View and manage registered experts.</p>
     </div>
     <div class="button-container">
-       <a href="{{url_for('add_expert_route')}}" class="expert_ekle">
-        + New Expert
-         </a>
+        <a href="{{url_for('add_expert_route')}}" class="expert_ekle">
+            + New Expert
+        </a>
     </div>
-
-
 </div>
 
-
 <!-- ================= SEARCH ================= -->
-
 <div class="search-content-card">
+    <h2 class="search-title">Search Experts</h2>
 
-    <h2>Search Experts</h2>
-
-    <div class="filter-options">
-
+    <div class="filter-capsules-grid">
         <!-- Name -->
-        <div class="filter-item">
-
-            <label>
-                <input
-                    type="checkbox"
-                    class="filter-checkbox"
-                    data-target="nameFilter"
-                >
-                Name
-            </label>
-
-            <div
-                id="nameFilter"
-                class="filter-input"
-                
-            >
+        <div class="filter-capsule">
+            <div class="capsule-header">
+                <div class="capsule-left">
+                    <i class="fa-solid fa-user capsule-icon"></i>
+                    <span class="capsule-title">Name</span>
+                </div>
+                <label class="filter-item">
+                    <input
+                        type="checkbox"
+                        class="filter-checkbox"
+                        data-target="nameFilter"
+                    >
+                </label>
+            </div>
+            <div id="nameFilter" class="filter-input">
                 <input
                     type="text"
                     id="name"
                     placeholder="Enter first name"
                 >
             </div>
-
         </div>
 
-
         <!-- Surname -->
-        <div class="filter-item">
-
-            <label>
-                <input
-                    type="checkbox"
-                    class="filter-checkbox"
-                    data-target="surnameFilter"
-                >
-                Surname
-            </label>
-
-            <div
-                id="surnameFilter"
-                class="filter-input"
-                
-            >
+        <div class="filter-capsule">
+            <div class="capsule-header">
+                <div class="capsule-left">
+                    <i class="fa-solid fa-user capsule-icon"></i>
+                    <span class="capsule-title">Surname</span>
+                </div>
+                <label class="filter-item">
+                    <input
+                        type="checkbox"
+                        class="filter-checkbox"
+                        data-target="surnameFilter"
+                    >
+                </label>
+            </div>
+            <div id="surnameFilter" class="filter-input">
                 <input
                     type="text"
                     id="surname"
                     placeholder="Enter last name"
                 >
             </div>
-
         </div>
 
-
         <!-- TC Number -->
-        <div class="filter-item">
-
-            <label>
-                <input
-                    type="checkbox"
-                    class="filter-checkbox"
-                    data-target="tcFilter"
-                >
-                TC Number
-            </label>
-
-            <div
-                id="tcFilter"
-                class="filter-input"
-                
-            >
+        <div class="filter-capsule">
+            <div class="capsule-header">
+                <div class="capsule-left">
+                    <i class="fa-solid fa-id-card capsule-icon"></i>
+                    <span class="capsule-title">TC Number</span>
+                </div>
+                <label class="filter-item">
+                    <input
+                        type="checkbox"
+                        class="filter-checkbox"
+                        data-target="tcFilter"
+                    >
+                </label>
+            </div>
+            <div id="tcFilter" class="filter-input">
                 <input
                     type="text"
                     id="tc"
                     placeholder="Enter TC number"
                 >
             </div>
-
         </div>
-
-
-
     </div>
-    <div style="display: flex; justify-content: center;">
-    
-        <button style="margin-top: 25px; display: flex;"
+
+    <div class="button-wrapper">
+        <button
             type="button"
             id="searchExpertsButton"
             class="btn"
         >
             Show Results
         </button>
-        </div>
+    </div>
 </div>
-
 
 <!-- ================= EXPERT TABLE ================= -->
 <div class="content-card">
@@ -147,24 +126,21 @@ Expert Management
             </tbody>
         </table>
     </div>
+    <div id="pagination-controls" class="pagination-controls"></div>
 </div>
 
 {% endblock %}
+
 {% block scripts %}
-
-
-
 <script>
     const tableBody = document.getElementById("expert-table-body");
 
-    // 1. SİLME İŞLEMİ (Event Delegation ile)
     // 1. SİLME İŞLEMİ (Event Delegation ile)
     tableBody.addEventListener("click", function(event) {
         if (event.target.classList.contains("btn-delete")) {
             const button = event.target;
             const url = button.getAttribute("data-url");
 
-            // Eski tip confirm() yerine cam tasarımlı SweetAlert
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You want to delete this expert?",
@@ -183,16 +159,12 @@ Expert Management
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            // Eski alert() yerine showGlassAlert
                             showGlassAlert("Deleted!", data.message, "success");
-                            
-                            // Hata vermeden satırı güvenli silme
                             const row = button.closest("tr");
                             if (row) {
                                 row.remove();
                             }
                         } else {
-                            // Eski alert() yerine showGlassAlert
                             showGlassAlert("Failed!", data.message, "error");
                         }
                     })
@@ -205,240 +177,152 @@ Expert Management
         }
     });
 
-    document
-    .getElementById("searchExpertsButton")
-    .addEventListener("click", function () {
-
+    document.getElementById("searchExpertsButton").addEventListener("click", function () {
         const filters = {};
 
-        const name =
-            document.getElementById("name").value.trim();
+        const name = document.getElementById("name").value.trim();
+        const surname = document.getElementById("surname").value.trim();
+        const tc = document.getElementById("tc").value.trim();
 
-        const surname =
-            document.getElementById("surname").value.trim();
-
-        const tc =
-            document.getElementById("tc").value.trim();
-
-
-        const nameChecked =
-            document.querySelector(
-                '[data-target="nameFilter"]'
-            ).checked;
-
-        const surnameChecked =
-            document.querySelector(
-                '[data-target="surnameFilter"]'
-            ).checked;
-
-        const tcChecked =
-            document.querySelector(
-                '[data-target="tcFilter"]'
-            ).checked;
-
+        const nameChecked = document.querySelector('[data-target="nameFilter"]').checked;
+        const surnameChecked = document.querySelector('[data-target="surnameFilter"]').checked;
+        const tcChecked = document.querySelector('[data-target="tcFilter"]').checked;
 
         // En az bir filtre seçilmeli
         if (!nameChecked && !surnameChecked && !tcChecked) {
-
             showGlassAlert(
                 "Warning",
                 "Please select at least one filter.",
                 "warning"
             );
-
             return;
         }
 
-
         // Name
         if (nameChecked) {
-
             if (!name) {
-
-                showGlassAlert(
-                    "Warning",
-                    "Please enter a name.",
-                    "warning"
-                );
-
+                showGlassAlert("Warning", "Please enter a name.", "warning");
                 return;
             }
-
             if (!isLettersOnly(name)) {
-
-                showGlassAlert(
-                    "Error",
-                    "Name can contain only letters.",
-                    "error"
-                );
-
+                showGlassAlert("Error", "Name can contain only letters.", "error");
                 return;
             }
-
             filters.name = name;
         }
 
-
         // Surname
         if (surnameChecked) {
-
             if (!surname) {
-
-                showGlassAlert(
-                    "Warning",
-                    "Please enter a surname.",
-                    "warning"
-                );
-
+                showGlassAlert("Warning", "Please enter a surname.", "warning");
                 return;
             }
-
             if (!isLettersOnly(surname)) {
-
-                showGlassAlert(
-                    "Error",
-                    "Surname can contain only letters.",
-                    "error"
-                );
-
+                showGlassAlert("Error", "Surname can contain only letters.", "error");
                 return;
             }
-
             filters.surname = surname;
         }
 
-
         // TC
         if (tcChecked) {
-
             if (!tc) {
-
-                showGlassAlert(
-                    "Warning",
-                    "Please enter a TC number.",
-                    "warning"
-                );
-
+                showGlassAlert("Warning", "Please enter a TC number.", "warning");
                 return;
             }
-
             if (!isDigitsOnly(tc)) {
-
-                showGlassAlert(
-                    "Error",
-                    "TC Number can contain only digits.",
-                    "error"
-                );
-
+                showGlassAlert("Error", "TC Number can contain only digits.", "error");
                 return;
             }
-
             if (tc.length !== 11) {
-
-                showGlassAlert(
-                    "Error",
-                    "TC Number must contain exactly 11 digits.",
-                    "error"
-                );
-
+                showGlassAlert("Error", "TC Number must contain exactly 11 digits.", "error");
                 return;
             }
-
             filters.tc = tc;
         }
 
-
         console.log("Expert filters:", filters);
 
-
         fetch("/api/experts/search", {
-
             method: "POST",
-
             headers: {
                 "Content-Type": "application/json"
             },
-
             body: JSON.stringify({
                 filters: filters
             })
-
         })
-
         .then(response => response.json())
-
         .then(data => {
-
             console.log("Backend response:", data);
-
             if (!data.success) {
-
-                showGlassAlert(
-                    "Error",
-                    data.message,
-                    "error"
-                );
-
+                showGlassAlert("Error", data.message, "error");
                 return;
             }
-
             displayExperts(data.experts);
-
         })
-
         .catch(error => {
-
             console.error("Search error:", error);
-
-            showGlassAlert(
-                "Error",
-                "An error occurred while searching experts.",
-                "error"
-            );
-
+            showGlassAlert("Error", "An error occurred while searching experts.", "error");
         });
-
     });
+
+    let allExperts = [];
+    let currentPage = 1;
+    const rowsPerPage = 15;
+
     function displayExperts(experts) {
+        allExperts = experts;
+        currentPage = 1;
+        renderExpertsPage();
+    }
 
-    const tableBody =
-        document.getElementById("expert-table-body");
+    function renderExpertsPage() {
+        const tableBody = document.getElementById("expert-table-body");
+        tableBody.innerHTML = "";
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+        const pageItems = allExperts.slice(start, end);
 
-    tableBody.innerHTML = "";
+        pageItems.forEach(function (expert) {
+            const row = `
+                <tr>
+                    <td>${expert[0]}</td>
+                    <td>${expert[1]}</td>
+                    <td>${expert[2]}</td>
+                    <td>${expert[3]}</td>
+                    <td>
+                        <button
+                            type="button"
+                            class="btn-delete"
+                            data-url="/admin/experts/delete/${expert[0]}">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+        renderPaginationControls();
+    }
 
-    experts.forEach(function (expert) {
+    function renderPaginationControls() {
+        const totalPages = Math.ceil(allExperts.length / rowsPerPage);
+        const container = document.getElementById("pagination-controls");
+        container.innerHTML = "";
 
-        const row = `
-            <tr>
+        if (totalPages <= 1) return;
 
-                <td>${expert[0]}</td>
-
-                <td>${expert[1]}</td>
-
-                <td>
-                    ${expert[2]} </td>
-                <td>${expert[3]}</td>
-                <td>
-
-                    <button
-                        type="button"
-                        class="btn-delete"
-                        data-url="/admin/experts/delete/${expert[0]}">
-
-                        Delete
-
-                    </button>
-
-                </td>
-
-            </tr>
-        `;
-
-        tableBody.innerHTML += row;
-
-    });
-
-}
-
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement("button");
+            btn.textContent = i;
+            btn.className = "page-btn" + (i === currentPage ? " active" : "");
+            btn.addEventListener("click", function () {
+                currentPage = i;
+                renderExpertsPage();
+            });
+            container.appendChild(btn);
+        }
+    }
 </script>
 {% endblock %}
