@@ -1,4 +1,3 @@
-
 {% block title %}
 {% endblock %}
 
@@ -11,74 +10,72 @@
 <!-- Buraya eski body'nin içindeki her şeyi aynen yapıştırıyorsun -->
 <div class="login-container">
 
-        <!-- Sol Taraf -->
-        <div class="left-panel">
+    <!-- Sol Taraf -->
+    <div class="left-panel">
 
-            <div class="overlay">
+        <div class="overlay">
 
-                <h1>Tea Tracking System</h1>
+            <h1>Tea Tracking System</h1>
 
-                <p>
-                    Smart Tea Production Management Platform
-                </p>
-
-            </div>
-
-        </div>
-
-        <!-- Sağ Taraf -->
-        <div class="right-panel">
-
-            <div class="login-card">
-
-                <img src="{{ url_for('static', filename='images/tea_logo.jpg') }}"
-                     alt="ÇAY Logo"
-                     class="logo">
-
-                <h2>Welcome Back</h2>
-
-                <p>Please sign in to continue.</p>
-
-                <form action="/", method="post">
-
-                    <div class="input-group">
-
-                        <label for="tc">
-                            Turkish Identity Number
-                        </label>
-
-                        <input
-                            type="text"
-                            id="tc"
-                            name="tc"
-                            placeholder="Enter your TC Identity Number"
-                            maxlength="11">
-
-                    </div>
-
-                    <div class="input-group">
-
-                        <label for="password">
-                            Password
-                        </label>
-
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Enter your password">
-
-                    </div>
-
-                    <button type="submit">
-                        Login
-                    </button>
-
-                </form>
-
-            </div>
+            <p>
+                Smart Tea Production Management Platform
+            </p>
 
         </div>
 
     </div>
+
+    <!-- Sağ Taraf -->
+    <div class="right-panel">
+
+        <div class="login-card">
+
+            <img src="{{ url_for('static', filename='images/tea_logo.jpg') }}" alt="ÇAY Logo" class="logo">
+
+            <h2>Welcome Back</h2>
+
+            <p>Please sign in to continue.</p>
+
+            <form action="/" , method="post">
+
+                <div class="input-group">
+
+                    <label for="tc">
+                        Turkish Identity Number
+                    </label>
+
+                    <input type="text" id="tc" name="tc" placeholder="Enter your TC Identity Number" maxlength="11">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input type="password" id="password" name="password" placeholder="Enter your password">
+
+                </div>
+
+                <button type="submit">
+                    Login
+                </button>
+                <div class="auth-footer" style="  text-align: center;
+                            margin-top: 20px;
+                            font-size: 13.5px;
+                            color: #c2d6c6;
+                            ;">
+                            
+
+                    <span>Don't have an account?</span>
+                    <a href="{{ url_for('signup_page') }}">Register as Farmer</a>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>s
 {% endblock %}

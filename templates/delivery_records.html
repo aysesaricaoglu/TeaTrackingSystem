@@ -24,7 +24,7 @@ Deliveries
 
     <!-- Sadece Deliveries Sayfasına Özel Dropdown Kapsayıcısı -->
     <div class="del-dropdown-container">
-        
+
         <!-- ================= FARMER FILTERS ================= -->
         <details class="del-dropdown">
             <summary class="del-dropdown-summary">
@@ -331,18 +331,18 @@ Deliveries
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ filters: filters })
         })
-        .then(response => response.json())
-        .then(data => {
-            if (!data.success) {
-                showGlassAlert("Error", data.message || "Error occurred while searching.", "error");
-                return;
-            }
-            displayDeliveries(data.deliveries);
-        })
-        .catch(error => {
-            console.error("Search error:", error);
-            showGlassAlert("Error", "Connection error.", "error");
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success) {
+                    showGlassAlert("Error", data.message || "Error occurred while searching.", "error");
+                    return;
+                }
+                displayDeliveries(data.deliveries);
+            })
+            .catch(error => {
+                console.error("Search error:", error);
+                showGlassAlert("Error", "Connection error.", "error");
+            });
     });
 
     // SAYFALAMA VE TABLO BASMA
@@ -446,6 +446,23 @@ Deliveries
                     console.error("Delete error:", error);
                     showGlassAlert("Error", "Connection error.", "error");
                 });
+        });
+    });
+    document.querySelectorAll('.del-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+            const targetId = this.dataset.target;
+            const targetElement = document.getElementById(targetId);
+
+            if (!targetElement) return;
+
+            if (this.checked) {
+                targetElement.classList.add('active');
+            } else {
+                targetElement.classList.remove('active');
+                // Tik kaldırıldığında içindeki değeri temizler
+                const inputs = targetElement.querySelectorAll('input, select');
+                inputs.forEach(input => input.value = '');
+            }
         });
     });
 </script>

@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+{% block title %}Sign Up - Tea Tracking{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h2>Farmer Registration</h2>
+      <p>Create your application to join the Tea Tracking System</p>
+    </div>
+
+    <!-- Dosya yükleme olduğu için enctype="multipart/form-data" zorunludur -->
+    <form action="{{ url_for('signup_page') }}" method="POST" enctype="multipart/form-data" id="signupForm" class="auth-form" autocomplete="off">
+      
+      <!-- TC Numarası -->
+      <div class="field-group">
+        <label for="tc_no">TC Number</label>
+        <input type="text" id="tc_no" name="tc_no" maxlength="11" pattern="\d{11}" placeholder="11-digit TC Number" inputmode="numeric" required>
+      </div>
+
+      <!-- Ad ve Soyad -->
+      <div class="field-row">
+        <div class="field-group">
+          <label for="first_name">First Name</label>
+          <input type="text" id="first_name" name="first_name" placeholder="First Name" required>
+        </div>
+        <div class="field-group">
+          <label for="last_name">Last Name</label>
+          <input type="text" id="last_name" name="last_name" placeholder="Last Name" required>
+        </div>
+      </div>
+
+      <!-- Telefon Numarası -->
+      <div class="field-group">
+        <label for="phone_number">Phone Number</label>
+        <input type="tel" id="phone_number" name="phone_number" placeholder="05XXXXXXXXX" required>
+      </div>
+
+      <!-- Konum: İl, İlçe, Köy -->
+      <div class="field-row-three">
+        <div class="field-group">
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" placeholder="e.g. Rize" required>
+        </div>
+        <div class="field-group">
+          <label for="district">District</label>
+          <input type="text" id="district" name="district" placeholder="e.g. Çayeli" required>
+        </div>
+        <div class="field-group">
+          <label for="village">Village</label>
+          <input type="text" id="village" name="village" placeholder="Village / Area" required>
+        </div>
+      </div>
+
+      <!-- Şifre ve Tekrarı -->
+      <div class="field-row">
+        <div class="field-group">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <input type="password" id="password" name="password" minlength="8" placeholder="At least 8 chars" required>
+            <button type="button" class="toggle-eye" data-target="password">👁</button>
+          </div>
+        </div>
+        <div class="field-group">
+          <label for="confirm_password">Confirm Password</label>
+          <div class="input-wrap">
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Repeat password" required>
+            <button type="button" class="toggle-eye" data-target="confirm_password">👁</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Land Register (Tapu Dosyası Yükleme) -->
+      <div class="field-group file-field">
+        <label for="land_register">Land Register Document</label>
+        <div class="file-upload-box">
+          <input type="file" id="land_register" name="land_register" accept=".pdf,.png,.jpg,.jpeg" required>
+          <span class="file-hint">Accepted formats: PDF, PNG, JPG (Max 5MB)</span>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn" id="signupSubmitBtn">Submit Application</button>
+    </form>
+
+    <div class="auth-footer">
+      <span>Already have an account?</span>
+      <a href="{{ url_for('home') }}">Log In</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.querySelectorAll('.toggle-eye').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const target = document.getElementById(btn.dataset.target);
+        target.type = target.type === 'password' ? 'text' : 'password';
+    });
+});
+</script>
+{% endblock %}

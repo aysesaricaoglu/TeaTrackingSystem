@@ -148,25 +148,24 @@ body {
     }
 }
 .filter-capsules-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 Eşit Sütun */
+  gap: 14px 20px; /* Satır boşluğu 14px, sütun boşluğu 20px */
+  margin-bottom: 20px;
 }
 /* Kapsül Kutu (Pill) Tasarımı */
 .filter-capsule {
-   background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 20px;
-    padding: 12px 18px;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    box-sizing: border-box;
-    overflow: visible; /* Kırpılmayı engeller */
-    margin-left: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 30px; /* Kapsül oval kenarları */
+  padding: 8px 16px;
+  height: 44px; /* Hepsine sabit yükseklik */
+  box-sizing: border-box;
+  max-width: 500px;
+  margin-left: 15px;
 }
 .filter-capsule.active {
     background: rgba(20, 45, 25, 0.6);
@@ -283,6 +282,7 @@ body {
     font-size: 12px;
     color: rgba(255, 255, 255, 0.7);
 }
+
 
 /* Tarih Input (Takvim) Tasarımı */
 .date-field input[type="date"] {
@@ -698,19 +698,19 @@ td form {
 }
 
 .profile-btn {
-    background: transparent;
-    border: none;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-    padding: 5px;
-    color: rgba(255, 255, 255, 0.9);
-    transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
 }
 
 .profile-btn:hover {
-    color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
 .profile-avatar {
@@ -720,10 +720,27 @@ td form {
     object-fit: cover;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
-
+.profile-avatar-initials {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #142d19 0%, #2e5c38 100%);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(20, 45, 25, 0.25);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  user-select: none;
+}
 .profile-name {
-    font-size: 14px;
-    font-weight: 500;
+  font-weight: 500;
+  color: #333333;
+  font-size: 14px;
 }
 
 .profile-btn i {
@@ -1295,55 +1312,628 @@ td form {
     transform: rotate(45deg);
 }
 
-/* Checkbox Açılınca Görünen Input Alanı */
+/* Başlangıçta gizli tut */
 .del-input-field {
-    width: 100%;
-    margin-top: 10px;
-    box-sizing: border-box;
+  display: none;
+  margin-top: 10px;
 }
 
-.del-input-field input,
-.del-input-field select {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 8px 12px;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 8px;
-    color: #ffffff;
-    font-size: 13px;
-    outline: none;
-    transition: all 0.2s ease;
+/* Checkbox seçilince aktif et */
+.del-input-field.active {
+  display: block;
 }
 
-.del-input-field select option {
-    background-color: #142d19;
-    color: #ffffff;
+/* Tarih kapsayıcısı aktifleşince yan yana iki kutu yap */
+.del-date-container.active {
+  display: flex;
+  gap: 10px;
 }
 
-.del-input-field input:focus,
-.del-input-field select:focus {
-    border-color: #4ade80;
-    box-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
-}
-
-/* Tarih Inputları Düzeni */
-.del-date-container {
-    display: flex;
-    gap: 8px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
+/* Her bir tarih sütunu (Etiket ve Kutu alt alta) */
 .del-date-box {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    flex: 1;
-    min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-width: 0; /* Flex içinde inputların taşmasını önler */
 }
 
+/* Start/End Date ufak etiket yazıları */
 .del-date-label {
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Tarih Input (Takvim) Tasarımı */
+.del-date-box input[type="date"] {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 13px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  color-scheme: dark; /* Takvim ikonunu beyaz/karanlık temaya uydurur */
+}
+
+.del-date-box input[type="date"]:focus {
+  border-color: #4ade80;
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+:root{
+    --panel-bg: rgba(20, 45, 25, 0.55);
+    --panel-border: rgba(255,255,255,0.12);
+    --field-bg: rgba(255,255,255,0.08);
+    --field-border: rgba(255,255,255,0.18);
+    --accent: #3fae56;
+    --accent-dark: #2c8a41;
+    --text-light: #f2f6f0;
+    --text-dim: #cfe0cd;
+    --error: #ff6b6b;
+  }
+
+  *{ box-sizing: border-box; }
+
+
+
+  .card{
+    width:100%;
+    max-width: 440px;
+    background: var(--panel-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--panel-border);
+    border-radius: 20px;
+    padding: 36px 32px 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  }
+
+  .card h1{
+    margin:0 0 6px;
+    font-size: 22px;
+    color: var(--text-light);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  .card p.sub{
+    margin:0 0 26px;
+    color: var(--text-dim);
+    font-size: 13.5px;
+    line-height:1.5;
+  }
+
+  form{ display:flex; flex-direction:column; gap:16px; }
+
+  .field{ display:flex; flex-direction:column; gap:6px; }
+
+  .field label{
+    font-size: 12.5px;
+    color: var(--text-dim);
+    font-weight:600;
+    letter-spacing:.2px;
+  }
+
+  .input-wrap{
+    position:relative;
+    display:flex;
+    align-items:center;
+  }
+
+  .input-wrap input{
+    width:100%;
+    padding: 12px 40px 12px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--field-border);
+    background: var(--field-bg);
+    color: var(--text-light);
+    font-size: 14.5px;
+    outline:none;
+    transition: border-color .15s ease, background .15s ease;
+  }
+
+  .input-wrap input::placeholder{ color: rgba(230,240,225,0.45); }
+
+  .input-wrap input:focus{
+    border-color: var(--accent);
+    background: rgba(255,255,255,0.12);
+  }
+
+  .toggle-eye{
+    position:absolute;
+    right:10px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    color: var(--text-dim);
+    font-size: 13px;
+    padding:4px;
+  }
+
+  .hint{ font-size: 11.5px; color: rgba(207,224,205,0.7); }
+
+  .error-msg{
+    display:none;
+    background: rgba(255,80,80,0.12);
+    border: 1px solid rgba(255,80,80,0.35);
+    color: #ffb3b3;
+    font-size: 12.5px;
+    padding: 10px 12px;
+    border-radius: 8px;
+  }
+
+  .error-msg.show{ display:block; }
+
+  .submit-btn{
+    margin-top: 8px;
+    padding: 13px;
+    border:none;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 15px;
+    font-weight:700;
+    cursor:pointer;
+    transition: background .15s ease, transform .1s ease;
+  }
+
+  .submit-btn:hover{ background: var(--accent-dark); }
+  .submit-btn:active{ transform: scale(0.98); }
+
+  .submit-btn:disabled{
+    opacity:0.55;
+    cursor:not-allowed;
+  }
+
+  .success-msg{
+    display:none;
+    text-align:center;
+    color: #b7f0c2;
+    font-size: 13.5px;
+    margin-top: 4px;
+  }
+
+  .success-msg.show{ display:block; }
+
+  @media (max-width: 480px){
+    .card{ padding: 28px 22px 24px; }
+  }
+  .change_password_card {/* bu change passwordün içi*/
+  width: 100%;
+  max-width: 450px; /* İstediğiniz kart genişliği */
+  padding: 24px;
+  margin: 40px auto; /* Üst-alt 40px, sağ-sol otomatik ortalanır */
+}
+/* Ana Kapsayıcı (Dashboard arka planı ile aynı hissi verir) */
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  font-family: inherit;
+}
+
+/* Glassmorphism Kart Yapısı */
+.auth-card {
+  width: 100%;
+  max-width: 580px;
+  background: rgba(22, 45, 27, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 36px 32px;
+  color: #ffffff;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.auth-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.auth-header p {
+  color: #c2d6c6;
+  font-size: 13.5px;
+  margin: 0;
+}
+
+/* Form Grupları ve Izgara Düzeni */
+.field-group {
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.field-group label {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #dceada;
+  margin-bottom: 6px;
+}
+
+.field-row {
+  display: flex;
+  gap: 12px;
+}
+
+.field-row-three {
+  display: flex;
+  gap: 10px;
+}
+
+.field-row .field-group,
+.field-row-three .field-group {
+  flex: 1;
+}
+
+/* Input Alanları */
+.field-group input[type="text"],
+.field-group input[type="tel"],
+.field-group input[type="password"] {
+  width: 100%;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
+}
+
+.field-group input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 13px;
+}
+
+.field-group input:focus {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: #52b768;
+  box-shadow: 0 0 0 3px rgba(82, 183, 104, 0.2);
+}
+
+/* Şifre Göz İkonu */
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-wrap input {
+  padding-right: 38px;
+}
+
+.toggle-eye {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.toggle-eye:hover {
+  color: #52b768;
+}
+
+/* Tapu Belgesi Yükleme Alanı */
+.file-upload-box {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px dashed rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  padding: 12px;
+  transition: border-color 0.2s;
+}
+
+.file-upload-box:hover {
+  border-color: #52b768;
+}
+
+.file-upload-box input[type="file"] {
+  color: #dceada;
+  font-size: 13px;
+  width: 100%;
+}
+
+.file-upload-box input[type="file"]::file-selector-button {
+  background: rgba(82, 183, 104, 0.2);
+  border: 1px solid rgba(82, 183, 104, 0.5);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 12px;
+  transition: background 0.2s;
+}
+
+.file-upload-box input[type="file"]::file-selector-button:hover {
+  background: rgba(82, 183, 104, 0.4);
+}
+
+.file-hint {
+  display: block;
+  font-size: 11px;
+  color: #9cb8a2;
+  margin-top: 6px;
+}
+
+/* Gönderme Butonu */
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: #3e884e;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+  background: #499e5a;
+  transform: translateY(-1px);
+}
+
+.submit-btn:active {
+  transform: translateY(0)
+}
+
+/* Alt Yönlendirme Linki */
+.auth-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13.5px;
+  color: #c2d6c6;
+ 
+}
+
+.auth-footer a {
+  color: #6ee787;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 5px;
+  transition: color 0.2s;
+}
+
+.auth-footer a:hover {
+  color: #9bf0ad;
+  text-decoration: underline;
+}
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+/* Tablet */
+@media (max-width: 1024px) {
+
+    .sidebar {
+        width: 210px;
+        padding: 30px 15px;
+    }
+
+    .main-content {
+        padding: 80px 25px 30px;
+    }
+
+    .filter-dropdown {
+        flex: 1 1 280px;
+        min-width: 0;
+        max-width: none;
+    }
+
+    .filter-options {
+        padding: 18px;
+    }
+
+    .filter-item {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+}
+
+
+/* Telefon */
+@media (max-width: 768px) {
+
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 15px;
+        box-sizing: border-box;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .sidebar-header {
+        margin-bottom: 15px;
+    }
+
+    .sidebar-header h2 {
+        font-size: 20px;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+        margin: 0;
+    }
+
+    .sidebar li {
+        margin: 0;
+    }
+
+    .sidebar a {
+        font-size: 13px;
+        padding: 9px 10px;
+    }
+
+    .main-content {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 75px 15px 25px;
+        overflow-x: hidden;
+    }
+
+    .top-nav {
+        padding: 12px 15px;
+    }
+
+    .profile-name {
+        display: none;
+    }
+
+    .nav-actions {
+        gap: 10px;
+    }
+
+    .page-header,
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .farmer_ekle,
+    .expert_ekle,
+    .new_delivery {
+        float: none;
+        margin-left: 0;
+        margin-bottom: 15px;
+    }
+
+    .search-content-card {
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 20px;
+    }
+
+    .filter-dropdown {
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+        flex: none;
+        box-sizing: border-box;
+    }
+
+    .filter-dropdown .filter-options {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px;
+    }
+
+    .filter-item {
+        width: 100%;
+        min-width: 0;
+        flex: none;
+    }
+
+    .filter-input {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .filter-input input,
+    .filter-input select {
+        max-width: 100%;
+    }
+
+    .date-inputs-container {
+        flex-direction: column;
+    }
+
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 700px;
+    }
+
+    .content-card {
+        padding: 18px;
+        border-radius: 14px;
+    }
+
+}
+
+
+/* Küçük telefon */
+@media (max-width: 480px) {
+
+    .sidebar ul {
+        flex-direction: column;
+    }
+
+    .sidebar a {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: left;
+    }
+
+    .main-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .search-content-card {
+        padding: 12px;
+    }
+
+    .search-content-card h2 {
+        font-size: 19px;
+    }
+
+    .filter-dropdown summary {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .filter-options {
+        padding: 12px !important;
+    }
+
+    .filter-item label {
+        font-size: 13px;
+    }
+
+    .btn {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
 }

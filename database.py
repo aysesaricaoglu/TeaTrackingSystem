@@ -774,6 +774,21 @@ def delete_farmer(farmer_id):
      connection.close()
 
 
+def change_password(tc_no,new_password):
+    connection= create_connection()
+    cursor= connection.cursor()
+    hashed_password= generate_password_hash(new_password)
+    cursor.execute("""
+
+        UPDATE users
+        SET password=? 
+        WHERE tc_no =?
+
+    """,(hashed_password,tc_no))
+    connection.commit()
+    cursor.close()
+    connection.close()
+    logging.info(f"password changed!")
 
 
 
@@ -966,3 +981,4 @@ def add_farmer(tc_no,password,role,first_name,last_name,city,district,phone_numb
 #             f"Expert ID: {expert_id} | "
 #             f"Date: {delivery_date}"
 #         )
+

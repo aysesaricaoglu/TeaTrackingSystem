@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,172 +12,182 @@
     <!-- Ortak CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)">
+    <link rel="stylesheet"
+        href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)">
     <!-- Sayfaya özel CSS -->
     {% block css %}{% endblock %}
 </head>
+
 <body>
 
-<div class="dashboard-container">
-    <!-- SweetAlert2 CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <div class="dashboard-container">
+        <!-- SweetAlert2 CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- ================= SIDEBAR ================= -->
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <img src="{{ url_for('static', filename='images/tea_logo.jpg') }}" alt="ÇAY Logo" class="logo">
-            <h2>Tea Tracking</h2>
-        </div>
-        
-      <ul>
-    <li>
-        <a href="{{ url_for('dashboard') }}"
-           class="{{ 'active' if request.path == url_for('dashboard') else '' }}">
-            <i class="fa-solid fa-chart-line"></i>  Dashboard
-        </a>
-    </li>
-
-    {% if session["role"] in ["admin", "expert"] %}
-        <li>
-           <a href="{{ url_for('all_deliveries') }}"
-            class="{{ 'active' if request.endpoint in ['all_deliveries', 'new_delivery'] else '' }}">
-            <i class="fa-solid fa-truck"></i> Delivery Records
-</a>
-        </li>
-    {% endif %}
-
-    {% if session["role"] == "admin" %}
-        <li>
-            <a href="{{ url_for('expert_management') }}"
-               class="{{ 'active' if request.endpoint in['expert_management','add_expert_route'] else '' }}">
-                <i class="fa-solid fa-users"></i>  Expert Management
-            </a>
-        </li>
-        <li>
-            <a href="{{ url_for('farmer_management') }}"
-               class="{{ 'active' if request.endpoint in['farmer_management','add_farmer_route'] else '' }}">
-                <i class="fa-solid fa-tractor"></i>  Farmer Management
-            </a>
-        </li>
-    {% endif %}
-
-    {% if session["role"] == "farmer" %}
-        <li>
-            <a href="#">
-                <i class="fa-solid fa-box-open"></i>  My Deliveries
-            </a>
-        </li>
-    {% endif %}
-
-    <li>
-        <a href="{{ url_for('statistics') }}"
-           class="{{ 'active' if request.path == url_for('statistics') else '' }}">
-            <i class="fa-solid fa-chart-simple"></i>  Statistics
-        </a>
-    </li>
-
-    <li>
-        <a href="{{ url_for('ai_assistant') }}"
-           class="{{ 'active' if request.path == url_for('ai_assistant') else '' }}">
-            <i class="fa-solid fa-robot"></i>  AI Assistant
-        </a>
-    </li>
-
-    <li>
-        <a href="{{ url_for('logout') }}">
-            <i class="fa-solid fa-power-off"></i>  Logout
-        </a>
-    </li>
-</ul>
-    </aside>
-
-    <!-- ================= MAIN CONTENT ================= -->
-    <main class="main-content">
-        
-        
-
-<!-- ================= TOP NAV BAR (Tam olarak buraya geldi) ================= -->
-        <div class="top-nav">
-            <div class="nav-title">
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="{{ url_for('static', filename='images/tea_logo.jpg') }}" alt="ÇAY Logo" class="logo">
+                <h2>Tea Tracking</h2>
             </div>
 
-            <div class="nav-actions">
-                <!-- Bildirim ve Mesaj İkonları -->
-                <a href="#" class="nav-icon"><i class="far fa-bell"></i></a>
+            <ul>
+                <li>
+                    <a href="{{ url_for('dashboard') }}"
+                        class="{{ 'active' if request.path == url_for('dashboard') else '' }}">
+                        <i class="fa-solid fa-chart-line"></i> Dashboard
+                    </a>
+                </li>
 
-                <!-- Profil Alanı ve Dropdown -->
-                <div class="profile-dropdown">
-                    <button class="profile-btn" id="profileDropdownBtn">
-                        <!-- Profil resmi yoksa Ayşe S. harflerinden resim üretir -->
-                        <img src="{{ url_for('static', filename='img/avatar.png') }}" alt="Profile" class="profile-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Ayşe+S&background=142d19&color=fff'">
-                        <span class="profile-name">Ayşe S.</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    
-                    <!-- Açılır Menü sol üstte nav-bardaki -->
-                    <div class="dropdown-menu" id="profileDropdownMenu">
-                        <a href="#"><i class="far fa-user"></i> Profile</a>
-                        <a href="#"><i class="fas fa-lock"></i> Change Password</a>
-                        <a href="#"><i class="fas fa-cog"></i> Settings</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="{{ url_for('logout') }}" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                {% if session["role"] in ["admin", "expert"] %}
+                <li>
+                    <a href="{{ url_for('all_deliveries') }}"
+                        class="{{ 'active' if request.endpoint in ['all_deliveries', 'new_delivery'] else '' }}">
+                        <i class="fa-solid fa-truck"></i> Delivery Records
+                    </a>
+                </li>
+                {% endif %}
+
+                {% if session["role"] == "admin" %}
+                <li>
+                    <a href="{{ url_for('expert_management') }}"
+                        class="{{ 'active' if request.endpoint in['expert_management','add_expert_route'] else '' }}">
+                        <i class="fa-solid fa-users"></i> Expert Management
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('farmer_management') }}"
+                        class="{{ 'active' if request.endpoint in['farmer_management','add_farmer_route'] else '' }}">
+                        <i class="fa-solid fa-tractor"></i> Farmer Management
+                    </a>
+                </li>
+                {% endif %}
+
+                {% if session["role"] == "farmer" %}
+                <li>
+                    <a href="#">
+                        <i class="fa-solid fa-box-open"></i> My Deliveries
+                    </a>
+                </li>
+                {% endif %}
+
+                <li>
+                    <a href="{{ url_for('statistics') }}"
+                        class="{{ 'active' if request.path == url_for('statistics') else '' }}">
+                        <i class="fa-solid fa-chart-simple"></i> Statistics
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('ai_assistant') }}"
+                        class="{{ 'active' if request.path == url_for('ai_assistant') else '' }}">
+                        <i class="fa-solid fa-robot"></i> AI Assistant
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('logout') }}">
+                        <i class="fa-solid fa-power-off"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="main-content">
+
+
+
+            <!-- ================= TOP NAV BAR (Tam olarak buraya geldi) ================= -->
+            <div class="top-nav">
+                <div class="nav-title">
+                </div>
+
+                <div class="nav-actions">
+                    <!-- Bildirim ve Mesaj İkonları -->
+                    <a href="#" class="nav-icon"><i class="far fa-bell"></i></a>
+
+                    <!-- Profil Alanı ve Dropdown -->
+                    <div class="profile-dropdown">
+                        <button class="profile-btn" id="profileDropdownBtn">
+                            <!-- first_name ve last_name'den ilk harfleri alır -->
+                            {% set f_initial = (session.get('first_name', 'U')[:1]) | upper %}
+                            {% set l_initial = (session.get('last_name', '')[:1]) | upper %}
+                            {% set initials = f_initial + l_initial %}
+
+                            <div class="profile-avatar-initials">{{ initials }}</div>
+                            <span class="profile-name">{{ session.get('first_name', 'User') }} {{
+                                session.get('last_name', '') }}</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+
+                        <!-- Açılır Menü -->
+                        <div class="dropdown-menu" id="profileDropdownMenu">
+                            <a href="#"><i class="far fa-user"></i> Profile</a>
+                            <a href="{{ url_for('change_password_page') }}"><i class="fas fa-lock"></i> Change
+                                Password</a>
+                            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="{{ url_for('logout') }}" class="logout-link"><i class="fas fa-sign-out-alt"></i>
+                                Logout</a>
+                        </div>
                     </div>
                 </div>
+              
             </div>
-        </div>
-        {% block content %}
-        {% endblock %}
+            {% block content %}
+            {% endblock %}
 
-    </main>
+        </main>
 
-</div>
-<script> // SWEETALERT FONKSİYONU
-  
-    function showGlassAlert(title, text, icon = 'info') {
-        Swal.fire({ 
-            title: title, 
-            text: text, 
-            icon: icon, 
-            confirmButtonColor: '#3a7d44', 
-            customClass: { popup: 'glass-swal' } 
-        });
-    }
+    </div>
+    <script> // SWEETALERT FONKSİYONU
 
- 
-    // FILTER INPUTS
-
-    const filterCheckboxes = document.querySelectorAll(".filter-checkbox");
-
-    filterCheckboxes.forEach(function (checkbox) {
-        checkbox.addEventListener("change", function () {
-            const targetId = this.getAttribute("data-target");
-            const targetElement = document.getElementById(targetId);
-            if (this.checked) {
-                targetElement.classList.add("show");
-            } else {
-                targetElement.classList.remove("show");
-            }
-        });
-    });
-
-           function isLettersOnly(value) {
-    return /^[A-Za-zÇĞİÖŞÜçğıöşü\s]+$/.test(value);
+        function showGlassAlert(title, text, icon = 'info') {
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: icon,
+                confirmButtonColor: '#3a7d44',
+                customClass: { popup: 'glass-swal' }
+            });
         }
 
-    function isDigitsOnly(value) {
-        return /^\d+$/.test(value);
-    }
 
-    // TABLOYU GÜNCELLEME FONKSİYONU
-  
-    function displayDeliveries(deliveries) {
-        const tableBody = document.querySelector(".deliveries tbody");
-        tableBody.innerHTML = ""; 
+        // FILTER INPUTS
 
-        deliveries.forEach(function (delivery) {
-            const isRainy = delivery[6] === 1 ? "Yes" : "No";
+        const filterCheckboxes = document.querySelectorAll(".filter-checkbox");
 
-            const row = `
+        filterCheckboxes.forEach(function (checkbox) {
+            checkbox.addEventListener("change", function () {
+                const targetId = this.getAttribute("data-target");
+                const targetElement = document.getElementById(targetId);
+                if (this.checked) {
+                    targetElement.classList.add("show");
+                } else {
+                    targetElement.classList.remove("show");
+                }
+            });
+        });
+
+        function isLettersOnly(value) {
+            return /^[A-Za-zÇĞİÖŞÜçğıöşü\s]+$/.test(value);
+        }
+
+        function isDigitsOnly(value) {
+            return /^\d+$/.test(value);
+        }
+
+        // TABLOYU GÜNCELLEME FONKSİYONU
+
+        function displayDeliveries(deliveries) {
+            const tableBody = document.querySelector(".deliveries tbody");
+            tableBody.innerHTML = "";
+
+            deliveries.forEach(function (delivery) {
+                const isRainy = delivery[6] === 1 ? "Yes" : "No";
+
+                const row = `
                 <tr>
                     <td>${delivery[0]}</td>
                     <td>${delivery[1]}</td>
@@ -193,30 +204,31 @@
                     </td>
                 </tr>
             `;
-            tableBody.innerHTML += row;
-        });
-    }</script>
-<!-- Sayfaya özel JavaScript -->
-{% block scripts %}
-
-{% endblock %}
-
-<!--  DROPDOWN (AŞAĞI AÇILIR MENÜ) SCRİPTİ -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const profileBtn = document.getElementById("profileDropdownBtn");
-        const dropdownMenu = document.getElementById("profileDropdownMenu");
-
-        if (profileBtn && dropdownMenu) {
-            // Butona tıklandığında menüyü aç/kapat
-            profileBtn.addEventListener("click", function(event) {
-                event.stopPropagation(); // Tıklamanın dışarı yayılmasını engeller
-                dropdownMenu.classList.toggle("show");
+                tableBody.innerHTML += row;
             });
+        }</script>
+    <!-- Sayfaya özel JavaScript -->
+    {% block scripts %}
 
-        }
-    });
-</script>
+    {% endblock %}
+
+    <!--  DROPDOWN (AŞAĞI AÇILIR MENÜ) SCRİPTİ -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const profileBtn = document.getElementById("profileDropdownBtn");
+            const dropdownMenu = document.getElementById("profileDropdownMenu");
+
+            if (profileBtn && dropdownMenu) {
+                // Butona tıklandığında menüyü aç/kapat
+                profileBtn.addEventListener("click", function (event) {
+                    event.stopPropagation(); // Tıklamanın dışarı yayılmasını engeller
+                    dropdownMenu.classList.toggle("show");
+                });
+
+            }
+        });
+    </script>
 
 </body>
+
 </html>

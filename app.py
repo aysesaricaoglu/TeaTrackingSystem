@@ -7,10 +7,12 @@ logging.basicConfig(
     #          logging.FileHandler("app.log")]
 )
 
-
+from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash
 from flask import Flask, render_template, url_for, redirect, request, session,jsonify
 
 from database import (
+    create_connection,
     create_table,
     show_tables,
     get_user_by_tc,
@@ -30,7 +32,7 @@ from database import (
     search_farmers,
     search_experts,
     search_deliveries,
-    
+    change_password
     
 )
 
@@ -137,7 +139,7 @@ def home():
 
     if request.method == "POST":  # bunu da silebilirim
 
-        print("POST came", flush=True)  # bu da gereksiz
+       
 
         tc = request.form.get("tc")
         password = request.form.get("password")
@@ -148,7 +150,7 @@ def home():
             return render_template("login.html", error="User not found")
 
         else:
-
+            #şifreyi kontol ettiğim kısım
             if check_password_hash(user[2], password):
                 print("Login successful", flush=True)
                 session["user_id"] = user[0]
@@ -561,6 +563,44 @@ def delete_farmer_api(farmer_id):
     else:
         return jsonify({"success": False, "message": "Error occured when expert's deleting process."}), 400
 
+# 1. HTML Sayfasını Ekrana Getiren Rota (GET)
+@app.route("/change-password", methods=["GET"])
+def change_password_page():
+    return render_template("change_password.html")
+
+
+# 2. Butona Basınca Arka Planda Şifreyi Güncelleyen API (POST)
+@app.route("/api/change-password", methods=["POST"])
+def api_change_password():
+    
+    if "tc_no" not in session:
+        return jsonify({"message": "Username not found. Please log in."}), 401
+
+    data = request.get_json()
+    tc_no = data.get("tc_no")
+    current_password = data.get("current_password")
+    new_password = data.get("new_password")
+
+    if tc_no != session.get("tc_no"):
+        return jsonify({"message": "TC number does not match your session."}), 403
+
+    connection = create_connection()
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT password FROM users WHERE tc_no = ?", (tc_no,))
+    row = cursor.fetchone()
+    cursor.close()
+    connection.close()
+
+    if row is None:
+        return jsonify({"message": "User not found."}), 404
+
+    if not check_password_hash(row[0], current_password):
+        return jsonify({"message": "Current password is wrong."}), 401
+
+    change_password(tc_no, new_password)
+
+    return jsonify({"message": "Password changed successfully."}), 200
 
 @app.route("/ai_assistant")
 def ai_assistant():
@@ -575,6 +615,9 @@ def logout():
     session.clear()  # session da tuutuğum username role falan her şeyi siliyoum
     return redirect(url_for("home"))  # login sayfasına yönlendir
 
+@app.route("/signup", methods=["GET"])
+def signup_page():
+    return render_template("signup.html")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)  # Flask uygulamasını başlatır ve debug modunu açar(koddaki değişiklikleri otomatik olarak algılar ve uygulamayı yeniden başlatır)
