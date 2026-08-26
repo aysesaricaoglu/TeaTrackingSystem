@@ -17,50 +17,26 @@ Add New Expert
 
     <div class="input-group">
         <label for="tc_no">TC Number</label>
-        <input
-            type="text"
-            id="tc_no"
-            name="tc_no"
-            placeholder="Enter TC Number"
-            required
-        >
+        <input type="text" id="tc_no" name="tc_no" placeholder="Enter TC Number" required>
     </div>
 
     <div class="input-group">
         <label for="password">Password</label>
-        <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Enter Password"
-            required
-        >
+        <input type="password" id="password" name="password" placeholder="Enter Password" required>
     </div>
 
     <div class="input-group">
         <label for="first_name">First Name</label>
-        <input
-            type="text"
-            id="first_name"
-            name="first_name"
-            placeholder="Enter First Name"
-            required
-        >
+        <input type="text" id="first_name" name="first_name" placeholder="Enter First Name" required>
     </div>
 
     <div class="input-group">
         <label for="last_name">Last Name</label>
-        <input
-            type="text"
-            id="last_name"
-            name="last_name"
-            placeholder="Enter Last Name"
-            required
-        >
+        <input type="text" id="last_name" name="last_name" placeholder="Enter Last Name" required>
     </div>
 
-    
-  <button type="button" id="saveBtnExpert" class="btn">Add Expert</button>
+
+    <button type="button" id="saveBtnExpert" class="btn">Add Expert</button>
 
 </form>
 
@@ -69,12 +45,12 @@ Add New Expert
 
 {% block scripts %}
 <script>
-   
+
     const saveBtnExpert = document.getElementById("saveBtnExpert");
 
     // Butona tıklandığında çalışacak kod
-    saveBtnExpert.addEventListener("click", function() {
-        
+    saveBtnExpert.addEventListener("click", function () {
+
         // Çift tıklamayı engellemek için butonu geçici olarak pasif yapıyoruz
         saveBtnExpert.disabled = true;
         saveBtnExpert.innerText = "Adding...";
@@ -93,23 +69,24 @@ Add New Expert
             },
             body: JSON.stringify(farmerData)
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert(data.message);
-                window.location.href = "/admin/experts";
-            } else {
-                alert(data.message);
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showGlassAlert("Success", data.message, "success", () => {
+                        window.location.href = "/admin/experts";
+                    });
+                } else {
+                    showGlassAlert("Error", data.message, "error");
+                    saveBtnExpert.disabled = false;
+                    saveBtnExpert.innerText = "Add Expert";
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Check database.py.");
                 saveBtnExpert.disabled = false;
-                saveBtnExpert.innerText = "Add Expert";
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            alert("Check database.py.");
-            saveBtnExpert.disabled = false;
-            saveBtnExpert.innerText = "Add Farmer";
-        });
+                saveBtnExpert.innerText = "Add Farmer";
+            });
     });
 </script>
 {% endblock %}

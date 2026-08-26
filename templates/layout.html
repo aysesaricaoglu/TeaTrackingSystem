@@ -27,8 +27,10 @@
         <!-- ================= SIDEBAR ================= -->
         <aside class="sidebar">
             <div class="sidebar-header">
-                <img src="{{ url_for('static', filename='images/tea_logo.jpg') }}" alt="ÇAY Logo" class="logo">
-                <h2>Tea Tracking</h2>
+                <div  style=>
+                    <img src="{{ url_for('static', filename='images/tea_logo.jpg') }}" alt="ÇAY Logo" class="logo">
+                </div>
+                <h2 id="sidebar-title">Tea Tracking</h2>
             </div>
 
             <ul>
@@ -65,7 +67,7 @@
 
                 {% if session["role"] == "farmer" %}
                 <li>
-                    <a href="#">
+                    <a href="{{url_for('my_deliveries')}}">
                         <i class="fa-solid fa-box-open"></i> My Deliveries
                     </a>
                 </li>
@@ -133,7 +135,7 @@
                         </div>
                     </div>
                 </div>
-              
+
             </div>
             {% block content %}
             {% endblock %}
@@ -142,14 +144,16 @@
 
     </div>
     <script> // SWEETALERT FONKSİYONU
-
         function showGlassAlert(title, text, icon = 'info') {
-            Swal.fire({
+            return Swal.fire({
                 title: title,
                 text: text,
-                icon: icon,
+                icon: icon, // 'success', 'error', 'warning', 'info'
                 confirmButtonColor: '#3a7d44',
-                customClass: { popup: 'glass-swal' }
+                confirmButtonText: 'OK',
+                customClass: {
+                    popup: 'glass-swal'
+                }
             });
         }
 

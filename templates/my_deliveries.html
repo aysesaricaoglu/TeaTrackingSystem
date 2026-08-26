@@ -1,15 +1,55 @@
 {% extends "layout.html" %}
+{% block title %}My Deliveries - Tea Tracking{% endblock %}
 
-{% block title %}
-Add New Farmer
-{% endblock %}
-
-{% block content%}
-<div class="header">
-    <div>
-        <h1>My Deliveries</h1>
-        <p></p>
+{% block content %}
+<div class="fmd-page-wrapper">
+  <div class="fmd-content-card">
+    <div class="fmd-header">
+      <h2 class="fmd-title"><i class="fa-solid fa-truck-ramp-box"></i> My Tea Deliveries</h2>
+      <p class="fmd-subtitle">Track all your past tea delivery records and payment statuses</p>
     </div>
-</div>
 
+    {% if deliveries %}
+    <div class="fmd-table-responsive">
+      <table class="fmd-table">
+        <thead>
+          <tr>
+            <th>Delivery ID</th>
+            <th>Date</th>
+            <th>Gross Weight</th>
+            <th>Net Weight</th>
+            <th>Weather</th>
+            <th>Payment Option</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in deliveries %}
+          <tr>
+            <td class="fmd-id-cell">#{{ item[0] }}</td>
+            <td>{{ item[3] }}</td>
+            <td>{{ item[4] }} kg</td>
+            <td class="fmd-net-weight">{{ item[5] }} kg</td>
+            <td>
+              {% if item[6] == 1 or item[6] == True %}
+                <span class="fmd-badge fmd-badge-rainy"><i class="fa-solid fa-cloud-rain"></i> Rainy</span>
+              {% else %}
+                <span class="fmd-badge fmd-badge-dry"><i class="fa-solid fa-sun"></i> Dry</span>
+              {% endif %}
+            </td>
+            <td>
+              <span class="fmd-badge fmd-badge-payment">{{ item[7] }}</span>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="fmd-empty-state">
+      <i class="fa-solid fa-clipboard-list fmd-empty-icon"></i>
+      <p>No delivery records found yet.</p>
+    </div>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}

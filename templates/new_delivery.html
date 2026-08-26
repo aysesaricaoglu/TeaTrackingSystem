@@ -5,13 +5,10 @@ New Tea Delivery
 {% endblock %}
 
 {% block content %}
-
 <div id="form-alani">
-
     <h1>New Tea Delivery</h1>
 
-    <form id="delivery-form"  method="POST" action="{{ url_for('new_delivery') }}">
-
+    <form id="delivery-form" method="POST" action="{{ url_for('new_delivery') }}">
         <div class="input-group">
             <label>Farmer TC Number</label>
             <input type="text" name="farmer_tc" placeholder="Enter Farmer TC Number" required id="farmer_tc">
@@ -19,7 +16,8 @@ New Tea Delivery
 
         <div class="input-group">
             <label>Gross Weight (kg)</label>
-            <input type="number" name="gross_weight" placeholder="Enter Gross Weight" step="0.01" required id="gross_weight">
+            <input type="number" name="gross_weight" placeholder="Enter Gross Weight" step="0.01" required
+                id="gross_weight">
         </div>
 
         <div class="input-group">
@@ -44,56 +42,65 @@ New Tea Delivery
             <input type="date" name="delivery_date" required id="delivery_date">
         </div>
 
-        <button type="submit" class="btn">
+        <button type="submit" class="btn" id="saveBtn">
             Save Delivery
         </button>
-
     </form>
-
 </div>
-
 {% endblock %}
 
-{% block scripts%}
-
+{% block scripts %}
 <script>
-console.log("NEW DELIVERY JS CALISTI");
-document.getElementById("delivery-form").addEventListener("submit", function(event) {
-    event.preventDefault();
-    console.log("FORM SUBMIT CALISTI");
-    const data = {
-        farmer_tc: document.getElementById("farmer_tc").value,
-        delivery_date: document.getElementById("delivery_date").value,
-        gross_weight: document.getElementById("gross_weight").value,
-        is_rainy: document.getElementById("is_rainy").value,
-        payment_option: document.getElementById("payment_option").value
-    };
+    console.log("NEW DELIVERY JS CALISTI");
 
-    fetch("{{ url_for('create_delivery') }}", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    })
-    //url for daha gğvenliymiş ama direkt "/api/new_delivery de yazabilirdim"
-    .then(response => response.json())
-    .then(data => {
+    document.getElementById("delivery-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+        console.log("FORM SUBMIT CALISTI");
 
-        if (data.success) {
-            alert(data.message);
-
-            window.location.href = "{{ url_for('all_deliveries') }}";
-        } else {
-            alert(data.message);
+        // Buton referansını al ve devre dışı bırak
+        const saveBtn = document.getElementById("saveBtn");
+        if (saveBtn) {
+            saveBtn.disabled = true;
+            saveBtn.innerText = "Saving...";
         }
 
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        alert("Something went wrong.");
-    });
+        const data = {
+            farmer_tc: document.getElementById("farmer_tc").value,
+            delivery_date: document.getElementById("delivery_date").value,
+            gross_weight: document.getElementById("gross_weight").value,
+            is_rainy: document.getElementById("is_rainy").value,
+            payment_option: document.getElementById("payment_option").value
+        };
+        
+        fetch("{{ url_for('create_delivery') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Kullanıcı SweetAlert üzerindeki 'OK' butonuna bastığında yönlendirir
+                    showGlassAlert("Delivery added successfully!", data.message, "success",() => {
+                        window.location.href = "/new-delivery";
+                    });
+                } else {
+                    alert(data.message);
+                    saveBtn.disabled = false;
+                    saveBtn.innerText = "Save Delivery";
+                }
 
-});
+            })
+        .catch(error => {
+            console.error("Error:", error);
+            showGlassAlert("Error", "Something went wrong.", "error");
+            if (saveBtn) {
+                saveBtn.disabled = false;
+                saveBtn.innerText = "Save Delivery";
+            }
+        });
+    });
 </script>
 {% endblock %}

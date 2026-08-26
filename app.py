@@ -1,5 +1,6 @@
 import logging
 from werkzeug.security import check_password_hash
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
@@ -9,7 +10,8 @@ logging.basicConfig(
 
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash
-from flask import Flask, render_template, url_for, redirect, request, session,jsonify
+from flask import Flask, render_template, url_for, redirect, request, session, jsonify
+from datetime import datetime, timedelta
 
 from database import (
     create_connection,
@@ -32,8 +34,8 @@ from database import (
     search_farmers,
     search_experts,
     search_deliveries,
-    change_password
-    
+    change_password,
+    get_delivery_by_farmer_id,
 )
 
 # logging.basicConfig(filename='myapp.log', level=logging.INFO)
@@ -43,6 +45,8 @@ app = Flask(__name__)  # uygulamayı oluşturdum
 app.secret_key = "tea_tracking_secret_key"  # session için gizli anahtar
 print("Connected to database successfully.")
 create_table()  # Program açılırken tabloları oluştur.
+
+
 # show_tables()  # Program açılırken tabloları göster.
 # add_test_farmers()#mutlaka yorum satırına çevir!!!
 def validate_search_filters(filters):
@@ -128,9 +132,8 @@ def validate_search_filters(filters):
             raise ValueError("Phone number can contain only digits.")
 
         if len(value) < 10 or len(value) > 11:
-            raise ValueError(
-                "Phone number must contain 10 or 11 digits."
-            )
+            raise ValueError("Phone number must contain 10 or 11 digits.")
+
 
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -138,8 +141,6 @@ def home():
     print("Method:", request.method, flush=True)  #
 
     if request.method == "POST":  # bunu da silebilirim
-
-       
 
         tc = request.form.get("tc")
         password = request.form.get("password")
@@ -150,7 +151,7 @@ def home():
             return render_template("login.html", error="User not found")
 
         else:
-            #şifreyi kontol ettiğim kısım
+            # şifreyi kontol ettiğim kısım
             if check_password_hash(user[2], password):
                 print("Login successful", flush=True)
                 session["user_id"] = user[0]
@@ -158,10 +159,9 @@ def home():
                 session["role"] = user[3]
                 session["first_name"] = user[4]
                 session["last_name"] = user[5]
+                session["login_time"] = datetime.now().timestamp()
 
                 return redirect(url_for("dashboard"))
-
-              
 
             else:
 
@@ -172,20 +172,20 @@ def home():
     return render_template("login.html")
 
 
-
-
 @app.route("/delete-delivery/<int:delivery_id>", methods=["POST"])
 def delete_delivery_route(delivery_id):
     if "user_id" not in session:
-        return redirect(url_for("home"))
+        return jsonify({"success": False, "message": "Unauthorized"}), 401
 
-    if session["role"] not in ["admin"]:
-        return redirect(url_for("dashboard"))
+    if session.get("role") not in ["admin"]:
+        return jsonify({"success": False, "message": "Forbidden"}), 403
 
-    delete_delivery(delivery_id)
-
-    return jsonify(success=True)
-
+    try:
+        delete_delivery(delivery_id)
+        return jsonify({"success": True, "message": "Delivery deleted successfully!"})
+    except Exception as e:
+        app.logger.exception("delete_delivery failed")
+        return jsonify({"success": False, "message": f"Sunucu hatası: {str(e)}"}), 500
 
 
 @app.route("/deliveries")
@@ -199,36 +199,26 @@ def all_deliveries():
 
     deliveries = get_all_deliveries_full()
 
-    return render_template(
+    return render_template("delivery_records.html", deliveries=deliveries)
 
-        "delivery_records.html",
-        deliveries=deliveries
-    )
+
 @app.route("/api/deliveries/search", methods=["POST"])
 def search_deliveries_api():
 
     if "user_id" not in session:
-        return jsonify({
-            "success": False,
-            "message": "Unauthorized"
-        }), 401
+        return jsonify({"success": False, "message": "Unauthorized"}), 401
 
     if session["role"] not in ["admin", "expert"]:
-        return jsonify({
-            "success": False,
-            "message": "Forbidden"
-        }), 403
+        return jsonify({"success": False, "message": "Forbidden"}), 403
 
     data = request.get_json()
 
     filters = data.get("filters", {})
 
     deliveries = search_deliveries(filters)
-    
-    return jsonify({
-        "success": True,
-        "deliveries": deliveries
-    }), 200
+
+    return jsonify({"success": True, "deliveries": deliveries}), 200
+
 
 @app.route("/dashboard")
 def dashboard():
@@ -241,52 +231,46 @@ def dashboard():
 
 @app.route("/new-delivery", methods=["GET", "POST"])
 def new_delivery():
-     if "user_id" not in session:
-         return redirect(url_for ("home"))
-     if session["role"] not in ["admin","expert"]:
-         return redirect (url_for("dashboard"))
-     return render_template("new_delivery.html")
+    if "user_id" not in session:
+        return redirect(url_for("home"))
+    if session["role"] not in ["admin", "expert"]:
+        return redirect(url_for("dashboard"))
+    return render_template("new_delivery.html")
 
-@app.route("/api/new_delivery",methods=["POST"])
+
+@app.route("/api/new_delivery", methods=["POST"])
 def create_delivery():
     if "user_id" not in session:
-        return jsonify({"success":False, "message":"Unauthorized"}),401
-    if session["role"] not in ["admin","expert"]:
-        return jsonify({"success":False, "message":"Forbidden"}),403
+        return jsonify({"success": False, "message": "Unauthorized"}), 401
+    if session["role"] not in ["admin", "expert"]:
+        return jsonify({"success": False, "message": "Forbidden"}), 403
 
-    data= request.get_json()
+    data = request.get_json()
     farmer_tc = data.get("farmer_tc")
-    
+
     user = get_user_by_tc(farmer_tc)
 
     if user is None:
-        return jsonify({
-            "success":False,
-            "message":"Farmer not found"
-        }),404
-    
-    user_id=user[0]
-    farmer= get_farmer_by_user_id(user_id)
-    if farmer is None:
-        return jsonify({
-            "success":False, 
-            "message":"farmer not found!"
-        }),404
+        return jsonify({"success": False, "message": "Farmer not found"}), 404
 
+    user_id = user[0]
+    farmer = get_farmer_by_user_id(user_id)
+    if farmer is None:
+        return jsonify({"success": False, "message": "farmer not found!"}), 404
 
     farmer_id = farmer[0]
 
-    gross_weight = float (data.get("gross_weight"))
+    gross_weight = float(data.get("gross_weight"))
     is_rainy = int(data.get("is_rainy"))
-    if is_rainy ==1:
+    if is_rainy == 1:
 
-        net_weight= gross_weight*0.9
+        net_weight = gross_weight * 0.9
     else:
-        net_weight= gross_weight        
+        net_weight = gross_weight
 
-    payment_option =data.get("payment_option")
+    payment_option = data.get("payment_option")
     delivery_date = data.get("delivery_date")
-    expert_id= session["user_id"]
+    expert_id = session["user_id"]
 
     add_delivery(
         farmer_id,
@@ -296,15 +280,12 @@ def create_delivery():
         net_weight,
         is_rainy,
         payment_option,
-)
-    return jsonify({
-        "succcess": True,
-        "message": "delivery added successfully!"
-    })
+    )
+    return jsonify({"success": True, "message": "delivery added successfully!"})
 
-  
-   
-#ADMİN - FARMER#
+
+# ADMİN - FARMER#
+
 
 @app.route("/admin/farmers")
 def farmer_management():
@@ -315,51 +296,34 @@ def farmer_management():
     if session["role"] != "admin":
         return redirect(url_for("dashboard"))
 
-
     return render_template(
         "farmer_management.html",
-       
     )
+
+
 @app.route("/api/farmers/search", methods=["POST"])
 def search_farmers_api():
 
     if "user_id" not in session:
-        return jsonify({
-            "success": False,
-            "message": "Unauthorized"
-        }), 401
+        return jsonify({"success": False, "message": "Unauthorized"}), 401
 
     if session["role"] != "admin":
-        return jsonify({
-            "success": False,
-            "message": "Forbidden"
-        }), 403
+        return jsonify({"success": False, "message": "Forbidden"}), 403
 
     data = request.get_json()
 
-
-    
-
     filters = data.get("filters", {})
-  
 
     try:
         validate_search_filters(filters)
 
     except ValueError as e:
         print("VALIDATION ERROR:", str(e), flush=True)
-        return jsonify({
-            "success": False,
-            "message": str(e)
-        }), 400
+        return jsonify({"success": False, "message": str(e)}), 400
 
     farmers = search_farmers(filters)
 
-    return jsonify({
-        "success": True,
-        "farmers": farmers
-    }), 200
-
+    return jsonify({"success": True, "farmers": farmers}), 200
 
 
 @app.route("/admin/farmers/add", methods=["GET", "POST"])
@@ -405,24 +369,19 @@ def add_farmer_api():
         city,
         district,
         phone_number,
-        village
+        village,
     )
 
     if not farmer_added:
-        return jsonify({
-            "success": False,
-            "message": "Farmer could not be created."
-        }), 400
+        return (
+            jsonify({"success": False, "message": "Farmer could not be created."}),
+            400,
+        )
 
-  
-
-    return jsonify( {
-        "success": True,
-        "message": "Farmer added successfully."
-    })
+    return jsonify({"success": True, "message": "Farmer added successfully."})
 
 
-#ADMIN - EXPERT#
+# ADMIN - EXPERT#
 
 
 @app.route("/admin/experts")
@@ -440,94 +399,62 @@ def expert_management():
 
     return render_template(
         "expert_management.html",
-    
     )
 
 
 @app.route("/api/experts/search", methods=["POST"])
 def search_experts_api():
 
-        if "user_id" not in session:
-            return jsonify({
-                "success": False,
-                "message": "Unauthorized"
-            }), 401
+    if "user_id" not in session:
+        return jsonify({"success": False, "message": "Unauthorized"}), 401
 
-        if session["role"] != "admin":
-            return jsonify({
-                "success": False,
-                "message": "Forbidden"
-            }), 403
+    if session["role"] != "admin":
+        return jsonify({"success": False, "message": "Forbidden"}), 403
 
-        data = request.get_json()
+    data = request.get_json()
 
+    filters = data.get("filters", {})
 
-        
+    try:
+        validate_search_filters(filters)
 
-        filters = data.get("filters", {})
-    
+    except ValueError as e:
+        print("VALIDATION ERROR:", str(e), flush=True)
+        return jsonify({"success": False, "message": str(e)}), 400
 
-        try:
-            validate_search_filters(filters)
+    experts = search_experts(filters)
 
-        except ValueError as e:
-            print("VALIDATION ERROR:", str(e), flush=True)
-            return jsonify({
-                "success": False,
-                "message": str(e)
-            }), 400
-
-        experts = search_experts(filters)
-
-        return jsonify({
-            "success": True,
-            "experts": experts
-        }), 200
+    return jsonify({"success": True, "experts": experts}), 200
 
 
-@app.route("/admin/experts/add",methods=["GET","POST"])
-
+@app.route("/admin/experts/add", methods=["GET", "POST"])
 def add_expert_route():
     if "user_id" not in session:
-        return redirect( url_for ("home"))
-    if session["role"] != "admin" :
+        return redirect(url_for("home"))
+    if session["role"] != "admin":
         return redirect(url_for("dashboard"))
     return render_template("add_expert.html")
 
-@app.route("/api/experts/add",methods=["POST"])
+
+@app.route("/api/experts/add", methods=["POST"])
 def add_expert_api():
     if "user_id" not in session:
-        return jsonify({"success":False, "message":"Unauthorized"}),401
-    
-    if session["role"]!= "admin":
-        return jsonify({"success":False, "message": "Forbidden"}),403
+        return jsonify({"success": False, "message": "Unauthorized"}), 401
 
-    data= request.get_json()
+    if session["role"] != "admin":
+        return jsonify({"success": False, "message": "Forbidden"}), 403
+
+    data = request.get_json()
     tc_no = data.get("tc_no")
-    password= data.get("password")
+    password = data.get("password")
     first_name = data.get("first_name")
     last_name = data.get("last_name")
 
-    expert_added = add_expert(
-        tc_no,
-        password,
-        "expert",
-        first_name,
-        last_name
-    )
+    expert_added = add_expert(tc_no, password, "expert", first_name, last_name)
     if not expert_added:
-        return jsonify({
-            "success":False,
-            "message": "Expert could not be added"
-        }),400
- 
+        return jsonify({"success": False, "message": "Expert could not be added"}), 400
 
-    return jsonify( {
-        "success":True,
-        "message": "Expert added succesfully!!!"
-    })
-
-
+    return jsonify({"success": True, "message": "Expert added succesfully!!!"})
 
 
 @app.route("/api/experts/delete/<int:expert_id>", methods=["POST"])
@@ -535,7 +462,7 @@ def delete_expert_api(expert_id):
     # Güvenlik ve yetki kontrolleri
     if "user_id" not in session:
         return jsonify({"success": False, "message": "Unauthorized"}), 401
-    
+
     if session["role"] != "admin":
         return jsonify({"success": False, "message": "Forbidden"}), 403
 
@@ -546,22 +473,39 @@ def delete_expert_api(expert_id):
     if delete_success:
         return jsonify({"success": True, "message": "Expert deleted succesfully!"})
     else:
-        return jsonify({"success": False, "message": "Error occured when expert's deleting process."}), 400
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Error occured when expert's deleting process.",
+                }
+            ),
+            400,
+        )
 
 
 @app.route("/admin/farmers/delete/<int:farmer_id>", methods=["POST"])
 def delete_farmer_api(farmer_id):
     if "user_id" not in session:
-        return jsonify({"success": False, "message":"Unauthorized"}),401
+        return jsonify({"success": False, "message": "Unauthorized"}), 401
     if session["role"] != "admin":
-        return jsonify({"success": False,"message":"forbidden"}),403
+        return jsonify({"success": False, "message": "forbidden"}), 403
 
-    delete_success= delete_farmer(farmer_id)
+    delete_success = delete_farmer(farmer_id)
 
     if delete_success:
         return jsonify({"success": True, "message": "Farmer deleted succesfully!"})
     else:
-        return jsonify({"success": False, "message": "Error occured when expert's deleting process."}), 400
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "Error occured when expert's deleting process.",
+                }
+            ),
+            400,
+        )
+
 
 # 1. HTML Sayfasını Ekrana Getiren Rota (GET)
 @app.route("/change-password", methods=["GET"])
@@ -572,7 +516,7 @@ def change_password_page():
 # 2. Butona Basınca Arka Planda Şifreyi Güncelleyen API (POST)
 @app.route("/api/change-password", methods=["POST"])
 def api_change_password():
-    
+
     if "tc_no" not in session:
         return jsonify({"message": "Username not found. Please log in."}), 401
 
@@ -602,23 +546,64 @@ def api_change_password():
 
     return jsonify({"message": "Password changed successfully."}), 200
 
+
+@app.route("/farmer/my-deliveries")
+def my_deliveries():
+    if "user_id" not in session or session.get("role") != "farmer":
+        return redirect(url_for("home"))
+
+    farmer_id = session["user_id"]
+    delivery_records = get_delivery_by_farmer_id(farmer_id)
+
+    return render_template("my_deliveries.html", deliveries=delivery_records)
+
+
+@app.before_request  #her requestten önce bu kodu çalıştır 
+def check_session_timeout():
+
+    if "user_id" not in session:
+        return
+
+    role = session.get("role")
+
+    # Farmer: süresiz
+    if role == "farmer":
+        return
+
+    login_time = session.get("login_time")
+
+    if not login_time:
+        session.clear()
+        return redirect(url_for("home"))
+
+    elapsed = datetime.now().timestamp() - login_time
+
+    if elapsed > 180:  
+        session.clear()
+        return redirect(url_for("home"))
+
 @app.route("/ai_assistant")
 def ai_assistant():
     return render_template("ai_assistant.html")
 
+
 @app.route("/statistics")
 def statistics():
     return render_template("statistics.html")
+
 
 @app.route("/logout")
 def logout():
     session.clear()  # session da tuutuğum username role falan her şeyi siliyoum
     return redirect(url_for("home"))  # login sayfasına yönlendir
 
+
 @app.route("/signup", methods=["GET"])
 def signup_page():
     return render_template("signup.html")
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)  # Flask uygulamasını başlatır ve debug modunu açar(koddaki değişiklikleri otomatik olarak algılar ve uygulamayı yeniden başlatır)
 
+if __name__ == "__main__":
+    app.run(
+        host="0.0.0.0", port=80, debug=True
+    )  # Flask uygulamasını başlatır ve debug modunu açar(koddaki değişiklikleri otomatik olarak algılar ve uygulamayı yeniden başlatır)

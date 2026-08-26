@@ -385,6 +385,7 @@ def get_farmer_by_user_id(user_id):
     connection.close()
 
     return farmer
+
 def delete_delivery(delivery_id):
     connection = create_connection()
     cursor= connection.cursor()
@@ -395,7 +396,6 @@ def delete_delivery(delivery_id):
         )
     connection.commit()
     connection.close()
-    logger.info(f"delivery {delivery_id} deleted.")
     return True
 
 def get_all_deliveries_full():
@@ -423,8 +423,7 @@ def get_all_deliveries_full():
 
     deliveries = cursor.fetchall()
 
-    print("DELIVERIES:", deliveries)
-
+  
     connection.close()
 
     return deliveries
@@ -853,6 +852,31 @@ def add_farmer(tc_no,password,role,first_name,last_name,city,district,phone_numb
     
 
         return True
+
+def get_delivery_by_farmer_id(user_id):
+    connection = create_connection()
+    cursor = connection.cursor()
+
+    # user_id üzerinden farmers tablosuna, oradan da tea_deliveries tablosuna bağlanır
+    cursor.execute("""
+        SELECT
+            td.id,
+            td.farmer_id,
+            td.expert_id,
+            td.delivery_date,
+            td.gross_weight,
+            td.net_weight,
+            td.is_rainy,
+            td.payment_option
+        FROM tea_delivers td
+        INNER JOIN farmers f ON td.farmer_id = f.id
+        WHERE f.user_id = ?
+        ORDER BY td.delivery_date DESC
+    """, (user_id,))
+    
+    deliveries = cursor.fetchall()
+    connection.close()
+    return deliveries
 # def reset_test_data():
 #     connection = create_connection()
 #     cursor = connection.cursor()

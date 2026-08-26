@@ -17,93 +17,45 @@ Add New Farmer
 
     <div class="input-group">
         <label for="tc_no">TC Number</label>
-        <input
-            type="text"
-            id="tc_no"
-            name="tc_no"
-            placeholder="Enter TC Number"
-            required
-        >
+        <input type="text" id="tc_no" name="tc_no" placeholder="Enter TC Number" required>
     </div>
 
     <div class="input-group">
         <label for="password">Password</label>
-        <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Enter Password"
-            required
-        >
+        <input type="password" id="password" name="password" placeholder="Enter Password" required>
     </div>
 
     <div class="input-group">
         <label for="first_name">First Name</label>
-        <input
-            type="text"
-            id="first_name"
-            name="first_name"
-            placeholder="Enter First Name"
-            required
-        >
+        <input type="text" id="first_name" name="first_name" placeholder="Enter First Name" required>
     </div>
 
     <div class="input-group">
         <label for="last_name">Last Name</label>
-        <input
-            type="text"
-            id="last_name"
-            name="last_name"
-            placeholder="Enter Last Name"
-            required
-        >
+        <input type="text" id="last_name" name="last_name" placeholder="Enter Last Name" required>
     </div>
 
     <div class="input-group">
         <label for="city">City</label>
-        <input
-            type="text"
-            id="city"
-            name="city"
-            placeholder="Enter City"
-            required
-        >
+        <input type="text" id="city" name="city" placeholder="Enter City" required>
     </div>
 
     <div class="input-group">
         <label for="district">District</label>
-        <input
-            type="text"
-            id="district"
-            name="district"
-            placeholder="Enter District"
-            required
-        >
+        <input type="text" id="district" name="district" placeholder="Enter District" required>
     </div>
 
     <div class="input-group">
         <label for="phone_number">Phone Number</label>
-        <input
-            type="text"
-            id="phone_number"
-            name="phone_number"
-            placeholder="Enter Phone Number"
-            required
-        >
+        <input type="text" id="phone_number" name="phone_number" placeholder="Enter Phone Number" required>
     </div>
 
     <div class="input-group">
         <label for="village">Village</label>
-        <input
-            type="text"
-            id="village"
-            name="village"
-            placeholder="Enter Village"
-            required
-        >
+        <input type="text" id="village" name="village" placeholder="Enter Village" required>
     </div>
 
-  <button type="button" id="saveBtn" class="btn">Add Farmer</button>
+    <button type="button" id="saveBtn" class="btn">Add Farmer</button>
 
 </form>
 
@@ -112,12 +64,12 @@ Add New Farmer
 
 {% block scripts %}
 <script>
-   
+
     const saveBtn = document.getElementById("saveBtn");
 
     // Butona tıklandığında çalışacak kod
-    saveBtn.addEventListener("click", function() {
-        
+    saveBtn.addEventListener("click", function () {
+
         // Çift tıklamayı engellemek için butonu geçici olarak pasif yapıyoruz
         saveBtn.disabled = true;
         saveBtn.innerText = "Adding...";
@@ -140,23 +92,26 @@ Add New Farmer
             },
             body: JSON.stringify(farmerData)
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert(data.message);
-                window.location.href = "/admin/farmers";
-            } else {
-                alert(data.message);
+            .then(response => response.json())
+
+            .then(data => {
+                if (data.success) {
+                    // Eğer showGlassAlert callback alıyorsa:
+                    showGlassAlert("Farmer added successfully!", data.message, "success", () => {
+                        window.location.href = "/admin/farmers";
+                    });
+                } else {
+                    alert(data.message);
+                    saveBtn.disabled = false;
+                    saveBtn.innerText = "Add Farmer";
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Something went wrong.");
                 saveBtn.disabled = false;
                 saveBtn.innerText = "Add Farmer";
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            alert("Sistem hatası! Lütfen database.py dosyasındaki add_farmer fonksiyonunu kontrol et.");
-            saveBtn.disabled = false;
-            saveBtn.innerText = "Add Farmer";
-        });
+            });
     });
 </script>
 {% endblock %}

@@ -593,6 +593,7 @@ td form {
     display: flex;
     margin: auto;
     margin-bottom: 15px;
+    margin-right: 10px;
 }
 /* Başlık kapsayıcısını esnek (flex) yapıyoruz */
 .sidebar-header {
@@ -610,6 +611,7 @@ td form {
     margin: 0; 
     padding: 0;
     border-bottom: none; 
+    font-size: 18px; /* Yazı boyutunu biraz küçülttük */
 }
 
 .sidebar-logo {
@@ -1321,12 +1323,18 @@ td form {
 /* Checkbox seçilince aktif et */
 .del-input-field.active {
   display: block;
+  width: 100%;
+  border-radius: 8px;
+  padding:  8px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
 }
 
 /* Tarih kapsayıcısı aktifleşince yan yana iki kutu yap */
 .del-date-container.active {
   display: flex;
   gap: 10px;
+  
 }
 
 /* Her bir tarih sütunu (Etiket ve Kutu alt alta) */
@@ -1726,45 +1734,157 @@ td form {
   color: #9bf0ad;
   text-decoration: underline;
 }
+
+
 /* =========================================================
-   RESPONSIVE DESIGN
+   FINAL RESPONSIVE / FILTER OVERRIDES
+   Bu bölüm mevcut filtre stillerinin üzerine yazılır.
    ========================================================= */
 
-/* Tablet */
+/* Ana içerik flex içinde taşmasın */
+.main-content {
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Search kartı her ekranda gerçekten bir kart olarak görünsün */
+.search-content-card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 28px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    background: rgba(20, 45, 25, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+}
+
+/* Yeni details/summary dropdown yapısı */
+.search-content-card .filter-dropdown-container,
+.search-content-card .del-dropdown-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 18px;
+    box-sizing: border-box;
+}
+
+/* Farmer / Expert / genel filtre dropdownları */
+.search-content-card .filter-dropdown,
+.search-content-card .del-dropdown {
+    flex: 1 1 280px;
+    width: 100%;
+    min-width: 0;
+    max-width: 380px;
+    box-sizing: border-box;
+}
+
+/* Dropdown içeriği taşmasın */
+.search-content-card .filter-options,
+.search-content-card .del-options-panel {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Farmer / Expert filtre item'ları */
+.search-content-card .filter-item {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* Checkbox + yazı sola hizalı kalsın */
+.search-content-card .filter-item label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* Açılan inputlar kutuyu taşırmasın */
+.search-content-card .filter-input,
+.search-content-card {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    margin-left: 0;
+    box-sizing: border-box;
+}
+
+/* Input / select / date alanları */
+.search-content-card .filter-input input,
+.search-content-card .filter-input select,
+.search-content-card .del-input-field input,
+.search-content-card .del-input-field select {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #fff;
+    padding: 6px 8px;
+    font-size: 13px;
+}
+
+/* Çift tarih alanı */
+.search-content-card .del-date-container {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.search-content-card .del-date-box {
+    min-width: 0;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
 @media (max-width: 1024px) {
 
     .sidebar {
-        width: 210px;
+        width: 220px;
         padding: 30px 15px;
+        box-sizing: border-box;
+        flex-shrink: 0;
     }
 
     .main-content {
         padding: 80px 25px 30px;
     }
 
-    .filter-dropdown {
-        flex: 1 1 280px;
-        min-width: 0;
+    .search-content-card {
+        padding: 22px;
+    }
+
+    .search-content-card .filter-dropdown,
+    .search-content-card .del-dropdown {
+        flex: 1 1 240px;
         max-width: none;
     }
-
-    .filter-options {
-        padding: 18px;
-    }
-
-    .filter-item {
-        flex: 1 1 100%;
-        min-width: 0;
-    }
-
 }
 
 
-/* Telefon */
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 768px) {
 
     .dashboard-container {
         flex-direction: column;
+        min-height: 100vh;
     }
 
     .sidebar {
@@ -1787,7 +1907,7 @@ td form {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 5px;
+        gap: 6px;
         margin: 0;
     }
 
@@ -1802,12 +1922,15 @@ td form {
 
     .main-content {
         width: 100%;
-        box-sizing: border-box;
+        max-width: 100%;
         padding: 75px 15px 25px;
+        box-sizing: border-box;
         overflow-x: hidden;
     }
 
     .top-nav {
+        width: 100%;
+        box-sizing: border-box;
         padding: 12px 15px;
     }
 
@@ -1831,47 +1954,68 @@ td form {
     .new_delivery {
         float: none;
         margin-left: 0;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
 
+    /* Search kartı mobilde de görünür */
     .search-content-card {
         width: 100%;
-        box-sizing: border-box;
-        border-radius: 20px;
+        max-width: 100%;
+        padding: 16px;
+        margin-top: 18px;
+        border-radius: 18px;
     }
 
-    .filter-dropdown {
+    .search-content-card h2,
+    .search-content-card .search-title {
+        padding-left: 0;
+        margin-left: 0;
+        font-size: 20px;
+    }
+
+    .search-content-card .filter-dropdown,
+    .search-content-card .del-dropdown {
+        flex: 1 1 100%;
         width: 100%;
-        min-width: 0;
         max-width: none;
-        flex: none;
-        box-sizing: border-box;
-    }
-
-    .filter-dropdown .filter-options {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 14px;
-    }
-
-    .filter-item {
-        width: 100%;
         min-width: 0;
-        flex: none;
     }
 
-    .filter-input {
+    .search-content-card .filter-options,
+    .search-content-card .del-options-panel {
+        padding: 12px !important;
+    }
+
+    .search-content-card .filter-item {
+        flex: none;
+        width: 100%;
+    }
+
+    .search-content-card .filter-item label {
+        width: 100%;
+        font-size: 13px;
+    }
+
+    .search-content-card .filter-input,
+    .search-content-card .del-input-field {
         width: 100%;
         margin-left: 0;
     }
 
-    .filter-input input,
-    .filter-input select {
-        max-width: 100%;
+    .search-content-card .del-date-container {
+        flex-direction: column;
+        gap: 10px;
     }
 
-    .date-inputs-container {
-        flex-direction: column;
+    .search-content-card .button-wrapper {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .search-content-card .button-wrapper .btn,
+    .search-content-card > .btn {
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .table-container {
@@ -1885,18 +2029,22 @@ td form {
     }
 
     .content-card {
+        width: 100%;
+        box-sizing: border-box;
         padding: 18px;
-        border-radius: 14px;
     }
-
 }
 
 
-/* Küçük telefon */
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
 @media (max-width: 480px) {
 
     .sidebar ul {
         flex-direction: column;
+        width: 100%;
     }
 
     .sidebar a {
@@ -1912,28 +2060,186 @@ td form {
 
     .search-content-card {
         padding: 12px;
+        border-radius: 16px;
     }
 
-    .search-content-card h2 {
-        font-size: 19px;
+    .search-content-card h2,
+    .search-content-card .search-title {
+        font-size: 18px;
     }
 
-    .filter-dropdown summary {
-        font-size: 14px;
-        padding: 12px;
+    .search-content-card .filter-dropdown summary,
+    .search-content-card .del-dropdown-summary {
+        font-size: 13px;
+        padding: 11px 12px;
     }
 
-    .filter-options {
-        padding: 12px !important;
+    .search-content-card .filter-item label {
+        font-size: 12.5px;
     }
 
-    .filter-item label {
+    .search-content-card .filter-input input,
+    .search-content-card .filter-input select,
+    .search-content-card .del-input-field input,
+    .search-content-card .del-input-field select {
         font-size: 13px;
     }
+}
+/* =========================================================
+   FARMER MY DELIVERIES (FMD) ÖZEL STİLLERİ
+========================================================= */
 
-    .btn {
-        width: 100%;
-        box-sizing: border-box;
-    }
+.fmd-page-wrapper {
+  width: 100%;
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
 
+.fmd-content-card {
+  background: rgba(22, 45, 27, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 32px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.fmd-header {
+  margin-bottom: 24px;
+}
+
+.fmd-title {
+  color: #ffffff;
+  font-size: clamp(22px, 2.5vw, 28px);
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fmd-subtitle {
+  color: #c2d6c6;
+  font-size: 14px;
+  margin: 0;
+}
+
+.fmd-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.fmd-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  color: #ffffff;
+  min-width: 650px; /* Mobilde tablonun ezilmesini önler */
+}
+
+.fmd-table th {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 14px 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #dceada;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  white-space: nowrap;
+}
+
+.fmd-table td {
+  padding: 14px 16px;
+  font-size: 13.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fmd-table tbody tr:hover td {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.fmd-id-cell {
+  font-weight: 600;
+  color: #7dd48a;
+}
+
+.fmd-net-weight {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Rozetler (Badges) */
+.fmd-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.fmd-badge-rainy {
+  background: rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  color: #93c5fd;
+}
+
+.fmd-badge-dry {
+  background: rgba(234, 179, 8, 0.2);
+  border: 1px solid rgba(234, 179, 8, 0.4);
+  color: #fef08a;
+}
+
+.fmd-badge-payment {
+  background: rgba(82, 183, 104, 0.2);
+  border: 1px solid rgba(82, 183, 104, 0.4);
+  color: #86efac;
+}
+
+/* Boş Durum (Empty State) */
+.fmd-empty-state {
+  text-align: center;
+  padding: 40px 0;
+  color: #a0baa4;
+}
+
+.fmd-empty-icon {
+  font-size: 42px;
+  margin-bottom: 12px;
+  opacity: 0.6;
+}
+
+/* Responsive Uyum */
+@media (max-width: 768px) {
+  .fmd-page-wrapper {
+    padding: 0 12px;
+    margin: 15px auto;
+  }
+
+  .fmd-content-card {
+    padding: 20px 16px;
+  }
+}
+.glass-swal {
+    background: rgba(22, 45, 27, 0.9) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 18px !important;
+    color: #ffffff !important;
+}
+
+.glass-swal .swal2-title {
+    color: #ffffff !important;
+}
+
+.glass-swal .swal2-html-container {
+    color: #c2d6c6 !important;
 }

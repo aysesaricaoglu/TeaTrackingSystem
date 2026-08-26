@@ -19,130 +19,131 @@ Farmer Management
     </div>
 </div>
 
-<div class="search-content-card">
-    <h2 class="search-title">Search Farmers</h2>
+<div class="filter-options management-filter-options">
+    <div class="search-content-card">
+        <h2 class="search-title">Search Farmers</h2>
 
-    <div class="filter-capsules-grid">
-        <!-- Name -->
-        <div class="filter-capsule">
-            <div class="capsule-header">
-                <div class="capsule-left">
-                    <i class="fa-solid fa-user capsule-icon"></i>
-                    <span class="capsule-title">Name</span>
+        <div class="filter-capsules-grid">
+            <!-- Name -->
+            <div class="filter-capsule">
+                <div class="capsule-header">
+                    <div class="capsule-left">
+                        <i class="fa-solid fa-user capsule-icon"></i>
+                        <span class="capsule-title">Name</span>
+                    </div>
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox" data-target="nameFilter">
+                    </label>
                 </div>
-                <label class="filter-item">
-                    <input type="checkbox" class="filter-checkbox" data-target="nameFilter">
-                </label>
+                <div id="nameFilter" class="filter-input">
+                    <input type="text" id="name" placeholder="Enter first name">
+                </div>
             </div>
-            <div id="nameFilter" class="filter-input">
-                <input type="text" id="name" placeholder="Enter first name">
+
+            <!-- City -->
+            <div class="filter-capsule">
+                <div class="capsule-header">
+                    <div class="capsule-left">
+                        <i class="fa-solid fa-city capsule-icon"></i>
+                        <span class="capsule-title">City</span>
+                    </div>
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox" data-target="cityFilter">
+                    </label>
+                </div>
+                <div id="cityFilter" class="filter-input">
+                    <input type="text" id="city" placeholder="Enter city">
+                </div>
+            </div>
+
+            <!-- Surname -->
+            <div class="filter-capsule">
+                <div class="capsule-header">
+                    <div class="capsule-left">
+                        <i class="fa-solid fa-user capsule-icon"></i>
+                        <span class="capsule-title">Surname</span>
+                    </div>
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox" data-target="surnameFilter">
+                    </label>
+                </div>
+                <div id="surnameFilter" class="filter-input">
+                    <input type="text" id="surname" placeholder="Enter last name">
+                </div>
+            </div>
+
+            <!-- Village -->
+            <div class="filter-capsule">
+                <div class="capsule-header">
+                    <div class="capsule-left">
+                        <i class="fa-solid fa-house capsule-icon"></i>
+                        <span class="capsule-title">Village</span>
+                    </div>
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox" data-target="villageFilter">
+                    </label>
+                </div>
+                <div id="villageFilter" class="filter-input">
+                    <input type="text" id="village" placeholder="Enter village">
+                </div>
+            </div>
+
+            <!-- TC Number -->
+            <div class="filter-capsule">
+                <div class="capsule-header">
+                    <div class="capsule-left">
+                        <i class="fa-solid fa-id-card capsule-icon"></i>
+                        <span class="capsule-title">TC Number</span>
+                    </div>
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox" data-target="tcFilter">
+                    </label>
+                </div>
+                <div id="tcFilter" class="filter-input">
+                    <input type="text" id="tc" placeholder="Enter TC number">
+                </div>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="filter-capsule">
+                <div class="capsule-header">
+                    <div class="capsule-left">
+                        <i class="fa-solid fa-phone capsule-icon"></i>
+                        <span class="capsule-title">Phone Number</span>
+                    </div>
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox" data-target="phoneFilter">
+                    </label>
+                </div>
+                <div id="phoneFilter" class="filter-input">
+                    <input type="text" id="phone" placeholder="Enter phone number">
+                </div>
+            </div>
+
+            <!-- District -->
+            <div class="filter-capsule">
+                <div class="capsule-header">
+                    <div class="capsule-left">
+                        <i class="fa-solid fa-location-dot capsule-icon"></i>
+                        <span class="capsule-title">District</span>
+                    </div>
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox" data-target="districtFilter">
+                    </label>
+                </div>
+                <div id="districtFilter" class="filter-input">
+                    <input type="text" id="district" placeholder="Enter district">
+                </div>
             </div>
         </div>
 
-        <!-- City -->
-        <div class="filter-capsule">
-            <div class="capsule-header">
-                <div class="capsule-left">
-                    <i class="fa-solid fa-city capsule-icon"></i>
-                    <span class="capsule-title">City</span>
-                </div>
-                <label class="filter-item">
-                    <input type="checkbox" class="filter-checkbox" data-target="cityFilter">
-                </label>
-            </div>
-            <div id="cityFilter" class="filter-input">
-                <input type="text" id="city" placeholder="Enter city">
-            </div>
+        <div class="button-wrapper">
+            <button type="button" id="searchFarmersButton" class="btn">
+                Show Results
+            </button>
         </div>
-
-        <!-- Surname -->
-        <div class="filter-capsule">
-            <div class="capsule-header">
-                <div class="capsule-left">
-                    <i class="fa-solid fa-user capsule-icon"></i>
-                    <span class="capsule-title">Surname</span>
-                </div>
-                <label class="filter-item">
-                    <input type="checkbox" class="filter-checkbox" data-target="surnameFilter">
-                </label>
-            </div>
-            <div id="surnameFilter" class="filter-input">
-                <input type="text" id="surname" placeholder="Enter last name">
-            </div>
-        </div>
-
-        <!-- Village -->
-        <div class="filter-capsule">
-            <div class="capsule-header">
-                <div class="capsule-left">
-                    <i class="fa-solid fa-house capsule-icon"></i>
-                    <span class="capsule-title">Village</span>
-                </div>
-                <label class="filter-item">
-                    <input type="checkbox" class="filter-checkbox" data-target="villageFilter">
-                </label>
-            </div>
-            <div id="villageFilter" class="filter-input">
-                <input type="text" id="village" placeholder="Enter village">
-            </div>
-        </div>
-
-        <!-- TC Number -->
-        <div class="filter-capsule">
-            <div class="capsule-header">
-                <div class="capsule-left">
-                    <i class="fa-solid fa-id-card capsule-icon"></i>
-                    <span class="capsule-title">TC Number</span>
-                </div>
-                <label class="filter-item">
-                    <input type="checkbox" class="filter-checkbox" data-target="tcFilter">
-                </label>
-            </div>
-            <div id="tcFilter" class="filter-input">
-                <input type="text" id="tc" placeholder="Enter TC number">
-            </div>
-        </div>
-
-        <!-- Phone Number -->
-        <div class="filter-capsule">
-            <div class="capsule-header">
-                <div class="capsule-left">
-                    <i class="fa-solid fa-phone capsule-icon"></i>
-                    <span class="capsule-title">Phone Number</span>
-                </div>
-                <label class="filter-item">
-                    <input type="checkbox" class="filter-checkbox" data-target="phoneFilter">
-                </label>
-            </div>
-            <div id="phoneFilter" class="filter-input">
-                <input type="text" id="phone" placeholder="Enter phone number">
-            </div>
-        </div>
-
-        <!-- District -->
-        <div class="filter-capsule">
-            <div class="capsule-header">
-                <div class="capsule-left">
-                    <i class="fa-solid fa-location-dot capsule-icon"></i>
-                    <span class="capsule-title">District</span>
-                </div>
-                <label class="filter-item">
-                    <input type="checkbox" class="filter-checkbox" data-target="districtFilter">
-                </label>
-            </div>
-            <div id="districtFilter" class="filter-input">
-                <input type="text" id="district" placeholder="Enter district">
-            </div>
-        </div>
-    </div>
-
-    <div class="button-wrapper">
-        <button type="button" id="searchFarmersButton" class="btn">
-            Show Results
-        </button>
     </div>
 </div>
-
 <div class="content-card">
     <h2>Farmers</h2>
 
@@ -383,7 +384,7 @@ Farmer Management
         const end = start + rowsPerPage;
         const pageItems = allFarmers.slice(start, end);
 
-        pageItems.forEach(function (farmer){
+        pageItems.forEach(function (farmer) {
 
 
             const row = `
