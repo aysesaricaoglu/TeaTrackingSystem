@@ -578,7 +578,7 @@ def check_session_timeout():
 
     elapsed = datetime.now().timestamp() - login_time
 
-    if elapsed > 180:  
+    if elapsed > 1800:  
         session.clear()
         return redirect(url_for("home"))
 

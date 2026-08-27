@@ -2,28 +2,24 @@
    ORTAK STYLE.CSS
    Admin, Farmer ve Expert ekranlarının birleşik stili (Glassmorphism UI)
 ========================================================= */
-
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400&family=Great+Vibes&display=swap');
 /* ---------------- GENEL AYARLAR & ARKA PLAN ---------------- */
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #1a1a1a; 
-    color: #ffffff; /* Genel metin rengi beyaza çekildi */
-}
-
-/* Tüm sayfayı kaplayan ve arka plan görselini tutan ana kapsayıcı */
-.dashboard-container {
-    display: flex;
-    min-height: 100vh;
-    background-image: url("../images/background_image.png"); /* Arka plana dokunulmadı */
+    color: #ffffff;
+    
+    /* Arka plan doğrudan body'ye kilitlendi */
+    background-color: #1a1a1a;
+    background-image: url("../images/background_image.png");
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: fixed; /* Sayfa kaysa da görsel sabit kalır */
     background-repeat: no-repeat;
+    min-height: 100vh;
 }
-
 /* ---------------- SOL MENÜ (SIDEBAR) ---------------- */
 .sidebar {
     width: 260px;
@@ -87,7 +83,6 @@ body {
     flex: 1;
     padding: 40px 50px;
     overflow-y: auto;
-    position: relative; 
     padding-top: 80px;
 }
 
@@ -118,7 +113,7 @@ body {
 /* ---------------- ARAMA VE FİLTRE KARTLARI (GLASSMORPHISM) ---------------- */
 .search-content-card .search-title {
     grid-column: 1 / -1;
-    width: 100%;
+   
     margin-top: 5px;
     margin-bottom: 25px;
     padding-left: 5px;
@@ -126,33 +121,15 @@ body {
     font-weight: 600;
     color: #ffffff;
 }
-.search-title{
-    margin-left:30px;
-}
+
 .search-content-card{
     background: rgba(20, 45, 25, 0.45);
     border-radius: 30px;
     backdrop-filter: blur(8px);
+    width: 80%;
 }
-/* 2 Sütunlu Grid Izgara */
-.filter-capsules-grid {
-    grid-column: 1 / -1;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px 24px;
-}
-@media (max-width: 768px) {
-    .filter-capsules-grid {
-        grid-template-columns: 1fr;
-    }
-}
-.filter-capsules-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 Eşit Sütun */
-  gap: 14px 20px; /* Satır boşluğu 14px, sütun boşluğu 20px */
-  margin-bottom: 20px;
-}
+
+
 /* Kapsül Kutu (Pill) Tasarımı */
 .filter-capsule {
   display: flex;
@@ -488,7 +465,6 @@ table tr:hover {
     display: flex;
     justify-content: flex-end; /* İçindeki butonu en sağa iter */
     width: 100%;
-    margin-bottom: 20px; /* Altındaki tabloyla arasına mesafe koyar */
 }
 .farmer_ekle, .expert_ekle, .new_delivery {
     display: inline-block;
@@ -503,7 +479,6 @@ table tr:hover {
     border: 1px solid rgba(255, 255, 255, 0.3);
     transition: all 0.3s ease;
     backdrop-filter: blur(8px);
-    margin-bottom: 50px;
 }
 .farmer_ekle:hover, .expert_ekle:hover , .new_delivery:hover{
     background: rgba(123, 164, 113, 0.2);
@@ -587,49 +562,46 @@ td form {
     backdrop-filter: none !important;
 }
 
+
 .logo {
-    width: 70px;
-    border-radius: 50%; /* Logoyu tek satırda yuvarlak yapar */
-    display: flex;
-    margin: auto;
-    margin-bottom: 15px;
-    margin-right: 10px;
+    width: 90px;
+    border-radius: 50%;
+    margin: 0 0 15px 0; /* Sağdaki 'margin-right: 10px' kaldırıldı */
+    display: block;
 }
-/* Başlık kapsayıcısını esnek (flex) yapıyoruz */
-.sidebar-header {
-    display: flex;
-    align-items: center; /* Logoyu ve yazıyı dikeyde birbirine göre tam ortalar */
-    justify-content: center; /* İkisini birden sidebar'ın yatayda ortasına hizalar */
-    gap: 12px; /* Logo ile yazı arasındaki boşluk (istediğin gibi artırıp azaltabilirsin) */
-    margin-bottom: 40px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Alt çizgi artık kapsayıcıda */
-    padding-bottom: 15px;
+.sidebar-title,
+.sidebar-header h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 30px;       /* El yazısı fontları genelde küçük görünür, boyutu artırıldı */
+    font-weight: 500;      /* İnce durması için */
+    letter-spacing: 1px;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    border-bottom: none;
+    
 }
 
 /* Yazının kendi dış boşluklarını sıfırlıyoruz ki Flexbox'ın hizalamasını bozmasın */
-.sidebar-header h2 {
-    margin: 0; 
-    padding: 0;
-    border-bottom: none; 
-    font-size: 18px; /* Yazı boyutunu biraz küçülttük */
+.sidebar-header {
+    display: flex;
+    flex-direction: column; /* Logo ve başlık alt alta olsun diye */
+    align-items: center;    /* Yatayda tam ortalar */
+    justify-content: center;/* Dikeyde tam ortalar */
+    text-align: center;
+    width: 100%;
 }
 
 .sidebar-logo {
-    width: 28px; /* Logonun büyüklüğüne göre bu değeri değiştirebilirsin */
+    width: 40px; /* Logonun büyüklüğüne göre bu değeri değiştirebilirim */
     height: auto;
+    
+
 }
 /* =========================================================
    SWEETALERT2 ÖZEL CAM EFEKTİ TASARIMI
 ========================================================= */
-.glass-swal {
-    background: rgba(20, 45, 25, 0.85) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    color: #ffffff !important;
-    border-radius: 16px !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
-}
+
 
 /* SweetAlert içindeki yazılar için */
 .glass-swal .swal2-title, 
@@ -669,6 +641,7 @@ td form {
     display: flex;
     min-height: calc(100vh - 70px); /* Üst navbar yüksekliğini düşerek tam ekran yapar */
     width: 100%;
+    background: transparent
 }
 .nav-title h1 {
     font-size: 24px;
@@ -841,18 +814,7 @@ td form {
 /* =========================================================
    AÇILIR FİLTRE MENÜLERİ (MİNİMALİST VE İNCE CAM EFEKTİ)
 ========================================================= */
-.filter-dropdown {
-    flex: 0 1 280px; /* Eşit genişlikte ve ortalı dururlar */
-    min-width: 240px;
-    max-width: 320px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
+
 .filter-dropdown summary {
     padding: 12px 15px; /* Kutu yüksekliğini daralttık */
     cursor: pointer;
@@ -1387,7 +1349,7 @@ td form {
     --error: #ff6b6b;
   }
 
-  *{ box-sizing: border-box; }
+
 
 
 
@@ -1491,6 +1453,7 @@ td form {
     font-weight:700;
     cursor:pointer;
     transition: background .15s ease, transform .1s ease;
+    align-self: center;
   }
 
   .submit-btn:hover{ background: var(--accent-dark); }
@@ -1534,7 +1497,7 @@ td form {
 .auth-card {
   width: 100%;
   max-width: 580px;
-  background: rgba(22, 45, 27, 0.75);
+  background: rgba(22, 45, 27, 0.423);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -1690,7 +1653,7 @@ td form {
 
 /* Gönderme Butonu */
 .submit-btn {
-  width: 100%;
+  width: 50%;
   padding: 12px;
   background: #3e884e;
   color: #ffffff;
@@ -1719,6 +1682,7 @@ td form {
   margin-top: 20px;
   font-size: 13.5px;
   color: #c2d6c6;
+  
  
 }
 
@@ -1883,8 +1847,10 @@ td form {
 @media (max-width: 768px) {
 
     .dashboard-container {
-        flex-direction: column;
-        min-height: 100vh;
+        display: flex;
+        min-height: calc(100vh - 70px);
+        width: 100%;
+        background: transparent !important;
     }
 
     .sidebar {
@@ -1895,13 +1861,11 @@ td form {
         border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    .sidebar-header {
-        margin-bottom: 15px;
-    }
 
-    .sidebar-header h2 {
-        font-size: 20px;
-    }
+
+
+  
+
 
     .sidebar ul {
         display: flex;
@@ -2242,4 +2206,104 @@ td form {
 
 .glass-swal .swal2-html-container {
     color: #c2d6c6 !important;
+}
+/* 1. Auth sayfasında arka plan resmini ve merkezlemeyi garantiye al */
+body:has(.auth-wrapper) {
+    min-height: 100vh;
+    background-image: url("../images/background_image.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+/* 2. Global 'form' stilinin cam panelini auth-card içinde sıfırla (Çift kart görünümünü önler) */
+.auth-card form {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    margin-bottom: 0 !important;
+}
+/* Number, Date ve Select kutularına cam görünümü kazandırma */
+.auth-card input[type="number"],
+.auth-card input[type="date"],
+.auth-card select,
+#form-alani input[type="number"],
+#form-alani input[type="date"],
+#form-alani select {
+    width: 100% !important;
+    padding: 10px 14px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 8px !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    outline: none !important;
+    box-sizing: border-box !important;
+    color-scheme: dark !important; /* Takvim ve tarih ikonunu karanlık temaya uydurur */
+    transition: all 0.25s ease !important;
+}
+
+/* Odaklanma (Focus) Efekti */
+.auth-card input[type="number"]:focus,
+.auth-card input[type="date"]:focus,
+.auth-card select:focus,
+#form-alani input[type="number"]:focus,
+#form-alani input[type="date"]:focus,
+#form-alani select:focus {
+    background: rgba(255, 255, 255, 0.14) !important;
+    border-color: #52b768 !important;
+    box-shadow: 0 0 0 3px rgba(82, 183, 104, 0.2) !important;
+}
+
+/* Select Açılır Menü Seçenekleri */
+.auth-card select option,
+#form-alani select option {
+    background-color: #142d19 !important;
+    color: #ffffff !important;
+}
+/* 1. Kapsülleri Ortala ve Flex Düzenine Al */
+.management-filter-options .filter-capsules-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content:left !important; 
+    gap: 16px 20px !important;
+    width: 100% !important;
+    margin: 0 auto 20px auto !important;
+    margin-left: 60px !important;
+}
+
+/* 2. Kapsül Genişliğini Küçült ve Boyutunu Sabitle */
+.management-filter-options .filter-capsule {
+    flex: 0 1 260px !important;    /* Genişliği 260px'e daraltır */
+    max-width: 280px !important;
+    width: 100% !important;
+    margin: 0 !important;          /* Sola iten margin sıfırlandı */
+    padding: 10px 14px !important;
+    box-sizing: border-box !important;
+}
+
+/* 3. Açılan İnput Alanını Kapsüle Uydur */
+.management-filter-options .filter-capsule .filter-input {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-top: 8px !important;
+}
+
+.management-filter-options .filter-capsule .filter-input input {
+    width: 100% !important;
+    padding: 7px 10px !important;
+    font-size: 13px !important;
+    box-sizing: border-box !important;
+}
+
+/* 4. Başlık Metnini Ortala */
+.management-filter-options .search-title {
+    text-align: center !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
 }

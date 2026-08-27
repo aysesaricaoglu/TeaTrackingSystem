@@ -67,18 +67,52 @@ def create_table():
     )""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS tea_delivers(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    farmer_id INTEGER NOT NULL,
-    expert_id INTEGER NOT NULL,
-    delivery_date TEXT NOT NULL,
-    gross_weight REAL NOT NULL,
-    net_weight REAL NOT NULL,
-    is_rainy INTEGER NOT NULL,
-    payment_option TEXT NOT NULL,
-    FOREIGN KEY (farmer_id) REFERENCES farmers(id),
-    FOREIGN KEY (expert_id) REFERENCES users(id)
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        farmer_id INTEGER NOT NULL,
+        expert_id INTEGER NOT NULL,
+        delivery_date TEXT NOT NULL,
+        gross_weight REAL NOT NULL,
+        net_weight REAL NOT NULL,
+        is_rainy INTEGER NOT NULL,
+        payment_option TEXT NOT NULL,
+        FOREIGN KEY (farmer_id) REFERENCES farmers(id),
+        FOREIGN KEY (expert_id) REFERENCES users(id)
 
-    )""")
+        )""")
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS applications (
+        
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            tc_no TEXT UNIQUE NOT NULL,
+            first_name TEXT NOT NULL,
+            last_name TEXT NOT NULL,
+            city TEXT NOT NULL,
+            district TEXT NOT NULL,
+            phone_number TEXT NOT NULL,
+            village TEXT NOT NULL,
+            password_hash TEXT NOT NULL,
+            land_register_path TEXT NOT NULL,
+            status TEXT DEFAULT 'pending',
+            created_at TIMESTAMP DEFAULT (datetime('now', 'localtime'))
+        )
+
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS notifications (
+    
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        message TEXT NOT NULL,
+        is_read INTEGER DEFAULT 0,
+        related_application_id INTEGER,
+        created_at TIMESTAMP DEFAULT (datetime('now', 'localtime')),
+        FOREIGN KEY (related_application_id) REFERENCES applications(id)
+    )
+
+
+    """)
+  
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS farmers(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -877,6 +911,10 @@ def get_delivery_by_farmer_id(user_id):
     deliveries = cursor.fetchall()
     connection.close()
     return deliveries
+
+
+
+
 # def reset_test_data():
 #     connection = create_connection()
 #     cursor = connection.cursor()

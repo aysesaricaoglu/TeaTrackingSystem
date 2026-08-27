@@ -6,76 +6,51 @@
 {% endblock %}
 
 {% block content %}
-
-<!-- Buraya eski body'nin içindeki her şeyi aynen yapıştırıyorsun -->
 <div class="login-container">
 
-    <!-- Sol Taraf -->
+    <!-- 1. Arka Plan Videosu (Doğrudan ana container içine) -->
+    <video class="bg-video" autoplay muted playsinline>
+        <source src="{{ url_for('static', filename='images/background_video.mp4') }}" type="video/mp4">
+    </video>
+
+    <!-- 2. Sol Taraf (Başlık) -->
     <div class="left-panel">
-
         <div class="overlay">
-
-            <h1>Tea Tracking System</h1>
-
-            <p>
-                Smart Tea Production Management Platform
-            </p>
-
+            <h1>
+                <span>Tea</span>
+                <span>Tracking</span>
+                <span>System</span>
+            </h1>
+            <p>Smart Tea Production Management Platform</p>
         </div>
-
     </div>
 
-    <!-- Sağ Taraf -->
+    <!-- 3. Sağ Taraf (Orijinal Form Kartı) -->
     <div class="right-panel">
-
         <div class="login-card">
-
-            <img src="{{ url_for('static', filename='images/tea_logo.jpg') }}" alt="ÇAY Logo" class="logo">
-
             <h2>Welcome Back</h2>
-
             <p>Please sign in to continue.</p>
 
-            <form action="/" , method="post">
-
+            <form action="/" method="post">
                 <div class="input-group">
-
-                    <label for="tc">
-                        Turkish Identity Number
-                    </label>
-
-                    <input type="text" id="tc" name="tc" placeholder="Enter your TC Identity Number" maxlength="11">
-
+                    <label for="tc">Turkish Identity Number</label>
+                    <input type="text" id="tc" name="tc" placeholder="Enter your TC Identity Number" maxlength="11" required>
                 </div>
 
                 <div class="input-group">
-
-                    <label for="password">
-                        Password
-                    </label>
-
-                    <input type="password" id="password" name="password" placeholder="Enter your password">
-
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
                 </div>
 
-                <button type="submit">
-                    Login
-                </button>
-                <div class="auth-footer" style="  text-align: center;
-                            margin-top: 20px;
-                            font-size: 13.5px;
-                            color: #c2d6c6;
-                            ;">
-                            
+                <button type="submit" id="login-button">Login</button>
 
+                <div class="auth-footer">
                     <span>Don't have an account?</span>
                     <a href="{{ url_for('signup_page') }}">Register as Farmer</a>
                 </div>
             </form>
-
         </div>
-
     </div>
 
-</div>s
+</div>
 {% endblock %}

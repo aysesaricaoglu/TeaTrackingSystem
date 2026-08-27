@@ -5,59 +5,69 @@ Add New Farmer
 {% endblock %}
 
 {% block content %}
+<div class="auth-wrapper">
+    <div class="auth-card">
+        
+        <div class="auth-header">
+            <h2>Add New Farmer</h2>
+            <p>Register a new farmer to the Tea Tracking System.</p>
+        </div>
 
-<div class="header">
-    <div>
-        <h1>Add New Farmer</h1>
-        <p>Register a new farmer to the Tea Tracking System.</p>
+        <form id="farmerForm" onsubmit="event.preventDefault();">
+
+            <div class="field-row">
+                <div class="field-group">
+                    <label for="tc_no">TC Number</label>
+                    <input type="text" id="tc_no" name="tc_no" placeholder="Enter TC Number" required>
+                </div>
+
+                <div class="field-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                </div>
+            </div>
+
+            <div class="field-row">
+                <div class="field-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" name="first_name" placeholder="Enter First Name" required>
+                </div>
+
+                <div class="field-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" placeholder="Enter Last Name" required>
+                </div>
+            </div>
+
+            <div class="field-row">
+                <div class="field-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" placeholder="Enter City" required>
+                </div>
+
+                <div class="field-group">
+                    <label for="district">District</label>
+                    <input type="text" id="district" name="district" placeholder="Enter District" required>
+                </div>
+            </div>
+
+            <div class="field-row">
+                <div class="field-group">
+                    <label for="phone_number">Phone Number</label>
+                    <input type="tel" id="phone_number" name="phone_number" placeholder="Enter Phone Number" required>
+                </div>
+
+                <div class="field-group">
+                    <label for="village">Village</label>
+                    <input type="text" id="village" name="village" placeholder="Enter Village" required>
+                </div>
+            </div>
+
+            <button type="button" id="saveBtn" class="submit-btn">Add Farmer</button>
+        </form>
+
     </div>
 </div>
-
-<form id="farmerForm" onsubmit="event.preventDefault();">
-
-    <div class="input-group">
-        <label for="tc_no">TC Number</label>
-        <input type="text" id="tc_no" name="tc_no" placeholder="Enter TC Number" required>
-    </div>
-
-    <div class="input-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter Password" required>
-    </div>
-
-    <div class="input-group">
-        <label for="first_name">First Name</label>
-        <input type="text" id="first_name" name="first_name" placeholder="Enter First Name" required>
-    </div>
-
-    <div class="input-group">
-        <label for="last_name">Last Name</label>
-        <input type="text" id="last_name" name="last_name" placeholder="Enter Last Name" required>
-    </div>
-
-    <div class="input-group">
-        <label for="city">City</label>
-        <input type="text" id="city" name="city" placeholder="Enter City" required>
-    </div>
-
-    <div class="input-group">
-        <label for="district">District</label>
-        <input type="text" id="district" name="district" placeholder="Enter District" required>
-    </div>
-
-    <div class="input-group">
-        <label for="phone_number">Phone Number</label>
-        <input type="text" id="phone_number" name="phone_number" placeholder="Enter Phone Number" required>
-    </div>
-
-    <div class="input-group">
-        <label for="village">Village</label>
-        <input type="text" id="village" name="village" placeholder="Enter Village" required>
-    </div>
-
-    <button type="button" id="saveBtn" class="btn">Add Farmer</button>
-
-</form>
 
 {% endblock %}
 
@@ -84,6 +94,54 @@ Add New Farmer
             phone_number: document.getElementById("phone_number").value,
             village: document.getElementById("village").value
         };
+        if (!isDigitsOnly(farmerData.tc_no) || farmerData.tc_no.length !== 11) {
+            showGlassAlert("Error", "TC Number must be exactly 11 digits.", "error");
+            saveBtn.disabled = false;
+            saveBtn.innerText = "Add Farmer";
+            return;
+        }
+        if (!isLettersOnly(farmerData.first_name) || !isLettersOnly(farmerData.last_name)) {
+            showGlassAlert("Error", "First Name and Last Name must contain only letters.", "error");
+            saveBtn.disabled = false;
+            saveBtn.innerText = "Add Farmer";
+            return;
+        }
+        if (!isLettersOnly(farmerData.city) ) {
+            showGlassAlert("Error", "City must contain only letters.", "error");
+            saveBtn.disabled = false;
+            saveBtn.innerText = "Add Farmer";
+            return;
+        }
+        if (!isLettersOnly(farmerData.district) ) {
+            showGlassAlert("Error", "District must contain only letters.", "error");
+            saveBtn.disabled = false;
+            saveBtn.innerText = "Add Farmer";
+            return;
+        }
+        if (!isLettersOnly(farmerData.village) ) {
+            showGlassAlert("Error", "Village must contain only letters.", "error");
+            saveBtn.disabled = false;
+            saveBtn.innerText = "Add Farmer";
+            return;
+        }
+        if (!isDigitsOnly(farmerData.phone_number)) {
+            showGlassAlert("Error", "Phone Number must contain only digits.", "error");
+            saveBtn.disabled = false;
+            saveBtn.innerText = "Add Farmer";
+            return;
+        }
+        if (farmerData.phone_number.length < 10 || farmerData.phone_number.length > 15) {
+            showGlassAlert("Error", "Phone Number must be between 10 and 15 digits.", "error");
+            saveBtn.disabled = false;
+            saveBtn.innerText = "Add Farmer";
+            return;
+        }
+        if (farmerData.password.length < 8) {
+            showGlassAlert("Error", "Password must be at least 8 characters long.", "error");
+            saveBtn.disabled = false;
+            saveBtn.innerText = "Add Farmer";
+            return;
+        }
 
         fetch("/api/farmers/add", {
             method: "POST",

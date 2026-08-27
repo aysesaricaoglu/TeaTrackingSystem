@@ -5,47 +5,53 @@ New Tea Delivery
 {% endblock %}
 
 {% block content %}
-<div id="form-alani">
-    <h1>New Tea Delivery</h1>
-
-    <form id="delivery-form" method="POST" action="{{ url_for('new_delivery') }}">
-        <div class="input-group">
-            <label>Farmer TC Number</label>
-            <input type="text" name="farmer_tc" placeholder="Enter Farmer TC Number" required id="farmer_tc">
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2>New Tea Delivery</h2>
+            <p>Enter delivery details below</p>
         </div>
 
-        <div class="input-group">
-            <label>Gross Weight (kg)</label>
-            <input type="number" name="gross_weight" placeholder="Enter Gross Weight" step="0.01" required
-                id="gross_weight">
-        </div>
+        <form id="delivery-form" method="POST" action="{{ url_for('new_delivery') }}">
+            <div class="field-group">
+                <label for="farmer_tc">Farmer TC Number</label>
+                <input type="text" name="farmer_tc" placeholder="Enter Farmer TC Number" required id="farmer_tc" maxlength="11">
+            </div>
 
-        <div class="input-group">
-            <label>Is it raining?</label>
-            <select name="is_rainy" id="is_rainy">
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-            </select>
-        </div>
+            <div class="field-group">
+                <label for="gross_weight">Gross Weight (kg)</label>
+                <input type="number" name="gross_weight" placeholder="Enter Gross Weight" step="0.01" required id="gross_weight">
+            </div>
 
-        <div class="input-group">
-            <label>Payment Option</label>
-            <select name="payment_option" id="payment_option">
-                <option>Immediate</option>
-                <option>1 Month</option>
-                <option>3 Months</option>
-            </select>
-        </div>
+            <div class="field-row">
+                <div class="field-group">
+                    <label for="is_rainy">Is it raining?</label>
+                    <select name="is_rainy" id="is_rainy">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
 
-        <div class="input-group">
-            <label>Delivery Date</label>
-            <input type="date" name="delivery_date" required id="delivery_date">
-        </div>
+                <div class="field-group">
+                    <label for="payment_option">Payment Option</label>
+                    <select name="payment_option" id="payment_option">
+                        <option>Immediate</option>
+                        <option>1 Month</option>
+                        <option>3 Months</option>
+                    </select>
+                </div>
+            </div>
 
-        <button type="submit" class="btn" id="saveBtn">
-            Save Delivery
-        </button>
-    </form>
+            <div class="field-group">
+                <label for="delivery_date">Delivery Date</label>
+                <input type="date" name="delivery_date" required id="delivery_date">
+            </div>
+
+            <button type="submit" class="submit-btn" id="saveBtn">
+                Save Delivery
+            </button>
+        </form>
+    </div>
 </div>
 {% endblock %}
 

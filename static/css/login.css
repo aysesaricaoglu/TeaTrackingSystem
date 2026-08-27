@@ -1,163 +1,227 @@
-/* Sayfanın varsayılan boşluklarını kaldırır */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
-/* Sayfanın tamamı */
-body {
-    font-family: Arial, Helvetica, sans-serif;
+/* ---------------- 1. ARKA PLAN VİDEOSU ---------------- */
+.bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
     height: 100vh;
-    background-color: #ebd19d; /* Resim yüklenmezse diye yedek renk */
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
 }
 
-/* Sayfayı ikiye böler ve ANA ARKA PLANI tutar */
+/* ---------------- 2. ANA TAŞIYICI ---------------- */
 .login-container {
     display: flex;
-    height: 100vh;
-    /* Arka planı sağdaki cam efektinden de görünebilmesi için buraya taşıdık */
-    background-image: url("../images/background_image.png"); 
-    background-size: cover;
-    background-position: center;
+    width: 100vw;
+    min-height: 100vh;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
 }
 
-/* ---------------- SOL TARAF ---------------- */
+/* ---------------- 3. SOL PANEL (FANTASTİK YAZI KORUNDU) ---------------- */
 .left-panel {
     width: 50%;
     display: flex;
-    justify-content: flex-start; /* Görselde yazı sola daha yakın */
     align-items: center;
+    justify-content: flex-start;
+    padding-left: 6%;
+    box-sizing: border-box;
 }
 
-/* Resmin üstüne koyu katman - Sadece yazının etrafını saracak şekilde güncellendi */
 .overlay {
-    /* Görseldeki gibi soldan sağa doğru kaybolan bir karartı efekti */
-    background: linear-gradient(to right, rgba(23, 53, 21, 0.75) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
-    width: 100%;
-    padding: 60px 40px 60px 10%; /* Soldan biraz boşluk bırakmak için */
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start; /* Yazıları sola yasla */
-
-    color: white;
-    text-align: left;
+    background: transparent;
 }
 
 .overlay h1 {
-    font-size: 54px;
-    margin-bottom: 10px;
-    font-family: "Times New Roman", Times, serif; /* Görseldeki gibi tırnaklı bir font */
-    letter-spacing: 1px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 100px;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 1.05;
+    margin: 0 0 12px 0;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transform: skewX(12deg);
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.overlay h1 span {
+    display: block;
 }
 
 .overlay p {
-    font-size: 22px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 16px;
+    color: #e0eee0;
+    margin: 0;
     font-weight: 300;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* ---------------- SAĞ TARAF ---------------- */
+/* ---------------- 4. SAĞ PANEL & AUTH-CARD UYUMLU FORM ---------------- */
 .right-panel {
     width: 50%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    /* background-color: white; kaldırıldı çünkü saydam form gelecek */
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+/* 1. Tüm Login Kartı ve Formu 'Segoe UI' Fontuna Kitle */
+.login-card,
+.login-card label,
+.login-card input,
+.login-card button,
+.login-card p,
+.login-card span,
+.login-card a {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
 }
 
-/* Login kartı - Glassmorphism (Buzlu Cam) Efekti */
+/* 2. Etiketlerin Duruşunu Düzenle */
+.login-card .input-group label {
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: #dceada !important;
+}
+/* Genişliği daraltılmış auth-card yapısı */
 .login-card {
-    width: 480px;
-    /* Yarı saydam krem/beyaz arka plan */
-    background-color: rgba(244, 241, 235, 0.25); 
-    
-    /* Cam bulanıklığı (Arka planı flulaştırır) */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px); 
-    
-    padding: 50px 40px;
-    border-radius: 20px;
-    
-    /* Görseldeki altın sarısı ince kenarlık */
-    border: 1px solid rgba(218, 165, 32, 0.6); 
-    box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.25);
-    
-    position: relative; 
+    width: 100%;
+    max-width: 380px;
+    background: rgba(22, 45, 27, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 36px 28px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+    color: #ffffff;
+    box-sizing: border-box;
 }
 
-/* Logo */
-.logo {
-    width: 110px;
-    border-radius: 50%; /* Logoyu tek satırda yuvarlak yapar */
-    display: block;
-    margin: auto;
-    margin-bottom: 15px;
-}
-
-/* Başlık */
 .login-card h2 {
     text-align: center;
-    margin-bottom: 5px;
-    color: #2E7D32; /* Daha tok bir yeşil */
-    font-size: 26px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 6px 0;
+    letter-spacing: 0.5px;
 }
 
-.login-card p {
+.login-card > p {
     text-align: center;
-    margin-bottom: 30px;
-    color: #333;
-    font-size: 15px;
+    font-size: 13.5px;
+    color: #c2d6c6;
+    margin: 0 0 24px 0;
 }
 
-/* Input grubu */
-.input-group {
-    margin-bottom: 20px;
+/* Form Alanları */
+.login-card .input-group {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
 }
 
-.input-group label {
+.login-card .input-group label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #111;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #dceada;
+    margin-bottom: 6px;
+    letter-spacing: 0.2px;
+}
+
+.login-card .input-group input {
+    width: 100%;
+    padding: 11px 14px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+    color: #ffffff;
     font-size: 14px;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 14px;
-    border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    font-size: 15px;
-    /* Input'un içinin hafif saydam ama okunabilir olması için */
-    background-color: rgba(255, 255, 255, 0.9);
-}
-
-/* Input seçildiğinde */
-.input-group input:focus {
     outline: none;
-    border: 2px solid #2E7D32;
-    background-color: #ffffff;
+    box-sizing: border-box;
+    transition: all 0.25s ease;
 }
 
-/* Login butonu */
-button {
+.login-card .input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 13px;
+}
+
+.login-card .input-group input:focus {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: #52b768;
+    box-shadow: 0 0 0 3px rgba(82, 183, 104, 0.2);
+}
+
+/* Giriş Butonu */
+#login-button {
+    display: block;
     width: 100%;
-    padding: 16px;
+    padding: 12px;
     border: none;
-    border-radius: 6px;
-    background: #2E7D32;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
+    border-radius: 8px;
+    background: #3e884e;
+    color: #ffffff;
+    font-size: 14.5px;
+    font-weight: 600;
     cursor: pointer;
-    transition: 0.3s;
-    margin-top: 10px;
+    margin-top: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
 }
 
-button:hover {
-    background: #1f5e23;
+#login-button:hover {
+    background: #499e5a;
+    transform: translateY(-1px);
+}
+
+#login-button:active {
+    transform: translateY(0);
+}
+
+/* Alt Link Alanı */
+.auth-footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 13.5px;
+    color: #c2d6c6;
+}
+
+.auth-footer a {
+    color: #6ee787;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 5px;
+    transition: color 0.2s;
+}
+
+.auth-footer a:hover {
+    color: #9bf0ad;
+    text-decoration: underline;
+}
+
+/* ---------------- 5. MOBİL VE TABLET UYUMU ---------------- */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    
+    .left-panel, .right-panel {
+        width: 100%;
+        padding: 30px 20px;
+        justify-content: center;
+    }
+    
+    .overlay h1 {
+        font-size: 60px;
+    }
 }

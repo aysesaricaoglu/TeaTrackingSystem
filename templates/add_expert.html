@@ -6,40 +6,45 @@ Add New Expert
 
 {% block content %}
 
-<div class="header">
-    <div>
-        <h1>Add New Expert</h1>
-        <p>Register a new expert to the Tea Tracking System.</p>
+<div class="auth-wrapper">
+    <div class="auth-card">
+        
+        <div class="auth-header">
+            <h2>Add New Expert</h2>
+            <p>Register a new expert to the Tea Tracking System.</p>
+        </div>
+
+        <form id="expertForm" onsubmit="event.preventDefault();">
+
+            <div class="field-row">
+                <div class="field-group">
+                    <label for="tc_no">TC Number</label>
+                    <input type="text" id="tc_no" name="tc_no" placeholder="Enter TC Number" required>
+                </div>
+
+                <div class="field-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                </div>
+            </div>
+
+            <div class="field-row">
+                <div class="field-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" name="first_name" placeholder="Enter First Name" required>
+                </div>
+
+                <div class="field-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" placeholder="Enter Last Name" required>
+                </div>
+            </div>
+
+            <button type="button" id="saveBtnExpert" class="submit-btn">Add Expert</button>
+        </form>
+
     </div>
 </div>
-
-<form id="expertForm" onsubmit="event.preventDefault();">
-
-    <div class="input-group">
-        <label for="tc_no">TC Number</label>
-        <input type="text" id="tc_no" name="tc_no" placeholder="Enter TC Number" required>
-    </div>
-
-    <div class="input-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter Password" required>
-    </div>
-
-    <div class="input-group">
-        <label for="first_name">First Name</label>
-        <input type="text" id="first_name" name="first_name" placeholder="Enter First Name" required>
-    </div>
-
-    <div class="input-group">
-        <label for="last_name">Last Name</label>
-        <input type="text" id="last_name" name="last_name" placeholder="Enter Last Name" required>
-    </div>
-
-
-    <button type="button" id="saveBtnExpert" class="btn">Add Expert</button>
-
-</form>
-
 {% endblock %}
 
 
@@ -61,6 +66,44 @@ Add New Expert
             first_name: document.getElementById("first_name").value,
             last_name: document.getElementById("last_name").value
         };
+
+
+        if (!isDigitsOnly(farmerData.tc_no) || farmerData.tc_no.length !== 11) {
+            showGlassAlert("Error", "TC Number must be exactly 11 digits.", "error");
+            saveBtnExpert.disabled = false;
+            saveBtnExpert.innerText = "Add Expert";
+            return;
+        }
+        if (!isLettersOnly(farmerData.first_name) || !isLettersOnly(farmerData.last_name)) {
+            showGlassAlert("Error", "First Name and Last Name must contain only letters.", "error");
+            saveBtnExpert.disabled = false;
+            saveBtnExpert.innerText = "Add Expert";
+            return;
+        }
+        if (farmerData.password.length < 8) {
+            showGlassAlert("Error", "Password must be at least 8 characters long.", "error");
+            saveBtnExpert.disabled = false;
+            saveBtnExpert.innerText = "Add Expert";
+            return;
+        }
+        if (!/[A-Z]/.test(farmerData.password) || !/[0-9]/.test(farmerData.password)) {
+            showGlassAlert("Error", "Password must contain at least one uppercase letter and one number.", "error");
+            saveBtnExpert.disabled = false;
+            saveBtnExpert.innerText = "Add Expert";
+            return;
+        }
+        if (!/^[A-Za-zÇĞİÖŞÜçğıöşü\s]+$/.test(farmerData.first_name) || !/^[A-Za-zÇĞİÖŞÜçğıöşü\s]+$/.test(farmerData.last_name)) {
+            showGlassAlert("Error", "First Name and Last Name must contain only letters.", "error");
+            saveBtnExpert.disabled = false;
+            saveBtnExpert.innerText = "Add Expert";
+            return;
+        }
+        if (farmerData.first_name.length < 2 || farmerData.last_name.length < 2) {
+            showGlassAlert("Error", "First Name and Last Name must be at least 2 characters long.", "error");
+            saveBtnExpert.disabled = false;
+            saveBtnExpert.innerText = "Add Expert";
+            return;
+        }
 
         fetch("/api/experts/add", {
             method: "POST",
@@ -85,7 +128,7 @@ Add New Expert
                 console.error("Error:", error);
                 alert("Check database.py.");
                 saveBtnExpert.disabled = false;
-                saveBtnExpert.innerText = "Add Farmer";
+                saveBtnExpert.innerText = "Add Expert";
             });
     });
 </script>
