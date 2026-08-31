@@ -311,7 +311,7 @@ def search_deliveries(filters):
         """
         parameters.append(f"%{filters['farmer_tc'].strip()}%")
 
-    if filters.get("date"):
+    if filters.get("delivery_start_date") and filters.get("delivery_end_date"):
         query += """
             AND tea_delivers.delivery_date BETWEEN ? AND ?
         """
@@ -624,6 +624,7 @@ def search_farmers(filters):
         JOIN users
             ON farmers.user_id = users.id
         WHERE users.role = 'farmer'
+        
     """
 
     parameters = []
@@ -887,6 +888,40 @@ def add_farmer(tc_no,password,role,first_name,last_name,city,district,phone_numb
 
         return True
 
+
+def search_my_deliveries_by_delivery_date(user_id, start_date, end_date):
+    connection = create_connection()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT
+            td.id,
+            td.farmer_id,
+            td.expert_id,
+            td.delivery_date,
+            td.gross_weight,
+            td.net_weight,
+            td.is_rainy,
+            td.payment_option
+        FROM tea_delivers td
+        INNER JOIN farmers f ON td.farmer_id = f.id
+        WHERE f.user_id = ?
+        AND td.delivery_date BETWEEN ? AND ?
+        ORDER BY td.delivery_date DESC
+    """, (user_id, start_date, end_date))
+    
+    deliveries = cursor.fetchall()
+    connection.close()
+    return deliveries
+
+
+
+
+
+
+
+
+
 def get_delivery_by_farmer_id(user_id):
     connection = create_connection()
     cursor = connection.cursor()
@@ -911,8 +946,6 @@ def get_delivery_by_farmer_id(user_id):
     deliveries = cursor.fetchall()
     connection.close()
     return deliveries
-
-
 
 
 # def reset_test_data():

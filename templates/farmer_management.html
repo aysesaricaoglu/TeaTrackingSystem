@@ -19,11 +19,11 @@ Farmer Management
     </div>
 </div>
 
-<div class="filter-options management-filter-options">
+<div class="management-filter-options">
     <div class="search-content-card">
         <h2 class="search-title">Search Farmers</h2>
 
-        <div class="filter-capsules-grid">
+        <div class="filter-capsules-grid" id="filterCapsulesGridFarmer">
             <!-- Name -->
             <div class="filter-capsule">
                 <div class="capsule-header">
@@ -199,109 +199,113 @@ Farmer Management
         const villageChecked = document.querySelector('[data-target="villageFilter"]').checked;
         const phoneChecked = document.querySelector('[data-target="phoneFilter"]').checked;
 
-        /* EN AZ BİR FİLTRE SEÇİLMELİ */
-        if (!nameChecked && !surnameChecked && !tcChecked && !cityChecked && !districtChecked && !villageChecked && !phoneChecked) {
-            showGlassAlert("Warning", "Please select at least one filter.", "warning");
-            return;
-        }
+        const noFilterSelected =
+        !nameChecked && !surnameChecked && !tcChecked && !cityChecked && !districtChecked && !villageChecked && !phoneChecked;
 
-        /* NAME */
-        if (nameChecked) {
-            if (!name) {
-                showGlassAlert("Warning", "Please enter a name.", "warning");
-                return;
-            }
-            if (!isLettersOnly(name)) {
-                showGlassAlert("Error", "Name can contain only letters.", "error");
-                return;
-            }
-            filters.name = name;
+        if(noFilterSelected) {
+            showGlassAlert("Warning", "No filter selected — showing all results.", "warning");
+            
         }
+        else{
 
-        /* SURNAME */
-        if (surnameChecked) {
-            if (!surname) {
-                showGlassAlert("Warning", "Please enter a surname.", "warning");
-                return;
+            /* NAME */
+            if (nameChecked) {
+                if (!name) {
+                    showGlassAlert("Warning", "Please enter a name.", "warning");
+                    return;
+                }
+                if (!isLettersOnly(name)) {
+                    showGlassAlert("Error", "Name can contain only letters.", "error");
+                    return;
+                }
+                filters.name = name;
             }
-            if (!isLettersOnly(surname)) {
-                showGlassAlert("Error", "Surname can contain only letters.", "error");
-                return;
-            }
-            filters.surname = surname;
-        }
 
-        /* TC NUMBER */
-        if (tcChecked) {
-            if (!tc) {
-                showGlassAlert("Warning", "Please enter a TC number.", "warning");
-                return;
+            /* SURNAME */
+            if (surnameChecked) {
+                if (!surname) {
+                    showGlassAlert("Warning", "Please enter a surname.", "warning");
+                    return;
+                }
+                if (!isLettersOnly(surname)) {
+                    showGlassAlert("Error", "Surname can contain only letters.", "error");
+                    return;
+                }
+                filters.surname = surname;
             }
-            if (!isDigitsOnly(tc)) {
-                showGlassAlert("Error", "TC Number can contain only digits.", "error");
-                return;
-            }
-            if (tc.length !== 11) {
-                showGlassAlert("Error", "TC Number must contain exactly 11 digits.", "error");
-                return;
-            }
-            filters.tc = tc;
-        }
 
-        /* CITY */
-        if (cityChecked) {
-            if (!city) {
-                showGlassAlert("Warning", "Please enter a city.", "warning");
-                return;
+            /* TC NUMBER */
+            if (tcChecked) {
+                if (!tc) {
+                    showGlassAlert("Warning", "Please enter a TC number.", "warning");
+                    return;
+                }
+                if (!isDigitsOnly(tc)) {
+                    showGlassAlert("Error", "TC Number can contain only digits.", "error");
+                    return;
+                }
+                if (tc.length !== 11) {
+                    showGlassAlert("Error", "TC Number must contain exactly 11 digits.", "error");
+                    return;
+                }
+                filters.tc = tc;
             }
-            if (!isLettersOnly(city)) {
-                showGlassAlert("Error", "City can contain only letters.", "error");
-                return;
-            }
-            filters.city = city;
-        }
 
-        /* DISTRICT */
-        if (districtChecked) {
-            if (!district) {
-                showGlassAlert("Warning", "Please enter a district.", "warning");
-                return;
+            /* CITY */
+            if (cityChecked) {
+                if (!city) {
+                    showGlassAlert("Warning", "Please enter a city.", "warning");
+                    return;
+                }
+                if (!isLettersOnly(city)) {
+                    showGlassAlert("Error", "City can contain only letters.", "error");
+                    return;
+                }
+                filters.city = city;
             }
-            if (!isLettersOnly(district)) {
-                showGlassAlert("Error", "District can contain only letters.", "error");
-                return;
-            }
-            filters.district = district;
-        }
 
-        /* VILLAGE */
-        if (villageChecked) {
-            if (!village) {
-                showGlassAlert("Warning", "Please enter a village.", "warning");
-                return;
+            /* DISTRICT */
+            if (districtChecked) {
+                if (!district) {
+                    showGlassAlert("Warning", "Please enter a district.", "warning");
+                    return;
+                }
+                if (!isLettersOnly(district)) {
+                    showGlassAlert("Error", "District can contain only letters.", "error");
+                    return;
+                }
+                filters.district = district;
             }
-            if (!isLettersOnly(village)) {
-                showGlassAlert("Error", "Village can contain only letters.", "error");
-                return;
-            }
-            filters.village = village;
-        }
 
-        /* PHONE */
-        if (phoneChecked) {
-            if (!phone) {
-                showGlassAlert("Warning", "Please enter a phone number.", "warning");
-                return;
+            /* VILLAGE */
+            if (villageChecked) {
+                if (!village) {
+                    showGlassAlert("Warning", "Please enter a village.", "warning");
+                    return;
+                }
+                if (!isLettersOnly(village)) {
+                    showGlassAlert("Error", "Village can contain only letters.", "error");
+                    return;
+                }
+                filters.village = village;
             }
-            if (!isDigitsOnly(phone)) {
-                showGlassAlert("Error", "Phone Number can contain only digits.", "error");
-                return;
+
+            /* PHONE */
+            if (phoneChecked) {
+                if (!phone) {
+                    showGlassAlert("Warning", "Please enter a phone number.", "warning");
+                    return;
+                }
+                if (!isDigitsOnly(phone)) {
+                    showGlassAlert("Error", "Phone Number can contain only digits.", "error");
+                    return;
+                }
+                if (phone.length < 10 || phone.length > 11) {
+                    showGlassAlert("Error", "Phone Number must contain 10 or 11 digits.", "error");
+                    return;
+                }
+                filters.phone = phone;
             }
-            if (phone.length < 10 || phone.length > 11) {
-                showGlassAlert("Error", "Phone Number must contain 10 or 11 digits.", "error");
-                return;
-            }
-            filters.phone = phone;
         }
 
         /* FETCH */

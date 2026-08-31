@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title class="logo-title">{% block title %}Tea Tracking{% endblock %}</title>
-       
+
 
     <!-- Ortak CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -26,7 +26,7 @@
         <!-- ================= SIDEBAR ================= -->
         <aside class="sidebar">
             <div class="sidebar-header">
-                <div  style=>
+                <div style=>
                     <img src="{{ url_for('static', filename='images/tea_logo.jpg') }}" alt="ÇAY Logo" class="logo">
                 </div>
                 <h2 id="sidebar-title">Tea Tracking</h2>
@@ -101,10 +101,14 @@
 
             <!-- ================= TOP NAV BAR (Tam olarak buraya geldi) ================= -->
             <div class="top-nav">
+                <button type="button" class="menu-toggle-btn" id="menuToggleBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
                 <div class="nav-title">
                 </div>
 
                 <div class="nav-actions">
+
                     <!-- Bildirim ve Mesaj İkonları -->
                     <a href="#" class="nav-icon"><i class="far fa-bell"></i></a>
 
@@ -142,6 +146,28 @@
         </main>
 
     </div>
+
+
+
+
+    <footer class="app-footer">
+        <div class="footer-content">
+            <p class="footer-copy">© 2026 Tea Tracking & Management System. All rights reserved.</p>
+
+            <div class="footer-social">
+                <a href="#" aria-label="Instagram" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="X (Twitter)" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Support Email" class="social-icon"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <span class="footer-dot">•</span>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
     <script> // SWEETALERT FONKSİYONU
         function showGlassAlert(title, text, icon = 'info') {
             return Swal.fire({
@@ -230,6 +256,40 @@
 
             }
         });
+    </script>
+    <script>
+        const menuBtn = document.getElementById('menuToggleBtn');
+        const sidebar = document.querySelector('.sidebar');
+
+        if (menuBtn && sidebar) {
+            menuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (window.innerWidth < 768) {
+                    sidebar.classList.toggle('open');
+                } else {
+                    sidebar.classList.toggle('closed');
+                }
+            });
+
+            // Sayfa dışına (boşluğa) tıklandığında da otomatik kapatır
+            document.addEventListener('click', (e) => {
+                if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                }
+            });
+            // YENİ: Ekran genişliği breakpoint'i geçtiğinde çakışan class'ları temizle
+            let wasMobile = window.innerWidth <= 768;
+            window.addEventListener('resize', () => {
+                const isMobile = window.innerWidth <= 768;
+                if (isMobile !== wasMobile) {
+                    sidebar.classList.remove('open', 'closed');
+                    wasMobile = isMobile;
+                }
+            });
+        }
+
+
+
     </script>
 
 </body>

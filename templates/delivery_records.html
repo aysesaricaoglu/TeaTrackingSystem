@@ -228,58 +228,62 @@ Deliveries
 
     endDateInput.value = todayString;
 
+  
     function validateDateRange() {
-        const startDate = startDateInput.value;
-        const endDate = endDateInput.value;
+    const startDate = startDateInput.value;
+    const endDate = endDateInput.value;
 
-        if (startDate && endDate && startDate > endDate) {
-            showGlassAlert(
-                "Error",
-                "Start date cannot be later than end date.",
-                "error"
-            );
-            return false;
-        }
-
+    if (startDate.length !== 10 || endDate.length !== 10) {
         return true;
     }
 
-    startDateInput.addEventListener("change", validateDateRange);
-    endDateInput.addEventListener("change", validateDateRange);
+    if (startDate > endDate) {
+        showGlassAlert(
+            "Error",
+            "Start date cannot be later than end date.",
+            "error"
+        );
+        return false;
+    }
+
+    return true;
+}
+
+
 
     // SEARCH BUTTON
     // SEARCH BUTTON
-    document.getElementById("searchDeliveriesButton").addEventListener("click", function () {
-        const filters = {};
+document.getElementById("searchDeliveriesButton").addEventListener("click", function () {
+    const filters = {};
 
-        const farmerName = document.getElementById("farmer_name").value.trim();
-        const farmerSurname = document.getElementById("farmer_surname").value.trim();
-        const farmerTc = document.getElementById("farmer_tc").value.trim();
-        const expertName = document.getElementById("expert_name").value.trim();
-        const expertSurname = document.getElementById("expert_surname").value.trim();
-        const deliveryDateChecked = document.querySelector('[data-target="deliveryDateInputs"]').checked;
-        const paymentOption = document.getElementById("payment_option").value;
+    const farmerName = document.getElementById("farmer_name").value.trim();
+    const farmerSurname = document.getElementById("farmer_surname").value.trim();
+    const farmerTc = document.getElementById("farmer_tc").value.trim();
+    const expertName = document.getElementById("expert_name").value.trim();
+    const expertSurname = document.getElementById("expert_surname").value.trim();
+    const deliveryDateChecked = document.querySelector('[data-target="deliveryDateInputs"]').checked;
+    const paymentOption = document.getElementById("payment_option").value;
 
-        const farmerNameChecked = document.querySelector('[data-target="farmerNameFilter"]').checked;
-        const farmerSurnameChecked = document.querySelector('[data-target="farmerSurnameFilter"]').checked;
-        const farmerTcChecked = document.querySelector('[data-target="farmerTcFilter"]').checked;
-        const expertNameChecked = document.querySelector('[data-target="expertNameFilter"]').checked;
-        const expertSurnameChecked = document.querySelector('[data-target="expertSurnameFilter"]').checked;
-        const paymentOptionChecked = document.querySelector('[data-target="paymentOptionFilter"]').checked;
+    const farmerNameChecked = document.querySelector('[data-target="farmerNameFilter"]').checked;
+    const farmerSurnameChecked = document.querySelector('[data-target="farmerSurnameFilter"]').checked;
+    const farmerTcChecked = document.querySelector('[data-target="farmerTcFilter"]').checked;
+    const expertNameChecked = document.querySelector('[data-target="expertNameFilter"]').checked;
+    const expertSurnameChecked = document.querySelector('[data-target="expertSurnameFilter"]').checked;
+    const paymentOptionChecked = document.querySelector('[data-target="paymentOptionFilter"]').checked;
 
-        if (
-            !farmerNameChecked &&
-            !farmerSurnameChecked &&
-            !farmerTcChecked &&
-            !expertNameChecked &&
-            !expertSurnameChecked &&
-            !deliveryDateChecked &&
-            !paymentOptionChecked
-        ) {
-            showGlassAlert("Warning", "Please select at least one filter.", "warning");
-            return;
-        }
+    const noFilterSelected =
+        !farmerNameChecked &&
+        !farmerSurnameChecked &&
+        !farmerTcChecked &&
+        !expertNameChecked &&
+        !expertSurnameChecked &&
+        !deliveryDateChecked &&
+        !paymentOptionChecked;
 
+    if (noFilterSelected) {
+        showGlassAlert("Warning", "No filter selected — showing all results.", "warning");
+        // return YOK — filters boş obje olarak kalır, tüm sonuçlar için arama devam eder
+    } else {
         if (farmerNameChecked) {
             if (!farmerName) {
                 showGlassAlert("Warning", "Please enter farmer name.", "warning");
@@ -349,20 +353,12 @@ Deliveries
             const endDate = endDateInput.value;
 
             if (!startDate || !endDate) {
-                showGlassAlert(
-                    "Warning",
-                    "Please select both start and end dates.",
-                    "warning"
-                );
+                showGlassAlert("Warning", "Please select both start and end dates.", "warning");
                 return;
             }
 
             if (startDate > endDate) {
-                showGlassAlert(
-                    "Error",
-                    "Start date cannot be later than end date.",
-                    "error"
-                );
+                showGlassAlert("Error", "Start date cannot be later than end date.", "error");
                 return;
             }
 
@@ -377,26 +373,26 @@ Deliveries
             }
             filters.payment_option = paymentOption;
         }
+    }
 
-        fetch("/api/deliveries/search", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ filters: filters })
+    fetch("/api/deliveries/search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ filters: filters })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.success) {
+                showGlassAlert("Error", data.message || "Error occurred while searching.", "error");
+                return;
+            }
+            displayDeliveries(data.deliveries);
         })
-            .then(response => response.json())
-            .then(data => {
-                if (!data.success) {
-                    showGlassAlert("Error", data.message || "Error occurred while searching.", "error");
-                    return;
-                }
-                displayDeliveries(data.deliveries);
-            })
-            .catch(error => {
-                console.error("Search error:", error);
-                showGlassAlert("Error", "Connection error.", "error");
-            });
-    });
-
+        .catch(error => {
+            console.error("Search error:", error);
+            showGlassAlert("Error", "Connection error.", "error");
+        });
+});
     // SAYFALAMA VE TABLO BASMA
     let allDeliveries = [];
     let currentPage = 1;
@@ -501,21 +497,34 @@ Deliveries
         });
     });
     document.querySelectorAll('.del-checkbox').forEach(checkbox => {
-        checkbox.addEventListener('change', function () {
-            const targetId = this.dataset.target;
-            const targetElement = document.getElementById(targetId);
+    checkbox.addEventListener('change', function () {
+        const targetId = this.dataset.target;
+        const targetElement = document.getElementById(targetId);
 
-            if (!targetElement) return;
+        if (!targetElement) return;
 
-            if (this.checked) {
-                targetElement.classList.add('active');
-            } else {
-                targetElement.classList.remove('active');
-                // Tik kaldırıldığında içindeki değeri temizler
-                const inputs = targetElement.querySelectorAll('input, select');
-                inputs.forEach(input => input.value = '');
+        if (this.checked) {
+            targetElement.classList.add('active');
+
+            // Tarih filtresiyse ve kutular boşsa, varsayılan tarihleri geri koy
+            if (targetId === "deliveryDateInputs") {
+                if (!startDateInput.value) {
+                    startDateInput.value = "2001-01-01";
+                }
+                if (!endDateInput.value) {
+                    const today = new Date();
+                    endDateInput.value =
+                        today.getFullYear() + "-" +
+                        String(today.getMonth() + 1).padStart(2, "0") + "-" +
+                        String(today.getDate()).padStart(2, "0");
+                }
             }
-        });
+        } else {
+            targetElement.classList.remove('active');
+            const inputs = targetElement.querySelectorAll('input, select');
+            inputs.forEach(input => input.value = '');
+        }
     });
+});
 </script>
 {% endblock %}

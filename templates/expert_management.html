@@ -23,7 +23,7 @@ Expert Management
 <div class="search-content-card">
     <h2 class="search-title">Search Experts</h2>
 
-    <div class="filter-capsules-grid">
+    <div class="filter-capsules-grid" id="filterCapsulesGridExpert">
         <!-- Name -->
         <div class="filter-capsule">
             <div class="capsule-header">
@@ -190,60 +190,55 @@ Expert Management
         const surnameChecked = document.querySelector('[data-target="surnameFilter"]').checked;
         const tcChecked = document.querySelector('[data-target="tcFilter"]').checked;
 
-        // En az bir filtre seçilmeli
         if (!nameChecked && !surnameChecked && !tcChecked) {
-            showGlassAlert(
-                "Warning",
-                "Please select at least one filter.",
-                "warning"
-            );
-            return;
-        }
+            showGlassAlert("Warning", "All results are  going to be displayed.", "warning");
+           
+        
+        } else{
 
-        // Name
-        if (nameChecked) {
-            if (!name) {
-                showGlassAlert("Warning", "Please enter a name.", "warning");
-                return;
+            // Name
+            if (nameChecked) {
+                if (!name) {
+                    showGlassAlert("Warning", "Please enter a name.", "warning");
+                    return;
+                }
+                if (!isLettersOnly(name)) {
+                    showGlassAlert("Error", "Name can contain only letters.", "error");
+                    return;
+                }
+                filters.name = name;
             }
-            if (!isLettersOnly(name)) {
-                showGlassAlert("Error", "Name can contain only letters.", "error");
-                return;
-            }
-            filters.name = name;
-        }
 
-        // Surname
-        if (surnameChecked) {
-            if (!surname) {
-                showGlassAlert("Warning", "Please enter a surname.", "warning");
-                return;
+            // Surname
+            if (surnameChecked) {
+                if (!surname) {
+                    showGlassAlert("Warning", "Please enter a surname.", "warning");
+                    return;
+                }
+                if (!isLettersOnly(surname)) {
+                    showGlassAlert("Error", "Surname can contain only letters.", "error");
+                    return;
+                }
+                filters.surname = surname;
             }
-            if (!isLettersOnly(surname)) {
-                showGlassAlert("Error", "Surname can contain only letters.", "error");
-                return;
-            }
-            filters.surname = surname;
-        }
 
-        // TC
-        if (tcChecked) {
-            if (!tc) {
-                showGlassAlert("Warning", "Please enter a TC number.", "warning");
-                return;
+            // TC
+            if (tcChecked) {
+                if (!tc) {
+                    showGlassAlert("Warning", "Please enter a TC number.", "warning");
+                    return;
+                }
+                if (!isDigitsOnly(tc)) {
+                    showGlassAlert("Error", "TC Number can contain only digits.", "error");
+                    return;
+                }
+                if (tc.length !== 11) {
+                    showGlassAlert("Error", "TC Number must contain exactly 11 digits.", "error");
+                    return;
+                }
+                filters.tc = tc;
             }
-            if (!isDigitsOnly(tc)) {
-                showGlassAlert("Error", "TC Number can contain only digits.", "error");
-                return;
-            }
-            if (tc.length !== 11) {
-                showGlassAlert("Error", "TC Number must contain exactly 11 digits.", "error");
-                return;
-            }
-            filters.tc = tc;
         }
-
-        console.log("Expert filters:", filters);
 
         fetch("/api/experts/search", {
             method: "POST",

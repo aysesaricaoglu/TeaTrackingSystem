@@ -10,7 +10,7 @@ body {
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #ffffff;
-    
+    display: flex;
     /* Arka plan doğrudan body'ye kilitlendi */
     background-color: #1a1a1a;
     background-image: url("../images/background_image.png");
@@ -19,6 +19,8 @@ body {
     background-attachment: fixed; /* Sayfa kaysa da görsel sabit kalır */
     background-repeat: no-repeat;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 /* ---------------- SOL MENÜ (SIDEBAR) ---------------- */
 .sidebar {
@@ -31,6 +33,15 @@ body {
     border-right: 1px solid rgba(255, 255, 255, 0.15); /* İnce beyaz/şeffaf kenarlık */
     box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
     z-index: 10;
+    flex-shrink: 0; /* Sidebar'ın küçülmesini engeller */
+    transition: width 0.3s ease, transform 0.3s ease; /* Genişlik ve kaydırma animasyonu */
+}
+.sidebar.closed {
+    width: 0;
+    overflow: hidden;
+    /* veya */
+    transform: translateX(-100%);
+    padding: 40px 0;
 }
 
 .sidebar h2 {
@@ -81,9 +92,11 @@ body {
 .main-content {
     position: relative;
     flex: 1;
-    padding: 40px 50px;
-    overflow-y: auto;
-    padding-top: 80px;
+    min-width: 0;
+    padding: 80px 40px 30px 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Üst Başlık */
@@ -122,13 +135,20 @@ body {
     color: #ffffff;
 }
 
-.search-content-card{
+/* YENİ HALİ (Dış kutuyu filtrelerle orantılı hale getirir) */
+.search-content-card {
+    width: 100%;
+    max-width: 950px;
+    height: auto;
+    margin: 0 auto 30px auto;
     background: rgba(20, 45, 25, 0.45);
-    border-radius: 30px;
-    backdrop-filter: blur(8px);
-    width: 80%;
+    border-radius: 24px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 28px 28px 36px 28px;
+    box-sizing: border-box;
 }
-
 
 /* Kapsül Kutu (Pill) Tasarımı */
 .filter-capsule {
@@ -143,6 +163,7 @@ body {
   box-sizing: border-box;
   max-width: 500px;
   margin-left: 15px;
+  position: relative;
 }
 .filter-capsule.active {
     background: rgba(20, 45, 25, 0.6);
@@ -157,11 +178,6 @@ body {
     justify-content: space-between;
     width: 100%;
 }
-.capsule-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 
 .capsule-icon {
     font-size: 16px;
@@ -173,6 +189,7 @@ body {
     font-size: 15px;
     font-weight: 500;
     color: #ffffff;
+    white-space: nowrap; /* Uzun başlıkları tek satırda tutar */
 }
 
 /* Özel Yuvarlak Checkbox */
@@ -210,6 +227,8 @@ body {
     justify-content: center; /* Butonu tam merkeze alır */
     align-items: center;
     margin-top: 35px;
+    clear: both;                  /* Üstteki açılan kutuların altında kalmayı garanti eder */
+    box-sizing: border-box;
 }
 .search-content-card h2 {
     grid-column: 1 / -1;
@@ -279,6 +298,27 @@ body {
     box-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
 }
 
+.my-delivery-date-filter {
+    display: flex;
+    flex-direction: column; /* Elemanları alt alta dizer */
+    gap: 16px;              /* Kutular arası dikey boşluk */
+    width: 100%;            /* Genişliği kartın içine yayar */
+    box-sizing: border-box;
+}
+#myDeliveriesDateFilterCard {
+    max-width: 450px;       /* Formun aşırı yayılmasını önler */
+    width: 100%;
+    margin: 20px auto 30px auto; /* Kartı sayfada tam ortalar */
+    background: rgba(22, 45, 27, 0.75);
+    transform: none;        /* Bozulmaya yol açan sola kaydırmayı sıfırlar */
+}
+/* 3. Butonu Alt Satırda Tam Genişlik Yap */
+.date-search-button .btn {
+    width: 50%;
+    margin-top: 5px;
+    justify-content: center;
+    display: block;
+}
 /* ---------------- İSTATİSTİK KARTLARI ---------------- */
 .cards {
     display: grid;
@@ -620,6 +660,7 @@ td form {
 /* =========================================================
    TOP NAV BAR & PROFILE DROPDOWN
 ========================================================= */
+
 .top-nav {
     position: absolute;
     top: 0;
@@ -639,9 +680,9 @@ td form {
 /* Sidebar ve İçeriğin bulunduğu alt kapsayıcı */
 .dashboard-container {
     display: flex;
-    min-height: calc(100vh - 70px); /* Üst navbar yüksekliğini düşerek tam ekran yapar */
     width: 100%;
-    background: transparent
+    background: transparent;
+    flex: 1 0 auto;
 }
 .nav-title h1 {
     font-size: 24px;
@@ -1075,9 +1116,10 @@ td form {
 }
 
 .capsule-left {
-    display: flex !important;
+    display: inline-flex !important;
     align-items: center !important;
     gap: 10px !important;
+    flex-shrink: 0 !important;
 }
 
 /* 4. Kesilmeye sebep olan margin-left'i SIFIRLA ve kutuyu tam genişlik yap */
@@ -1196,7 +1238,7 @@ td form {
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 18px;
-    padding: 10px 16px;
+    padding: 15px 10px;
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -1204,6 +1246,7 @@ td form {
     width: 100%;
     box-sizing: border-box;
     overflow: visible;
+    position: relative;
 }
 
 /* Kapsül Üst Satırı: İkon/Yazı solda, Checkbox sağda */
@@ -1215,9 +1258,11 @@ td form {
 }
 
 .del-capsule-left {
-    display: flex;
+    display:inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    flex-shrink: 0;
+
 }
 
 .del-icon {
@@ -1230,6 +1275,7 @@ td form {
     font-size: 14px;
     font-weight: 500;
     color: #ffffff;
+    white-space: nowrap;
 }
 
 /* Dairesel Checkbox */
@@ -1296,6 +1342,7 @@ td form {
 .del-date-container.active {
   display: flex;
   gap: 10px;
+  flex-direction: column;
   
 }
 
@@ -1304,8 +1351,7 @@ td form {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  flex: 1;
-  min-width: 0; /* Flex içinde inputların taşmasını önler */
+  width: 100%;
 }
 
 /* Start/End Date ufak etiket yazıları */
@@ -1316,11 +1362,11 @@ td form {
 
 /* Tarih Input (Takvim) Tasarımı */
 .del-date-box input[type="date"] {
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(108, 129, 69, 0.449);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #ffffff;
   border-radius: 8px;
-  padding: 8px 10px;
+  padding: 8px 1000px;
   font-size: 13px;
   outline: none;
   width: 100%;
@@ -1485,19 +1531,20 @@ td form {
 }
 /* Ana Kapsayıcı (Dashboard arka planı ile aynı hissi verir) */
 .auth-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 40px 20px;
+    display: flex;
+    justify-content: center; /* Kartı yatayda tam ortalar */
+    align-items: center;     /* Kartı dikeyde tam ortalar */
+    flex: 1;                 /* Boş alanı kaplar, footer'ı aşağı iter */
+    width: 100%;
+    padding: 30px 20px;
+    box-sizing: border-box;
   font-family: inherit;
 }
 
 /* Glassmorphism Kart Yapısı */
 .auth-card {
   width: 100%;
-  max-width: 580px;
-  background: rgba(22, 45, 27, 0.423);
+  background: rgba(22, 45, 27, 0.75);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -1505,6 +1552,9 @@ td form {
   padding: 36px 32px;
   color: #ffffff;
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+  margin: 0 auto;
+  max-width: 480px;
+  box-sizing: border-box;
 }
 
 .auth-header {
@@ -1676,29 +1726,35 @@ td form {
   transform: translateY(0)
 }
 
-/* Alt Yönlendirme Linki */
 .auth-footer {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 13.5px;
-  color: #c2d6c6;
-  
- 
+    background:transparent;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    text-align: center;
+    font-size: 13.5px;
+    color: #c2d6c6;
+    box-sizing: border-box;
+    z-index: 999;
+    margin-bottom: 3px;
 }
 
 .auth-footer a {
-  color: #6ee787;
-  font-weight: 600;
-  text-decoration: none;
-  margin-left: 5px;
-  transition: color 0.2s;
+    color: #6ee787;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 5px;
+    transition: color 0.2s;
 }
 
 .auth-footer a:hover {
-  color: #9bf0ad;
-  text-decoration: underline;
+    color: #9bf0ad;
+    text-decoration: underline;
 }
-
 
 /* =========================================================
    FINAL RESPONSIVE / FILTER OVERRIDES
@@ -1707,7 +1763,9 @@ td form {
 
 /* Ana içerik flex içinde taşmasın */
 .main-content {
-    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     width: 100%;
     box-sizing: border-box;
 }
@@ -1725,6 +1783,7 @@ td form {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    padding: 22px;
 }
 
 /* Yeni details/summary dropdown yapısı */
@@ -1742,10 +1801,10 @@ td form {
 /* Farmer / Expert / genel filtre dropdownları */
 .search-content-card .filter-dropdown,
 .search-content-card .del-dropdown {
-    flex: 1 1 280px;
+    flex: 1 1 320px;
     width: 100%;
     min-width: 0;
-    max-width: 380px;
+    max-width: 280px;
     box-sizing: border-box;
 }
 
@@ -1774,8 +1833,7 @@ td form {
 }
 
 /* Açılan inputlar kutuyu taşırmasın */
-.search-content-card .filter-input,
-.search-content-card {
+.search-content-card .filter-input{
     width: 100%;
     min-width: 0;
     max-width: 100%;
@@ -1828,9 +1886,7 @@ td form {
         padding: 80px 25px 30px;
     }
 
-    .search-content-card {
-        padding: 22px;
-    }
+  
 
     .search-content-card .filter-dropdown,
     .search-content-card .del-dropdown {
@@ -1840,215 +1896,8 @@ td form {
 }
 
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 768px) {
-
-    .dashboard-container {
-        display: flex;
-        min-height: calc(100vh - 70px);
-        width: 100%;
-        background: transparent !important;
-    }
-
-    .sidebar {
-        width: 100%;
-        padding: 15px;
-        box-sizing: border-box;
-        border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    }
 
 
-
-
-  
-
-
-    .sidebar ul {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 6px;
-        margin: 0;
-    }
-
-    .sidebar li {
-        margin: 0;
-    }
-
-    .sidebar a {
-        font-size: 13px;
-        padding: 9px 10px;
-    }
-
-    .main-content {
-        width: 100%;
-        max-width: 100%;
-        padding: 75px 15px 25px;
-        box-sizing: border-box;
-        overflow-x: hidden;
-    }
-
-    .top-nav {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 12px 15px;
-    }
-
-    .profile-name {
-        display: none;
-    }
-
-    .nav-actions {
-        gap: 10px;
-    }
-
-    .page-header,
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    .farmer_ekle,
-    .expert_ekle,
-    .new_delivery {
-        float: none;
-        margin-left: 0;
-        margin-bottom: 10px;
-    }
-
-    /* Search kartı mobilde de görünür */
-    .search-content-card {
-        width: 100%;
-        max-width: 100%;
-        padding: 16px;
-        margin-top: 18px;
-        border-radius: 18px;
-    }
-
-    .search-content-card h2,
-    .search-content-card .search-title {
-        padding-left: 0;
-        margin-left: 0;
-        font-size: 20px;
-    }
-
-    .search-content-card .filter-dropdown,
-    .search-content-card .del-dropdown {
-        flex: 1 1 100%;
-        width: 100%;
-        max-width: none;
-        min-width: 0;
-    }
-
-    .search-content-card .filter-options,
-    .search-content-card .del-options-panel {
-        padding: 12px !important;
-    }
-
-    .search-content-card .filter-item {
-        flex: none;
-        width: 100%;
-    }
-
-    .search-content-card .filter-item label {
-        width: 100%;
-        font-size: 13px;
-    }
-
-    .search-content-card .filter-input,
-    .search-content-card .del-input-field {
-        width: 100%;
-        margin-left: 0;
-    }
-
-    .search-content-card .del-date-container {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .search-content-card .button-wrapper {
-        width: 100%;
-        margin-top: 20px;
-    }
-
-    .search-content-card .button-wrapper .btn,
-    .search-content-card > .btn {
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .table-container {
-        width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    table {
-        min-width: 700px;
-    }
-
-    .content-card {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 18px;
-    }
-}
-
-
-/* =========================================================
-   SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 480px) {
-
-    .sidebar ul {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .sidebar a {
-        width: 100%;
-        box-sizing: border-box;
-        text-align: left;
-    }
-
-    .main-content {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    .search-content-card {
-        padding: 12px;
-        border-radius: 16px;
-    }
-
-    .search-content-card h2,
-    .search-content-card .search-title {
-        font-size: 18px;
-    }
-
-    .search-content-card .filter-dropdown summary,
-    .search-content-card .del-dropdown-summary {
-        font-size: 13px;
-        padding: 11px 12px;
-    }
-
-    .search-content-card .filter-item label {
-        font-size: 12.5px;
-    }
-
-    .search-content-card .filter-input input,
-    .search-content-card .filter-input select,
-    .search-content-card .del-input-field input,
-    .search-content-card .del-input-field select {
-        font-size: 13px;
-    }
-}
 /* =========================================================
    FARMER MY DELIVERIES (FMD) ÖZEL STİLLERİ
 ========================================================= */
@@ -2180,17 +2029,6 @@ td form {
   opacity: 0.6;
 }
 
-/* Responsive Uyum */
-@media (max-width: 768px) {
-  .fmd-page-wrapper {
-    padding: 0 12px;
-    margin: 15px auto;
-  }
-
-  .fmd-content-card {
-    padding: 20px 16px;
-  }
-}
 .glass-swal {
     background: rgba(22, 45, 27, 0.9) !important;
     backdrop-filter: blur(14px) !important;
@@ -2272,16 +2110,18 @@ body:has(.auth-wrapper) {
     flex-wrap: wrap !important;
     justify-content:left !important; 
     gap: 16px 20px !important;
-    width: 100% !important;
-    margin: 0 auto 20px auto !important;
-    margin-left: 60px !important;
+    width: 100% !important;   
 }
-
+/* YENİ HALİ */
+#filterCapsulesGridFarmer,
+#filterCapsulesGridExpert {
+    margin-left: 0 !important;
+    justify-content: center !important;
+}
 /* 2. Kapsül Genişliğini Küçült ve Boyutunu Sabitle */
 .management-filter-options .filter-capsule {
     flex: 0 1 260px !important;    /* Genişliği 260px'e daraltır */
     max-width: 280px !important;
-    width: 100% !important;
     margin: 0 !important;          /* Sola iten margin sıfırlandı */
     padding: 10px 14px !important;
     box-sizing: border-box !important;
@@ -2306,4 +2146,402 @@ body:has(.auth-wrapper) {
     text-align: center !important;
     margin-left: 0 !important;
     padding-left: 0 !important;
+}
+/* =========================================================
+   FOOTER SOSYAL MEDYA SİMGELERİ (GLASSMORPHISM)
+========================================================= */
+.footer-social {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+/* =========================================================
+   KOMPAKT & BİRBİRİNE YAKIN FOOTER TASARIMI
+========================================================= */
+.app-footer {
+    width: calc(100% + 100px);
+    margin: auto -50px 0 -50px; /* main-content'in 50px yan padding'ini sıfırlar */
+    padding: 20px 20px;
+    background: rgb(20, 45, 25);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    box-sizing: border-box;
+    flex-shrink: 0;
+    
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 90px;
+    width: 100%;
+}
+
+.footer-copy {
+    color: #cfe0cd;
+    font-size: 13px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.footer-social {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* İkonların kendi arasındaki mesafesi */
+}
+
+.social-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #cfe0cd;
+    text-decoration: none;
+    font-size: 12px;
+    transition: all 0.25s ease;
+}
+
+.social-icon:hover {
+    color: #ffffff;
+    background: #3e884e;
+    border-color: #4ade80;
+    transform: translateY(-2px);
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-links a {
+    color: #f2f6f0;
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.footer-links a:hover {
+    color: #4ade80;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.footer-dot {
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 10px;
+}
+/* =========================================================
+   RESPONSIVE DÜZENLEME (TABLET & MOBİL)
+========================================================= */
+
+/* ---------------- 1. TABLET DÜZENİ (max-width: 1024px) ---------------- */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 220px;
+        padding: 30px 15px;
+    }
+
+    .main-content {
+        padding: 80px 20px 30px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .search-content-card {
+        padding: 20px;
+    }
+
+    .search-content-card .filter-dropdown,
+    .search-content-card .del-dropdown,
+    .management-filter-options .filter-capsule {
+        flex: 1 1 calc(50% - 15px) !important;
+        max-width: 100% !important;
+    }
+}
+
+/* ---------------- 2. MOBİL DÜZENİ & AÇILIR SIDEBAR (max-width: 768px) ---------------- */
+@media (max-width: 768px) {
+    /* Açılır / Kapanır Sidebar (Drawer) Mimarisi */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px;
+        height: 100vh;
+        background: rgba(15, 35, 20, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 2000;
+        transform: translateX(-100%); /* Varsayılan olarak kapalı */
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: none;
+    }
+
+    /* JS ile bu sınıf eklendiğinde menü açılır */
+    .sidebar.open,
+    .sidebar.active {
+        transform: translateX(0);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Ana Gövde ve Üst Bar */
+    .dashboard-container {
+        flex: 1 0 auto;
+        display: flex; /* Sidebar ve main-content yan yana ise */
+        width: 100%;
+    }
+
+    .main-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 75px 14px 25px;
+        overflow-x: hidden;
+    }
+
+    .top-nav {
+        padding: 12px 16px;
+    }
+
+    .profile-name {
+        display: none; /* Mobilde avatar ve ikona yer açar */
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    /* Butonlar & Aksiyonlar */
+    .button-container,
+    .farmer_ekle,
+    .expert_ekle,
+    .new_delivery {
+        width: 100%;
+        float: none;
+        margin-left: 0;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    /* İstatistik Kartları Tek Kolon */
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    /* Arama Kartı & Filtreler Tek Kolon */
+    .search-content-card {
+        padding: 16px;
+        border-radius: 18px;
+    }
+
+    .search-content-card .filter-dropdown-container,
+    .search-content-card .del-dropdown-container,
+    .management-filter-options .filter-capsules-grid {
+        flex-direction: column;
+        gap: 12px !important;
+        margin-left: 0 !important;
+    }
+
+    .search-content-card .filter-dropdown,
+    .search-content-card .del-dropdown,
+    .management-filter-options .filter-capsule {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .del-date-container {
+        flex-direction: column !important;
+        gap: 10px;
+        display: flex;
+    }
+
+    .button-wrapper .btn,
+    .search-content-card .btn,
+    .submit-btn {
+        width: 100% !important;
+    }
+
+    /* Form ve Auth Kartları */
+    .field-row,
+    .field-row-three {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .auth-card,
+    #form-alani {
+        padding: 24px 16px;
+        border-radius: 16px;
+    }
+
+    /* Tablo Kaydırma Alanı */
+    .table-container,
+    .fmd-table-responsive {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table,
+    .fmd-table {
+        min-width: 600px; /* Tablo içeriğinin birbirine ezilmesini önler */
+    }
+}
+
+/* ---------------- 3. KÜÇÜK EKRANLAR (max-width: 480px) ---------------- */
+@media (max-width: 480px) {
+    .main-content {
+        padding: 70px 10px 20px;
+    }
+
+    .search-content-card h2,
+    .search-content-card .search-title,
+    .fmd-title {
+        font-size: 18px !important;
+    }
+
+    .stat-card p {
+        font-size: 26px;
+    }
+}
+/* =========================================================
+   SIDEBAR TOGGLE BUTONU (GLASSMORPHISM)
+========================================================= */
+.menu-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.menu-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: #4ade80;
+    color: #4ade80;
+    transform: translateY(-1px);
+}
+
+.menu-toggle-btn:active {
+    transform: scale(0.95);
+}
+/* ================= INFO BANNER STYLING ================= */
+.info-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 50px;
+    border-radius: 16px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+    overflow: hidden;
+    margin-top: 30px;
+    height: 50%;
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+/* Farmer Color Palette */
+.farmer-banner {
+    background: linear-gradient(135deg, rgba(20, 60, 50, 0.85) 0%, rgba(30, 95, 75, 0.75) 100%);
+}
+
+/* Expert / Admin Color Palette */
+.expert-banner {
+    background: linear-gradient(135deg, rgba(28, 52, 34, 0.85) 0%, rgba(48, 88, 56, 0.75) 100%);
+}
+
+/* Content Typography */
+.info-banner-content {
+    max-width: 85%;
+}
+
+.info-tag {
+    display: inline-flex;
+    align-items: left;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 4px 22px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #9bf0ad;
+    margin-bottom: 8px;
+}
+
+.info-banner-content h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    color: #ffffff;
+}
+
+.info-banner-content p {
+    font-size: 13.5px;
+    color: #dceada;
+    margin: 0;
+    line-height: 1.45;
+}
+
+/* Image Wrapper */
+.info-banner-img {
+    flex-shrink: 0;
+}
+
+.info-banner-img img {
+    height: 135px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
+}
+
+/* Responsive Breakpoint */
+@media (max-width: 768px) {
+    .info-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        margin: 10px 15px 20px 15px;
+        padding: 18px;
+    }
+    .info-banner-content {
+        max-width: 100%;
+    }
+    .info-banner-img {
+        align-self: center;
+    }
+    .info-banner-img img {
+        height: 75px;
+    }
 }

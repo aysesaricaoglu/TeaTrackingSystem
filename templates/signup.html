@@ -1,5 +1,4 @@
-{% block title %}Sign Up - Tea Tracking{% endblock %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
 {% block content %}
 <div class="auth-wrapper">
@@ -10,12 +9,14 @@
     </div>
 
     <!-- Dosya yükleme olduğu için enctype="multipart/form-data" zorunludur -->
-    <form action="{{ url_for('signup_page') }}" method="POST" enctype="multipart/form-data" id="signupForm" class="auth-form" autocomplete="off">
-      
+    <form action="{{ url_for('signup_page') }}" method="POST" enctype="multipart/form-data" id="signupForm"
+      class="auth-form" autocomplete="off">
+
       <!-- TC Numarası -->
       <div class="field-group">
         <label for="tc_no">TC Number</label>
-        <input type="text" id="tc_no" name="tc_no" maxlength="11" pattern="\d{11}" placeholder="11-digit TC Number" inputmode="numeric" required>
+        <input type="text" id="tc_no" name="tc_no" maxlength="11" pattern="\d{11}" placeholder="11-digit TC Number"
+          inputmode="numeric" required>
       </div>
 
       <!-- Ad ve Soyad -->
@@ -74,29 +75,90 @@
       <div class="field-group file-field">
         <label for="land_register">Land Register Document</label>
         <div class="file-upload-box">
-          <input type="file" id="land_register" name="land_register" accept=".pdf,.png,.jpg,.jpeg" required>
+          <input type="file" id="land_register" name="land_register" required>
           <span class="file-hint">Accepted formats: PDF, PNG, JPG (Max 5MB)</span>
         </div>
       </div>
 
       <button type="submit" class="submit-btn" id="signupSubmitBtn">Submit Application</button>
+      <div class="auth-footer">
+        <span>Already have an account?</span>
+        <a href="{{ url_for('home') }}">Log In</a>
     </form>
-
-    <div class="auth-footer">
-      <span>Already have an account?</span>
-      <a href="{{ url_for('home') }}">Log In</a>
-    </div>
   </div>
+  </form>
 </div>
+<!-- 
+    <footer class="app-footer">
+        <div class="footer-content">
+            <p class="footer-copy">© 2026 Tea Tracking & Management System. All rights reserved.</p>
+
+            <div class="footer-social">
+                <a href="#" aria-label="Instagram" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="X (Twitter)" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Support Email" class="social-icon"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <span class="footer-dot">•</span>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer> -->
 {% endblock %}
 
 {% block scripts %}
 <script>
-document.querySelectorAll('.toggle-eye').forEach(btn => {
+  document.querySelectorAll('.toggle-eye').forEach(btn => {
     btn.addEventListener('click', () => {
-        const target = document.getElementById(btn.dataset.target);
-        target.type = target.type === 'password' ? 'text' : 'password';
+      const target = document.getElementById(btn.dataset.target);
+      target.type = target.type === 'password' ? 'text' : 'password';
     });
-});
+  });
+  document.addEventListener("DOMContentLoaded", function () {
+    const fileInput = document.getElementById("land_register");
+
+    const ALLOWED_EXTENSIONS = ["pdf", "jpg", "jpeg", "png"];
+    const ALLOWED_MIME_TYPES = [
+      "application/pdf",
+      "image/jpeg",
+      "image/png"
+    ];
+    const MAX_FILE_SIZE_MB = 5;
+
+    if (fileInput) {
+      fileInput.addEventListener("change", function () {
+        const file = fileInput.files[0];
+        if (!file) return;
+
+        const extension = file.name.split(".").pop().toLowerCase();
+        const isValidExtension = ALLOWED_EXTENSIONS.includes(extension);
+        const isValidMime = ALLOWED_MIME_TYPES.includes(file.type);
+
+        if (!isValidExtension || !isValidMime) {
+          showGlassAlert(
+            "Invalid File Type",
+            `"${file.name}" is not a supported file type. Please upload a PDF, JPG, or PNG file.`,
+            "error"
+          );
+          fileInput.value = ""; // seçimi sıfırla
+          return;
+        }
+
+        const fileSizeMB = file.size / (1024 * 1024);
+        if (fileSizeMB > MAX_FILE_SIZE_MB) {
+          showGlassAlert(
+            "File Too Large",
+            `"${file.name}" exceeds the ${MAX_FILE_SIZE_MB}MB size limit.`,
+            "error"
+          );
+          fileInput.value = "";
+          return;
+        }
+      });
+    }
+  });
 </script>
 {% endblock %}

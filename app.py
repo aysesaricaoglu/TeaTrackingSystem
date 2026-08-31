@@ -36,6 +36,7 @@ from database import (
     search_deliveries,
     change_password,
     get_delivery_by_farmer_id,
+    search_my_deliveries_by_delivery_date,
 )
 
 # logging.basicConfig(filename='myapp.log', level=logging.INFO)
@@ -208,17 +209,20 @@ def search_deliveries_api():
     if "user_id" not in session:
         return jsonify({"success": False, "message": "Unauthorized"}), 401
 
-    if session["role"] not in ["admin", "expert"]:
+    if session.get("role") not in ["admin", "expert"]:
         return jsonify({"success": False, "message": "Forbidden"}), 403
 
-    data = request.get_json()
+    try:
+        data = request.get_json()
 
-    filters = data.get("filters", {})
+        filters = data.get("filters", {})
 
-    deliveries = search_deliveries(filters)
+        deliveries = search_deliveries(filters)
 
-    return jsonify({"success": True, "deliveries": deliveries}), 200
-
+        return jsonify({"success": True, "deliveries": deliveries}), 200
+    except Exception as e:
+        app.logger.exception("search_deliveries_api failed")
+        return jsonify({"success": False, "message": str(e)}), 500
 
 @app.route("/dashboard")
 def dashboard():
@@ -307,23 +311,21 @@ def search_farmers_api():
     if "user_id" not in session:
         return jsonify({"success": False, "message": "Unauthorized"}), 401
 
-    if session["role"] != "admin":
+    if session.get("role") != "admin":
         return jsonify({"success": False, "message": "Forbidden"}), 403
 
-    data = request.get_json()
-
-    filters = data.get("filters", {})
-
     try:
-        validate_search_filters(filters)
+        data = request.get_json()
 
-    except ValueError as e:
-        print("VALIDATION ERROR:", str(e), flush=True)
-        return jsonify({"success": False, "message": str(e)}), 400
+        filters = data.get("filters", {})
+        farmers = search_farmers(filters)
+        return jsonify({"success": True, "farmers": farmers}), 200
 
-    farmers = search_farmers(filters)
+        
+    except Exception as e:
+        app.logger.exception("search_farmers_api failed")
+        return jsonify({"success": False, "message": str(e)}), 500
 
-    return jsonify({"success": True, "farmers": farmers}), 200
 
 
 @app.route("/admin/farmers/add", methods=["GET", "POST"])
@@ -332,7 +334,7 @@ def add_farmer_route():
     if "user_id" not in session:
         return redirect(url_for("home"))
 
-    if session["role"] != "admin":
+    if session.get("role") != "admin":
         return redirect(url_for("dashboard"))
 
     return render_template("add_farmer.html")
@@ -344,7 +346,7 @@ def add_farmer_api():
     if "user_id" not in session:
         return {"success": False, "message": "Unauthorized"}, 401
 
-    if session["role"] != "admin":
+    if session.get("role") != "admin":
         return {"success": False, "message": "Forbidden"}, 403
 
     # JavaScript fetch() tarafından gönderilen JSON verisini alıyoruz
@@ -390,7 +392,7 @@ def expert_management():
     if "user_id" not in session:
         return redirect(url_for("home"))
 
-    if session["role"] != "admin":
+    if session.get("role") != "admin":
         return redirect(url_for("dashboard"))
 
     search = request.args.get("search", "")
@@ -408,30 +410,28 @@ def search_experts_api():
     if "user_id" not in session:
         return jsonify({"success": False, "message": "Unauthorized"}), 401
 
-    if session["role"] != "admin":
+    if session.get("role") != "admin":
         return jsonify({"success": False, "message": "Forbidden"}), 403
-
-    data = request.get_json()
-
-    filters = data.get("filters", {})
-
     try:
-        validate_search_filters(filters)
+        data = request.get_json()
 
-    except ValueError as e:
-        print("VALIDATION ERROR:", str(e), flush=True)
-        return jsonify({"success": False, "message": str(e)}), 400
+        filters = data.get("filters", {})
+        experts = search_experts(filters)
+        return jsonify({"success": True, "experts": experts}), 200
 
-    experts = search_experts(filters)
 
-    return jsonify({"success": True, "experts": experts}), 200
+    except Exception as e:
+        app.logger.exception("search_experts_api failed")
+        return jsonify({"success": False, "message": str(e)}), 500
+
+
 
 
 @app.route("/admin/experts/add", methods=["GET", "POST"])
 def add_expert_route():
     if "user_id" not in session:
         return redirect(url_for("home"))
-    if session["role"] != "admin":
+    if session.get("role") != "admin":
         return redirect(url_for("dashboard"))
     return render_template("add_expert.html")
 
@@ -441,7 +441,7 @@ def add_expert_api():
     if "user_id" not in session:
         return jsonify({"success": False, "message": "Unauthorized"}), 401
 
-    if session["role"] != "admin":
+    if session.get("role") != "admin":
         return jsonify({"success": False, "message": "Forbidden"}), 403
 
     data = request.get_json()
@@ -463,7 +463,7 @@ def delete_expert_api(expert_id):
     if "user_id" not in session:
         return jsonify({"success": False, "message": "Unauthorized"}), 401
 
-    if session["role"] != "admin":
+    if session.get("role") != "admin":
         return jsonify({"success": False, "message": "Forbidden"}), 403
 
     # database.py'deki silme fonksiyonunu çağırıyoruz
@@ -488,7 +488,7 @@ def delete_expert_api(expert_id):
 def delete_farmer_api(farmer_id):
     if "user_id" not in session:
         return jsonify({"success": False, "message": "Unauthorized"}), 401
-    if session["role"] != "admin":
+    if session.get("role") != "admin":
         return jsonify({"success": False, "message": "forbidden"}), 403
 
     delete_success = delete_farmer(farmer_id)
@@ -557,6 +557,21 @@ def my_deliveries():
 
     return render_template("my_deliveries.html", deliveries=delivery_records)
 
+@app.route("/api/farmer/my-deliveries/search", methods=["POST"])
+def search_deliveries_by_delivery_date_api():
+    if "user_id" not in session or session.get("role") != "farmer":
+        return jsonify({"success": False, "message": "Unauthorized"}), 401
+
+    try:
+        data = request.get_json()
+        filters = data.get("filters", {})
+        deliveries = search_my_deliveries_by_delivery_date(session["user_id"], filters.get("start_date"), filters.get("end_date"))
+        return jsonify({"success": True, "deliveries": deliveries}), 200
+    except Exception as e:
+        app.logger.exception("search_deliveries_by_delivery_date_api failed")
+        return jsonify({"success": False, "message": str(e)}), 500
+
+
 
 @app.before_request  #her requestten önce bu kodu çalıştır 
 def check_session_timeout():
@@ -601,6 +616,8 @@ def logout():
 @app.route("/signup", methods=["GET"])
 def signup_page():
     return render_template("signup.html")
+# @app.route("/signup", methods=["POST"])
+# def signup_page_api():
 
 
 if __name__ == "__main__":

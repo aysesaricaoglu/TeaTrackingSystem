@@ -19,26 +19,26 @@ Statistics
 <!-- ADMIN + EXPERT -->
 {% if session["role"] in ["admin", "expert"] %}
 
-    <li>
-        <div class="button-container">
-            <a href="{{ url_for('new_delivery') }}">
+<li>
+    <div class="button-container">
+        <a href="{{ url_for('new_delivery') }}">
             New Delivery
-            </a>
-        </div>
-     
-    </li>
-
-    <li>
-        <a href="{{ url_for('all_deliveries') }}">
-            Delivery Records
         </a>
-    </li>
+    </div>
 
-    <li>
-        <a href="#">
-            Search Farmer
-        </a>
-    </li>
+</li>
+
+<li>
+    <a href="{{ url_for('all_deliveries') }}">
+        Delivery Records
+    </a>
+</li>
+
+<li>
+    <a href="#">
+        Search Farmer
+    </a>
+</li>
 
 {% endif %}
 
@@ -46,17 +46,17 @@ Statistics
 <!-- SADECE ADMIN -->
 {% if session["role"] == "admin" %}
 
-    <li>
-        <a href="#">
-            User Management
-        </a>
-    </li>
+<li>
+    <a href="#">
+        User Management
+    </a>
+</li>
 
-    <li>
-        <a href="#">
-            Farmer Management
-        </a>
-    </li>
+<li>
+    <a href="#">
+        Farmer Management
+    </a>
+</li>
 
 {% endif %}
 
@@ -64,11 +64,11 @@ Statistics
 <!-- SADECE FARMER -->
 {% if session["role"] == "farmer" %}
 
-    <li>
-        <a href="#">
-            My Deliveries
-        </a>
-    </li>
+<li>
+    <a href="#">
+        My Deliveries
+    </a>
+</li>
 
 {% endif %}
 
@@ -112,33 +112,33 @@ Statistics
 
 {% if session["role"] == "admin" %}
 
-    <section class="dashboard-section">
-        <h2>Admin Dashboard</h2>
+<section class="dashboard-section">
+    <h2>Admin Dashboard</h2>
 
-        <p>
-            You have full access to the Tea Tracking System.
-        </p>
-    </section>
+    <p>
+        You have full access to the Tea Tracking System.
+    </p>
+</section>
 
 {% elif session["role"] == "expert" %}
 
-    <section class="dashboard-section">
-        <h2>Expert Dashboard</h2>
+<section class="dashboard-section">
+    <h2>Expert Dashboard</h2>
 
-        <p>
-            Manage tea deliveries and farmer records.
-        </p>
-    </section>
+    <p>
+        Manage tea deliveries and farmer records.
+    </p>
+</section>
 
 {% elif session["role"] == "farmer" %}
 
-    <section class="dashboard-section">
-        <h2>Farmer Dashboard</h2>
+<section class="dashboard-section">
+    <h2>Farmer Dashboard</h2>
 
-        <p>
-            View your deliveries and production statistics.
-        </p>
-    </section>
+    <p>
+        View your deliveries and production statistics.
+    </p>
+</section>
 
 {% endif %}
 
@@ -302,7 +302,7 @@ Statistics
         background: white;
         padding: 25px;
         border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
     .stat-card h2 {
@@ -319,7 +319,7 @@ Statistics
         padding: 25px;
         margin-top: 20px;
         border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
     .chart-placeholder {
@@ -339,5 +339,3 @@ Statistics
     }
 </style>
 {% endblock %}
-
-

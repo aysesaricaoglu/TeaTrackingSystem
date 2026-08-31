@@ -2,6 +2,44 @@
 {% block title %}My Deliveries - Tea Tracking{% endblock %}
 
 {% block content %}
+
+<div class="info-banner farmer-banner">
+  <div class="info-banner-content">
+    <span class="info-tag"><i class="fa-solid fa-droplet"></i> Irrigation Guide</span>
+    <h2>Optimal Watering Time for Tea Fields</h2>
+    <p>Maintain proper soil moisture and shoot vitality by scheduling irrigation during early morning or late afternoon.
+    </p>
+  </div>
+  <div class="info-banner-img">
+    <img src="{{ url_for('static', filename='images/farmer-tip.jpg') }}" alt="Irrigation Guide">
+  </div>
+</div>
+
+<!-- =========================
+     DATE FILTER
+========================= -->
+<div class="search-content-card" id="myDeliveriesDateFilterCard">
+  <h2 class="search-title">Filter Deliveries by Date</h2>
+
+  <div class="my-delivery-date-filter">
+    <div class="date-field">
+      <label for="start_date">Start Date</label>
+      <input type="date" id="start_date">
+    </div>
+
+    <div class="date-field">
+      <label for="end_date">End Date</label>
+      <input type="date" id="end_date">
+    </div>
+
+    <div class="date-search-button">
+      <button type="button" id="searchMyDeliveriesButton" class="btn">
+        Search
+      </button>
+    </div>
+  </div>
+</div>
+
 <div class="fmd-page-wrapper">
   <div class="fmd-content-card">
     <div class="fmd-header">
@@ -9,8 +47,8 @@
       <p class="fmd-subtitle">Track all your past tea delivery records and payment statuses</p>
     </div>
 
-    {% if deliveries %}
-    <div class="fmd-table-responsive">
+    <div class="fmd-table-responsive" id="myDeliveriesTableContainer" {% if not deliveries %}style="display:none;" {%
+      endif %}>
       <table class="fmd-table">
         <thead>
           <tr>
@@ -22,34 +60,118 @@
             <th>Payment Option</th>
           </tr>
         </thead>
-        <tbody>
-          {% for item in deliveries %}
+        <tbody id="my-delivery-table-body">
+          {% for d in deliveries %}
           <tr>
-            <td class="fmd-id-cell">#{{ item[0] }}</td>
-            <td>{{ item[3] }}</td>
-            <td>{{ item[4] }} kg</td>
-            <td class="fmd-net-weight">{{ item[5] }} kg</td>
+            <td class="fmd-id-cell">#{{ d[0] }}</td>
+            <td>{{ d[3] }}</td>
+            <td>{{ d[4] }} kg</td>
+            <td class="fmd-net-weight">{{ d[5] }} kg</td>
             <td>
-              {% if item[6] == 1 or item[6] == True %}
-                <span class="fmd-badge fmd-badge-rainy"><i class="fa-solid fa-cloud-rain"></i> Rainy</span>
+              {% if d[6] == 1 %}
+              <span class="fmd-badge fmd-badge-rainy"><i class="fa-solid fa-cloud-rain"></i> Rainy</span>
               {% else %}
-                <span class="fmd-badge fmd-badge-dry"><i class="fa-solid fa-sun"></i> Dry</span>
+              <span class="fmd-badge fmd-badge-dry"><i class="fa-solid fa-sun"></i> Dry</span>
               {% endif %}
             </td>
-            <td>
-              <span class="fmd-badge fmd-badge-payment">{{ item[7] }}</span>
-            </td>
+            <td><span class="fmd-badge fmd-badge-payment">{{ d[7] }}</span></td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
-    {% else %}
-    <div class="fmd-empty-state">
+
+    <div class="fmd-empty-state" id="myDeliveriesEmptyState" {% if deliveries %}style="display:none;" {% endif %}>
       <i class="fa-solid fa-clipboard-list fmd-empty-icon"></i>
-      <p>No delivery records found yet.</p>
+      <p>No delivery records found.</p>
     </div>
-    {% endif %}
+
   </div>
 </div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("searchMyDeliveriesButton")
+      .addEventListener("click", function () {
+        const startDate = document.getElementById("start_date").value;
+        const endDate = document.getElementById("end_date").value;
+
+        if (!startDate || !endDate) {
+          showGlassAlert("Missing Dates", "Please select both start and end dates.", "warning");
+          return;
+        }
+
+        if (startDate > endDate) {
+          showGlassAlert("Invalid Date Range", "Start date cannot be after end date.", "warning");
+          return;
+        }
+
+        
+        searchMyDeliveries(startDate, endDate);
+      });
+  });
+
+  function searchMyDeliveries(startDate, endDate) {
+    fetch("/api/farmer/my-deliveries/search", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        filters: {
+          start_date: startDate,
+          end_date: endDate
+        }
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (!data.success) {
+          showGlassAlert("Error", data.message || "Something went wrong.", "error");
+          return;
+        }
+        renderMyDeliveries(data.deliveries);
+      })
+      .catch(err => {
+        console.error("Search error:", err);
+        showGlassAlert("Error", "Could not reach the server.", "error");
+      });
+  }
+
+  function renderMyDeliveries(deliveries) {
+    const tableBody = document.getElementById("my-delivery-table-body");
+    const tableContainer = document.getElementById("myDeliveriesTableContainer");
+    const emptyState = document.getElementById("myDeliveriesEmptyState");
+
+    tableBody.innerHTML = "";
+
+    if (!deliveries || deliveries.length === 0) {
+      tableContainer.style.display = "none";
+      emptyState.style.display = "block";
+      return;
+    }
+
+    tableContainer.style.display = "block";
+    emptyState.style.display = "none";
+
+    deliveries.forEach(function (d) {
+      const weatherLabel = d[6] === 1
+        ? `<span class="fmd-badge fmd-badge-rainy"><i class="fa-solid fa-cloud-rain"></i> Rainy</span>`
+        : `<span class="fmd-badge fmd-badge-dry"><i class="fa-solid fa-sun"></i> Dry</span>`;
+
+      const row = `
+            <tr>
+                <td class="fmd-id-cell">#${d[0]}</td>
+                <td>${d[3]}</td>
+                <td>${d[4]} kg</td>
+                <td class="fmd-net-weight">${d[5]} kg</td>
+                <td>${weatherLabel}</td>
+                <td><span class="fmd-badge fmd-badge-payment">${d[7]}</span></td>
+            </tr>
+        `;
+      tableBody.innerHTML += row;
+    });
+  }
+</script>
 {% endblock %}
