@@ -3,15 +3,44 @@
 
 {% block content %}
 
-<div class="info-banner farmer-banner">
-  <div class="info-banner-content">
-    <span class="info-tag"><i class="fa-solid fa-droplet"></i> Irrigation Guide</span>
-    <h2>Optimal Watering Time for Tea Fields</h2>
-    <p>Maintain proper soil moisture and shoot vitality by scheduling irrigation during early morning or late afternoon.
+<!-- ================= TEA KNOWLEDGE HERO BANNER ================= -->
+<div class="tea-guide-banner">
+  <div class="banner-left">
+    <div class="guide-tag">
+      <i class="fa-solid fa-leaf"></i> KNOW YOUR TEA
+    </div>
+    <h2 class="guide-latin">Camellia sinensis</h2>
+    <p class="guide-desc">
+      Essential factors determining black tea quality: tender shoots, proper soil drainage, and ideal plucking standards.
     </p>
+
+    <!-- 3 Mini Info Cards -->
+    <div class="guide-cards-row">
+      <div class="guide-card">
+        <i class="fa-solid fa-seedling"></i>
+        <strong>Young Shoots</strong>
+        <span>Two leaves and a bud (2.5 leaves)</span>
+      </div>
+
+      <div class="guide-card">
+        <i class="fa-solid fa-droplet"></i>
+        <strong>Good Drainage</strong>
+        <span>Moist, acidic soil with no waterlogging</span>
+      </div>
+
+      <div class="guide-card">
+        <i class="fa-solid fa-calendar-check"></i>
+        <strong>Harvest Flush</strong>
+        <span>Early morning plucking for top aroma</span>
+      </div>
+    </div>
   </div>
-  <div class="info-banner-img">
-    <img src="{{ url_for('static', filename='images/farmer-tip.jpg') }}" alt="Irrigation Guide">
+
+  <div class="banner-right">
+    <div class="image-wrapper">
+      <img src="{{ url_for('static', filename='images/farmer-tip.jpg') }}" alt="Fresh Tea Leaves">
+      <span class="img-badge"></span>
+    </div>
   </div>
 </div>
 

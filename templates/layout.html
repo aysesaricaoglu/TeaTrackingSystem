@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet"
-        href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)">
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Sayfaya özel CSS -->
     {% block css %}{% endblock %}
 </head>
@@ -67,6 +67,7 @@
                 {% if session["role"] == "farmer" %}
                 <li>
                     <a href="{{url_for('my_deliveries')}}">
+                        class="{{ 'active' if request.path == url_for('my_deliveries') else '' }}">
                         <i class="fa-solid fa-box-open"></i> My Deliveries
                     </a>
                 </li>
@@ -102,8 +103,11 @@
             <!-- ================= TOP NAV BAR (Tam olarak buraya geldi) ================= -->
             <div class="top-nav">
                 <button type="button" class="menu-toggle-btn" id="menuToggleBtn">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+
+                    <i class="fa-solid fa-leaf menu-leaf-icon"></i>
+                    <i class="fa-solid fa-angles-left menu-arrow-icon" id="menuToggleIcon">
+
+                    </i> </button>
                 <div class="nav-title">
                 </div>
 
@@ -260,14 +264,20 @@
     <script>
         const menuBtn = document.getElementById('menuToggleBtn');
         const sidebar = document.querySelector('.sidebar');
+        const menuIcon = document.getElementById('menuToggleIcon');
 
-        if (menuBtn && sidebar) {
+
+        if (menuBtn && sidebar && menuIcon) {
             menuBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 if (window.innerWidth < 768) {
                     sidebar.classList.toggle('open');
+                    menuIcon.classList.toggle('pointing-right', !sidebar.classList.contains('open'));
+
                 } else {
                     sidebar.classList.toggle('closed');
+                    menuIcon.classList.toggle('pointing-right', sidebar.classList.contains('closed'));
+
                 }
             });
 
@@ -275,6 +285,8 @@
             document.addEventListener('click', (e) => {
                 if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
                     sidebar.classList.remove('open');
+                    menuIcon.classList.add('pointing-right');
+
                 }
             });
             // YENİ: Ekran genişliği breakpoint'i geçtiğinde çakışan class'ları temizle
