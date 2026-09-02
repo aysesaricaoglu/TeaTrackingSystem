@@ -299,46 +299,68 @@ body {
     box-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
 }
 
-.my-delivery-date-filter {
-    display: flex;
-    flex-direction: column; /* Elemanları alt alta dizer */
-    gap: 16px;              /* Kutular arası dikey boşluk */
-    width: 100%;            /* Genişliği kartın içine yayar */
-    box-sizing: border-box;
-}
 #myDeliveriesDateFilterCard {
 
     max-width: 400px;       /* Formun aşırı yayılmasını önler */
-    width: 100%;
-    background: rgba(20, 45, 25, 0.6);
+    width: 50%;
+    height: auto;
     box-sizing: border-box;
-    margin: 20px auto 30px auto;
+    margin: 0 20px 1px auto;
     transform: none !important;
     gap: 14px;
+    background: rgba(132, 153, 89, 0.295);
     
 }
 
-/* 3. Butonu Alt Satırda Tam Genişlik Yap */
-.my-delivery-date-filter .date-search-button { 
-    width: 100%;
-    margin-top: 5px;
-    justify-content: center !important;
-    display: flex !important;
 
-}
 /* 2. Kartın İçindeki Filtre Kutusunu Sola Yerleştir */
 #myDeliveriesDateFilterCard .my-delivery-date-filter {
     display: flex !important;
-    flex-direction: column !important;
-    gap: 14px !important;
-    max-width: 380px !important;         /* Filtre elemanlarının devasa yayılmasını önler */
-    width: 100% !important;
+    flex-direction: row !important;  /* Elemanları alt alta dizer */
+    gap: 9px !important;
+    max-width: 100% !important;
+    align-items: flex-end !important; /* Elemanları üstten hizalar */
     margin: 0 !important;               /* Kendi kutusu içinde sola yaslı kalır */
 }
+#myDeliveriesDateFilterCard .my-delivery-date-filter .date-field {
+    display: flex !important;
+    flex: 1;
+    flex-direction: column !important;  /* Etiket ve kutuyu alt alta dizer */
+    width: auto !important;              /* Tarih kutularının kendi kutusuna yayılmasını sağlar */
+    font-size: 13px !important;              /* Etiket yazısını küçültür */
+}
+
+#myDeliveriesDateFilterCard .my-delivery-date-filter .date-field input[type="date"] {
+    font-size: 13px !important;              /* Tarih kutusunun yazısını küçültür */
+    padding: 6px 7px !important;             /* Kutuyu biraz daha kompakt yapar */
+    flex-direction: row !important;          /* Etiket ve kutuyu alt alta dizer */
+}
+#myDeliveriesDateFilterCard .search-title{
+    margin-top: 0 !important;                 /* Başlık ile kutular arası boşluğu azaltır */
+    font-size: 18px !important;              /* Başlık yazısını biraz küçültür */
+    margin-bottom: 15px !important;          /* Başlık ile kutular arası boşluğu azaltır */
+
+}
+#myDeliveriesDateFilterCard .my-delivery-date-filter label {
+    margin-top: 0 !important;                 /* Etiket ile kutu arası boşluğu azaltır */
+    margin-bottom: 2px !important;             /* Etiket ile kutu arası boşluğu azaltır */
+    text-align: center !important;             /* Etiket yazısını sola hizalar */
+}
 #searchMyDeliveriesButton {
-    transform: none !important;          /* Butondaki kaymaları sıfırlar */
-    width: auto !important;              /* Kendi metin boyutunu korur */
-    min-width: 140px;                   /* İdeal şık bir genişlik */
+    display: flex !important;              /* YENİ — flex kuralları artık çalışır */
+    align-items: center !important;         /* YENİ — dikeyde ortalar */
+    justify-content: center !important;
+    border-radius: 30% !important;
+    transform: none !important;
+    width: 30px !important;                 /* 10px yerine gerçekçi bir boyut */
+    height: 30px !important;
+    padding: 0 !important;                  /* YENİ — .btn'den gelen padding'i sıfırlar */
+    box-sizing: border-box !important;      /* YENİ */
+    background: rgba(236, 236, 236, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
 }
 /* ---------------- İSTATİSTİK KARTLARI ---------------- */
 .cards {

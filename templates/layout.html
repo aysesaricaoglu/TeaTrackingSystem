@@ -11,8 +11,7 @@
     <!-- Ortak CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Sayfaya özel CSS -->
     {% block css %}{% endblock %}
 </head>
@@ -66,7 +65,7 @@
 
                 {% if session["role"] == "farmer" %}
                 <li>
-                    <a href="{{url_for('my_deliveries')}}">
+                    <a href="{{url_for('my_deliveries')}}"
                         class="{{ 'active' if request.path == url_for('my_deliveries') else '' }}">
                         <i class="fa-solid fa-box-open"></i> My Deliveries
                     </a>

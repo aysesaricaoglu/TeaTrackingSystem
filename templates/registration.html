@@ -9,7 +9,7 @@
     </div>
 
     <!-- Dosya yükleme olduğu için enctype="multipart/form-data" zorunludur -->
-    <form action="{{ url_for('signup_page') }}" method="POST" enctype="multipart/form-data" id="signupForm"
+    <form action="{{ url_for('registration_page') }}" method="POST" enctype="multipart/form-data" id="registrationForm"
       class="auth-form" autocomplete="off">
 
       <!-- TC Numarası -->
@@ -75,20 +75,21 @@
       <div class="field-group file-field">
         <label for="land_register">Land Register Document</label>
         <div class="file-upload-box">
-          <input type="file" id="land_register" name="land_register" required>
+          <input type="file" id="land_register" name="land_register" required accept=".pdf,.jpg,.jpeg,.png">
           <span class="file-hint">Accepted formats: PDF, PNG, JPG (Max 5MB)</span>
         </div>
       </div>
+      <button type="submit" class="submit-btn" id="registrationSubmitBtn">Submit Application</button>
 
-      <button type="submit" class="submit-btn" id="signupSubmitBtn">Submit Application</button>
-      <div class="auth-footer">
-        <span>Already have an account?</span>
-        <a href="{{ url_for('home') }}">Log In</a>
+
     </form>
+    <div class="auth-footer">
+      <span>Already have an account?</span>
+      <a href="{{ url_for('home') }}">Log In</a>
+    </div>
+
   </div>
-  </form>
-</div>
-<!-- 
+  <!-- 
     <footer class="app-footer">
         <div class="footer-content">
             <p class="footer-copy">© 2026 Tea Tracking & Management System. All rights reserved.</p>
@@ -107,10 +108,114 @@
             </div>
         </div>
     </footer> -->
+</div>
 {% endblock %}
 
 {% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
+  function showGlassAlert(title, text, icon = 'info') {
+    return Swal.fire({
+      title: title,
+      text: text,
+      icon: icon, // 'success', 'error', 'warning', 'info'
+      confirmButtonColor: '#3a7d44',
+      confirmButtonText: 'OK',
+      customClass: {
+        popup: 'glass-swal'
+      }
+    });
+  }
+
+  const registrationSubmitBtn = document.getElementById("registrationSubmitBtn");
+
+  registrationSubmitBtn.addEventListener("click", function (event) {
+    event.preventDefault(); // Formun otomatik gönderilmesini engelle
+
+    const form = document.getElementById("registrationForm");
+    const formData = new FormData(form);
+
+    const registrationData = {
+      tc_no: formData.get("tc_no"),
+      first_name: formData.get("first_name"),
+      last_name: formData.get("last_name"),
+      phone_number: formData.get("phone_number"),
+      city: formData.get("city"),
+      district: formData.get("district"),
+      village: formData.get("village"),
+      password: formData.get("password"),
+      confirm_password: formData.get("confirm_password"),
+    };
+    if (registrationData.password !== registrationData.confirm_password) {
+      showGlassAlert("Error", "Passwords do not match.", "error");
+      return;
+    } if (registrationData.password.length < 8) {
+      showGlassAlert("Error", "Password must be at least 8 characters long.", "error");
+      return;
+    }
+    if (!/^\d{11}$/.test(registrationData.tc_no)) {
+      showGlassAlert("Error", "TC Number must be exactly 11 digits.", "error");
+      return;
+    }
+    if (!/^[a-zA-Z]+$/.test(registrationData.first_name) || !/^[a-zA-Z]+$/.test(registrationData.last_name)) {
+      showGlassAlert("Error", "First Name and Last Name must contain only letters.", "error");
+      return;
+    }
+    if (!/^[a-zA-Z]+$/.test(registrationData.city)) {
+      showGlassAlert("Error", "City must contain only letters.", "error");
+      return;
+    }
+    if (!/^[a-zA-Z]+$/.test(registrationData.district)) {
+      showGlassAlert("Error", "District must contain only letters.", "error");
+      return;
+    }
+    if (!/^[a-zA-Z]+$/.test(registrationData.village)) {
+      showGlassAlert("Error", "Village must contain only letters.", "error");
+      return;
+    }
+    if (!/^\d+$/.test(registrationData.phone_number)) {
+      showGlassAlert("Error", "Phone Number must contain only digits.", "error");
+      return;
+    }
+    if (registrationData.phone_number.length < 10 || registrationData.phone_number.length > 15) {
+      showGlassAlert("Error", "Phone Number must be between 10 and 15 digits.", "error");
+      return;
+    }
+    if (!formData.get("land_register")) {
+      showGlassAlert("Error", "Please upload the Land Register document.", "error");
+      return;
+    }
+    if (formData.get("land_register").size > 5 * 1024 * 1024) {
+      showGlassAlert("Error", "Land Register document must be less than 5MB.", "error");
+      return;
+    }
+
+
+    fetch("{{ url_for('registration_page_api') }}", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          showGlassAlert("Success", data.message, "success");
+          form.reset(); // Formu sıfırla
+        } else {
+          showGlassAlert("Error", data.message, "error");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        showGlassAlert("Error", "An unexpected error occurred.", "error");
+      });
+  });
+
+
+
+
+
+
   document.querySelectorAll('.toggle-eye').forEach(btn => {
     btn.addEventListener('click', () => {
       const target = document.getElementById(btn.dataset.target);

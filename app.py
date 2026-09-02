@@ -7,7 +7,10 @@ logging.basicConfig(
     # handlers= [logging.StreamHandler(),
     #          logging.FileHandler("app.log")]
 )
-
+import os
+import re
+ALLOWED_EXTENSIONS = {"pdf", "jpg", "jpeg", "png"}
+MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash
 from flask import Flask, render_template, url_for, redirect, request, session, jsonify
@@ -37,6 +40,7 @@ from database import (
     change_password,
     get_delivery_by_farmer_id,
     search_my_deliveries_by_delivery_date,
+    add_registration,
 )
 
 # logging.basicConfig(filename='myapp.log', level=logging.INFO)
@@ -224,6 +228,7 @@ def search_deliveries_api():
         app.logger.exception("search_deliveries_api failed")
         return jsonify({"success": False, "message": str(e)}), 500
 
+
 @app.route("/dashboard")
 def dashboard():
 
@@ -321,11 +326,9 @@ def search_farmers_api():
         farmers = search_farmers(filters)
         return jsonify({"success": True, "farmers": farmers}), 200
 
-        
     except Exception as e:
         app.logger.exception("search_farmers_api failed")
         return jsonify({"success": False, "message": str(e)}), 500
-
 
 
 @app.route("/admin/farmers/add", methods=["GET", "POST"])
@@ -419,12 +422,9 @@ def search_experts_api():
         experts = search_experts(filters)
         return jsonify({"success": True, "experts": experts}), 200
 
-
     except Exception as e:
         app.logger.exception("search_experts_api failed")
         return jsonify({"success": False, "message": str(e)}), 500
-
-
 
 
 @app.route("/admin/experts/add", methods=["GET", "POST"])
@@ -557,6 +557,7 @@ def my_deliveries():
 
     return render_template("my_deliveries.html", deliveries=delivery_records)
 
+
 @app.route("/api/farmer/my-deliveries/search", methods=["POST"])
 def search_deliveries_by_delivery_date_api():
     if "user_id" not in session or session.get("role") != "farmer":
@@ -565,15 +566,16 @@ def search_deliveries_by_delivery_date_api():
     try:
         data = request.get_json()
         filters = data.get("filters", {})
-        deliveries = search_my_deliveries_by_delivery_date(session["user_id"], filters.get("start_date"), filters.get("end_date"))
+        deliveries = search_my_deliveries_by_delivery_date(
+            session["user_id"], filters.get("start_date"), filters.get("end_date")
+        )
         return jsonify({"success": True, "deliveries": deliveries}), 200
     except Exception as e:
         app.logger.exception("search_deliveries_by_delivery_date_api failed")
         return jsonify({"success": False, "message": str(e)}), 500
 
 
-
-@app.before_request  #her requestten önce bu kodu çalıştır 
+@app.before_request  # her requestten önce bu kodu çalıştır
 def check_session_timeout():
 
     if "user_id" not in session:
@@ -593,9 +595,10 @@ def check_session_timeout():
 
     elapsed = datetime.now().timestamp() - login_time
 
-    if elapsed > 1800:  
+    if elapsed > 1800:
         session.clear()
         return redirect(url_for("home"))
+
 
 @app.route("/ai_assistant")
 def ai_assistant():
@@ -613,12 +616,82 @@ def logout():
     return redirect(url_for("home"))  # login sayfasına yönlendir
 
 
-@app.route("/signup", methods=["GET"])
-def signup_page():
-    return render_template("signup.html")
-# @app.route("/signup", methods=["POST"])
-# def signup_page_api():
+@app.route("/registration", methods=["GET"])
+def registration_page():
+    return render_template("registration.html")
 
+def allowed_file(filename):
+    return "." in filename and \
+           filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+
+@app.route("/registration", methods=["POST"])
+def registration_page_api():
+    if "user_id" in session:
+        return jsonify({"success": False, "message": "You are already logged in."}), 400
+
+    if "application_submitted" in session:
+        return jsonify({"success": False, "message": "You have already submitted an application."}), 400
+
+    tc_no = request.form.get("tc_no")
+    password = request.form.get("password")
+    confirm_password = request.form.get("confirm_password")
+    first_name = request.form.get("first_name")
+    last_name = request.form.get("last_name")
+    city = request.form.get("city")
+    district = request.form.get("district")
+    phone_number = request.form.get("phone_number")
+    village = request.form.get("village")
+
+    if not all([tc_no, password, confirm_password, first_name, last_name, city, district, phone_number, village]):
+        return jsonify({"success": False, "message": "Please fill in all fields."}), 400
+
+    if password != confirm_password:
+        return jsonify({"success": False, "message": "Passwords do not match."}), 400
+
+    if len(password) < 8:
+        return jsonify({"success": False, "message": "Password must be at least 8 characters."}), 400
+
+    if not re.fullmatch(r"\d{11}", tc_no):
+        return jsonify({"success": False, "message": "TC Number must be exactly 11 digits."}), 400
+
+    land_register_file = request.files.get("land_register")
+
+    if not land_register_file or land_register_file.filename == "":
+        return jsonify({"success": False, "message": "Land register document is required."}), 400
+
+    if not allowed_file(land_register_file.filename):
+        return jsonify({"success": False, "message": "Invalid file type. Only PDF, JPG, PNG allowed."}), 400
+
+    land_register_file.seek(0, os.SEEK_END)
+    file_size = land_register_file.tell()
+    land_register_file.seek(0)
+    if file_size > MAX_FILE_SIZE:
+        return jsonify({"success": False, "message": "File exceeds 5MB limit."}), 400
+
+    filename = secure_filename(land_register_file.filename)
+    os.makedirs("uploads", exist_ok=True)
+    land_register_file.save(f"uploads/{filename}")
+
+    registration_added = add_registration(
+        tc_no,
+        first_name,
+        last_name,
+        city,
+        district,
+        phone_number,
+        village,
+        generate_password_hash(password),
+        filename
+    )
+
+    if not registration_added:
+        return jsonify({"success": False, "message": "This TC Number is already registered."}), 400
+
+    session["application_submitted"] = True
+
+    return jsonify({"success": True, "message": "Application submitted successfully."}), 200
 
 if __name__ == "__main__":
     app.run(

@@ -39,6 +39,7 @@ def normalize_search_text(text):
 
     return text.translate(replacements).casefold()
 
+
 def create_connection():
     connection = sqlite3.connect(DATABASE_NAME)
 
@@ -64,6 +65,33 @@ def create_table():
          first_name TEXT NOT NULL,
          last_name TEXT NOT NULL,
          is_active INTEGER DEFAULT 1
+    )""")
+
+    cursor.execute("""CREATE TABLE IF NOT EXISTS registrations(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        tc_no TEXT UNIQUE NOT NULL,
+        first_name TEXT NOT NULL,
+        last_name TEXT NOT NULL,
+        city TEXT NOT NULL,
+        district TEXT NOT NULL,
+        phone_number TEXT NOT NULL,
+        village TEXT NOT NULL,
+        password_hash TEXT NOT NULL,
+        land_register_path TEXT NOT NULL,
+        status TEXT DEFAULT 'pending',
+        created_at TIMESTAMP DEFAULT (datetime('now', 'localtime'))
+    
+    )""")
+    
+    cursor.execute("""CREATE TABLE IF NOT EXISTS notifications(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        type TEXT NOT NULL,
+        message TEXT NOT NULL,
+        is_read INTEGER DEFAULT 0,
+        recipient_user_id INTEGER,
+        related_id INTEGER,
+        created_at TIMESTAMP DEFAULT (datetime('now', 'localtime')),
+        FOREIGN KEY (recipient_user_id) REFERENCES users(id)
     )""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS tea_delivers(
@@ -235,6 +263,7 @@ def get_all_deliveries():#bunu şu anda kullanmıyorum ama dashboarda ekleyeceğ
         JOIN farmers ON tea_delivers.farmer_id = farmers.id
         JOIN users ON tea_delivers.expert_id = users.id
         ORDER BY tea_delivers.id DESC LIMIT 5
+
     """)
 
     deliveries = cursor.fetchall()
@@ -948,132 +977,23 @@ def get_delivery_by_farmer_id(user_id):
     return deliveries
 
 
-# def reset_test_data():
-#     connection = create_connection()
-#     cursor = connection.cursor()
+def add_registration(tc_no, first_name, last_name, city, district, phone_number, village, password_hash, land_register_path):
+    connection = create_connection()
+    cursor = connection.cursor()
 
-#     cursor.execute("DELETE FROM users WHERE id = 4")
+    cursor.execute("""
+        INSERT INTO registrations (
+            tc_no,
+            first_name,
+            last_name,
+            city,
+            district,
+            phone_number,
+            village,
+            password_hash,
+            land_register_path
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (tc_no, first_name, last_name, city, district, phone_number, village, password_hash, land_register_path))
 
-#     connection.commit()
-#     connection.close()
-
-#     print("Test data deleted successfully.")
-# def update_admin_password(user_id, new_password):
-
-#     connection = create_connection()
-#     cursor = connection.cursor()
-
-#     hashed_password = generate_password_hash(new_password)
-
-#     cursor.execute("""
-#         UPDATE users
-#         SET password = ?
-#         WHERE id = ?
-#         AND role = 'admin'
-#     """, (hashed_password, user_id))
-
-#     print("Updated rows:", cursor.rowcount, flush=True)
-
-#     connection.commit()
-#     connection.close()
-
-#     return cursor.rowcount > 0
-# def add_test_data():
-#     add_test_experts()
-#     add_test_deliveries()
-
-
-# def add_test_experts():
-
-#     for i in range(1, 31):
-
-#         tc_no = f"800000000{i:02d}"
-#         password = "1234"
-#         role = "expert"
-#         first_name = f"TestExpert{i}"
-#         last_name = "Test"
-
-#         result = add_user(
-#             tc_no,
-#             password,
-#             role,
-#             first_name,
-#             last_name
-#         )
-
-#         if result:
-#             print(f"Expert {i} added: {first_name} {last_name}")
-#         else:
-#             print(f"Expert {i} could not be added.")
-# def add_test_deliveries():
-
-#     connection = create_connection()
-#     cursor = connection.cursor()
-
-#     # Aktif farmer ID'lerini al
-#     cursor.execute("""
-#         SELECT id
-#         FROM farmers
-#         WHERE is_active = 1
-#         ORDER BY id
-#     """)
-
-#     farmers = [row[0] for row in cursor.fetchall()]
-
-#     # Aktif expert ID'lerini al
-#     cursor.execute("""
-#         SELECT id
-#         FROM users
-#         WHERE role = 'expert'
-#         AND is_active = 1
-#         ORDER BY id
-#     """)
-
-#     experts = [row[0] for row in cursor.fetchall()]
-
-#     connection.close()
-
-#     if not farmers:
-#         print("No active farmers found.")
-#         return
-
-#     if not experts:
-#         print("No active experts found.")
-#         return
-
-#     for i in range(1, 31):
-
-#         farmer_id = farmers[(i - 1) % len(farmers)]
-#         expert_id = experts[(i - 1) % len(experts)]
-
-#         delivery_date = f"2026-08-{(i % 28) + 1:02d}"
-
-#         gross_weight = 50 + (i * 5)
-
-#         # Yağmurluysa %10 kesinti
-#         is_rainy = 1 if i % 3 == 0 else 0
-
-#         if is_rainy:
-#             net_weight = gross_weight * 0.9
-#         else:
-#             net_weight = gross_weight
-
-#         payment_option = "Immediate" if i % 2 == 0 else "Deferred"
-
-#         add_delivery(
-#             farmer_id,
-#             expert_id,
-#             delivery_date,
-#             gross_weight,
-#             net_weight,
-#             is_rainy,
-#             payment_option
-#         )
-
-#         print(
-#             f"Delivery {i} added | "
-#             f"Farmer ID: {farmer_id} | "
-#             f"Expert ID: {expert_id} | "
-#             f"Date: {delivery_date}"
-#         )
-
+    connection.commit()
+    connection.close()

@@ -11,7 +11,8 @@
     </div>
     <h2 class="guide-latin">Camellia sinensis</h2>
     <p class="guide-desc">
-      Essential factors determining black tea quality: tender shoots, proper soil drainage, and ideal plucking standards.
+      Essential factors determining black tea quality: tender shoots, proper soil drainage, and ideal plucking
+      standards.
     </p>
 
     <!-- 3 Mini Info Cards -->
@@ -44,33 +45,32 @@
   </div>
 </div>
 
-<!-- =========================
-     DATE FILTER
-========================= -->
-<div class="search-content-card" id="myDeliveriesDateFilterCard">
-  <h2 class="search-title">Filter Deliveries by Date</h2>
-
-  <div class="my-delivery-date-filter">
-    <div class="date-field">
-      <label for="start_date">Start Date</label>
-      <input type="date" id="start_date">
-    </div>
-
-    <div class="date-field">
-      <label for="end_date">End Date</label>
-      <input type="date" id="end_date">
-    </div>
-
-    <div class="date-search-button">
-      <button type="button" id="searchMyDeliveriesButton" class="btn">
-        Search
-      </button>
-    </div>
-  </div>
-</div>
 
 <div class="fmd-page-wrapper">
+
   <div class="fmd-content-card">
+    <div class="search-content-card" id="myDeliveriesDateFilterCard">
+      <h2 class="search-title">Filter Deliveries by Date</h2>
+
+      <div class="my-delivery-date-filter">
+        <div class="date-field">
+          <label for="start_date">Start Date</label>
+          <input type="date" id="start_date">
+        </div>
+
+        <div class="date-field">
+          <label for="end_date">End Date</label>
+          <input type="date" id="end_date">
+        </div>
+
+        <div class="date-search-button">
+          <button type="button" id="searchMyDeliveriesButton" class="btn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div class="fmd-header">
       <h2 class="fmd-title"><i class="fa-solid fa-truck-ramp-box"></i> My Tea Deliveries</h2>
       <p class="fmd-subtitle">Track all your past tea delivery records and payment statuses</p>
@@ -138,7 +138,7 @@
           return;
         }
 
-        
+
         searchMyDeliveries(startDate, endDate);
       });
   });
