@@ -112,8 +112,31 @@
 
                 <div class="nav-actions">
 
-                    <!-- Bildirim ve Mesaj İkonları -->
-                    <a href="#" class="nav-icon"><i class="far fa-bell"></i></a>
+                    {% if session["role"] == "admin" %}
+                    <div class="notification-dropdown">
+                        <button type="button" class="nav-icon notification-btn" id="notificationBtn">
+                            <i class="far fa-bell"></i>
+                            <span class="notification-badge" id="notificationBadge" style="display:none;">0</span>
+                        </button>
+                        <div class="dropdown-menu notification-panel" id="notificationPanel">
+                            <div class="notification-header">
+                                <span style="font-size: 23px;">Pending Applications</span>
+                            </div>
+                            <div class="notification-list" id="notificationList">
+                            </div>
+                            <div class="notification-footer">
+                                <button type="button" class="btn evaluate-btn" id="evaluateApplicationsBtn" style="display: none;">
+                                    Evaluate Applications
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <span class="nav-icon nav-icon-disabled">
+                        <i class="far fa-bell"></i>
+                    </span>
+                    {% endif %}
+
 
                     <!-- Profil Alanı ve Dropdown -->
                     <div class="profile-dropdown">
@@ -240,9 +263,7 @@
             });
         }</script>
     <!-- Sayfaya özel JavaScript -->
-    {% block scripts %}
 
-    {% endblock %}
 
     <!--  DROPDOWN (AŞAĞI AÇILIR MENÜ) SCRİPTİ -->
     <script>
@@ -260,6 +281,78 @@
             }
         });
     </script>
+    {% block scripts %}
+    {% if session.get("role") == "admin" %}
+    <script>
+        const notificationBtn = document.getElementById("notificationBtn");
+        const notificationPanel = document.getElementById("notificationPanel");
+        const notificationBadge = document.getElementById("notificationBadge");
+        const notificationList = document.getElementById("notificationList");
+        const evaluateBtn = document.getElementById("evaluateApplicationsBtn");
+
+        function loadPendingRegistrations() {
+            fetch("/api/admin/pending-registrations")
+                .then(res => res.json())
+                .then(data => {
+                    if (!data.success) return;
+                    if (data.count > 0) {
+                        notificationBadge.textContent = data.count;
+                        notificationBadge.style.display = "flex";
+                        evaluateBtn.style.display = "block";
+                    } else {
+                        notificationBadge.style.display = "none";
+                        evaluateBtn.style.display = "none";
+                    }
+                    notificationList.innerHTML = "";
+                    if (data.registrations.length === 0) {
+                        notificationList.innerHTML = `<div class="notification-empty">No pending applications.</div>`;
+                        return;
+                    }
+                    data.registrations.forEach(reg => {
+                        const item = document.createElement("div");
+                        item.className = "notification-item";
+                        item.innerHTML = `
+                        <span class="notif-name">${reg.first_name} ${reg.last_name} — Farmer Application</span>
+                        <span class="notif-location">${reg.city} / ${reg.district}</span>
+                    `;
+                        notificationList.appendChild(item);
+                    });
+                })
+                .catch(err => console.error("Notification load error:", err));
+        }
+
+        document.addEventListener("DOMContentLoaded", loadPendingRegistrations);
+
+        notificationBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            notificationPanel.classList.toggle("show");
+        });
+
+        document.addEventListener("click", function (e) {
+            if (!notificationPanel.contains(e.target) && !notificationBtn.contains(e.target)) {
+                notificationPanel.classList.remove("show");
+            }
+        });
+
+        evaluateBtn.addEventListener("click", function () {
+            fetch("/admin/evaluate-applications", { method: "POST" })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        showGlassAlert("Evaluation Complete", data.message, "success");
+                        loadPendingRegistrations();
+                    } else {
+                        showGlassAlert("Error", data.message, "error");
+                    }
+                })
+                .catch(err => {
+                    console.error("Evaluate error:", err);
+                    showGlassAlert("Error", "An unexpected error occurred.", "error");
+                });
+        });
+    </script>
+    {% endif %}
+    {% endblock %}
     <script>
         const menuBtn = document.getElementById('menuToggleBtn');
         const sidebar = document.querySelector('.sidebar');
@@ -302,6 +395,7 @@
 
 
     </script>
+
 
 </body>
 

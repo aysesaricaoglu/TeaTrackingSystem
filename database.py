@@ -1,3 +1,4 @@
+from itertools import count
 import sqlite3
 import logging
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -14,28 +15,31 @@ from datetime import datetime, timedelta
 # logger = logging.getLogger(__name__)
 DATABASE_NAME = "tea.db"
 
+
 def normalize_search_text(text):
     if text is None:
         return ""
 
     text = str(text).strip()
 
-    replacements = str.maketrans({
-        "ç": "c",
-        "Ç": "c",
-        "ğ": "g",
-        "Ğ": "g",
-        "ı": "i",
-        "I": "i",
-        "İ": "i",
-        "i": "i",
-        "ö": "o",
-        "Ö": "o",
-        "ş": "s",
-        "Ş": "s",
-        "ü": "u",
-        "Ü": "u"
-    })
+    replacements = str.maketrans(
+        {
+            "ç": "c",
+            "Ç": "c",
+            "ğ": "g",
+            "Ğ": "g",
+            "ı": "i",
+            "I": "i",
+            "İ": "i",
+            "i": "i",
+            "ö": "o",
+            "Ö": "o",
+            "ş": "s",
+            "Ş": "s",
+            "ü": "u",
+            "Ü": "u",
+        }
+    )
 
     return text.translate(replacements).casefold()
 
@@ -43,11 +47,7 @@ def normalize_search_text(text):
 def create_connection():
     connection = sqlite3.connect(DATABASE_NAME)
 
-    connection.create_function(
-            "normalize_text",
-            1,
-            normalize_search_text
-    )
+    connection.create_function("normalize_text", 1, normalize_search_text)
 
     return connection
 
@@ -82,7 +82,7 @@ def create_table():
         created_at TIMESTAMP DEFAULT (datetime('now', 'localtime'))
     
     )""")
-    
+
     cursor.execute("""CREATE TABLE IF NOT EXISTS notifications(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         type TEXT NOT NULL,
@@ -140,7 +140,6 @@ def create_table():
 
 
     """)
-  
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS farmers(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -171,12 +170,12 @@ def create_table():
     try:
         cursor.execute("ALTER TABLE users ADD COLUMN is_active INTEGER DEFAULT 1")
     except:
-        pass # Hata verirse (kolon zaten eklenmişse) umursama, geç.
+        pass  # Hata verirse (kolon zaten eklenmişse) umursama, geç.
 
     try:
         cursor.execute("ALTER TABLE farmers ADD COLUMN is_active INTEGER DEFAULT 1")
     except:
-        pass # Hata verirse umursama, geç
+        pass  # Hata verirse umursama, geç
     connection.commit()  # commit işlemi veritabanına değişiklikleri kaydeder. yani garson mutfağa ilettiği siparişin tamamlandığını ve artık mutfakta hazır olduğunu bildirir.
     connection.close()
 
@@ -241,9 +240,7 @@ def get_all_users():
     return users
 
 
-
-
-def get_all_deliveries():#bunu şu anda kullanmıyorum ama dashboarda ekleyeceğim
+def get_all_deliveries():  # bunu şu anda kullanmıyorum ama dashboarda ekleyeceğim
     connection = create_connection()
     cursor = connection.cursor()
 
@@ -271,6 +268,8 @@ def get_all_deliveries():#bunu şu anda kullanmıyorum ama dashboarda ekleyeceğ
     connection.close()
 
     return deliveries
+
+
 def search_deliveries(filters):
     connection = create_connection()
     cursor = connection.cursor()
@@ -302,33 +301,25 @@ def search_deliveries(filters):
         query += """
             AND normalize_text(farmers.first_name) LIKE ?
         """
-        parameters.append(
-            f"%{normalize_search_text(filters['farmer_name'])}%"
-        )
+        parameters.append(f"%{normalize_search_text(filters['farmer_name'])}%")
 
     if filters.get("farmer_surname"):
         query += """
             AND normalize_text(farmers.last_name) LIKE ?
         """
-        parameters.append(
-            f"%{normalize_search_text(filters['farmer_surname'])}%"
-        )
+        parameters.append(f"%{normalize_search_text(filters['farmer_surname'])}%")
 
     if filters.get("expert_name"):
         query += """
             AND normalize_text(experts.first_name) LIKE ?
         """
-        parameters.append(
-            f"%{normalize_search_text(filters['expert_name'])}%"
-        )
+        parameters.append(f"%{normalize_search_text(filters['expert_name'])}%")
 
     if filters.get("expert_surname"):
         query += """
             AND normalize_text(experts.last_name) LIKE ?
         """
-        parameters.append(
-            f"%{normalize_search_text(filters['expert_surname'])}%"
-        )
+        parameters.append(f"%{normalize_search_text(filters['expert_surname'])}%")
 
     if filters.get("farmer_tc"):
         query += """
@@ -357,9 +348,7 @@ def search_deliveries(filters):
         query += """
             AND normalize_text(tea_delivers.payment_option) LIKE ?
         """
-        parameters.append(
-            f"%{normalize_search_text(filters['payment_option'])}%"
-        )
+        parameters.append(f"%{normalize_search_text(filters['payment_option'])}%")
 
     if filters.get("gross_weight"):
         query += """
@@ -384,6 +373,7 @@ def search_deliveries(filters):
     connection.close()
 
     return deliveries
+
 
 def add_delivery(
     farmer_id,
@@ -425,11 +415,13 @@ def add_delivery(
     connection.commit()  # yapılan değişiklikleri kaydetmek için
     connection.close()  # bağlantıyı kapatmak için
 
+
 def get_farmer_by_user_id(user_id):
     connection = create_connection()
     cursor = connection.cursor()
 
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT
             id,
             user_id,
@@ -441,7 +433,9 @@ def get_farmer_by_user_id(user_id):
             village
         FROM farmers
         WHERE user_id = ?
-    """, (user_id,))
+    """,
+        (user_id,),
+    )
 
     farmer = cursor.fetchone()
 
@@ -449,20 +443,19 @@ def get_farmer_by_user_id(user_id):
 
     return farmer
 
+
 def delete_delivery(delivery_id):
     connection = create_connection()
-    cursor= connection.cursor()
+    cursor = connection.cursor()
 
-    cursor.execute(
-        "DELETE FROM tea_delivers WHERE id=?",
-        (delivery_id,)
-        )
+    cursor.execute("DELETE FROM tea_delivers WHERE id=?", (delivery_id,))
     connection.commit()
     connection.close()
     return True
 
+
 def get_all_deliveries_full():
-    
+
     connection = create_connection()
     cursor = connection.cursor()
 
@@ -486,18 +479,19 @@ def get_all_deliveries_full():
 
     deliveries = cursor.fetchall()
 
-  
     connection.close()
 
     return deliveries
 
+
 def get_all_experts(search=""):
     connection = create_connection()
-    cursor=connection.cursor()
+    cursor = connection.cursor()
     if search:
-        search= f"%{search}%"# sql de '%' LIKE  kullanıldığı zaman önünde veya arkasında birşey yazabilir manasında kullanılır
+        search = f"%{search}%"  # sql de '%' LIKE  kullanıldığı zaman önünde veya arkasında birşey yazabilir manasında kullanılır
 
-        cursor.execute("""
+        cursor.execute(
+            """
         SELECT
           id,
           tc_no,
@@ -512,7 +506,9 @@ def get_all_experts(search=""):
             is_active = 1
         )
         ORDER BY  first_name, last_name
-    """,(search,search,search))#
+    """,
+            (search, search, search),
+        )  #
 
     else:
         cursor.execute("""
@@ -525,26 +521,30 @@ def get_all_experts(search=""):
             WHERE role ='expert'
             ORDER BY first_name , last_name
         """)
-    experts =cursor.fetchall()
+    experts = cursor.fetchall()
     connection.close()
     return experts
+
 
 def delete_expert(expert_id):
     connection = create_connection()
     cursor = connection.cursor()
     try:
 
-        cursor.execute("""
+        cursor.execute(
+            """
             UPDATE users
             SET is_active = 0
             WHERE id = ?
             AND role = 'expert'
-        """, (expert_id,))
+        """,
+            (expert_id,),
+        )
 
         connection.commit()
         return True
     except Exception as e:
-        print("delete problem occured:",e)
+        print("delete problem occured:", e)
         return False
     finally:
         connection.close()
@@ -553,20 +553,20 @@ def delete_expert(expert_id):
 
     return True
 
-def add_expert(tc_no,password,role,first_name,last_name):
-    connection =create_connection()
-    cursor=connection.cursor()
-    cursor.execute(
-        "SELECT * FROM users WHERE tc_no=?",(tc_no,)
-    )
 
-    existing_user= cursor.fetchone()
+def add_expert(tc_no, password, role, first_name, last_name):
+    connection = create_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM users WHERE tc_no=?", (tc_no,))
+
+    existing_user = cursor.fetchone()
     if existing_user:
         connection.close()
         return False
 
     hashed_password = generate_password_hash(password)
-    cursor.execute("""
+    cursor.execute(
+        """
 
          INSERT INTO users(
             tc_no,
@@ -574,13 +574,8 @@ def add_expert(tc_no,password,role,first_name,last_name):
             role,
             first_name,
             last_name) VALUES(?,?,?,?,?)
-            """,(
-                tc_no,
-                hashed_password,
-                role,
-                first_name,
-                last_name
-            )
+            """,
+        (tc_no, hashed_password, role, first_name, last_name),
     )
 
     connection.commit()
@@ -588,10 +583,11 @@ def add_expert(tc_no,password,role,first_name,last_name):
 
     return True
 
+
 def search_experts(filters):
-        connection =create_connection()
-        cursor= connection.cursor()
-        query ="""
+    connection = create_connection()
+    cursor = connection.cursor()
+    query = """
             SELECT
                 users.id,
                 users.tc_no,
@@ -599,41 +595,36 @@ def search_experts(filters):
                 users.last_name
             FROM users WHERE users.role ='expert'
         """
-        parameters=[]
+    parameters = []
 
-        if filters.get("name"):
-            query += """
+    if filters.get("name"):
+        query += """
                 AND normalize_text(users.first_name) LIKE ?
             """
-            parameters.append(
-                f"%{normalize_search_text(filters['name'])}%"
-            )
+        parameters.append(f"%{normalize_search_text(filters['name'])}%")
 
-        if filters.get("surname"):
-            query += """
+    if filters.get("surname"):
+        query += """
                 AND normalize_text (users.last_name) LIKE ?
             """
-            parameters.append(
-                f"%{normalize_search_text(filters['surname'])}%"
-            )
-        if filters.get("tc"):
-                query += """
+        parameters.append(f"%{normalize_search_text(filters['surname'])}%")
+    if filters.get("tc"):
+        query += """
                     AND users.tc_no LIKE ?
                 """
-                parameters.append(
-                    f"%{filters['tc']}%"
-                )
+        parameters.append(f"%{filters['tc']}%")
 
-        query += """
+    query += """
         ORDER BY users.first_name, users.last_name
         """
-        cursor.execute(query, tuple(parameters))
+    cursor.execute(query, tuple(parameters))
 
-        experts = cursor.fetchall()
+    experts = cursor.fetchall()
 
-        connection.close()
+    connection.close()
 
-        return experts
+    return experts
+
 
 def search_farmers(filters):
     connection = create_connection()
@@ -662,57 +653,43 @@ def search_farmers(filters):
         query += """
             AND normalize_text(farmers.first_name) LIKE ?
         """
-        parameters.append(
-            f"%{normalize_search_text(filters['name'])}%"
-        )
+        parameters.append(f"%{normalize_search_text(filters['name'])}%")
 
     if filters.get("surname"):
         query += """
             AND normalize_text(farmers.last_name) LIKE ?
         """
-        parameters.append(
-            f"%{normalize_search_text(filters['surname'])}%"
-        )
+        parameters.append(f"%{normalize_search_text(filters['surname'])}%")
 
     if filters.get("tc"):
         query += """
             AND users.tc_no LIKE ?
         """
-        parameters.append(
-            f"%{filters['tc']}%"
-        )
+        parameters.append(f"%{filters['tc']}%")
 
     if filters.get("city"):
         query += """
             AND normalize_text(farmers.city) LIKE ?
         """
-        parameters.append(
-            f"%{normalize_search_text(filters['city'])}%"
-        )
+        parameters.append(f"%{normalize_search_text(filters['city'])}%")
 
     if filters.get("district"):
         query += """
             AND normalize_text(farmers.district) LIKE ?
         """
-        parameters.append(
-            f"%{normalize_search_text(filters['district'])}%"
-        )
+        parameters.append(f"%{normalize_search_text(filters['district'])}%")
 
     if filters.get("village"):
         query += """
             AND normalize_text(farmers.village) LIKE ?
         """
-        parameters.append(
-            f"%{normalize_search_text(filters['village'])}%"
-        )
+        parameters.append(f"%{normalize_search_text(filters['village'])}%")
 
     if filters.get("phone"):
         query += """
             AND farmers.phone_number LIKE ?
         """
-        parameters.append(
-            f"%{filters['phone']}%"
-        )
+        parameters.append(f"%{filters['phone']}%")
 
     query += """
         ORDER BY farmers.first_name, farmers.last_name
@@ -726,14 +703,16 @@ def search_farmers(filters):
 
     return farmers
 
+
 def get_all_farmers(search=""):
-    connection= create_connection()
-    cursor= connection.cursor()
+    connection = create_connection()
+    cursor = connection.cursor()
 
     if search:
-        search= f"%{search}%"
+        search = f"%{search}%"
 
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT
                 farmers.id,
                 users.tc_no,
@@ -760,16 +739,17 @@ def get_all_farmers(search=""):
             )
         ORDER BY farmers.first_name, farmers.last_name
 
-    """,(
-            search,
-            search,
-            search,
-            search,
-            search,
-            search,
-            search,
-
-))
+    """,
+            (
+                search,
+                search,
+                search,
+                search,
+                search,
+                search,
+                search,
+            ),
+        )
     else:
         cursor.execute("""
             SELECT
@@ -799,94 +779,98 @@ def delete_farmer(farmer_id):
     connection = create_connection()
     cursor = connection.cursor()
     try:
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT user_id FROM farmers
             WHERE id =?
 
-        """,(farmer_id,))
-        farmer =cursor.fetchone()
+        """,
+            (farmer_id,),
+        )
+        farmer = cursor.fetchone()
 
         if farmer is None:
             connection.close()
             return False
 
-        user_id= farmer[0]
+        user_id = farmer[0]
 
-
-
-        cursor.execute("""
+        cursor.execute(
+            """
 
             UPDATE farmers
             SET is_active=0
             WHERE id=?
-        """,(farmer_id,))
+        """,
+            (farmer_id,),
+        )
 
-        cursor.execute("""
+        cursor.execute(
+            """
             UPDATE users
             SET is_active=0
             WHERE id=?
             AND role = 'farmer'
-        """,(user_id,))
+        """,
+            (user_id,),
+        )
 
         connection.commit()
         return True
     except Exception as e:
-        print("delete problem occured:",e)
+        print("delete problem occured:", e)
         return False
     finally:
-     connection.close()
+        connection.close()
 
 
-def change_password(tc_no,new_password):
-    connection= create_connection()
-    cursor= connection.cursor()
-    hashed_password= generate_password_hash(new_password)
-    cursor.execute("""
+def change_password(tc_no, new_password):
+    connection = create_connection()
+    cursor = connection.cursor()
+    hashed_password = generate_password_hash(new_password)
+    cursor.execute(
+        """
 
         UPDATE users
         SET password=? 
         WHERE tc_no =?
 
-    """,(hashed_password,tc_no))
+    """,
+        (hashed_password, tc_no),
+    )
     connection.commit()
     cursor.close()
     connection.close()
     logging.info(f"password changed!")
 
 
+def add_farmer(
+    tc_no, password, role, first_name, last_name, city, district, phone_number, village
+):
+    connection = create_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM users WHERE tc_no =?", (tc_no,))
+    existing_user = cursor.fetchone()
+    if existing_user:
+        connection.close()
+        return False
 
-def add_farmer(tc_no,password,role,first_name,last_name,city,district,phone_number,village):
-        connection=create_connection()
-        cursor= connection.cursor()
-        cursor.execute(
-            "SELECT * FROM users WHERE tc_no =?",(tc_no,)
-
-        )
-        existing_user = cursor.fetchone()
-        if existing_user:
-            connection.close()
-            return False
-
-        hashed_password = generate_password_hash(password)
-        cursor.execute("""
+    hashed_password = generate_password_hash(password)
+    cursor.execute(
+        """
             INSERT INTO users (
             tc_no,
             password,
             role,
             first_name,
             last_name) VALUES (?,?,?,?,?)
-            """,(
-                tc_no,
-                hashed_password,
-                role,
-                first_name,
-                last_name
-            )
+            """,
+        (tc_no, hashed_password, role, first_name, last_name),
+    )
+    user_id = cursor.lastrowid  # en son eklediğim şeyin id sini alıyorum
 
-        )
-        user_id = cursor.lastrowid# en son eklediğim şeyin id sini alıyorum
-
-        cursor.execute("""INSERT INTO farmers(
+    cursor.execute(
+        """INSERT INTO farmers(
                 user_id,
                 first_name,
                 last_name,
@@ -896,33 +880,24 @@ def add_farmer(tc_no,password,role,first_name,last_name,city,district,phone_numb
                 village
 
                 )VALUES (?,?,?,?,?,?,?)
-                """, (
-
-                user_id,
-                first_name,
-                last_name,
-                city,
-                district,
-                phone_number,
-                village
-        )
-
+                """,
+        (user_id, first_name, last_name, city, district, phone_number, village),
     )
 
-        connection.commit()
-        connection.close()
+    connection.commit()
+    connection.close()
 
-        # logger.info(f"farmer added {first_name} {last_name} TC: {tc_no}")
-    
+    # logger.info(f"farmer added {first_name} {last_name} TC: {tc_no}")
 
-        return True
+    return True
 
 
 def search_my_deliveries_by_delivery_date(user_id, start_date, end_date):
     connection = create_connection()
     cursor = connection.cursor()
 
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT
             td.id,
             td.farmer_id,
@@ -937,18 +912,13 @@ def search_my_deliveries_by_delivery_date(user_id, start_date, end_date):
         WHERE f.user_id = ?
         AND td.delivery_date BETWEEN ? AND ?
         ORDER BY td.delivery_date DESC
-    """, (user_id, start_date, end_date))
-    
+    """,
+        (user_id, start_date, end_date),
+    )
+
     deliveries = cursor.fetchall()
     connection.close()
     return deliveries
-
-
-
-
-
-
-
 
 
 def get_delivery_by_farmer_id(user_id):
@@ -956,7 +926,8 @@ def get_delivery_by_farmer_id(user_id):
     cursor = connection.cursor()
 
     # user_id üzerinden farmers tablosuna, oradan da tea_deliveries tablosuna bağlanır
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT
             td.id,
             td.farmer_id,
@@ -970,30 +941,151 @@ def get_delivery_by_farmer_id(user_id):
         INNER JOIN farmers f ON td.farmer_id = f.id
         WHERE f.user_id = ?
         ORDER BY td.delivery_date DESC
-    """, (user_id,))
-    
+    """,
+        (user_id,),
+    )
+
     deliveries = cursor.fetchall()
     connection.close()
     return deliveries
 
 
-def add_registration(tc_no, first_name, last_name, city, district, phone_number, village, password_hash, land_register_path):
+TEA_PRODUCING_REGIONS = {
+    "Rize": [
+        "Merkez",
+        "Ardeşen",
+        "Çayeli",
+        "Fındıklı",
+        "Pazar",
+        "Güneysu",
+        "İyidere",
+        "Kalkandere",
+        "Derepazarı",
+        "Çamlıhemşin",
+        "İkizdere",
+        "Hemşin",
+    ],
+    "Trabzon": ["Of", "Sürmene", "Araklı", "Çaykara", "Dernekpazarı", "Köprübaşı"],
+    "Artvin": ["Arhavi", "Hopa", "Borçka"],
+    "Giresun": ["Görele", "Tirebolu", "Espiye"],
+    "Ordu": ["Fatsa", "Ünye"],
+}
+# Normalize edilmiş bir arama tablosu önceden oluşturulur (performans için bir kez hesaplanır)
+_NORMALIZED_TEA_REGIONS = {
+    normalize_search_text(city): {
+        normalize_search_text(district) for district in districts
+    }
+    for city, districts in TEA_PRODUCING_REGIONS.items()
+}
+
+
+def is_valid_tea_region(city, district):
+    if not city or not district:
+        return False
+    normalized_city = normalize_search_text(city)
+    normalized_district = normalize_search_text(district)
+
+    if normalized_city not in _NORMALIZED_TEA_REGIONS:
+        return False
+    return normalized_district in _NORMALIZED_TEA_REGIONS[normalized_city]
+
+
+def evaluate_pending_applications():
+
     connection = create_connection()
     cursor = connection.cursor()
 
-    cursor.execute("""
-        INSERT INTO registrations (
-            tc_no,
-            first_name,
-            last_name,
-            city,
-            district,
-            phone_number,
-            village,
-            password_hash,
-            land_register_path
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (tc_no, first_name, last_name, city, district, phone_number, village, password_hash, land_register_path))
+    cursor.execute(
+        "SELECT id, city, district FROM registrations WHERE status = 'pending'"
+    )
+    pending = cursor.fetchall()
+
+    approved_count = 0
+    rejected_count = 0
+
+    for row in pending:
+        reg_id, city, district = row[0], row[1], row[2]
+
+        if is_valid_tea_region(city, district):
+            cursor.execute(
+                "UPDATE registrations SET status = 'approved' WHERE id = ?", (reg_id,)
+            )
+            approved_count += 1
+        else:
+            cursor.execute(
+                "UPDATE registrations SET status = 'rejected' WHERE id = ?", (reg_id,)
+            )
+            rejected_count += 1
 
     connection.commit()
     connection.close()
+    return approved_count, rejected_count
+
+
+
+def add_registration(
+    tc_no,
+    first_name,
+    last_name,
+    city,
+    district,
+    phone_number,
+    village,
+    password_hash,
+    land_register_path,
+):
+    connection = create_connection()
+    cursor = connection.cursor()
+
+    try:
+        cursor.execute(
+            """
+            INSERT INTO registrations (
+                tc_no, first_name, last_name, city, district,
+                phone_number, village, password_hash, land_register_path
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                tc_no, first_name, last_name, city, district,
+                phone_number, village, password_hash, land_register_path,
+            ),
+        )
+        connection.commit()
+        return cursor.lastrowid   # YENİ — başarılıysa eklenen kaydın id'sini döndür
+
+    except sqlite3.IntegrityError:
+        # tc_no UNIQUE kısıtlamasını ihlal ederse buraya düşer
+        return None
+
+    finally:
+        connection.close()
+
+def get_pending_registrations_count():
+    connection = create_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT COUNT(*) FROM registrations WHERE status = 'pending'") #kaç tane pending kayıt olduğunu say
+    count = cursor.fetchone()[0]  # pending kayıtların sayısını al
+    connection.close()
+    return count   
+
+
+def get_pending_registrations():
+    connection = create_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM registrations WHERE status = 'pending' ORDER BY created_at DESC" )
+    rows = cursor.fetchall()
+    connection.close()
+
+    return [
+        {
+            "id": row[0],
+            "tc_no": row[1],
+            "first_name": row[2],
+            "last_name": row[3],
+            "city": row[4],
+            "district": row[5],
+            "created_at": row[6],
+        }
+        for row in rows
+    ]
+

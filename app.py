@@ -19,6 +19,9 @@ from datetime import datetime, timedelta
 from database import (
     create_connection,
     create_table,
+    evaluate_pending_applications,
+    get_pending_registrations,
+    get_pending_registrations,
     show_tables,
     get_user_by_tc,
     add_user,
@@ -41,6 +44,7 @@ from database import (
     get_delivery_by_farmer_id,
     search_my_deliveries_by_delivery_date,
     add_registration,
+    evaluate_pending_applications,
 )
 
 # logging.basicConfig(filename='myapp.log', level=logging.INFO)
@@ -663,6 +667,7 @@ def registration_page_api():
 
     if not allowed_file(land_register_file.filename):
         return jsonify({"success": False, "message": "Invalid file type. Only PDF, JPG, PNG allowed."}), 400
+    
 
     land_register_file.seek(0, os.SEEK_END)
     file_size = land_register_file.tell()
@@ -692,6 +697,32 @@ def registration_page_api():
     session["application_submitted"] = True
 
     return jsonify({"success": True, "message": "Application submitted successfully."}), 200
+
+
+@app.route("/api/admin/pending-registrations", methods=["GET"])
+def pending_registrations_api():
+    if "user_id" not in session or session.get("role") != "admin":
+        return jsonify({"success": False, "message": "Unauthorized"}), 401
+
+    registrations = get_pending_registrations()
+    return jsonify({
+        "success": True,
+        "count": len(registrations),
+        "registrations": registrations
+    }), 200
+
+@app.route("/admin/evaluate-applications", methods=["POST"])
+def evaluate_applications_route():
+    if "user_id" not in session or session.get("role") != "admin":
+        return jsonify({"success": False, "message": "Unauthorized"}), 401
+
+    approved_count, rejected_count = evaluate_pending_applications()
+    return jsonify({
+        "success": True,
+        "message": f"{approved_count} application(s) approved, {rejected_count} rejected."
+    }), 200
+
+
 
 if __name__ == "__main__":
     app.run(

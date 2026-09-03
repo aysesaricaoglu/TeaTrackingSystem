@@ -741,16 +741,9 @@ td form {
     gap: 20px;
 }
 
-.nav-icon {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 20px;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.nav-icon:hover {
-    color: #ffffff;
-}
+/* =========================================================
+   NOTIFICATION BUTTON & BADGE (GLASSMORPHISM)
+========================================================= */
 
 /* Profil Butonu (Yuvarlak Resim ve İsim) */
 .profile-dropdown {

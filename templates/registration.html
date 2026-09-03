@@ -147,41 +147,52 @@
       password: formData.get("password"),
       confirm_password: formData.get("confirm_password"),
     };
-    if (registrationData.password !== registrationData.confirm_password) {
-      showGlassAlert("Error", "Passwords do not match.", "error");
+    const TURKISH_LETTERS_REGEX = /^[a-zA-ZçÇğĞıİöÖşŞüÜ]+$/;
+
+    if (!TURKISH_LETTERS_REGEX.test(registrationData.first_name) || !TURKISH_LETTERS_REGEX.test(registrationData.last_name)) {
+      showGlassAlert("Error", "First Name and Last Name must contain only letters.", "error");
       return;
-    } if (registrationData.password.length < 8) {
-      showGlassAlert("Error", "Password must be at least 8 characters long.", "error");
+    }
+
+    if (!TURKISH_LETTERS_REGEX.test(registrationData.city)) {
+      showGlassAlert("Error", "City must contain only letters.", "error");
+      return;
+    }
+
+    if (!TURKISH_LETTERS_REGEX.test(registrationData.district)) {
+      showGlassAlert("Error", "District must contain only letters.", "error");
+      return;
+    }
+
+    if (!TURKISH_LETTERS_REGEX.test(registrationData.village)) {
+      showGlassAlert("Error", "Village must contain only letters.", "error");
       return;
     }
     if (!/^\d{11}$/.test(registrationData.tc_no)) {
       showGlassAlert("Error", "TC Number must be exactly 11 digits.", "error");
       return;
     }
-    if (!/^[a-zA-Z]+$/.test(registrationData.first_name) || !/^[a-zA-Z]+$/.test(registrationData.last_name)) {
-      showGlassAlert("Error", "First Name and Last Name must contain only letters.", "error");
-      return;
-    }
-    if (!/^[a-zA-Z]+$/.test(registrationData.city)) {
-      showGlassAlert("Error", "City must contain only letters.", "error");
-      return;
-    }
-    if (!/^[a-zA-Z]+$/.test(registrationData.district)) {
-      showGlassAlert("Error", "District must contain only letters.", "error");
-      return;
-    }
-    if (!/^[a-zA-Z]+$/.test(registrationData.village)) {
-      showGlassAlert("Error", "Village must contain only letters.", "error");
+
+    if (registrationData.phone_number.length < 10 || registrationData.phone_number.length > 15) {
+      showGlassAlert("Error", "Phone Number must be between 10 and 15 digits.", "error");
       return;
     }
     if (!/^\d+$/.test(registrationData.phone_number)) {
       showGlassAlert("Error", "Phone Number must contain only digits.", "error");
       return;
     }
-    if (registrationData.phone_number.length < 10 || registrationData.phone_number.length > 15) {
-      showGlassAlert("Error", "Phone Number must be between 10 and 15 digits.", "error");
+
+    if (registrationData.password.length < 8) {
+      showGlassAlert("Error", "Password must be at least 8 characters long.", "error");
       return;
     }
+
+    if (registrationData.password !== registrationData.confirm_password) {
+      showGlassAlert("Error", "Passwords do not match.", "error");
+      return;
+
+    }
+
     if (!formData.get("land_register")) {
       showGlassAlert("Error", "Please upload the Land Register document.", "error");
       return;
@@ -199,7 +210,8 @@
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          showGlassAlert("Success", data.message, "success");
+          showGlassAlert("Registration form accepted", data.message, "success");
+          
           form.reset(); // Formu sıfırla
         } else {
           showGlassAlert("Error", data.message, "error");
